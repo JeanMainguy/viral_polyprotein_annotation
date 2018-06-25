@@ -1,4 +1,9 @@
-
+#!/bin/bash
+#
+#SBATCH --job-name=viral_taxonomy
+#SBATCH --mail-type=ALL
+#SBATCH --output=log/%x-%j.out
+#SBATCH --error=log/%x-%j.out
 
 ncbi_current="/mirror/ncbi/current/"
 
