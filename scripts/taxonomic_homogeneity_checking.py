@@ -140,25 +140,24 @@ def getSharedTaxonomy(taxonomy_set):
 
     return current_shared_taxonomy #, valid_branches
 
-def getValidBranches(current_shared_taxonomy, taxonomy_set):
-    last_common_node = current_shared_taxonomy[-1]
+def getValidBranches(last_common_node, current_shared_taxonomy, taxonomy_set):
 
     valid_branches = set()
     for tax in taxonomy_set:
-        try:
+        if last_common_node in tax:
             i_last = tax.index(last_common_node)
-        except ValueError:
-            # print('current shared tax', current_shared_taxonomy)
-            # print('last common', last_common_node)
-            # print('tax that gives problem')
-            # print('tax set')
-            # [print(t) for t in taxonomy_set]
-            raise ValueError
 
-        if len(tax) > i_last+1:
-            valid_branches.add(tax[i_last+1])
-    if not valid_branches:
+            if len(tax) > i_last+1:
+                valid_branches.add(tax[i_last+1])
+
+    if len(valid_branches) == 1:
+        # only one branch is in valid_branches which mean some genome are attached to last_common_node and all the other
+        # ones have the better defined node of valid branch. which means we find potential valid branches in the valid ranch node
+        last_common_node_from_valid_branch = valid_branches.pop()
+        getValidBranches(last_common_node_from_valid_branch, current_shared_taxonomy, taxonomy_set)
+    if not valid_branches: # there is no better defined node in the cluster than the last_common_node
         valid_branches.add(last_common_node)
+
     return valid_branches
 
 
@@ -253,7 +252,7 @@ def computeHomogeneity(cluster_info, unclassified_term_list, leaves_taxonomy, al
         unclassified_cluster = False
         effective_taxonomy_set = taxonomy_set - unclassified_taxonomy_set
     current_shared_taxonomy = getSharedTaxonomy(effective_taxonomy_set)
-    valid_branches = getValidBranches(current_shared_taxonomy, effective_taxonomy_set)
+    valid_branches = getValidBranches(current_shared_taxonomy[-1], current_shared_taxonomy, effective_taxonomy_set)
     ##Get nb genome from the cluster that are included in the valid branches
     nb_genome_in_valid_branch = 0
     nb_genome = len(set(cluster_info['genome_ids']))
