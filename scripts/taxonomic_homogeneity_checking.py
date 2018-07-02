@@ -80,11 +80,14 @@ def clusterFileParser(cluster_file):
 
             cluster_elements = cluster_line.rstrip().split("\t")
             cluster_info = {'genome_ids':[], 'nb_polyprotein':0, 'nb_protein':len(cluster_elements), "cluster_id":i}
+            cluster_info['polyproteins'] = []
             # 1774200|YP_009216586.1|357.0|None
             for element in cluster_elements:
                 genome_ids, protein_id, length, peptide_annotation = element.split('|')
                 if peptide_annotation == 'Peptide':
                     cluster_info['nb_polyprotein'] += 1
+
+                    cluster_info['polyproteins'].append(genome_ids)
                 cluster_info['genome_ids'].append(element.split('|')[0])
             # genome_ids = {element.split('|')[0] for element in cluster}
             yield cluster_info
