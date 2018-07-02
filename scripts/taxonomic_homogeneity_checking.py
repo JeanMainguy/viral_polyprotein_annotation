@@ -4,7 +4,7 @@ from os import path
 import re, csv
 from time import clock
 import visualisation_taxonomic_tree_cluster as view
-
+import numpy as np
 # PythonDecorators/decorator_without_arguments.py
 class timer(object):
 
@@ -22,8 +22,8 @@ class timer(object):
         """
         START_TIME = clock()
         result = self.f(*args, **kwargs)
-        print(self.f.__name__, 'run time:%6.2f'%(clock()-START_TIME), 'seconds.');
-        print('-'*20)
+        # print(self.f.__name__, 'run time:%6.2f'%(clock()-START_TIME), 'seconds.');
+        # print('-'*20)
         return result
 @timer
 def constructTaxonTree(taxonomy_file, unclassified_term_list):
@@ -98,7 +98,10 @@ def getSharedTaxonomy(taxonomy_set):
 
     for new_taxonomy in taxonomy_iter:
         if  current_shared_taxonomy[-1] in new_taxonomy:
-            continue
+            if new_taxonomy.index(current_shared_taxonomy[-1]) != current_shared_taxonomy.index(current_shared_taxonomy[-1]):
+                logging.warning("The same node name found with different index in taxonomies:"+str(current_shared_taxonomy)+'_and_'+str(new_taxonomy))
+            else:
+                continue
 
         current_taxonomy_iter = iter(current_shared_taxonomy)
         #We want to get the last smallest share taxonomy between the two taxonomy
@@ -139,7 +142,16 @@ def getValidBranches(current_shared_taxonomy, taxonomy_set):
 
     valid_branches = set()
     for tax in taxonomy_set:
-        i_last = tax.index(last_common_node)
+        try:
+            i_last = tax.index(last_common_node)
+        except ValueError:
+            # print('current shared tax', current_shared_taxonomy)
+            # print('last common', last_common_node)
+            # print('tax that gives problem')
+            # print('tax set')
+            # [print(t) for t in taxonomy_set]
+            raise ValueError
+
         if len(tax) > i_last+1:
             valid_branches.add(tax[i_last+1])
     if not valid_branches:
@@ -181,7 +193,7 @@ def get_filtered_taxonomy_set(genomes_ids, unclassified_term_list, leaves_taxono
 
             if not taxonomy:
 
-                # logging.warning("taxon id not found in taxonomy file or in alternative taxon id file: "+taxon_id)
+                logging.warning("taxon id not found in taxonomy file or in alternative taxon id file: "+taxon_id)
                 raise NameError("taxon id not found in taxonomy file or in alternative taxon id file: ",taxon_id)
                 # unfound_genome += 1
                 continue
@@ -214,7 +226,7 @@ def initiateOuputFile(file_output):
                     'valid_branches',
                     'inflation',
                     'coverage',
-                    "singleton",
+                    "evalue",
                     "unclassified_cluster",
                     "first_node"]
 
@@ -262,7 +274,7 @@ def computeHomogeneity(cluster_info, unclassified_term_list, leaves_taxonomy, al
     valid_branches = '|'.join(valid_branches)
 
     assert (0 < homogeneity <= 1),"homogeneity value is over 1: %f"  % homogeneity
-
+    # singleton = False if
     dict_info = {'cluster_id':cluster_info['cluster_id'],
                     'nb_of_protein':cluster_info['nb_protein'],
                     'number_of_genome_in_valid_branches':nb_genome_in_valid_branch,
@@ -279,18 +291,50 @@ def computeHomogeneity(cluster_info, unclassified_term_list, leaves_taxonomy, al
     return dict_info
 
 @timer
-def writeHomogeneity(iter_clusters, inflation, coverage, unclassified_term_list, leaves_taxonomy, alternative_taxon_id, count_leaves, genome_id_to_name, node_dict):
+def writeHomogeneity(iter_clusters, inflation,evalue, coverage, unclassified_term_list, leaves_taxonomy, alternative_taxon_id, count_leaves, genome_id_to_name, node_dict):
+    homogeneities = []
+    homogeneities_poly = []
+    homogeneities_no_poly = []
+    homogeneities_dsDNA = []
+    homogeneities_no_dsDNA = []
+
+
     for i, cluster_info in enumerate(iter_clusters):
         #cat data/taxonomy/taxonomy_virus.txt | cut -f3 | cut -d';' -f2 | sort | uniq | more
         dict_info = computeHomogeneity(cluster_info, unclassified_term_list, leaves_taxonomy, alternative_taxon_id, count_leaves)
 
         dict_info["inflation"] = inflation
         dict_info["coverage"] = coverage
-        csv_writer.writerow(dict_info)
-        # cluster_info.update(dict_info)
-        # if len(cluster_info['genome_ids']) < 80:
-        #     print("HOMOGENEITY", dict_info["homogeneity"])
-        # displayClusterTree(node_dict, cluster_info, count_leaves, genome_id_to_name, leaves_taxonomy)
+        dict_info["evalue"] = evalue
+
+        if csv_writer:
+            csv_writer.writerow(dict_info)
+            return
+        if not dict_info['unclassified_cluster']:
+            homogeneities.append(dict_info['homogeneity'])
+
+            if dict_info["nb_polyprotein"] == 0:
+                homogeneities_no_poly.append(dict_info['homogeneity'])
+            else:
+                homogeneities_poly.append(dict_info['homogeneity'])
+
+            if 'dsDNA' in dict_info["shared_taxonomy"] or 'dsDNA' in dict_info["valid_branches"]:
+                homogeneities_dsDNA.append(dict_info['homogeneity'])
+            else:
+                homogeneities_no_dsDNA.append(dict_info['homogeneity'])
+
+    assert (len(homogeneities_dsDNA) + len(homogeneities_no_dsDNA)== len(homogeneities) ), 'homogeneity array are no symetric'
+
+    print(build_summary_line(homogeneities, 'all', inflation, evalue, coverage))
+    print(build_summary_line(homogeneities_no_poly, 'no poly', inflation, evalue, coverage))
+    print(build_summary_line(homogeneities_poly, 'poly', inflation, evalue, coverage))
+    print(build_summary_line(homogeneities_dsDNA, 'dsDNA', inflation, evalue, coverage))
+    print(build_summary_line(homogeneities_no_dsDNA,'no dsDNA', inflation, evalue, coverage))
+
+
+
+
+    return homogeneities
 
 def getListFromFile(file):
     list_line = []
@@ -299,10 +343,22 @@ def getListFromFile(file):
             list_line.append(l.rstrip())
     return list_line
 
+def build_summary_line(homogeneities, type, inflation, evalue, coverage):
+    median=np.median(homogeneities)
+    Q1 = np.percentile(homogeneities, 25)
+    Q3 = np.percentile(homogeneities, 75)
+    ymax = max(homogeneities)
+    ymin = min(homogeneities)
+    mean=np.mean(homogeneities)
+    length = len(homogeneities)
+    line = [median,Q1, Q3, ymax,  ymin, length, mean, coverage,  evalue, inflation, type]
+    line = [str(i) for i in line]
+    line = ','.join(line)
+    return line
 
 if __name__ == '__main__':
 
-
+    logging.basicConfig(filename='log/homogeneity_cluster.log', level=logging.WARNING)
     cluster_file = sys.argv[1]
     cluster_homogeneity_file = sys.argv[2]
     taxonomy_file = sys.argv[3]  #"data/taxonomy/taxonomy_virus.txt"
@@ -329,34 +385,58 @@ if __name__ == '__main__':
     #if the regex doesn't work an expception will be raised
     coverage = re_result.group(1)
     inflation = re_result.group(2)
+
+    re_result = re.search("evalue_(1e[-\d]+)coverage", cluster_file)
+    evalue = None if not re_result else re_result.group(1)
+    # print(evalue)
     # base_cluster_file = path.basename(cluster_file)
     # file_name =  base_cluster_file[:base_cluster_file.index(".")] +'_tax_homogeneity.csv'
 
     # cluster_homogeneity_file = path.join(output_dir, file_name)
     # cluster_homogeneity_file =
 
-    # print(file_name)
-    print(inflation)
-    print(cluster_homogeneity_file)
+    # # print(file_name)
+    # print(inflation)
+    # print(cluster_homogeneity_file)
 
     unclassified_term_list = getListFromFile(unclassified_term_file)
     node_dict, count_leaves, leaves_taxonomy, genome_id_to_name = constructTaxonTree(taxonomy_file, unclassified_term_list)
 
     iter_clusters = clusterFileParser(cluster_file)
     alternative_taxon_id =getAlternativeTaxonId(alternative_taxon_id_file)
-
-    csv_writer = initiateOuputFile(cluster_homogeneity_file)
-    # print(alternative_taxon_id)
-    if visualisation:
-        for i, cluster_info in enumerate(iter_clusters):
-            #cat data/taxonomy/taxonomy_virus.txt | cut -f3 | cut -d';' -f2 | sort | uniq | more
-            dict_info = computeHomogeneity(cluster_info, unclassified_term_list, leaves_taxonomy, alternative_taxon_id, count_leaves)
-
-            dict_info["inflation"] = inflation
-            dict_info["coverage"] = coverage
-            cluster_info.update(dict_info)
-            # if len(cluster_info['genome_ids']) < 80:
-            #     print("HOMOGENEITY", dict_info["homogeneity"])
-            view.displayClusterTree(node_dict, cluster_info, count_leaves, genome_id_to_name, leaves_taxonomy)
+    long_csv = False
+    summary_file = ''
+    if long_csv:
+        csv_writer = initiateOuputFile(cluster_homogeneity_file)
     else:
-        writeHomogeneity(iter_clusters, inflation, coverage, unclassified_term_list, leaves_taxonomy, alternative_taxon_id, count_leaves, genome_id_to_name, node_dict)
+        csv_writer = False
+    # print(alternative_taxon_id)
+    # if visualisation:
+    #     for i, cluster_info in enumerate(iter_clusters):
+    #         #cat data/taxonomy/taxonomy_virus.txt | cut -f3 | cut -d';' -f2 | sort | uniq | more
+    #         dict_info = computeHomogeneity(cluster_info, unclassified_term_list, leaves_taxonomy, alternative_taxon_id, count_leaves)
+    #
+    #         dict_info["inflation"] = inflation
+    #         dict_info["coverage"] = coverage
+    #         dict_info["evalue"] = evalue
+    #         print(evalue)
+    #         input()
+    #         cluster_info.update(dict_info)
+    #         # if len(cluster_info['genome_ids']) < 80:
+    #         #     print("HOMOGENEITY", dict_info["homogeneity"])
+    #         view.displayClusterTree(node_dict, cluster_info, count_leaves, genome_id_to_name, leaves_taxonomy)
+    # else:
+    writeHomogeneity(iter_clusters, inflation, evalue, coverage, unclassified_term_list, leaves_taxonomy, alternative_taxon_id, count_leaves, genome_id_to_name, node_dict)
+    # if not long_csv:
+    #     median=np.median(homogeneities)
+    #     Q1 = np.percentile(homogeneities, 25)
+    #     Q2 = np.percentile(homogeneities, 75)
+    #     max = max(homogeneities)
+    #     min = min(homogeneities)
+    #     length = len(homogeneities)
+    #     line = [median,Q1, Q2, max,  min, length, coverage,  evalue, inflation]
+    #     line = [str(i) for i in line]
+    #     line = ','.join(line)
+    #     print(line)
+    #     # with open(cluster_homogeneity_file, 'a') as fl:
+    #     #     write(line+'\n')
