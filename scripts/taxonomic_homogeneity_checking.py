@@ -44,9 +44,22 @@ def constructTaxonTree(taxonomy_file, unclassified_term_list):
             #We don't want to count the unclassified taxonomy node
             #For example the virus "Tai Forest alphavirus" has the folowing taxonomy : Viruses;[...];Alphavirus;unclassified Alphavirus
             # we remove the last node and associate it with the name of the virus in the dictionnary genome_id_to_name
-            for unclassified_term in unclassified_term_list:
-                if len(taxonomy)>2 and taxonomy[-1].startswith(unclassified_term):
-                    genome_id_to_name[genome_id] = "{} ({})".format(genome_name, taxonomy.pop())
+            unclassified_node_name_to_merge = []
+            taxon_to_remove = []
+
+            for i, taxon in enumerate(taxonomy):
+                if any([taxon.startswith(unclassified_term) for unclassified_term in unclassified_term_list]):
+                    taxon_to_remove.append(taxon)
+                    unclassified_node_name_to_merge.append(taxon)
+                    continue
+                elif unclassified_node_name_to_merge:
+                    f = True
+                    taxonomy[i] = '{} ({})'.format(taxon, ';'.join(unclassified_node_name_to_merge) )
+                    unclassified_node_name_to_merge = []
+            if unclassified_node_name_to_merge:
+                genome_id_to_name[genome_id] = "{} ({})".format(genome_name, ';'.join(unclassified_node_name_to_merge))
+            [taxonomy.remove(t) for t in taxon_to_remove]
+
             leaves_taxonomy[genome_id] = tuple(taxonomy)
             root = taxonomy[0]
             node_dict.setdefault(root, set()) # add the root to the dict if not there
@@ -214,10 +227,10 @@ def get_filtered_taxonomy_set(genomes_ids, unclassified_term_list, leaves_taxono
         # Check if the first node after the root is an unclassified node
         # if it is this genome is not take into account in the homogeneity
         # print(taxon_id, taxonomy)
-        for unclassified_term in unclassified_term_list:
-            if taxonomy[1].startswith(unclassified_term):
-                unclassified_genome += 1
-                unclassified_taxonomy_set.add(taxonomy)
+        # for unclassified_term in unclassified_term_list:
+        #     if taxonomy[1].startswith(unclassified_term):
+        #         unclassified_genome += 1
+        #         unclassified_taxonomy_set.add(taxonomy)
         taxonomy_set.add(taxonomy)
 
 
@@ -266,7 +279,7 @@ def computeHomogeneity(cluster_info, unclassified_term_list, leaves_taxonomy, al
     current_shared_taxonomy = getSharedTaxonomy(effective_taxonomy_set)
     print('///'*20)
     valid_branches = getValidBranches(current_shared_taxonomy[-1], current_shared_taxonomy, effective_taxonomy_set)
-    input()
+    # input()
     ##Get nb genome from the cluster that are included in the valid branches
     nb_genome_in_valid_branch = 0
     nb_genome = len(set(cluster_info['genome_ids']))
