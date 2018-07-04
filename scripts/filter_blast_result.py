@@ -1,25 +1,40 @@
 import sys, os
 
 
-def filter_by_coverage(blast_result, out_files):
+
+def filter_by_evalue_and_coverage(blast_result, out_files, evalues, coverages):
     accepeted_pair = 0
     rejected_pair = 0
     length_rejected = 0
 
     with open(blast_result, 'r') as result_reader:
         for i, l in enumerate(result_reader):
+            if i%100000 == 0:
+                print(i)
             qseqid, sseqid, qcovs, qcovhsp, evalue, bitscore = l.split('\t')
 
             len_query = float(qseqid.split('|')[2])
             len_subject = float(sseqid.split('|')[2])
 
+            evalue = float(evalue)
+
             if len_query < len_subject:
                 length_rejected += 1
                 continue
             accepeted =False
-            for threshold, file in out_files.items():
-                if int(qcovs) >= threshold:
-                    file.write(l)
+            accepeted_evalues = []
+            accepeted_coverage = []
+            for  evalue_threshold in evalues:
+                if evalue <= evalue_threshold:
+                    accepeted_evalues.append(evalue_threshold)
+
+            for coverage_threshold in coverages:
+                if int(qcovs) >= coverage_threshold:
+                    accepeted_coverage.append(coverage_threshold)
+
+            for coverage in accepeted_coverage:
+                for acc_evalue in accepeted_evalues:
+                    out_files[(acc_evalue, coverage)].write(l)
                     accepeted = True
 
             if accepeted:
@@ -37,6 +52,7 @@ def filter_by_coverage(blast_result, out_files):
 
 if __name__ == '__main__':
     """
+    Blast all vs all : each of sequence are aligned twice one as a subject-query the other one as query-subject.
     We remove all line with length query < length qubject
     Additionnally we remove  % query coverage per subject < threshold
     to be sure that the match is covering almost all the seq
@@ -50,13 +66,27 @@ if __name__ == '__main__':
     threshold_max = int(sys.argv[4]) +1
     threshold_int = int(sys.argv[5])
 
-    thresholds = range(threshold_min, threshold_max, threshold_int)
-    out_files={}
-    for t in thresholds:
-        file_name = os.path.join(output_dir, 'coverage%i.out' % t)
-        out_files[t] = open(file_name, 'w')
+    i=5
+    evalues = []
+    while True:
+        i += 1
+        try:
+            evalues.append(float(sys.argv[i]))
+        except IndexError:
+            break
+    if not evalues:
+        evalues.append(1) # if no evalue have been given in argument by default we use value of 1
+    print(evalues)
 
-    filter_by_coverage(blast_result, out_files)
+    coverages = range(threshold_min, threshold_max, threshold_int)
+    out_files={}
+
+    for c in coverages:
+        for e in evalues:
+            file_name = os.path.join(output_dir, 'evalue_{}coverage{}.out'.format(e, c))
+            out_files[(e, c)] = open(file_name, 'w')
+
+    filter_by_evalue_and_coverage(blast_result, out_files, evalues, coverages)
 
     for f in out_files.values():
         f.close()
