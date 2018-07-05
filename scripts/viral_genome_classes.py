@@ -253,26 +253,10 @@ class Segment:
         #Check if peptide is included in a bigger peptide
         for i, pep in enumerate(self.peptides):
             for pep_next in self.peptides:
-                #try to determine if pep is included in pep_next
-                if pep == pep_next or pep.location.strand != pep_next.location.strand:
-                    continue
-
-                if pep_next.start <= pep.start <= pep_next.end and pep_next.start <= pep.end <= pep_next.end:
-
-                    if not(pep_next.start%3 == pep.start%3 and pep.end%3 == pep_next.end%3):
-
-                        logging.warning('Peptide {} is included in peptide {} but does not share the same frame'.format(pep.number, pep_next.number))
-
-                        continue
-
-                     # and pep_next.start%3 == pep.start%3 and pep.end%3 == pep_next.end%3:
-                    # print('\n', pep.bp_obj,'\nin\n', pep_next.bp_obj, '\n' )
+                if pep in pep_next:
                     self.parent_peptides.add(pep_next)
-
                     pep_next.parent_peptide = True
                     self.sub_peptides.add(pep)
-                    # print(pep_next)
-                    # print(pep)
 
 
     def checkPeptideRedundancy(self):
@@ -457,6 +441,96 @@ class Segment:
 
 class Sequence:
 
+    def __contains__(self, pep):
+        ##test if a peptide is in self. Self can be a CDS or another peptide
+        # the qualifiers gene is no more used to know if a peptide belong to a polyprotein
+        # Only the position of the peptide tel us if the peptide belongs to a poly
+        # Start < end always. The coordinate are given according the strand of the gene
+        # pep = seq.bp_obj # extract biopython object of peptide objet
+        # seq_location = seq if not seq.__class__.__name__ ==  'Peptide' else seq.bp_obj.location
+        # print('---------------------------')
+        # print('PEPTIDE: ', pep.number, pep.location)
+        #
+        # print('Protein: ', self.number, self.bp_obj.location)
+
+        # print('strand',  pep.location.strand ==  self.bp_obj.location.strand)
+        # print("start", pep.location.parts[0].start , pep.location.parts[0].start in self.bp_obj.location)
+        # print('end',pep.location.parts[-1].end,pep.location.parts[-1].end in self.bp_obj.location )
+        # pep.location.parts[0].start need to use part to get the real start position and the min and max position in the sequence
+        # otherwise when the sequence is circular like in Woodchuck hepatitis virus|35269
+        pep_start = pep.location.parts[0].start
+        pep_end = pep.location.parts[-1].end
+
+        if not (pep.location.parts[0].start in self.bp_obj.location and pep.location.parts[-1].end-1 in self.bp_obj.location and pep.bp_obj.strand ==  self.bp_obj.strand):
+            # print("direct F")
+            return False
+
+        pep_parts = iter(pep.location.parts)
+        pep_part = next(pep_parts)
+        case2 = False
+        shift = 0
+        protein_start =  self.bp_obj.location.parts[0].start
+        previous_end = protein_start
+        prot_len = 0
+        for sub_location in self.bp_obj.location.parts:
+            # shift += sub_location.start - previous_end
+
+            # print('\n==Protein Sub location==', sub_location)
+            #
+            # print('Shift', shift)
+            # print('pep part', pep_part)
+            # print('prot part', sub_location)
+            if case2:
+                # print('\n-WE are in case 2', )
+
+                if pep_part.start == sub_location.start: # check if the 2 parts start are the same. So if the join() is similar
+                    # print('--the start are the same')
+                    # print("--pep parts", pep_parts)
+                    try:
+                        pep_part = next(pep_parts)
+                    except StopIteration:
+                        if pep_end in sub_location: # No more part for the peptide and it end is included in the subprot prat
+                            # print('---end is included in the prot part')
+                            # print('TRUUE')
+                            return True
+                        else:
+                            return False
+                    else:
+                        # print('--We go to next part')
+
+                        continue
+                else: #The peptide in somehow not folowing the prot part
+                    # print('-The peptide in somehow not folowing the prot part')
+                    # print('FALSE')
+                    return False
+            # Case 1 : The peptide is included in one part of the protein
+            if pep_start in sub_location and pep_end in sub_location and len(pep.location.parts) == 1 and pep_start%3 == (sub_location.start - shift)%3:
+                # print("-the peptide is included in the subprot part")
+                return True
+
+            # print(" pep_part.start%3 ",  pep_part.start%3 )
+            # print("(sub_location.start - shift)%3", sub_location.start, '-' ,shift,')%3', (sub_location.start - shift)%3)
+            # Case 2 Peptide is overlapping this part with the next one
+            if pep_start in sub_location and pep_end not in sub_location and pep_part.end == sub_location.end and pep_part.start%3 == (sub_location.start - shift)%3:
+                try:
+                    pep_part = next(pep_parts)
+                except StopIteration:
+                    return True # the peptide end where the ribosomal shifting occurs
+                case2 = True
+                # print('-the peptide is overlapping the prot part')
+
+            previous_end = sub_location.end
+            prot_len += len(sub_location)
+            shift = prot_len%3
+        # print("False ..")
+        ## SPECIAL CASE: intein found in some CDS of dsDNA (example Phicbkvirus)
+        if pep.realStart() == self.realStart() and pep.realEnd() == self.realEnd() -3*self.bp_obj.strand and len(pep) < len(self)-3 and len(pep.location.parts)> 1:
+            return True
+
+
+        return False
+
+
     def __str__(self):
 
         string = 'Sequence: from {} to {}'.format(self.start,self.end)
@@ -547,96 +621,6 @@ class Protein(Sequence):
         # string += '\n'.join([str(p) for p in sorted(list(self.peptides), key=lambda x: x.start, reverse=False)])
         # print('ddd')
         return string
-
-
-    def __contains__(self, pep):
-        ##test if a peptide is in polyprotein
-        # the qualifiers gene is no more used to know if a peptide belong to a polyprotein
-        # Only the position of the peptide tel us if the peptide belongs to a poly
-        # Start < end always. The coordinate are given according the strand of the gene
-        # pep = seq.bp_obj # extract biopython object of peptide objet
-        # seq_location = seq if not seq.__class__.__name__ ==  'Peptide' else seq.bp_obj.location
-        # print('---------------------------')
-        # print('PEPTIDE: ', pep.number, pep.location)
-        #
-        # print('Protein: ', self.number, self.bp_obj.location)
-
-        # print('strand',  pep.location.strand ==  self.bp_obj.location.strand)
-        # print("start", pep.location.parts[0].start , pep.location.parts[0].start in self.bp_obj.location)
-        # print('end',pep.location.parts[-1].end,pep.location.parts[-1].end in self.bp_obj.location )
-        # pep.location.parts[0].start need to use part to get the real start position and the min and max position in the sequence
-        # otherwise when the sequence is circular like in Woodchuck hepatitis virus|35269
-        pep_start = pep.location.parts[0].start
-        pep_end = pep.location.parts[-1].end
-
-        if not (pep.location.parts[0].start in self.bp_obj.location and pep.location.parts[-1].end-1 in self.bp_obj.location and pep.bp_obj.strand ==  self.bp_obj.strand):
-            # print("direct F")
-            return False
-
-        pep_parts = iter(pep.location.parts)
-        pep_part = next(pep_parts)
-        case2 = False
-        shift = 0
-        protein_start =  self.bp_obj.location.parts[0].start
-        previous_end = protein_start
-        prot_len = 0
-        for sub_location in self.bp_obj.location.parts:
-            # shift += sub_location.start - previous_end
-
-            # print('\n==Protein Sub location==', sub_location)
-            #
-            # print('Shift', shift)
-            # print('pep part', pep_part)
-            # print('prot part', sub_location)
-            if case2:
-                # print('\n-WE are in case 2', )
-
-                if pep_part.start == sub_location.start: # check if the 2 parts start are the same. So if the join() is similar
-                    # print('--the start are the same')
-                    # print("--pep parts", pep_parts)
-                    try:
-                        pep_part = next(pep_parts)
-                    except StopIteration:
-                        if pep_end in sub_location: # No more part for the peptide and it end is included in the subprot prat
-                            # print('---end is included in the prot part')
-                            # print('TRUUE')
-                            return True
-                        else:
-                            return False
-                    else:
-                        # print('--We go to next part')
-
-                        continue
-                else: #The peptide in somehow not folowing the prot part
-                    # print('-The peptide in somehow not folowing the prot part')
-                    # print('FALSE')
-                    return False
-            # Case 1 : The peptide is included in one part of the protein
-            if pep_start in sub_location and pep_end in sub_location and len(pep.location.parts) == 1 and pep_start%3 == (sub_location.start - shift)%3:
-                # print("-the peptide is included in the subprot part")
-                return True
-
-            # print(" pep_part.start%3 ",  pep_part.start%3 )
-            # print("(sub_location.start - shift)%3", sub_location.start, '-' ,shift,')%3', (sub_location.start - shift)%3)
-            # Case 2 Peptide is overlapping this part with the next one
-            if pep_start in sub_location and pep_end not in sub_location and pep_part.end == sub_location.end and pep_part.start%3 == (sub_location.start - shift)%3:
-                try:
-                    pep_part = next(pep_parts)
-                except StopIteration:
-                    return True # the peptide end where the ribosomal shifting occurs
-                case2 = True
-                # print('-the peptide is overlapping the prot part')
-
-            previous_end = sub_location.end
-            prot_len += len(sub_location)
-            shift = prot_len%3
-        # print("False ..")
-        ## SPECIAL CASE: intein found in some CDS of dsDNA (example Phicbkvirus)
-        if pep.realStart() == self.realStart() and pep.realEnd() == self.realEnd() -3*self.bp_obj.strand and len(pep) < len(self)-3 and len(pep.location.parts)> 1:
-            return True
-
-
-        return False
 
     def checkForSignalP(self, sp_treshold):
         cds_start, cds_end = (self.start, self.end) if self.bp_obj.strand == 1 else (self.end, self.start)
