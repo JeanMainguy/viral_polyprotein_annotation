@@ -369,16 +369,84 @@ class Segment:
                 start = border - 3
                 end = border + 3
 
+                # print(type, border)
+                # print("CS position", start, end)
                 polyproteins = {poly for poly in pep.polyproteins if poly.start+9 < start < poly.end-9} #polyprot that are compatible with the cleavage site
                 if polyproteins:
                     if start in start_cleavage_sites:
                         site = start_cleavage_sites[start]
 
-                        start_cleavage_sites[start].update(type, pep, polyproteins) # this cleavage site has been already treated
+                        site.update(type, pep, polyproteins) # this cleavage site has been already treated
                         continue
+                    partial_location = False
+                    previous_part_end = False
+                    overlap = False
+                    for poly in polyproteins:
+                        for part in poly.bp_obj.location.parts:
+
+                            if overlap and end in part:
+                                if partial_location is not False:
+                                    # print('WE are in case where border was in the previous part')
+                                    # input()
+                                    len_cs_previous_part = len(partial_location)
+                                    len_cs_actual_part = 6 - len_cs_previous_part
+                                    new_end = part.start + len_cs_actual_part
+                                    location = partial_location + FeatureLocation(part.start, new_end, strand=strand)
+                                    tuple_position = (start, new_end)
+
+                                elif previous_part_end is not False:
+                                    # print('WE are in case where border is in the current part')
+                                    # input()
+                                    partial_location = FeatureLocation(part.start, end, strand=strand)
+                                    len_previous_part = 6 - len(partial_location)
+                                    new_start = previous_part_end - len_previous_part
+                                    location = FeatureLocation(new_start, previous_part_end, strand=strand) + partial_location
+                                    tuple_position = (new_start, end)
 
 
-                    cleavage_site = CleavageSite(start, end, polyproteins, pep, strand, self.taxon_id)
+                                if tuple_position in start_cleavage_sites:
+                                    site = start_cleavage_sites[tuple_position]
+                                    site.update(type, pep, {poly}) # this cleavage site has been already treated
+                                else: # we create the CS object
+                                    cleavage_site = CleavageSite(location, polyproteins, pep, self.taxon_id)
+                                    start_cleavage_sites[tuple_position] =  cleavage_site # we store the start and end of the CS in the dico to update it and no recreate when it is nececessary
+                                    # print(cleavage_site)
+                                    # print(location, len(location))
+                                    # input()
+                                    assert(len(location) == 6), 'Cleavage site has a length of {} location {}'.format(len(location), location)
+                                partial_location = False
+                                previous_part_end = False
+                                overlap = False
+                                break # we break and check a new polyprotein
+
+                            if start in part and end in part: # cleavage site is included in the prot part
+                                if (start, end) in start_cleavage_sites:
+                                    site = start_cleavage_sites[(start, end)]
+                                    site.update(type, pep, {poly}) # this cleavage site has been already treated
+                                else: # creation of the cleavage site object
+                                    location = FeatureLocation(start, end, strand=strand)
+                                    cleavage_site = CleavageSite(location, polyproteins, pep, self.taxon_id)
+                                    start_cleavage_sites[(start, end)] =  cleavage_site
+                                break # we break and check a new polyprotein
+
+                            if start in part and end not in part:
+                                overlap = True
+                                if border-1 in part: # the cleavage site overlap two part of the protein
+                                    # print("border", border, 'in part', part)
+                                    partial_location = FeatureLocation(start, part.end, strand=strand)
+                                    # print('modulo start prot part',part.start%3)
+                                    # print('modulo start CS', start%3)
+                                    # print("partial location", partial_location, len(partial_location))
+                                    # # we check the next part of the protein -->
+
+                                    continue
+
+                                else:
+                                    # print("border", border, 'not in part', part)
+                                    previous_part_end = part.end
+
+
+
                     # print("Cleavage site:", type, border,' start end', start, end, '\t',  cleavage_site.start_aa(poly), cleavage_site.end_aa(poly))
                     start_cleavage_sites[start] =  cleavage_site
                     self.cleavage_sites.append(cleavage_site)
@@ -637,23 +705,29 @@ class Protein(Sequence):
         for site in self.cleavage_sites:
             site_position = site.start_aa(self)-1 # -1 to be in base 0
             # print('SITE\n',site)
-            # print( site.bp_obj.location)
+            # print('location',site.bp_obj.location)
             #
             # print('PROT\n', self)
-            # print(self.bp_obj.location)
+            # print('location',self.bp_obj.location)
+
             site_extraction = site.bp_obj.location.extract(record).seq.translate(table=genetic_code)
             site_seq =  str(self.bp_obj.location.extract(record).seq.translate(table=genetic_code, to_stop=False))[site_position:site_position+2]
 
+            # print(site.bp_obj.location.extract(record).seq)
+            # print( str(self.bp_obj.location.extract(record).seq)[(site_position-8)*3:(site_position+8)*3])
 
             # print(site_seq)
             # print(site_extraction)
             if site_extraction.upper() != site_seq.upper():
                 # print(site_position)
-                logging.warning('{}:cleavage site is not similar in extraction from genome sequence and the protein sequence: extraction:{} and prot_seq:{}'.format(self.protein_id,site_extraction, site_seq))
+
+                logging.warning('{}:cleavage site ({}) is not similar in extraction from genome sequence and the protein sequence: extraction:{} and prot_seq:{}'.format(self.protein_id,site.bp_obj.location, site_extraction, site_seq))
             if site_position < 0:
                 logging.warning('{}:The cleavage site position in the sequence is wrong {}'.format(self.protein_id,site_position))
 
             seq = seq[:site_position] + seq[site_position:site_position+2].lower() + seq[site_position+2:]
+
+            # print(seq[site_position-8:site_position+8])
         self.sequence = seq
 
         return seq
@@ -902,16 +976,16 @@ class UnannotatedRegion(Peptide):
 
 class CleavageSite(Peptide):
     COUNTER = 0
-    def __init__(self, start, end, proteins, peptide, strand, taxon_id):
-        self.start = start
-        self.end = end
+    def __init__(self, location, proteins, peptide, taxon_id):
+        self.start = location.start
+        self.end = location.end
         self.proteins = proteins # Set of protein
         self.peptides = {peptide}
         self.position_prot_relative = {}
         self.taxon_id = taxon_id
-        self.bp_obj = SeqFeature(FeatureLocation(self.start, self.end, strand=strand),
+        self.bp_obj = SeqFeature(location,
             type="cleavage site",
-            strand=strand,
+            strand=location.strand,
             qualifiers={})
         #NOTIFY PROTEINS THAT THEY hAVE A CLEAVAGE SITE
         for poly in proteins:
