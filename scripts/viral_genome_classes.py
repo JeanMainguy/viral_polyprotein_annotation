@@ -407,8 +407,13 @@ class Sequence:
             return True
         return False
 
+    def realStart(self):
+        # return position of the real start of the sequence independantly of the strand.
+        return self.start if self.bp_obj.strand == 1 else self.end
 
-
+    def realEnd(self):
+        # return position the real end of the sequence independantly of the strand.
+        return self.end if self.bp_obj.strand == 1 else self.start
 
     def getGenomicPositions(self, prot_start):
         #for uncovered region and match to get the genomic position and not the prot relative position
@@ -438,6 +443,7 @@ class Protein(Sequence):
         self.matchs = []
         self.unannotated_len = len(biopyth_obj)/3
         self.polyprotein = False
+        self.non_polyprotein_explanation = ''
         self.unannotated_region = []
         self.non_overlapping_prot = set() #for the visualisation
         # self.ribosomal_slippage = {}
@@ -499,7 +505,6 @@ class Protein(Sequence):
             # print("direct F")
             return False
 
-
         pep_parts = iter(pep.location.parts)
         pep_part = next(pep_parts)
         case2 = False
@@ -553,22 +558,69 @@ class Protein(Sequence):
                     return True # the peptide end where the ribosomal shifting occurs
                 case2 = True
                 # print('-the peptide is overlapping the prot part')
+
             previous_end = sub_location.end
             prot_len += len(sub_location)
             shift = prot_len%3
         # print("False ..")
+        ## SPECIAL CASE: intein found in some CDS of dsDNA (example Phicbkvirus)
+        if pep.realStart() == self.realStart() and pep.realEnd() == self.realEnd() -3*self.bp_obj.strand and len(pep) < len(self)-3 and len(pep.location.parts)> 1:
+            return True
+
+
         return False
 
     def checkForSignalP(self, sp_treshold):
-        cds_start = self.start if self.bp_obj.strand == 1 else self.end
+        cds_start, cds_end = (self.start, self.end) if self.bp_obj.strand == 1 else (self.end, self.start)
 
-        for pep in self.peptides:
-            pep_start = pep.start if self.bp_obj.strand == 1 else pep.end
+        if  0 < len(self.peptides) <= 2:
+            for pep in self.peptides:
+                pep_start, pep_end = (pep.start, pep.end) if self.bp_obj.strand == 1 else (pep.end, pep.start)
+                if cds_start == pep_start and len(pep)/3<sp_treshold:
+                    self.polyprotein = False
+                    self.non_polyprotein_explanation = "Signal Peptide"
 
-            if cds_start == pep_start and  0 < len(self.peptides) <= 2 and len(pep)/3<sp_treshold:
-                self.polyprotein = False
-                self.has_signal_peptide = True
+            if len(self.peptides) == 1 and pep_end == cds_end-3:
+                if pep_start < cds_start + sp_treshold*3:
+                    # potential protein with signal peptide where only the mature peptide is annotated
+                    # it happens that the whole sequence is covered by a signle mat_peptide with the exception of the first and last condon
+                    # example: 11886 Rous sarcoma virus	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus
+                    self.polyprotein = False
+                    if cds_start <= pep_start <= cds_start +3:
+                        self.non_polyprotein_explanation = "single mat_peptide covering the whole CDS"
+                    else:
+                        self.non_polyprotein_explanation = "single mat peptide covering almost the whole CDS"
 
+
+        #Check for intein
+        if len(self.peptides) == 2:
+
+            # sort by start and select the first peptide no matter if the strand is -1
+            # because in case of intein the peptide cover the begining and the end of the CDS
+            pep, pep_middle = sorted(list(self.peptides), key=lambda x: x.start, reverse=False)
+            # to identify a protein with an intein we use the mat peptide annotation that flank the mat peptide of the intein
+            # This peptide annotation covers the begining of the CDS and the end, it has then 2 parts and its length is smaller than the CDS.
+
+            if pep.realStart() == self.realStart() and pep.realEnd() == self.realEnd() -3*self.bp_obj.strand:
+                if len(pep) < len(self)-3 and len(pep.location.parts)> 1:
+
+                    self.polyprotein = False
+                    self.non_polyprotein_explanation = "Intein outline extein suround intein"
+                # in some genome the mature peptide of the intein cover all the CDS and the intein peptide a small part
+                if  len(pep) == len(self)-3 and  pep_middle.start in pep.location and pep_middle.end in pep.location :
+                    self.polyprotein = False
+                    self.non_polyprotein_explanation = "Intein outline extein include intein"
+
+
+
+        # if self.non_polyprotein_explanation == "":
+        #     print(self.non_polyprotein_explanation)
+        #     print(self)
+        #     print(self.protein_id)
+        #     for p in self.peptides:
+        #         print(p)
+        #     print("non_polyprotein_explanation:", self.non_polyprotein_explanation)
+        #     # input()
 
     def getSequenceAA(self, record, genetic_code):
 
@@ -581,10 +633,14 @@ class Protein(Sequence):
             seq = self.bp_obj.location.extract(record).seq.translate(table=genetic_code)
             seq = str(seq)
         seq = seq.upper()
-        seq_un = seq
+
         for site in self.cleavage_sites:
             site_position = site.start_aa(self)-1 # -1 to be in base 0
-
+            # print('SITE\n',site)
+            # print( site.bp_obj.location)
+            #
+            # print('PROT\n', self)
+            # print(self.bp_obj.location)
             site_extraction = site.bp_obj.location.extract(record).seq.translate(table=genetic_code)
             site_seq =  str(self.bp_obj.location.extract(record).seq.translate(table=genetic_code, to_stop=False))[site_position:site_position+2]
 
