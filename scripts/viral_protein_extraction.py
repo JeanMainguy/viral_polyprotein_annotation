@@ -18,7 +18,7 @@ def extractProteins(gb_file, handle_prot, writer_dict, genetic_code, sp_treshold
     nb_peptide = 0
     nb_cds = 0
     genome = obj.Genome( gb_file)
-
+    # print(gb_file)
     with gzip.open(gb_file, "rt") as handle:
         for i, record in enumerate(SeqIO.parse(handle, "genbank")):
 
@@ -27,7 +27,9 @@ def extractProteins(gb_file, handle_prot, writer_dict, genetic_code, sp_treshold
             genome.segments.append(segment)
 
             segment.getMatpeptidesAndPolyproteins()
-            if not segment.peptides: # if no cds detected we don't need to do the next step of the loop
+            # print(segment.taxon_id)
+
+            if not segment.peptides or not writer_dict: # if no cds detected we don't need to do the next step of the loop
                 continue
 
 
@@ -47,9 +49,10 @@ def extractProteins(gb_file, handle_prot, writer_dict, genetic_code, sp_treshold
         nb_cds += len(segment.cds)
 
         for p, cds in enumerate(segment.cds):
-            annotation = "Peptide" if cds.polyprotein else None
-            key = '{}|{}'.format(len(cds)/3, annotation) # first segment and then the protein number
+            # annotation = "Peptide" if cds.polyprotein else None
+            # key = '{}|{}'.format(int(len(cds)/3), annotation)
 
+            key=str(int(len(cds)/3))
             header = '|'.join([taxon_id, cds.protein_id, key])
 
             seq_to_write = cds.getSequenceRecord(segment.organism, header, segment.record, genetic_code)
@@ -75,7 +78,7 @@ def extractProteins(gb_file, handle_prot, writer_dict, genetic_code, sp_treshold
 if __name__ == '__main__':
     from time import clock; START_TIME = clock()
 
-    logging.basicConfig(filename='log/viral_protein_extraction.log',level=logging.INFO)
+    # logging.basicConfig(filename='log/viral_protein_extraction.log',level=logging.INFO)
 
     taxon = sys.argv[1]
     output_dir = sys.argv[2]
