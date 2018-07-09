@@ -19,37 +19,39 @@ taxon='Viruses'
 taxon=${taxon// /_} #replace space by underscore
 taxon=${taxon//,/} # replace coma by nothing
 
-evalue="1e-5"
 
 tmpdir=/tmp/${USER}_homologousclustering/
 rm -rf $tmpdir
 blast_result="data/blast_result/Retro-transcribing_viruses_blast_evalue1e-5.out"
 blast_result="data/blast_result/Alphavirus_blast_evalue1e-5.out"
 blast_result="data/blast_result/Viruses_blast_evalue1e-5.out"
+blast_result="data/blast_result/Viruses_1e-5/concat_slurm_array_Viruses_blast_evalue1e-5_30.out"
 
-filter_output_dir=data/blast_result/${taxon}_coverage_filtering/
+filter_output_dir=data/${taxon}/evalue_coverage_filtering/
 
 rm -rf $filter_output_dir
 mkdir -p $filter_output_dir
 
 mkdir -p ${tmpdir}$filter_output_dir
 
-coverage_min=0
+coverage_min=40 #30
 
-coverage_max=90
+coverage_max=70 #80
 
 coverage_intervalle=10
 
+evalues='1e-20' #'1e-5 1e-10 1e-20' #'1e-40 1e-80 1e-160' #
 echo python filter
-python3 scripts/filter_blast_result.py $blast_result  ${tmpdir}$filter_output_dir $coverage_min $coverage_max $coverage_intervalle
+python3 scripts/filter_blast_result.py $blast_result ${tmpdir}$filter_output_dir $coverage_min $coverage_max $coverage_intervalle $evalues
 
-clustering_dir="data/clustering_result/${taxon}/inflation_test/"
+clustering_dir="data/clustering_result/${taxon}/inflation_test_no_ceil_200/"
 mkdir -p ${tmpdir}$clustering_dir
 mkdir -p $clustering_dir
 
+
 for file in ${tmpdir}$filter_output_dir*;
 do
-  name=${taxon}_${evalue}_$(basename $file)
+  name=${taxon}_$(basename $file)
   name=${name%.*}
   abc_file="${tmpdir}${clustering_dir}${name}.abc"
 
@@ -60,9 +62,10 @@ do
   seq_tab="${tmpdir}${clustering_dir}${name}.tab"
 
   echo mcxload processing
-  mcxload -abc $abc_file --stream-mirror --stream-neg-log10 -stream-tf 'ceil(200)' -o $mci_file -write-tab $seq_tab > /dev/null 2>&1
+  # mcxload -abc $abc_file --stream-mirror --stream-neg-log10 -stream-tf 'ceil(200)' -o $mci_file -write-tab $seq_tab > /dev/null 2>&1
+  mcxload -abc $abc_file --stream-mirror --stream-neg-log10 -o $mci_file -write-tab $seq_tab > /dev/null 2>&1
   echo mcxload processing end
-  for inflation in 1.2 1.4 1.6 1.8 2 3 4 6 8; #$(seq 2 2 8);
+  for inflation in 1.4 1.8 2 # 1.2 1.4 1.6 1.8 2 3 5 8; #$(seq 2 2 8);
   do
     if [ ! -f ${clustering_dir}${name}_I${inflation//./_}.out ] || [ "$force" == true ]; then # if the file exist we don't recompute the clustering
 
@@ -78,8 +81,10 @@ do
 
 done
 
-echo mv the files from tmp to the final dir
-mv ${tmpdir}$filter_output_dir* $filter_output_dir
+# echo mv the files from tmp to the final dir
+# mv ${tmpdir}$filter_output_dir* $filter_output_dir
 
+echo check that the filtering make sense
+wc -l ${tmpdir}$filter_output_dir*
 
 rm -rf ${tmpdir}
