@@ -12,7 +12,7 @@ from operator import attrgetter
 
 
 
-def extractProteins(gb_file, csv_writer_peptides, csv_writer_protein, handle_stat_genome, genetic_code):
+def extractProteins(gb_file, csv_writer_peptides, csv_writer_protein, handle_stat_genome, genetic_code, sp_treshold):
 
 
     nb_peptide = 0
@@ -33,9 +33,9 @@ def extractProteins(gb_file, csv_writer_peptides, csv_writer_protein, handle_sta
 
             segment.checkPeptideRedundancy() #remove the redundant peptide
             segment.checkSubPeptides()
-            segment.associatePepWithProt()
+            segment.associatePepWithProt(sp_treshold)
 
-            segment.checkForSlippage()
+            # segment.checkForSlippage()
             segment.identifySubProtein()
 
             segment.getCleavageSites()
@@ -43,9 +43,12 @@ def extractProteins(gb_file, csv_writer_peptides, csv_writer_protein, handle_sta
 
     for i, segment in enumerate(genome.segments):
 
+        nb_polyprotein = 0
         taxonomy = record.annotations['taxonomy']
-        for p, cds in enumerate(segment.cds):
 
+        for p, cds in enumerate(segment.cds):
+            if cds.polyprotein:
+                nb_polyprotein += 1
             info_dict = getProteinStat(cds, segment.taxon_id, taxonomy)
             csv_writer_protein.writerow(info_dict)
 
@@ -57,14 +60,14 @@ def extractProteins(gb_file, csv_writer_peptides, csv_writer_protein, handle_sta
         nb_cds += len(segment.cds)
 
 
-    writeGenomeStat(segment.taxon_id, nb_cds, nb_peptide, handle_stat_genome, taxonomy)
+    writeGenomeStat(segment.taxon_id, nb_cds, nb_peptide, handle_stat_genome, taxonomy, nb_polyprotein)
 
 def getPepStat(pep, taxon_id, taxonomy):
     #Check if the cds has a signal peptide scheme
     #Meaning that it has from 1 to 2 pep annotations and one of it annotation start at the 5' of the cds
 
     # start/end position inverse if strand -1
-    signal_peptide_scheme = False
+    signal_peptide_outline = False
     start_as_prot = False
     for cds in pep.polyproteins:
         cds_start = cds.start if cds.bp_obj.strand == 1 else  cds.end
@@ -73,7 +76,7 @@ def getPepStat(pep, taxon_id, taxonomy):
         if cds_start == pep_start:
             start_as_prot = True
             if 0 < len(cds.peptides) <= 2:
-                signal_peptide_scheme = True
+                signal_peptide_outline = True
 
     peptide_id = "Unknown" if 'protein_id' not in pep.bp_obj.qualifiers else pep.bp_obj.qualifiers['protein_id'][0]
     #Write dict info
@@ -85,7 +88,7 @@ def getPepStat(pep, taxon_id, taxonomy):
         "strand":pep.bp_obj.strand,
         "start_as_prot":start_as_prot,
         "len":len(pep),
-        "signal_peptide_scheme":signal_peptide_scheme,
+        "signal_peptide_outline":signal_peptide_outline,
         "inclued_in_nb_prot":len(pep.polyproteins),
         "taxonomy":taxonomy
         }
@@ -100,16 +103,15 @@ def getProteinStat(cds, taxon_id, taxonomy):
     #Meaning that it has from 1 to 2 pep annotations and one of it annotation start at the 5' of the cds
 
     # start/end position inverse if strand -1
-    signal_peptide_scheme = False
+    non_polyprotein_explanation = cds.non_polyprotein_explanation
     len_first_peptide = "None"
 
-    cds_start = cds.start if cds.bp_obj.strand == 1 else  cds.end
-    first_pep_type = None
+    cds_start = cds.start if cds.bp_obj.strand == 1 else cds.end
+    first_pep_type = "None"
     for pep in cds.peptides:
         pep_start = pep.start if cds.bp_obj.strand == 1 else pep.end
 
         if cds_start == pep_start and  0 < len(cds.peptides) <= 2:
-            signal_peptide_scheme = True
             len_first_peptide = len(pep)
             first_pep_type = pep.bp_obj.type
 
@@ -119,25 +121,27 @@ def getProteinStat(cds, taxon_id, taxonomy):
         "taxon_id":taxon_id,
         "strand":cds.bp_obj.strand,
         'protein_id':cds.protein_id,
+        "polyprotein_outline":cds.polyprotein,
+        "has_peptide":True if len(cds.peptides) else False,
         "nb_peptides":str(len(cds.peptides)),
         "nb_unannotated_part":str(len(cds.unannotated_region)),
         "nb_cleavage_sites":str(len(cds.cleavage_sites)),
         "is_sub_protein":is_sub_protein,
-        "signal_peptide_scheme":signal_peptide_scheme,
+        "non_polyprotein_explanation":non_polyprotein_explanation,
         "len_first_peptide":len_first_peptide,
         "taxonomy":str(taxonomy),
         "first_pep_type":first_pep_type,
-	"len_protein":len(cds)
+	    "len_protein":len(cds)
             }
     return dict_info
 
 
 
-def writeGenomeStat(taxon_id, nb_cds, nb_peptide, handle_stat_genome, taxonomy):
+def writeGenomeStat(taxon_id, nb_cds, nb_peptide, handle_stat_genome, taxonomy, nb_polyprotein):
     #  ["taxon_id", "nb_protein", "has_peptide", "nb_peptides"]
     has_peptide = "TRUE" if nb_peptide else 'FALSE'
-
-    line = [taxon_id, str(nb_cds), has_peptide, str(nb_peptide), taxonomy[1]]
+    has_polyprotein = True if nb_polyprotein else False
+    line = [taxon_id,str(nb_cds), str(has_polyprotein), str(nb_polyprotein),  has_peptide, str(nb_peptide), ";".join(taxonomy)]
     handle_stat_genome.write("\t".join(line)+"\n")
 
 
@@ -152,20 +156,21 @@ def initiateStatFile(taxon, output_dir ):
 
     handle_stat_prot = open(os.path.join(output_dir, stat_file_prot), "w")
     #segment.taxon_id, cds.protein_id, has_peptide, len(cds.peptides), len(cds.cleavage_sites), is_sub_protein
-    protein_header = ["First_node",
-                    "taxon_id",
+    protein_header = ["taxon_id",
                     "protein_id",
-                    "strand",
+                    "polyprotein_outline",
                     "has_peptide",
                     "nb_peptides",
                     "nb_unannotated_part",
                     "nb_cleavage_sites",
                     "is_sub_protein",
-                    "signal_peptide_scheme",
+                    "non_polyprotein_explanation",
                     "len_first_peptide",
                     "first_pep_type",
 		            "len_protein",
-                    "taxonomy"]
+                    "strand",
+                    "taxonomy",
+                    "First_node"]
 
     csv_writer_protein = csv.DictWriter(handle_stat_prot, fieldnames=protein_header, delimiter='\t')
     csv_writer_protein.writeheader()
@@ -173,16 +178,16 @@ def initiateStatFile(taxon, output_dir ):
     #PEPTIDE
     handle_stat_pep = open(os.path.join(output_dir, stat_file_peptides), "w")
     #segment.taxon_id, cds.protein_id, has_peptide, len(cds.peptides), len(cds.cleavage_sites), is_sub_protein
-    pep_header = ["First_node",
-                    "taxon_id",
+    pep_header = [  "taxon_id",
                     "peptide_id",
                     "feature_type",
                     "strand",
                     "start_as_prot",
                     "len",
                     "nb_peptides",
-                    "signal_peptide_scheme",
+                    "signal_peptide_outline",
                     "inclued_in_nb_prot",
+                    "First_node",
                     "taxonomy" ]
 
     csv_writer_peptides = csv.DictWriter(handle_stat_pep, fieldnames=pep_header, delimiter='\t')
@@ -191,7 +196,7 @@ def initiateStatFile(taxon, output_dir ):
 
     handle_stat_genome = open(os.path.join(output_dir, stat_file_genome), "w")
     #taxon
-    header = ["taxon_id", "nb_protein", "has_peptide", "nb_peptides"]
+    header = ["taxon_id","nb_protein", "has_annotated_poly","nb_polyprotein",  "has_peptide", "nb_peptides", "taxonomy"]
     handle_stat_genome.write('\t'.join(header)+'\n')
 
     files_to_close = [handle_stat_genome, handle_stat_prot, handle_stat_pep]
@@ -200,13 +205,12 @@ def initiateStatFile(taxon, output_dir ):
 
 if __name__ == '__main__':
 
-    logging.basicConfig(filename='log/viral_protein_extraction.log',level=logging.INFO)
+    logging.basicConfig(filename='log/viral_protein_statistic.log',level=logging.INFO)
 
     taxon = "Viruses"
-    seq_output_dir = 'data/viral_proteins'
-    stat_output_dir = 'result/viral_proteins_stat'
+    stat_output_dir = 'results/stat_viral_protein'
     taxonomy_file ="data/taxonomy/taxonomy_virus.txt"
-
+    sp_treshold = 90
 
     gbff_iter = tax.getAllRefseqFromTaxon(taxon, taxonomy_file)
 
@@ -221,7 +225,7 @@ if __name__ == '__main__':
         gb_file = gb_dico['gb_file']
         genetic_code = gb_dico['genetic_code']
 
-        extractProteins(gb_file, csv_writer_peptides, csv_writer_protein, handle_stat_genome, genetic_code)
+        extractProteins(gb_file, csv_writer_peptides, csv_writer_protein, handle_stat_genome, genetic_code, sp_treshold)
         # if i%100 == 0:
         #     print(i)
         if (i+1)%1000 == 0:
