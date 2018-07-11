@@ -445,26 +445,18 @@ class Sequence:
         ##test if a peptide is in self. Self can be a CDS or another peptide
         # the qualifiers gene is no more used to know if a peptide belong to a polyprotein
         # Only the position of the peptide tel us if the peptide belongs to a poly
-        # Start < end always. The coordinate are given according the strand of the gene
-        # pep = seq.bp_obj # extract biopython object of peptide objet
-        # seq_location = seq if not seq.__class__.__name__ ==  'Peptide' else seq.bp_obj.location
-        # print('---------------------------')
-        # print('PEPTIDE: ', pep.number, pep.location)
-        #
-        # print('Protein: ', self.number, self.bp_obj.location)
-
-        # print('strand',  pep.location.strand ==  self.bp_obj.location.strand)
-        # print("start", pep.location.parts[0].start , pep.location.parts[0].start in self.bp_obj.location)
-        # print('end',pep.location.parts[-1].end,pep.location.parts[-1].end in self.bp_obj.location )
         # pep.location.parts[0].start need to use part to get the real start position and the min and max position in the sequence
         # otherwise when the sequence is circular like in Woodchuck hepatitis virus|35269
+
         pep_start = pep.location.parts[0].start
         pep_end = pep.location.parts[-1].end
 
         if not (pep.location.parts[0].start in self.bp_obj.location and pep.location.parts[-1].end-1 in self.bp_obj.location and pep.bp_obj.strand ==  self.bp_obj.strand):
             # print("direct F")
             return False
-
+        # print("\n","***"*3,str(self)[:8],"***"*3)
+        # print("PROT location", self.bp_obj.location)
+        # print("PEP location", pep.bp_obj.location)
         pep_parts = iter(pep.location.parts)
         pep_part = next(pep_parts)
         case2 = False
@@ -474,9 +466,9 @@ class Sequence:
         prot_len = 0
         for sub_location in self.bp_obj.location.parts:
             # shift += sub_location.start - previous_end
-
-            # print('\n==Protein Sub location==', sub_location)
             #
+            # print('\n==Protein Sub location==', sub_location)
+            # #
             # print('Shift', shift)
             # print('pep part', pep_part)
             # print('prot part', sub_location)
@@ -500,8 +492,8 @@ class Sequence:
 
                         continue
                 else: #The peptide in somehow not folowing the prot part
-                    # print('-The peptide in somehow not folowing the prot part')
                     # print('FALSE')
+                    # print('-The peptide in somehow not folowing the prot part')
                     return False
             # Case 1 : The peptide is included in one part of the protein
             if pep_start in sub_location and pep_end in sub_location and len(pep.location.parts) == 1 and pep_start%3 == (sub_location.start - shift)%3:
@@ -522,12 +514,13 @@ class Sequence:
             previous_end = sub_location.end
             prot_len += len(sub_location)
             shift = prot_len%3
-        # print("False ..")
+
         ## SPECIAL CASE: intein found in some CDS of dsDNA (example Phicbkvirus)
         if pep.realStart() == self.realStart() and pep.realEnd() == self.realEnd() -3*self.bp_obj.strand and len(pep) < len(self)-3 and len(pep.location.parts)> 1:
+            # print("SPECIAL CASE: intein ")
             return True
 
-
+        # print("False ..")
         return False
 
 
