@@ -29,7 +29,7 @@ def extractProteins(gb_file, handle_prot, writer_dict, genetic_code, sp_treshold
             segment.getMatpeptidesAndPolyproteins()
             # print(segment.taxon_id)
 
-            if not segment.peptides or not writer_dict: # if no cds detected we don't need to do the next step of the loop
+            if not segment.peptides: # if no peptide annotation we don't need to do the next step of the loop
                 continue
 
 
@@ -78,7 +78,7 @@ def extractProteins(gb_file, handle_prot, writer_dict, genetic_code, sp_treshold
 if __name__ == '__main__':
     from time import clock; START_TIME = clock()
 
-    # logging.basicConfig(filename='log/viral_protein_extraction.log',level=logging.INFO)
+    logging.basicConfig(filename='log/viral_protein_extraction.log',level=logging.INFO)
 
     taxon = sys.argv[1]
     output_dir = sys.argv[2]
