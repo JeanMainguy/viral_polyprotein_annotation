@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#SBATCH --job-name=virus_homologous_clustering
+#SBATCH --job-name=mcl_clustering
 #SBATCH --cpus-per-task=4
 #SBATCH --mail-type=ALL
 #SBATCH --mem=300M
@@ -11,7 +11,7 @@ set -e # exit if command fail
 
 module load mcl
 
-force=true # if true even if file exist we recompte them
+force=false # if true even if file exist we recompte them
 taxon='Viruses'
 # taxon='Alphavirus'
 # taxon="Retro-transcribing viruses"
@@ -30,17 +30,21 @@ filter_output_dir=data/${taxon}/evalue_coverage_filtering/
 
 rm -rf $filter_output_dir
 # mkdir -p $filter_output_dir
+if [ -z "$TMPDIR" ];
+then
+  TMPDIR=/tmp/${USER}_homologousclustering/
+  mkdir -p $TMPDIR
+fi
 
-# TMPDIR=/tmp/${USER}_homologousclustering/
 mkdir -p ${TMPDIR}$filter_output_dir
 
-coverage_min=30 #30
+coverage_min=0 #30
 
-coverage_max=80 #80
+coverage_max=20 #80
 
 coverage_intervalle=10
 
-evalues='1e-120 1e-140 1e-160 1e-5 1e-10 1e-20 1e-30 1e-40 1e-50 1e-60 1e-70 1e-80' #
+evalues='1e-5 1e-10 1e-20 1e-30 1e-40 1e-50 1e-60 1e-70 1e-80 1e-100 1e-120 1e-140 1e-160' #
 echo python filter
 python3 scripts/filter_blast_result.py $blast_result ${TMPDIR}$filter_output_dir $coverage_min $coverage_max $coverage_intervalle $evalues
 
