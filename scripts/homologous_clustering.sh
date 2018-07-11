@@ -44,7 +44,7 @@ coverage_max=20 #80
 
 coverage_intervalle=10
 
-evalues='1e-5 1e-10 1e-20 1e-30 1e-40 1e-50 1e-60 1e-70 1e-80 1e-100 1e-120 1e-140 1e-160' #
+evalues='1e-140 1e-160' #'1e-10 1e-20' # '1e-30 1e-40' '1e-50 1e-60' '1e-70 1e-80' '1e-100 1e-120' '1e-140 1e-160' ' # '1e-5'
 echo python filter
 python3 scripts/filter_blast_result.py $blast_result ${TMPDIR}$filter_output_dir $coverage_min $coverage_max $coverage_intervalle $evalues
 
