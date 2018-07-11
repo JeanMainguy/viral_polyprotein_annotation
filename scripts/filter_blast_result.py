@@ -9,7 +9,7 @@ def filter_by_evalue_and_coverage(blast_result, out_files, evalues, coverages):
 
     with open(blast_result, 'r') as result_reader:
         for i, l in enumerate(result_reader):
-            if i%100000 == 0:
+            if i%1000000 == 0:
                 print(i)
             qseqid, sseqid, qcovs, qcovhsp, evalue, bitscore = l.split('\t')
 
