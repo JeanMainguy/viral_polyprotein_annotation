@@ -9,59 +9,8 @@ import sys, csv, re
 from Bio.Alphabet import generic_protein
 from Bio.SeqFeature import SeqFeature, FeatureLocation
 from operator import attrgetter
+import viral_protein_extraction as ext
 
-
-
-def extractProteins(gb_file, csv_writer_peptides, csv_writer_protein, handle_stat_genome, genetic_code, sp_treshold):
-
-
-    nb_peptide = 0
-    nb_cds = 0
-    genome = obj.Genome( gb_file)
-
-    with gzip.open(gb_file, "rt") as handle:
-        for i, record in enumerate(SeqIO.parse(handle, "genbank")):
-
-
-            segment = obj.Segment(record, gb_file)
-            genome.segments.append(segment)
-
-            segment.getMatpeptidesAndPolyproteins()
-            if not segment.peptides:
-                continue
-
-
-            segment.checkPeptideRedundancy() #remove the redundant peptide
-            segment.checkSubPeptides()
-            segment.associatePepWithProt(sp_treshold)
-
-            # segment.checkForSlippage()
-            segment.identifySubProtein()
-
-            segment.getCleavageSites()
-            segment.identifyAnnotatedPolyproteins(sp_treshold)
-
-
-    for i, segment in enumerate(genome.segments):
-
-        nb_polyprotein = 0
-        taxonomy = record.annotations['taxonomy']
-
-        for p, cds in enumerate(segment.cds):
-            if cds.polyprotein:
-                nb_polyprotein += 1
-            info_dict = getProteinStat(cds, segment.taxon_id, taxonomy)
-            csv_writer_protein.writerow(info_dict)
-
-            nb_peptide += len(cds.peptides)
-        for pep in segment.peptides:
-
-            pep_info_dict = getPepStat(pep, segment.taxon_id, taxonomy)
-            csv_writer_peptides.writerow(pep_info_dict)
-        nb_cds += len(segment.cds)
-
-
-    writeGenomeStat(segment.taxon_id, nb_cds, nb_peptide, handle_stat_genome, taxonomy, nb_polyprotein)
 
 def getPepStat(pep, taxon_id, taxonomy):
     #Check if the cds has a signal peptide scheme
@@ -208,11 +157,16 @@ if __name__ == '__main__':
 
     # logging.basicConfig(filename='log/viral_protein_statistic.log',level=logging.INFO)
     logging.basicConfig(level=logging.INFO)
-    taxon = "Viruses"
-    # taxon="Retro-transcribing viruses"
-    # taxon='33748'
-    stat_output_dir = 'results/stat_viral_protein'
-    stat_output_dir = 'test'
+
+    try:
+        taxon = sys.argv[1] # if not given then we don't compute any stat
+    except:
+        taxon = "Viruses"
+    try:
+        stat_output_dir = sys.argv[2] # if not given then we don't compute any stat
+    except:
+        stat_output_dir = 'test'
+
     taxonomy_file ="data/taxonomy/taxonomy_virus.txt"
     sp_treshold = 90
 
@@ -221,19 +175,19 @@ if __name__ == '__main__':
     taxon = taxon.replace(',', '').replace(' ', '_')
 
     csv_writer_peptides, csv_writer_protein, handle_stat_genome, files_to_close = initiateStatFile(taxon, stat_output_dir )
-
+    writer_stat_dict = {"peptide":csv_writer_peptides, "protein":csv_writer_protein, "genome":handle_stat_genome}
+    handle_prot = False # no protein extraction
 
     i=None
     for i, gb_dico in enumerate(gbff_iter):
-        # print(gb_dico)
-        gb_file = gb_dico['gb_file']
-        genetic_code = gb_dico['genetic_code']
-        # print(gb_file)
-        extractProteins(gb_file, csv_writer_peptides, csv_writer_protein, handle_stat_genome, genetic_code, sp_treshold)
-        # if i%100 == 0:
-        #     print(i)
         if (i+1)%1000 == 0:
             print(i+1, 'genomes treated')
+        gb_file = gb_dico['gb_file']
+        genetic_code = gb_dico['genetic_code']
+        taxon_id = gb_dico['taxon_id']
+
+        ext.extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_id, sp_treshold)
+
     if i == None:
         print("No genome have been found with taxon:",taxon)
     else:

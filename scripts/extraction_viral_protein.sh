@@ -21,7 +21,7 @@ mkdir -p ${tmpdir}$stat_output_dir
 
 echo extraction of viral proteins...
 
-python3 scripts/viral_protein_extraction.py "${taxon}" ${tmpdir}$seq_output_dir $taxonomy_file  ${tresholdSP} # ${tmpdir}$stat_output_dir
+python3 scripts/viral_protein_extraction.py "${taxon}" ${tmpdir}$seq_output_dir $taxonomy_file  ${tresholdSP} ${tmpdir}$stat_output_dir
 
 echo mv file from tmp to final dir
 mv ${tmpdir}${seq_output_dir}*  ${seq_output_dir}
