@@ -148,7 +148,7 @@ def getAllRefseqFromTaxon(wanted_taxonomy, taxonomy_file="data/taxonomy/taxonomy
                 yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id':tax_id}
 
             if tax_id == wanted_taxonomy or organism == wanted_taxonomy:
-                yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code}
+                yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id':tax_id}
                 #no break here because genome with the same tax id... :-/
 
 def expectedPeptide(expected_pep_file):
