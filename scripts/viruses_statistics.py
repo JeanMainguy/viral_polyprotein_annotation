@@ -39,6 +39,7 @@ def extractProteins(gb_file, csv_writer_peptides, csv_writer_protein, handle_sta
             segment.identifySubProtein()
 
             segment.getCleavageSites()
+            segment.identifyAnnotatedPolyproteins(sp_treshold)
 
 
     for i, segment in enumerate(genome.segments):
@@ -205,10 +206,13 @@ def initiateStatFile(taxon, output_dir ):
 
 if __name__ == '__main__':
 
-    logging.basicConfig(filename='log/viral_protein_statistic.log',level=logging.INFO)
-
+    # logging.basicConfig(filename='log/viral_protein_statistic.log',level=logging.INFO)
+    logging.basicConfig(level=logging.INFO)
     taxon = "Viruses"
+    # taxon="Retro-transcribing viruses"
+    # taxon='33748'
     stat_output_dir = 'results/stat_viral_protein'
+    stat_output_dir = 'test'
     taxonomy_file ="data/taxonomy/taxonomy_virus.txt"
     sp_treshold = 90
 
@@ -224,7 +228,7 @@ if __name__ == '__main__':
         # print(gb_dico)
         gb_file = gb_dico['gb_file']
         genetic_code = gb_dico['genetic_code']
-
+        # print(gb_file)
         extractProteins(gb_file, csv_writer_peptides, csv_writer_protein, handle_stat_genome, genetic_code, sp_treshold)
         # if i%100 == 0:
         #     print(i)

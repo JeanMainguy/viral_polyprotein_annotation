@@ -93,18 +93,7 @@ class Genome:
     #     # print(taxonomy)
 
 
-    def associateMatchWithPolyprotein(self):
-        for segment in self.segments:
-            for poly in segment.polyproteins:
-                # poly.matchs = [match for match in self.matchs if match.seqid == poly.protein_id]
-                for match in self.matchs:
-                    if match.seqid == poly.protein_id:
-                        poly.matchs.append(match)
-                        match.protein = poly
-                        match.getGenomicPositions(poly.start)
-                        segment.matchs.add(match)
-            segment.getDomainOverlappingInfo()
-            segment.identifyDuplicatedMatch()
+
 
 
     # def identifyExpectedElement(self):
@@ -202,6 +191,74 @@ class Segment:
     #     return [p for p in self.polyproteins if getattr(p, feature)]
 
 
+    def identifyAnnotatedPolyproteins(self, sp_treshold):
+        for cds in self.cds:
+            strand =cds.bp_obj.strand
+            if len(cds.peptides) == 0:
+                continue
+            else:
+                cds.polyprotein = True
+            cds_start, cds_end = cds.realStart(), cds.realEnd() # (self.start, self.end) if self.bp_obj.strand == 1 else (self.end, self.start)
+
+            if  0 < len(cds.peptides) <= 2:
+                for pep in cds.peptides:
+                    pep_start, pep_end = (pep.start, pep.end) if cds.bp_obj.strand == 1 else (pep.end, pep.start)
+                    if cds_start == pep_start and len(pep)/3<sp_treshold:
+                        cds.polyprotein = False
+                        cds.non_polyprotein_explanation = "Signal Peptide"
+
+                if len(cds.peptides) == 1 and (pep_end == cds_end-3*strand or pep_end == cds_end):
+                    cds_start_sp_threshold = cds_start + (sp_treshold*3)*strand
+                    # pep start has to be between the cds start and the cds + signal p strshold
+                    if  min(cds_start_sp_threshold,cds_start ) <= pep_start <= max(cds_start_sp_threshold,cds_start ):
+                        # potential protein with signal peptide where only the mature peptide is annotated
+                        # it happens that the whole sequence is covered by a signle mat_peptide with the exception of the first and last condon
+                        # example: 11886 Rous sarcoma virus	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus
+                        cds.polyprotein = False
+                        if cds_start == pep_start or pep_start == cds_start +3*strand:
+                            cds.non_polyprotein_explanation = "single peptide annotaion covering the whole CDS"
+                        else:
+                            cds.non_polyprotein_explanation = "single peptide annotaion covering almost the whole CDS"
+            #Check for intein
+            if len(cds.peptides) == 2:
+                # sort by start and select the first peptide no matter if the strand is -1
+                # because in case of intein the peptide cover the begining and the end of the CDS
+                pep, pep_middle = sorted(list(cds.peptides), key=lambda x: x.start, reverse=False)
+                # to identify a protein with an intein we use the mat peptide annotation that flank the mat peptide of the intein
+                # This peptide annotation covers the begining of the CDS and the end, it has then 2 parts and its length is smaller than the CDS.
+
+                if pep.realStart() == cds.realStart() and pep.realEnd() == cds.realEnd() -3*cds.bp_obj.strand:
+                    if len(pep) < len(cds)-3 and len(pep.location.parts)> 1:
+
+                        cds.polyprotein = False
+                        cds.non_polyprotein_explanation = "Intein outline: extein surounds intein"
+                    # in some genome the mature peptide of the intein cover all the CDS and the intein peptide a small part
+                    if  len(pep) == len(cds)-3 and  pep_middle.start in pep.location and pep_middle.end in pep.location :
+                        cds.polyprotein = False
+                        cds.non_polyprotein_explanation = "Intein outline: extein includes intein"
+
+            if len(cds.cleavage_sites) == 0 and len(cds.peptides) > 0 and cds.polyprotein:
+                print(self.taxon_id)
+                print(cds)
+                [print(pep) for pep in cds.peptides]
+                print(cds.polyprotein)
+                cds.polyprotein = False
+                logging.warning('No cleavage site identify  and no explanation in for {} in {}'.format(cds.protein_id, self.taxon_id))
+                cds.non_polyprotein_explanation += "No cleavage site identify and no explanation"
+                print('NO CEAVAGE SITE AND NO EXPLANATION')
+                # input()
+
+
+            # if self.non_polyprotein_explanation == "":
+            #     print(self.non_polyprotein_explanation)
+            #     print(self)
+            #     print(self.protein_id)
+            #     for p in self.peptides:
+            #         print(p)
+            #     print("non_polyprotein_explanation:", self.non_polyprotein_explanation)
+            #     # input()
+
+
 
     def getMatpeptidesAndPolyproteins(self):
         for feat in self.record.features:
@@ -237,10 +294,8 @@ class Segment:
                     pep.polyproteins.add(cds)
 
             if cds.peptides:
-                cds.ProteinCoverage()
+                cds.proteinCoverage()
                 self.unannotated_region.update(cds.unannotated_region)
-                cds.polyprotein = True
-                cds.checkForSignalP(sp_treshold)
 
 
         ##SMALL check up to be sure that every peptides have been assigned to at least one protein
@@ -344,29 +399,37 @@ class Segment:
     def getCleavageSites(self):
 
         start_cleavage_sites = {}
-
+        # print("-*********** GET CS ***************")
         for pep in sorted(list(self.peptides | self.unannotated_region), key=lambda x: x.start, reverse=False): #(self.peptides | self.unannotated_region):  # sorted(list(self.peptides | self.unannotated_region), key=lambda x: x.start, reverse=False):
             strand = pep.bp_obj.strand
-
+            # if pep.number != 5:
+            #     continue
+            # print('PEPTIDE',pep.number)
             for type, border in [("start", pep.start), ('end', pep.end)]:
 
                 start = border - 3
                 end = border + 3
-
-                # print(type, border)
-                # print("CS position", start, end)
+                # if pep.number == 4:
+                # print(" ",type, border)
+                # print("  CS position", start, end)
                 polyproteins = {poly for poly in pep.polyproteins if poly.start+9 < start < poly.end-9} #polyprot that are compatible with the cleavage site
+                # print('  border compatible with', len(polyproteins))
                 if polyproteins:
-                    if start in start_cleavage_sites:
-                        site = start_cleavage_sites[start]
-
-                        site.update(type, pep, polyproteins) # this cleavage site has been already treated
-                        continue
                     partial_location = False
                     previous_part_end = False
+                    previous_part = False
                     overlap = False
+                    cleavage_site = False
                     for poly in polyproteins:
-                        for part in poly.bp_obj.location.parts:
+                        # if pep.number == 4:
+                        #     print(poly)
+                        # print('  CHECK in poly', poly.number, poly.bp_obj.location)
+                        for i, part in enumerate(poly.bp_obj.location.parts):
+
+                            if previous_part and end in part and start not in part and start not in previous_part: # cleavage site overlap an intron
+                                logging.info('Cleavage site from {} is overlaping an intron in genome {}'.format(poly.protein_id, self.taxon_id))
+                                overlap = True
+                                previous_part_end = previous_part.end
 
                             if overlap and end in part:
                                 if partial_location is not False:
@@ -382,8 +445,11 @@ class Segment:
                                     # print('WE are in case where border is in the current part')
                                     # input()
                                     partial_location = FeatureLocation(part.start, end, strand=strand)
+                                    # print('partial_location',partial_location)
                                     len_previous_part = 6 - len(partial_location)
                                     new_start = previous_part_end - len_previous_part
+                                    # print("len_previous_part", len_previous_part)
+                                    # print("new_start",new_start )
                                     location = FeatureLocation(new_start, previous_part_end, strand=strand) + partial_location
                                     tuple_position = (new_start, end)
 
@@ -422,18 +488,18 @@ class Segment:
                                     # print('modulo start CS', start%3)
                                     # print("partial location", partial_location, len(partial_location))
                                     # # we check the next part of the protein -->
-
                                     continue
 
                                 else:
                                     # print("border", border, 'not in part', part)
                                     previous_part_end = part.end
-
+                            previous_part = part
 
 
                     # print("Cleavage site:", type, border,' start end', start, end, '\t',  cleavage_site.start_aa(poly), cleavage_site.end_aa(poly))
-                    start_cleavage_sites[start] =  cleavage_site
-                    self.cleavage_sites.append(cleavage_site)
+                    if cleavage_site:
+                        self.cleavage_sites.append(cleavage_site)
+
 
     def isSegmentAnnotationRelevant(self):
         return False if any([p for p in self.polyproteins if not p.isAnnotationRelevant() ]) else True
@@ -615,58 +681,6 @@ class Protein(Sequence):
         # print('ddd')
         return string
 
-    def checkForSignalP(self, sp_treshold):
-        cds_start, cds_end = (self.start, self.end) if self.bp_obj.strand == 1 else (self.end, self.start)
-
-        if  0 < len(self.peptides) <= 2:
-            for pep in self.peptides:
-                pep_start, pep_end = (pep.start, pep.end) if self.bp_obj.strand == 1 else (pep.end, pep.start)
-                if cds_start == pep_start and len(pep)/3<sp_treshold:
-                    self.polyprotein = False
-                    self.non_polyprotein_explanation = "Signal Peptide"
-
-            if len(self.peptides) == 1 and pep_end == cds_end-3:
-                if pep_start < cds_start + sp_treshold*3:
-                    # potential protein with signal peptide where only the mature peptide is annotated
-                    # it happens that the whole sequence is covered by a signle mat_peptide with the exception of the first and last condon
-                    # example: 11886 Rous sarcoma virus	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus
-                    self.polyprotein = False
-                    if cds_start <= pep_start <= cds_start +3:
-                        self.non_polyprotein_explanation = "single mat_peptide covering the whole CDS"
-                    else:
-                        self.non_polyprotein_explanation = "single mat peptide covering almost the whole CDS"
-
-
-        #Check for intein
-        if len(self.peptides) == 2:
-
-            # sort by start and select the first peptide no matter if the strand is -1
-            # because in case of intein the peptide cover the begining and the end of the CDS
-            pep, pep_middle = sorted(list(self.peptides), key=lambda x: x.start, reverse=False)
-            # to identify a protein with an intein we use the mat peptide annotation that flank the mat peptide of the intein
-            # This peptide annotation covers the begining of the CDS and the end, it has then 2 parts and its length is smaller than the CDS.
-
-            if pep.realStart() == self.realStart() and pep.realEnd() == self.realEnd() -3*self.bp_obj.strand:
-                if len(pep) < len(self)-3 and len(pep.location.parts)> 1:
-
-                    self.polyprotein = False
-                    self.non_polyprotein_explanation = "Intein outline extein suround intein"
-                # in some genome the mature peptide of the intein cover all the CDS and the intein peptide a small part
-                if  len(pep) == len(self)-3 and  pep_middle.start in pep.location and pep_middle.end in pep.location :
-                    self.polyprotein = False
-                    self.non_polyprotein_explanation = "Intein outline extein include intein"
-
-
-
-        # if self.non_polyprotein_explanation == "":
-        #     print(self.non_polyprotein_explanation)
-        #     print(self)
-        #     print(self.protein_id)
-        #     for p in self.peptides:
-        #         print(p)
-        #     print("non_polyprotein_explanation:", self.non_polyprotein_explanation)
-        #     # input()
-
     def getSequenceAA(self, record, genetic_code):
 
         if self.sequence:
@@ -752,7 +766,7 @@ class Protein(Sequence):
         # SeqIO.write(seq_to_write, file_handle,"fasta")
 
 
-    def ProteinCoverage(self):
+    def proteinCoverage(self):
         ##Check if the mat peptide associated with the protein are covering all the prot or not
         #If not create unannotated_region to fill the gaps
         unannotated_position = []
