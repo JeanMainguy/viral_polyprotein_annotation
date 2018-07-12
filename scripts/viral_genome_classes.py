@@ -291,7 +291,7 @@ class Segment:
                 self.cds.add(prot_obj)
 
 
-    def associatePepWithProt(self, sp_treshold=90):
+    def associatePepWithProt(self):
         # Should be changed at the end to catch polyprot that are not annotated
         # Here we want to find the polyprot that have a mat peptide so we are pretty sure that thz protein is a polyprotein
         # EDIT: The protein that has some peptide is no longer consider as polyprotein
@@ -425,7 +425,7 @@ class Segment:
                 # if pep.number == 4:
                 # print(" ",type, border)
                 # print("  CS position", start, end)
-                polyproteins = {poly for poly in pep.polyproteins if poly.start+9 < start < poly.end-9} #polyprot that are compatible with the cleavage site
+                polyproteins = {poly for poly in pep.polyproteins if poly.start < start < poly.end} #polyprot that are compatible with the cleavage site
                 # print('  border compatible with', len(polyproteins))
                 if polyproteins:
                     partial_location = False
