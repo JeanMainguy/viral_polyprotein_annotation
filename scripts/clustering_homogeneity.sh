@@ -11,8 +11,12 @@ cluster_dir="data/clustering_result/Viruses/clustering_parameter_variation"
 
 output_dir="data/clustering_result/Viruses/clustering_parameter_variation_homogeneity_evaluation"
 mkdir -p $output_dir
-summary_file="${output_dir}summary_stat.csv"
+summary_file="results/clustering_evaluation/homogeneity_summary_stat.csv"
+tmp_summary='/tmp/$USER/homogeneity_summary_stat.csv'
 stat_protein_file='results/stat_viral_protein/stat_proteins_Viruses.csv'
 
 
 python3 scripts/taxonomic_homogeneity_checking.py $cluster_dir $output_dir $taxonomy_file $alternative_taxon_id_file $unclassified_term_file $stat_protein_file $summary_file
+
+
+mv  $tmp_summary $summary_file
