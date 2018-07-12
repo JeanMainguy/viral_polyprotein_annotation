@@ -200,26 +200,39 @@ class Segment:
                 cds.polyprotein = True
             cds_start, cds_end = cds.realStart(), cds.realEnd() # (self.start, self.end) if self.bp_obj.strand == 1 else (self.end, self.start)
 
+
             if  0 < len(cds.peptides) <= 2:
+                # SIGNAL P Identification
                 for pep in cds.peptides:
                     pep_start, pep_end = (pep.start, pep.end) if cds.bp_obj.strand == 1 else (pep.end, pep.start)
                     if cds_start == pep_start and len(pep)/3<sp_treshold:
+                        # if pep.start_aa(cds) != 1:
+                        #     print('LENGTH IS NOT 1')
+                        #     print(pep.start_aa(cds))
                         cds.polyprotein = False
                         cds.non_polyprotein_explanation = "Signal Peptide"
 
-                if len(cds.peptides) == 1 and (pep_end == cds_end-3*strand or pep_end == cds_end):
+                # Peptide cooveering all the length identification
+                if len(cds.peptides) == 1 and (pep.end_aa(cds) == len(cds)/3-1 or pep.end_aa(cds) == len(cds)/3):
+                    if pep.end_aa(cds) == len(cds)/3:
+                        logging.info('Peptide annotation include stop codon in {}|{}'.format( self.taxon_id, cds.protein_id))
+
                     cds_start_sp_threshold = cds_start + (sp_treshold*3)*strand
                     # pep start has to be between the cds start and the cds + signal p strshold
-                    if  min(cds_start_sp_threshold,cds_start ) <= pep_start <= max(cds_start_sp_threshold,cds_start ):
+                    # if  min(cds_start_sp_threshold,cds_start ) <= pep_start <= max(cds_start_sp_threshold,cds_start ):
+                    if pep.start_aa(cds) < sp_treshold:
                         # potential protein with signal peptide where only the mature peptide is annotated
                         # it happens that the whole sequence is covered by a signle mat_peptide with the exception of the first and last condon
                         # example: 11886 Rous sarcoma virus	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus
                         cds.polyprotein = False
-                        if cds_start == pep_start or pep_start == cds_start +3*strand:
+                        logging.info('single peptide annotaion covering the whole CDS in {}|{}'.format( self.taxon_id, cds.protein_id))
+                        if 1 <= pep.start_aa(cds) <=2 : # if it starts at 1 or 2 in protein sequence
+
                             cds.non_polyprotein_explanation = "single peptide annotaion covering the whole CDS"
                         else:
                             cds.non_polyprotein_explanation = "single peptide annotaion covering almost the whole CDS"
-            #Check for intein
+
+            #intein/extein Identification
             if len(cds.peptides) == 2:
                 # sort by start and select the first peptide no matter if the strand is -1
                 # because in case of intein the peptide cover the begining and the end of the CDS
@@ -245,7 +258,7 @@ class Segment:
                 cds.polyprotein = False
                 logging.warning('No cleavage site identify  and no explanation in for {} in {}'.format(cds.protein_id, self.taxon_id))
                 cds.non_polyprotein_explanation += "No cleavage site identify and no explanation"
-                print('NO CEAVAGE SITE AND NO EXPLANATION')
+                # print('NO CEAVAGE SITE AND NO EXPLANATION')
                 # input()
 
 
