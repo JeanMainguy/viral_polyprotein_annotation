@@ -102,7 +102,8 @@ if __name__ == '__main__':
                     "coverage",
                     "inflation",
                     "precision",
-                    'sensitivity' ]
+                    'sensitivity',
+                    "F1_score"]
 
     csv_output = csv.DictWriter(fl_out, fieldnames=header, delimiter='\t')
     csv_output.writeheader()
@@ -143,6 +144,15 @@ if __name__ == '__main__':
         expected_and_clustered_intersection = set_genomes_expected &  clustered_genome_with_poly
         expected_and_clustered_union = set_genomes_expected | clustered_genome_with_poly
 
+        precision = len(expected_and_clustered_intersection)/len(expected_and_clustered_union)
+        sensitivity = len(expected_and_clustered_intersection)/len(set_genomes_expected)
+
+        # The traditional F-measure or balanced F-score (F1 score) is the harmonic mean of precision and recall
+        # https://en.wikipedia.org/wiki/F1_score
+        # print(precision)
+        # print(sensitivity)
+        F1_score = 2*(precision*sensitivity/(precision + sensitivity))
+
         dict_to_write = {"nb_cluster":nb_cluster,
                         "nb_cluster_with_poly":i,
                         "nb_clustered_taxid_with_poly":len(clustered_genome_with_poly),
@@ -154,7 +164,8 @@ if __name__ == '__main__':
                         "coverage":coverage,
                         "inflation":inflation,
                         "precision": len(expected_and_clustered_intersection)/len(expected_and_clustered_union),
-                        'sensitivity': len(expected_and_clustered_intersection)/len(set_genomes_expected)
+                        'sensitivity': len(expected_and_clustered_intersection)/len(set_genomes_expected),
+                        "F1_score":F1_score
                         }
 
         csv_output.writerow(dict_to_write)
