@@ -1,7 +1,7 @@
 import taxonomy as tax
-import object_analysis as obj
-
-import os, gzip, logging
+import viral_genome_classes as obj
+import parser_interpro_results as do
+import os, gzip, logging, sys
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
@@ -11,47 +11,56 @@ from Bio.SeqFeature import SeqFeature, FeatureLocation
 from operator import attrgetter
 
 
+def visualisation(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold):
 
-def visualisation(gb_file, genetic_code, gff_file, taxon_expectation, alignement_dico):
-
-    genome = obj.Genome( gb_file)
+    genome = obj.Genome(gb_file)
 
     with gzip.open(gb_file, "rt") as handle:
     # with open("/home/user/mainguy/Documents/Data_Analysis/GCF_000885175.1_ViralMultiSegProj39867_genomic_MODIFIED.gbff", "rt") as handle:
         for i, record in enumerate(SeqIO.parse(handle, "genbank")):
-
-
             segment = obj.Segment(record, gb_file)
             genome.segments.append(segment)
 
             segment.getMatpeptidesAndPolyproteins()
+            if not genome.taxon_id:
+                genome.taxon_id  = segment.taxon_id
+            if not segment.peptides: # if no peptide annotation we don't need to do the next step of the loop
+                continue
+
             segment.checkPeptideRedundancy() #remove the redundant peptide
             segment.checkSubPeptides()
-            segment.associatePepWithProt()
+            segment.associatePepWithProt(sp_treshold)
 
-            segment.checkForSlippage()
+            # segment.checkForSlippage()
             segment.identifySubProtein()
 
             segment.getCleavageSites()
 
-    genome.getTaxonExpectation(taxon_expectation)
-    genome.identifyExpectedElement()
-    genome.getMatchObject(gff_file)
-    genome.associateMatchWithPolyprotein()
-    genome.visualisation(1, genetic_code)
 
+    # genome.getTaxonExpectation(taxon_expectation)
+    # genome.identifyExpectedElement()
+    # print(genome.taxon_id)
+    do.getMatchObject(genome, gff_file)
+    do.associateMatchWithPolyprotein(genome)
+    # genome.visualisation(1, genetic_code)
+    # print(genome.matchs)
+    # input()
+    # return
     display_dico = {}
     display_header = []
     for i, segment in enumerate(genome.segments):
         for cds in segment.cds:
             if cds.protein_id in alignement_dico:
+                # print(cds, cds.matchs)
                 starts, ends = getAnnotationBorders(cds.matchs)
+                # print(starts, ends)
                 sequence = alignement_dico[cds.protein_id]
                 sequence = '+'.join(sequence)
 
                 starts_in_alignment, ends_in_alignment = getPositionInAlignment(sequence, starts, ends)
-                number = '{}_{}'.format(i+1, cds.polyprotein_number)
-                key = genome.expectation_node+'|'+genome.taxon_id+"|"+number
+                # number = '{}_{}'.format(i+1, cds.polyprotein_number)
+                # key = genome.expectation_node+'|'+genome.taxon_id+"|"+number
+                key=genome.taxon_id+'|'+cds.protein_id
                 display_dico[key] = addColorToSequence(starts_in_alignment, ends_in_alignment, sequence)
 
     return display_dico
@@ -121,7 +130,7 @@ def getAnnotationBorders(domains):
     return starts, ends
 
 
-def store_alignement_line(alignement_file):
+def store_alignement_line(alignement_file, aln_row_len=160):
     #Not very elegant to load all the line
     alignement_dico = {}
     taxon_ids = set()
@@ -130,31 +139,46 @@ def store_alignement_line(alignement_file):
     with open(alignement_file, "r") as handle:
         alignement_index = None
 
-        pattern = re.compile("(\w+)\|(\d+)\|([^|]+)\|([_.\d]+)\s+(.+)")
+        pattern = re.compile("(\d+)\|([^|]+)\|[\d]+\s+(.+)")
         flag_bloc = False
 
-        alignement_dico['file_header'] = next(handle)
+        file_header = next(handle)
 
         for l in handle:
+            # print(l)
             result = pattern.search(l)
             if result:
                 flag_bloc = True
-                protein_id = result.group(3)
-                sequence = result.group(5)
+                protein_id = result.group(2)
+                sequence = result.group(3)
                 # print(sequence)
                 alignement_dico.setdefault(protein_id, []).append(sequence)
 
-                taxon_ids.add(result.group(2))
+                taxon_ids.add(result.group(1))
+                # print('sequence', '|'+sequence+'|')
                 if not alignement_index:
                     alignement_index = l.index(sequence)
+
 
             elif flag_bloc:
                 flag_bloc = False
                 identity = l[alignement_index:].rstrip()
+                identity += ' '*(len(sequence)-len(identity))
                 alignement_dico.setdefault('identity', []).append(identity)
+                # print('identity', '|'+identity+'|')
 
+        # print(alignement_dico)
+        ## Display alignement with the custom aln length per row
+        alignement_dico = {id:''.join(seq) for id,seq in alignement_dico.items()}
+        for id,seq in alignement_dico.items():
+            seq = ''.join(seq)
+            # print('len seq', id, len(seq))
+            alignement_dico[id] = [seq[i:i+aln_row_len] for i in range(0, len(seq), aln_row_len)]
 
+        alignement_dico['file_header']  = file_header
+        # input()
         return taxon_ids, alignement_dico
+
 
 
 def display_alignement(alignement_dico, display_dico):
@@ -168,26 +192,28 @@ def display_alignement(alignement_dico, display_dico):
             print(k+' '*(max_len-len(k))+v[i])
         print(' '*(max_len)+alignement_dico['identity'][i])
         print()
+
+
+
 if __name__ == '__main__':
     # logging.basicConfig(filename='log/genbankparser.log',level=logging.INFO)
-
+    alignement_file = sys.argv[1]
     try:
         alignement_file = sys.argv[1]
     except IndexError:
-        alignement_file = "data/alignement/Comovirus_polyprotein_1_1.0.aln"
+        alignement_file = "data/alignment/Viruses_evalue_1e-20coverage50_I1_8/seq_cluster40.aln"
 
     try:
         minimum_nb_peptide = int(sys.argv[3])
     except IndexError:
         minimum_nb_peptide = 0
-
+    sp_treshold=90
     taxonomy_file="data/taxonomy/taxonomy_virus.txt"
     expected_file =  "data/taxonomy/polyprotein_expectation_by_taxon.csv"
 
-    output_dir = '/home/user/mainguy/Documents/Data_Analysis/data/Cleavage_site_sequences'
-    gff_file = '/scratch/polyproteins_interpro/interproscan_result/All_polyprotein.gff3'
+    gff_file = 'data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
 
-    taxon_expectation = tax.expectedPeptide(expected_file)
+    # taxon_expectation = tax.expectedPeptide(expected_file)
 
     taxon_ids, alignement_dico = store_alignement_line(alignement_file)
     display_dico = {}
@@ -199,18 +225,16 @@ if __name__ == '__main__':
 
         for i, gb_dico in enumerate(gbff_iter):
             # print(gb_dico)
-
+            # print(gb_dico)
             gb_file = gb_dico['gb_file']
             genetic_code = gb_dico['genetic_code']
             # print(gb_file)
-
-            if i%200== 0:
-                # continue
-                print(i)
+            print(taxon)
             # print('genetic code', genetic_code)
-            print(gb_file)
-            display_dico_i = visualisation(gb_file, genetic_code, gff_file, taxon_expectation, alignement_dico  )
+            # print(gb_file)
+            display_dico_i = visualisation(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold  )
             display_dico.update(display_dico_i)
 
         # print(i+1, 'Genome analysed from taxon', taxon)
     display_alignement(alignement_dico, display_dico)
+    input()
