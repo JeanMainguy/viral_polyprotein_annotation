@@ -12,7 +12,7 @@ if (length(args)==0) {
 }
 csv_file = args[1]
 basename = args[2]
-output_dir =  paste("results/figures", basename, sep = "/")
+output_dir = basename # paste("results/figures", basename, sep = "/")
 
 print(csv_file)
 
