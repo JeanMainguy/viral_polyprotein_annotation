@@ -11,31 +11,9 @@ from Bio.SeqFeature import SeqFeature, FeatureLocation
 from operator import attrgetter
 
 
-def visualisation(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold):
+def visualisation(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold, taxon_id):
 
-    genome = obj.Genome(gb_file)
-
-    with gzip.open(gb_file, "rt") as handle:
-    # with open("/home/user/mainguy/Documents/Data_Analysis/GCF_000885175.1_ViralMultiSegProj39867_genomic_MODIFIED.gbff", "rt") as handle:
-        for i, record in enumerate(SeqIO.parse(handle, "genbank")):
-            segment = obj.Segment(record, gb_file)
-            genome.segments.append(segment)
-
-            segment.getMatpeptidesAndPolyproteins()
-            if not genome.taxon_id:
-                genome.taxon_id  = segment.taxon_id
-            if not segment.peptides: # if no peptide annotation we don't need to do the next step of the loop
-                continue
-
-            segment.checkPeptideRedundancy() #remove the redundant peptide
-            segment.checkSubPeptides()
-            segment.associatePepWithProt(sp_treshold)
-
-            # segment.checkForSlippage()
-            segment.identifySubProtein()
-
-            segment.getCleavageSites()
-
+    genome = obj.gb_file_parser(gb_file, taxon_id, sp_treshold)
 
     # genome.getTaxonExpectation(taxon_expectation)
     # genome.identifyExpectedElement()
@@ -130,7 +108,7 @@ def getAnnotationBorders(domains):
     return starts, ends
 
 
-def store_alignement_line(alignement_file, aln_row_len=160):
+def store_alignement_line(alignement_file, aln_row_len):
     #Not very elegant to load all the line
     alignement_dico = {}
     taxon_ids = set()
@@ -197,7 +175,7 @@ def display_alignement(alignement_dico, display_dico):
 
 if __name__ == '__main__':
     # logging.basicConfig(filename='log/genbankparser.log',level=logging.INFO)
-    alignement_file = sys.argv[1]
+    # alignement_file = sys.argv[1]
     try:
         alignement_file = sys.argv[1]
     except IndexError:
@@ -208,6 +186,7 @@ if __name__ == '__main__':
     except IndexError:
         minimum_nb_peptide = 0
     sp_treshold=90
+    aln_row_len=280
     taxonomy_file="data/taxonomy/taxonomy_virus.txt"
     expected_file =  "data/taxonomy/polyprotein_expectation_by_taxon.csv"
 
@@ -215,7 +194,7 @@ if __name__ == '__main__':
 
     # taxon_expectation = tax.expectedPeptide(expected_file)
 
-    taxon_ids, alignement_dico = store_alignement_line(alignement_file)
+    taxon_ids, alignement_dico = store_alignement_line(alignement_file, aln_row_len)
     display_dico = {}
     for taxon in taxon_ids:
         # file_handle = open(os.path.join(output_dir,'cleavage_site_{}_window_{}.faa'.format(taxon, window_step_clavage_site*2)), "w")
@@ -228,11 +207,12 @@ if __name__ == '__main__':
             # print(gb_dico)
             gb_file = gb_dico['gb_file']
             genetic_code = gb_dico['genetic_code']
+            taxon_id = gb_dico['taxon_id']
             # print(gb_file)
             print(taxon)
             # print('genetic code', genetic_code)
             # print(gb_file)
-            display_dico_i = visualisation(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold  )
+            display_dico_i = visualisation(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold,taxon_id  )
             display_dico.update(display_dico_i)
 
         # print(i+1, 'Genome analysed from taxon', taxon)

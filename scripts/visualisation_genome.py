@@ -1,5 +1,42 @@
+SCREEN_SIZE = 200
+import taxonomy as tax
+import viral_genome_classes as obj
+import parser_interpro_results as do
 
-def visualisation(self, nb_line=1, genetic_code=None):
+import os, gzip, logging
+from Bio import SeqIO
+from Bio.SeqRecord import SeqRecord
+from Bio.Seq import Seq
+import sys, csv, re
+from Bio.Alphabet import generic_protein
+from Bio.SeqFeature import SeqFeature, FeatureLocation
+from operator import attrgetter
+import collections
+
+
+def visualisation_main(gb_file, genetic_code, gff_file, nb_line, minimum_nb_peptide, taxon_id, sp_treshold):
+
+    genome = obj.gb_file_parser(gb_file, taxon_id, sp_treshold)
+
+    do.getMatchObject(genome, gff_file)
+    do.associateMatchWithPolyprotein(genome)
+
+    print(genome.matchs)
+    # genome.getTaxonExpectation(taxon_expectation)
+    # genome.identifyExpectedElement()
+    # genome.getMatchObject(gff_file)
+    # genome.associateMatchWithPolyprotein()
+    # taxon_id = segment.taxon_id
+    # for segment in genome.segments:
+    #     if taxon_id != segment.taxon_id or  segment.taxon_id == '40687':
+    #         print(gb_file)
+    #         input()
+
+    # genome.visualisation(nb_line, genetic_code)
+    # if genome.numberOf("peptides") >= minimum_nb_peptide:
+    genomeVisualisation(genome, nb_line, genetic_code)
+
+def genomeVisualisation(genome, nb_line=1, genetic_code=None):
     '''
     Visualisation of the genome in a friendly way
     Example:
@@ -11,22 +48,22 @@ def visualisation(self, nb_line=1, genetic_code=None):
     ----------------------------------------
     ======>   ======================>
     '''
-    print('GENOME of {}|{}'.format(self.organism, self.taxon_id))
-    longuest_segment_len = max([len(s) for s in self.segments])
+    print('GENOME of {}|{}'.format(genome.organism, genome.taxon_id))
+    longuest_segment_len = max([len(s) for s in genome.segments])
 
     conversion = longuest_segment_len/SCREEN_SIZE
-    for i, segment in enumerate(self.segments):
+    for i, segment in enumerate(genome.segments):
         print('SEGMENT {}/{}: {} cds | {} polyprotein | {}/{} final mat_peptides'.format(i+1,
-            len(self.segments),
+            len(genome.segments),
             len(segment.cds),
             len(segment.polyproteins),
             len(segment.peptides)-len(segment.parent_peptides),
             len(segment.peptides)))
-        print('taxonomy:{} \nnode giving the nb of peptides {}'.format(self.taxonomy, self.expectation_node))
-        print('Expected number of mature peptide {} '.format(self.peptide_expectation))
+        print('taxonomy:{} \nnode giving the nb of peptides {}'.format(genome.taxonomy, genome.expectation_node))
+        print('Expected number of mature peptide {} '.format(genome.peptide_expectation))
         # for p in segment.cds:
         #     print('Is annotation relevant? ',p.polyprotein_number, p.isAnnotationRelevant())
-        segment.visualisation(nb_line, genetic_code)
+        visualisation(segment, nb_line, genetic_code)
         # print(features_strg)
 
 #visualisation genome
@@ -42,10 +79,10 @@ def visualisation(self, nb_line, genetic_code):
 
 
     compatible_dico = collections.OrderedDict()
-    compatible_dico['match'] = self.buildCompatibleGroup(self.matchs)[::-1]
-    compatible_dico['cds'] = self.buildCompatibleGroup(self.cds)
-    compatible_dico['pep'] = self.buildCompatibleGroup(self.peptides)
-    compatible_dico['unannotated_region'] = self.buildCompatibleGroup(self.unannotated_region)
+    compatible_dico['match'] = buildCompatibleGroup(self, self.matchs)[::-1]
+    compatible_dico['cds'] = buildCompatibleGroup(self, self.cds)
+    compatible_dico['pep'] = buildCompatibleGroup(self, self.peptides)
+    compatible_dico['unannotated_region'] = buildCompatibleGroup(self, self.unannotated_region)
 
     strings = []
     seq_type_dico = {
@@ -67,7 +104,7 @@ def visualisation(self, nb_line, genetic_code):
             # print(string)
 
             for seq in group:
-                i_start, i_end = seq.getStringIndices(conversion)
+                i_start, i_end = getStringIndices(seq, conversion)
 
                 string = string[:i_start] + left+central*(i_end - i_start-1)+ right + string[i_end+1:]
 
@@ -94,7 +131,7 @@ def visualisation(self, nb_line, genetic_code):
                     nb = str(seq.number)
                     string = string[:i_start+2] +nb+ string[i_start+2+len(nb):]
 
-                    if seq.ribosomal_slippage:
+                    if False and seq.ribosomal_slippage:
                         for position, shift in seq.ribosomal_slippage.items():
                             string_postion = round(position/conversion)
                             string_postion = string_postion if string_postion<i_end else string_postion-1
@@ -112,9 +149,6 @@ def visualisation(self, nb_line, genetic_code):
                 # string = re.sub(r"(\[#<[A-Za-z0-9]+#+\]?)", r"{}\1{}".format(color, color_end), string)
             # print(string)
             strings.append(string)
-
-
-
 
     ##REGEX
     # overlap_match re.compile(r"\[#<"g)
@@ -143,6 +177,12 @@ def visualisation(self, nb_line, genetic_code):
     print(color_end)
     # print(protein)
     # return 'protein'
+
+def getStringIndices(self, conversion):
+    # print(conversion,' start', self.start/conversion, 'end', (self.end-1)/conversion)
+    # print(conversion,' start', int(self.start/conversion), 'end', int((self.end-1)/conversion))
+    return (int(self.start/conversion), int((self.end-1)/conversion))
+    # return round(self.bp_obj.location.start/conversion), round(self.bp_obj.location.end/conversion)
 
 
 
@@ -178,3 +218,66 @@ def buildCompatibleGroup(self, set_of_sequence):
 
             compatible_groupes.append(sorted(group, key=lambda x: x.end, reverse=True))
         return compatible_groupes
+
+
+if __name__ == '__main__':
+    # logging.basicConfig(filename='log/genbankparser.log',level=logging.INFO)
+    try:
+        nb_line = sys.argv[2]
+    except IndexError:
+        nb_line = 1
+
+    try:
+        minimum_nb_peptide = int(sys.argv[3])
+    except IndexError:
+        minimum_nb_peptide = 0
+
+
+    sp_treshold=90
+    taxonomy_file="data/taxonomy/taxonomy_virus.txt"
+    expected_file =  "data/taxonomy/polyprotein_expectation_by_taxon.csv"
+
+    gff_file = 'data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
+
+    try:
+        taxon = sys.argv[1]
+    except IndexError:
+        # taxon = 'ssRNA viruses'
+        taxon = "Togaviridae"
+        # taxon = 'Rubivirus'
+        # taxon = "Marafivirus"
+        # # taxon= "Togaviridae"
+        # taxon='ssRNA positive-strand viruses, no DNA stage'
+        # taxon='Alphavirus'
+        # taxon="11036"
+
+    try:
+        excluded_taxon = sys.argv[4]
+    except IndexError:
+        excluded_taxon = None
+
+    # taxon_expectation = tax.expectedPeptide(expected_file)
+
+    # file_handle = open(os.path.join(output_dir,'cleavage_site_{}_window_{}.faa'.format(taxon, window_step_clavage_site*2)), "w")
+
+    gbff_iter = tax.getAllRefseqFromTaxon(taxon, taxonomy_file, excluded_taxon)
+
+    print('*-'*100)
+    print('VISUALISATION OF THE RefSEq GENOME FROM THE TAXON {} THAT HAVE AT LEAST {} ANNOTATED PEPTIDE'.format(taxon,minimum_nb_peptide ))
+    print('*-'*100)
+    for i, gb_dico in enumerate(gbff_iter):
+        # print(gb_dico)
+
+        gb_file = gb_dico['gb_file']
+        genetic_code = gb_dico['genetic_code']
+        taxon_id = gb_dico['taxon_id']
+        print(gb_file)
+
+        if i%200== 0:
+            # continue
+            print(i)
+        # print('genetic code', genetic_code)
+        # print(gb_file)
+        visualisation_main(gb_file, genetic_code, gff_file, nb_line, minimum_nb_peptide, taxon_id, sp_treshold)
+
+    print(i+1, 'Genome analysed from taxon', taxon)

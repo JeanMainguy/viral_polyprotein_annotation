@@ -16,35 +16,11 @@ from Bio import SeqIO
 def extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_id, sp_treshold):
     nb_peptide = 0
     nb_cds = 0
-    genome = obj.Genome( gb_file)
-    # print(gb_file)
-    with gzip.open(gb_file, "rt") as handle:
-        for i, record in enumerate(SeqIO.parse(handle, "genbank")):
 
-
-            segment = obj.Segment(record, gb_file)
-            genome.segments.append(segment)
-
-            segment.getMatpeptidesAndPolyproteins()
-            # print(segment.taxon_id)
-
-            if not segment.peptides: # if no peptide annotation we don't need to do the next step of the loop
-                continue
-
-
-            segment.checkPeptideRedundancy() #remove the redundant peptide
-            segment.checkSubPeptides()
-            segment.associatePepWithProt()
-
-            # segment.checkForSlippage()
-            segment.identifySubProtein()
-
-            segment.getCleavageSites()
-            segment.identifyAnnotatedPolyproteins(sp_treshold)
-
+    genome = obj.gb_file_parser(gb_file, taxon_id, sp_treshold)
 
     for i, segment in enumerate(genome.segments):
-        taxonomy = record.annotations['taxonomy']
+        taxonomy = segment.record.annotations['taxonomy']
         nb_cds += len(segment.cds)
         nb_polyprotein = 0
 

@@ -12,15 +12,45 @@ from operator import attrgetter
 
 SCREEN_SIZE = 200
 
+def gb_file_parser(gb_file, taxon_id, sp_treshold):
+    """
+    Main function that manage the parsing of the gb_file
+    """
+
+    genome = Genome(gb_file, taxon_id)
+
+    with gzip.open(gb_file, "rt") as handle:
+    # with open("/home/user/mainguy/Documents/Data_Analysis/GCF_000885175.1_ViralMultiSegProj39867_genomic_MODIFIED.gbff", "rt") as handle:
+        for i, record in enumerate(SeqIO.parse(handle, "genbank")):
+            segment = Segment(record, gb_file)
+            genome.segments.append(segment)
+
+            segment.getMatpeptidesAndPolyproteins()
+            
+            if not segment.peptides: # if no peptide annotation we don't need to do the next step of the loop
+                continue
+
+            segment.checkPeptideRedundancy() #remove the redundant peptide
+            segment.checkSubPeptides()
+            segment.associatePepWithProt()
+
+            # segment.checkForSlippage()
+            segment.identifySubProtein()
+
+            segment.getCleavageSites()
+            segment.identifyAnnotatedPolyproteins(sp_treshold)
+
+    return genome
+
 
 class Genome:
-    def __init__(self, gb_file):
+    def __init__(self, gb_file, taxon_id):
         self.gb_file = gb_file
         self.segments = []
         self.matchs = []
         self.taxonomy = None
         self.organism = None
-        self.taxon_id = None
+        self.taxon_id = taxon_id
         self.expectation_node = None
         self.peptide_expectation = None
         self.polyprotein_expectation = None
@@ -28,6 +58,8 @@ class Genome:
         self.expectation_info = {}
         Protein.COUNTER = 0
         Peptide.COUNTER = 0
+
+
 
     def __len__(self):
         return sum([len(s) for s in self.segments])
