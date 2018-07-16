@@ -13,7 +13,7 @@ from operator import attrgetter
 
 def visualisation(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold, taxon_id):
 
-    genome = obj.gb_file_parser(gb_file, taxon_id, sp_treshold)
+    genome = obj.gb_file_parser(gb_file, taxon_id)
 
     # genome.getTaxonExpectation(taxon_expectation)
     # genome.identifyExpectedElement()

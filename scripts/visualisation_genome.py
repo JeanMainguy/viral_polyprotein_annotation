@@ -20,8 +20,8 @@ def visualisation_main(gb_file, genetic_code, gff_file, nb_line, minimum_nb_pept
 
     do.getMatchObject(genome, gff_file)
     do.associateMatchWithPolyprotein(genome)
-
-    print(genome.matchs)
+    for segment in genome.segments:
+        do.getDomainOverlappingInfo(segment)
     # genome.getTaxonExpectation(taxon_expectation)
     # genome.identifyExpectedElement()
     # genome.getMatchObject(gff_file)
@@ -34,7 +34,7 @@ def visualisation_main(gb_file, genetic_code, gff_file, nb_line, minimum_nb_pept
 
     # genome.visualisation(nb_line, genetic_code)
     # if genome.numberOf("peptides") >= minimum_nb_peptide:
-    genomeVisualisation(genome, nb_line, genetic_code)
+    return genomeVisualisation(genome, nb_line, genetic_code)
 
 def genomeVisualisation(genome, nb_line=1, genetic_code=None):
     '''
@@ -48,27 +48,31 @@ def genomeVisualisation(genome, nb_line=1, genetic_code=None):
     ----------------------------------------
     ======>   ======================>
     '''
-    print('GENOME of {}|{}'.format(genome.organism, genome.taxon_id))
+    visu_string = 'GENOME of {}|{}\n'.format(genome.organism, genome.taxon_id)
     longuest_segment_len = max([len(s) for s in genome.segments])
 
     conversion = longuest_segment_len/SCREEN_SIZE
     for i, segment in enumerate(genome.segments):
-        print('SEGMENT {}/{}: {} cds | {} polyprotein | {}/{} final mat_peptides'.format(i+1,
+        visu_string += 'SEGMENT {}/{}: {} cds | {} polyprotein | {}/{} final mat_peptides\n'.format(i+1,
             len(genome.segments),
             len(segment.cds),
-            len(segment.polyproteins),
+            len([cds for cds in segment.cds if cds.polyprotein]),
             len(segment.peptides)-len(segment.parent_peptides),
-            len(segment.peptides)))
-        print('taxonomy:{} \nnode giving the nb of peptides {}'.format(genome.taxonomy, genome.expectation_node))
-        print('Expected number of mature peptide {} '.format(genome.peptide_expectation))
+            len(segment.peptides))
+
+        visu_string +=  f'taxonomy: {segment.record.annotations["taxonomy"]}\n'
+
+        # print('taxonomy:{} \nnode giving the nb of peptides {}'.format(segment.record.annotations['taxonomy'], genome.expectation_node))
+        # print('Expected number of mature peptide {} '.format(genome.peptide_expectation))
         # for p in segment.cds:
         #     print('Is annotation relevant? ',p.polyprotein_number, p.isAnnotationRelevant())
-        visualisation(segment, nb_line, genetic_code)
+        visu_string += visualisation(segment, nb_line, genetic_code)
         # print(features_strg)
+        return visu_string
 
 #visualisation genome
 def visualisation(self, nb_line, genetic_code):
-
+    visu_string = ''
     try:
         display_len = int(nb_line)*SCREEN_SIZE
         conversion = int(len(self.record)) / display_len
@@ -157,8 +161,8 @@ def visualisation(self, nb_line, genetic_code):
 
     unfinished_col_list = ["" for s in strings]
     for i in range(0, display_len, SCREEN_SIZE):
-        print('/'*SCREEN_SIZE)
-        print()
+        visu_string += '/'*SCREEN_SIZE
+        visu_string += '\n'
         for i_line, string in enumerate(strings):
             sub_string = string[i:i+SCREEN_SIZE]
             if unfinished_col_list[i_line]:
@@ -170,13 +174,14 @@ def visualisation(self, nb_line, genetic_code):
             unfinished_col_list[i_line] = '' if not ansi_list or ansi_list[-1] == color_end else ansi_list[-1]
             # if ansi_list and ansi_list[-1] != color_end:
             #     unfinished_col_dict[i_line] = ansi_list[-1]
-            print(sub_string)
+            visu_string += sub_string+'\n'
 
     # protein = '\n'.join(strings)
 
-    print(color_end)
+    visu_string += color_end
     # print(protein)
     # return 'protein'
+    return visu_string
 
 def getStringIndices(self, conversion):
     # print(conversion,' start', self.start/conversion, 'end', (self.end-1)/conversion)
@@ -278,6 +283,8 @@ if __name__ == '__main__':
             print(i)
         # print('genetic code', genetic_code)
         # print(gb_file)
-        visualisation_main(gb_file, genetic_code, gff_file, nb_line, minimum_nb_peptide, taxon_id, sp_treshold)
+        string = visualisation_main(gb_file, genetic_code, gff_file, nb_line, minimum_nb_peptide, taxon_id, sp_treshold)
+        print(string)
+        input()
 
     print(i+1, 'Genome analysed from taxon', taxon)

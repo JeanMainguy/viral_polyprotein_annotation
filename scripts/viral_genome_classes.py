@@ -26,7 +26,7 @@ def gb_file_parser(gb_file, taxon_id, sp_treshold):
             genome.segments.append(segment)
 
             segment.getMatpeptidesAndPolyproteins()
-            
+
             if not segment.peptides: # if no peptide annotation we don't need to do the next step of the loop
                 continue
 
@@ -353,11 +353,10 @@ class Segment:
         #Check if peptide is included in a bigger peptide
         for i, pep in enumerate(self.peptides):
             for pep_next in self.peptides:
-                if pep in pep_next:
+                if pep != pep_next and pep in pep_next:
                     self.parent_peptides.add(pep_next)
                     pep_next.parent_peptide = True
                     self.sub_peptides.add(pep)
-
 
     def checkPeptideRedundancy(self):
         #Remove Peptide that have similat start and end...
@@ -561,9 +560,8 @@ class Sequence:
 
         pep_start = pep.location.parts[0].start
         pep_end = pep.location.parts[-1].end
-
         if not (pep.location.parts[0].start in self.bp_obj.location and pep.location.parts[-1].end-1 in self.bp_obj.location and pep.bp_obj.strand ==  self.bp_obj.strand):
-            # print("direct F")
+
             return False
         # print("\n","***"*3,str(self)[:8],"***"*3)
         # print("PROT location", self.bp_obj.location)
@@ -1107,6 +1105,7 @@ class Match(Sequence):
 
     def __str__(self):
         string = '\n==Domain {} from {} and {}\n'.format(self.name, self.start_in_prot, self.end_in_prot)
+        # string +=f'is overlaping {self.overlapping}'
         # string += 'Is included in: ' + str([p.number for p in self.including_peptides]) + '\n'
         # for p in self.including_peptides:
         #     string += '  pep:'+str(p.number) +':   '+ str(p.get_position_prot_relative( self.protein) ) + '\n'
