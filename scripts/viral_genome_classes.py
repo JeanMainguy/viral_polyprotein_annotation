@@ -64,13 +64,13 @@ class Genome:
     def __len__(self):
         return sum([len(s) for s in self.segments])
 
-
-    def extractObjectFromGbff(self, gb_file):
-
-        with gzip.open(gb_file, "rt") as handle:
-            for i, record in enumerate(SeqIO.parse(handle, "genbank")):
-                segment = Segment(record)
-                genome.segments.append(segment)
+    #
+    # def extractObjectFromGbff(self, gb_file):
+    #
+    #     with gzip.open(gb_file, "rt") as handle:
+    #         for i, record in enumerate(SeqIO.parse(handle, "genbank")):
+    #             segment = Segment(record)
+    #             genome.segments.append(segment)
 
 
     def hasEnoughPeptide(self):
@@ -735,7 +735,8 @@ class Protein(Sequence):
             seq = self.bp_obj.location.extract(record).seq.translate(table=genetic_code)
             seq = str(seq)
         seq = seq.upper()
-
+        if not self.polyprotein:
+            return  seq
         for site in self.cleavage_sites:
             site_position = site.start_aa(self)-1 # -1 to be in base 0
             # print('SITE\n',site)
@@ -910,6 +911,11 @@ class Peptide(Sequence):
         self.polyproteins = set()
 
         self.position_prot_relative = {}
+
+        #Domains attr related: key=domain value len of the domain on the peptide
+        self.fully_included_domains = {}
+        self.partially_included_domains = {}
+
         Peptide.COUNTER +=1
         self.number = Peptide.COUNTER
         # self.genome_start = None
@@ -999,6 +1005,10 @@ class UnannotatedRegion(Peptide):
         self.non_overlapping_prot = set()
         self.position_prot_relative = {}
 
+        #Domains attr related: key=domain value len of the domain on the peptide
+        self.fully_included_domains = {}
+        self.partially_included_domains = {}
+
         Peptide.COUNTER +=1
         self.number = Peptide.COUNTER
 
@@ -1034,6 +1044,13 @@ class CleavageSite(Peptide):
     def __str__(self):
         return 'Cleavage site {} from {} to {} ({}nt) belongs to {}, And have been made from peptide {}'.format(self.number, self.start, self.end, len(self), [p.number for p in self.proteins], [p.number for p in self.peptides] )
 
+    def peptide_composition(self):
+        compo = set()
+        for pep in self.peptides:
+            compo.add(pep.bp_obj.type)
+        return '|'.join(compo)
+
+
     def update(self, type, pep, polyproteins):
 
         polyproteins = polyproteins - self.proteins # new proteins that haven't been notify of the cleavage site
@@ -1044,7 +1061,7 @@ class CleavageSite(Peptide):
         self.proteins |= polyproteins
 
     def __key(self):
-        return (self.start, self.taxon_id) # For the moment only taxon id is used. Normally they have different taxon id
+        return (self.start, self.end, self.taxon_id) # For the moment only taxon id is used. Normally they have different taxon id
 
     def __hash__(self):
         return hash(self.__key())
@@ -1077,7 +1094,7 @@ class CleavageSite(Peptide):
 
 
 class Match(Sequence):
-    def __init__(self, taxid, seqid,  method, start, end, score, Dbxref, Name, matchID, signature_desc):
+    def __init__(self, taxid, seqid,  method, start, end, score, Dbxref, Name, match_id, signature_desc):
         self.taxid =taxid
         self.seqid=seqid
         self.method = method
@@ -1086,7 +1103,7 @@ class Match(Sequence):
         self.score=score
         self.Dbxref=Dbxref
         self.name =Name
-        self.matchID = matchID
+        self.match_id = match_id
         self.signature_desc = signature_desc
         self.protein = None
 
@@ -1094,7 +1111,7 @@ class Match(Sequence):
 
         self.overlapping = False
         self.partially_included_in = {} # all the peptides that have a part of the domains annotation in their seq
-        self.including_peptides = []
+        self.fully_included_in = []
         self.right_overlaps_peptide = 0 # distance overlap on the right with the peptide
         self.left_overlaps_peptide = 0 # distance on the left
 
@@ -1106,8 +1123,8 @@ class Match(Sequence):
     def __str__(self):
         string = '\n==Domain {} from {} and {}\n'.format(self.name, self.start_in_prot, self.end_in_prot)
         # string +=f'is overlaping {self.overlapping}'
-        # string += 'Is included in: ' + str([p.number for p in self.including_peptides]) + '\n'
-        # for p in self.including_peptides:
+        # string += 'Is included in: ' + str([p.number for p in self.fully_included_in]) + '\n'
+        # for p in self.fully_included_in:
         #     string += '  pep:'+str(p.number) +':   '+ str(p.get_position_prot_relative( self.protein) ) + '\n'
         # string += '\nIs overlaping on the right: ' + str({p.number:dist for p, dist in self.right_overlaps_peptides.items()}) + '\n'
         # for p, dist in self.right_overlaps_peptides.items():
@@ -1136,17 +1153,6 @@ class Match(Sequence):
             name = self.name
         return name if not self.overlapping else '<' + name
 
-    # def get_csv_dico(self, match_header):
-    #     dico = {}
-    #     for attribute_name in match_header:
-    #         if hasattr(self,attribute_name):
-    #             attribute = getattr(self, attribute_name)
-    #
-    #             if callable(attribute):
-    #                 dico[attribute_name] = attribute()
-    #             else:
-    #                 dico[attribute_name] = attribute
-    #
-    #     return dico
+
     def OverlappingDistance(self):
         return self.left_overlaps_peptide + self.right_overlaps_peptide

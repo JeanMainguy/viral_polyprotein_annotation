@@ -1,4 +1,4 @@
-import re
+import re, logging
 import viral_genome_classes as obj
 
 
@@ -49,12 +49,16 @@ def associateMatchWithPolyprotein(genome):
         getDomainOverlappingInfo(segment)
         identifyDuplicatedMatch(segment)
 
+    #small checking to be sure that all match have of the genome has at least one prot
+    for match in genome.matchs:
+        if not match.protein:
+            logging.warning(f'Domain annotation {match.name} has no protein in {genome.taxon_id}')
+
 
 def getDomainOverlappingInfo(segment):
 
-    for poly in segment.polyproteins:
+    for poly in segment.cds:
         for pep in list(poly.peptides) + poly.unannotated_region:
-
             if getattr(pep, 'parent_peptide', False):
                 continue
 
@@ -67,10 +71,9 @@ def getDomainOverlappingInfo(segment):
                     continue
 
                 if pep_start <= m.start_in_prot and m.end_in_prot <= pep_end: # The match fall into the peptide
-                    # print(m.name)
-                    m.including_peptides.append(pep)
+                    m.fully_included_in.append(pep)
+                    pep.fully_included_domains[m] = (m.start_in_prot, m.end_in_prot)
                     continue
-
                 m.overlapping = True
                 # here 3 possible scenario
                 # The match overlap on the left, on the right or overlap oon the left and on the right
@@ -81,6 +84,7 @@ def getDomainOverlappingInfo(segment):
                 min_end = min(pep_end, m.end_in_prot)
 
                 m.partially_included_in[pep] = min_end - max_start +1
+                pep.partially_included_domains[m] = (max_start, min_end) # position of the domain inside the peptide
 
         for m in poly.matchs:
             #For the match that overlap 2 or more peptide
@@ -93,7 +97,7 @@ def getDomainOverlappingInfo(segment):
                 if length > max_length:
                     max_length = length
                     peptide = pep
-            m.including_peptides.append(peptide)
+            m.fully_included_in.append(peptide)
             pep_start = peptide.start_aa(poly)
             pep_end   = peptide.end_aa(poly)
 
