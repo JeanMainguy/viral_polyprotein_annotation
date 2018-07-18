@@ -4,10 +4,10 @@ set -e # exit if command fail
 
 #PARAMETERs FOR PROTEIN EXTRACTION
 taxonomy_file="data/taxonomy/taxonomy_virus.txt"
-gff_file='data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
+# gff_file='data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
 seq_output_dir='data/viral_proteins/'
 stat_output_dir='results/stat_viral_protein/'
-taxon='ssRNA viruses' 
+taxon='ssRNA viruses'
 taxon='Alphavirus'
 taxon='Viruses'
 # taxon='1198013'
@@ -22,7 +22,7 @@ mkdir -p ${tmpdir}$stat_output_dir
 
 echo extraction of viral proteins...
 
-python3 scripts/viral_protein_extraction.py ${taxon} ${tmpdir}$seq_output_dir $taxonomy_file  ${tresholdSP} $gff_file ${tmpdir}$stat_output_dir
+python3 scripts/viral_protein_extraction.py ${taxon} ${tmpdir}$seq_output_dir $taxonomy_file  ${tresholdSP} ${tmpdir}$stat_output_dir #$gff_file 
 
 echo mv file from tmp to final dir
 mv ${tmpdir}${seq_output_dir}*  ${seq_output_dir}
