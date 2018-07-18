@@ -21,6 +21,7 @@ stat_protein_file="results/stat_viral_protein/stat_proteins_Viruses.csv"
 clusters_with_polyprotein=${alignement_dir}clusters_with_identified_polyprotein.out
 
 if [ ! -f ${clusters_with_polyprotein} ] || [ "$force" == true ]; then # we run the python script only if its output file does not exist...
+  echo creation of a file containing only cluster with polyproteins
   python3 scripts/cluster_of_interest_identification.py $cluster_file $clusters_with_polyprotein $stat_protein_file
 else
   echo the clusters_with_polyprotein file ${clusters_with_polyprotein} already exist
@@ -28,11 +29,10 @@ fi
 
 
 ## -- ALIGNEMENT --
-
 nb_aln_file=$(ls -a ${alignement_dir}*.aln | wc -l)
 # if there is already aln file in alignement_dir we don't recompute alignment step
 if [ ${nb_aln_file} == '0' ] || [ "$force" == true ]; then
-  echo LETS ALIGNE
+  echo alignment of the of $clusters_with_polyprotein
    sbatch --export=cluster_file=$clusters_with_polyprotein,alignement_dir=$alignement_dir,faa_db=$faa_db scripts/multiple_alignment_proteins.sh
  else
    echo the alignement_dir already contain aln file $clusters_with_polyprotein. no need to recompute this step
@@ -70,7 +70,7 @@ if [ ${nb_new_seq_to_process} != '0' ]; then # if new seq is not empty we search
     echo  sbatch --export=interpro_dir=${interpro_dir},faa_db=$faa_db scripts/interpro_domain_search.sh
    sbatch --export=interpro_dir=${interpro_dir},faa_db=$faa_db scripts/interpro_domain_search.sh
  else
-   echo There is no new sequence to process...
+   echo There is no new sequence to process in interproscan
  fi
 # interpro sbatch file should add complement id list to the main list at the end
 # to not recompute the same sequences over and over

@@ -42,7 +42,7 @@ final_interpro_result=${interpro_dir}domains_viral_sequences.gff3
 
 echo Interproscan search with $(wc -l $list_seq_id) sequences
 # command from http://bioinformatics.cvr.ac.uk/blog/short-command-lines-for-manipulation-fastq-and-fasta-sequence-files/
-#extract faa seq in a new file
+# extract faa seq in a new file
 perl -ne 'if(/^>(\S+)/){$c=$i{$1}}$c?print:chomp;$i{$_}=1 if @ARGV' $list_seq_id $faa_db > ${TMPDIR}/sequences.faa
 interpro_output=${TMPDIR}/domains_viral_sequences_${SLURM_JOBID}
 /usr/bin/time /localmirror/monthly/interpro/interproscan*/interproscan.sh -cpu 8 --appl PFAM,CDD,ProDom,SMART,ProSiteProfiles -i ${TMPDIR}/sequences.faa -b ${interpro_output} -f GFF3
@@ -65,4 +65,4 @@ cat ${interpro_output}_no_fasta.gff3 >> $final_interpro_result
 echo MV ORIGINAL OUTPUT IN FINAL INTERPRO DIR
 interpro_dir=$(dirname "${final_interpro_result}")
 mv $interpro_output.gff3  $interpro_dir/
-cat $list_seq_id >> ${interpro_dir}seq_header_already_processed.txt
+cat $list_seq_id >> ${interpro_dir}/seq_header_already_processed.txt
