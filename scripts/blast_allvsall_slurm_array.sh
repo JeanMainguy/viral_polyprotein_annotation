@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-#SBATCH --job-name=viral_proteins_blast_all_vs_all
-#SBATCH --cpus-per-task=16
+#SBATCH --job-name=blast_all_vs_all
+#SBATCH --cpus-per-task=8
 #SBATCH --mail-type=ALL
 #SBATCH --mem=300M
-#SBATCH --constraint=array-20core
+#SBATCH --constraint=array-8core
 #SBATCH --output=log/%x-%j.out
 #SBATCH --error=log/%x-%j.out
 
@@ -13,26 +13,40 @@ set -e # exit if command fail
 
 #PARAMETERs FOR PROTEIN EXTRACTION
 taxonomy_file="data/taxonomy/taxonomy_virus.txt"
-seq_output_dir='data/viral_proteins/'
 
-taxon='ssRNA viruses'
-taxon='Alphavirus'
-taxon='Viruses'
+if [ -z "$fasta_dir" ];
+then
+  echo seq_output_dir not found default value used
+  fasta_dir='data/viral_proteins/'
+fi
+echo fasta_dir : $fasta_dir
+echo fasta splitted directory
+fasta_splitted_dir=${fasta_dir}${taxon}_splitted_fasta_files/
+
+if [ -z "$taxon" ];
+then
+  echo taxon not found default value used
+  taxon='Viruses'
+fi
+echo taxon $taxon
+if [ -z "$evalue" ];
+then
+  echo evalue not found default value used
+  evalue="1e-5"
+fi
+echo evalue : $evalue
 
 taxon=${taxon// /_} #replace space by underscore
 taxon=${taxon//,/} # replace coma by nothing
-
-# blast parameters
-evalue="1e-5"
 
 blast_result_dir="data/blast_result/${taxon}_${evalue}"
 mkdir -p $blast_result_dir
 
 result_name="${taxon}_blast_evalue${evalue}_${SLURM_ARRAY_TASK_ID}.out"
 
-query="${seq_output_dir}${taxon}_protein_db.${SLURM_ARRAY_TASK_ID}.faa"
+query="${fasta_splitted_dir}${taxon}_protein_db.${SLURM_ARRAY_TASK_ID}.faa"
 
-protein_db_faa="${seq_output_dir}${taxon}_protein_db.faa"
+protein_db_faa="${fasta_dir}${taxon}_protein_db.faa"
 
 echo Blast $query against all
 
@@ -41,6 +55,6 @@ echo Blast $query against all
 
 
 echo mv file from tmp to final dir
-mv ${TMPDIR}${result_name}  ${blast_result_dir}
+mv ${TMPDIR}${result_name}  ${blast_result_dir}/
 
 echo ----end----

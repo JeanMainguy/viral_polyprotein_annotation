@@ -2,7 +2,7 @@
 
 module load pyfasta
 module load ncbiblastplus
-# set -e # exit if command fail
+set -e # exit if command fail
 
 #PARAMETERs FOR PROTEIN EXTRACTION
 taxonomy_file="data/taxonomy/taxonomy_virus.txt"
@@ -11,7 +11,7 @@ stat_output_dir='results/stat_viral_protein/'
 taxon='ssRNA viruses'
 taxon='Alphavirus'
 taxon='Viruses'
-
+evalue='1e-5'
 # taxon="Retro-transcribing viruses"
 # taxon='ssRNA viruses'
 
@@ -21,16 +21,23 @@ taxon=${taxon//,/} # replace coma by nothing
 
 protein_db_faa="${seq_output_dir}${taxon}_protein_db.faa"
 
-splitted_fasta_dir="${seq_output_dir}splitted_fasta_files/"
-splitted_fasta_dir="${seq_output_dir}"
+splitted_fasta_dir="${seq_output_dir}${taxon}_splitted_fasta_files/"
+# splitted_fasta_dir="${seq_output_dir}"
 mkdir -p $splitted_fasta_dir
+# rm $splitted_fasta_dir*.faa
 
-nb_of_pieces=300
+nb_total_seq=`grep -c ^'>' $protein_db_faa`
+nb_seq_per_file=2000
 
-echo Split db in $nb_of_pieces pieces
+nb_of_pieces=$((1 + nb_total_seq / nb_seq_per_file))
+
+echo nb seq in $protein_db_faa is $nb_total_seq
+echo nb seq desired per splitted filed is $nb_seq_per_file
+echo the db  is then splited into $nb_of_pieces pieces
+
 pyfasta split -n $nb_of_pieces $protein_db_faa
 
-
+# rename the sub files to make it match with slurm array expectation
 for file in ${seq_output_dir}${taxon}_protein_db.*.faa;
  do
   base=$(basename $file)
@@ -38,6 +45,7 @@ for file in ${seq_output_dir}${taxon}_protein_db.*.faa;
   new_base=$(echo $base | sed "s/${taxon}_protein_db.0*/${taxon}_protein_db./") # remove leading 0
   echo new base $new_base
   mv $file $splitted_fasta_dir$new_base
+
 done
 echo "$splitted_fasta_dir${taxon}_protein_db.${nb_of_pieces}.faa"
 mv "${splitted_fasta_dir}${taxon}_protein_db..faa" "$splitted_fasta_dir${taxon}_protein_db.${nb_of_pieces}.faa"
@@ -47,4 +55,11 @@ makeblastdb -in ${protein_db_faa} -dbtype prot
 
 
 echo launch array slurm
-sbatch -a 1-${nb_of_pieces} scripts/blast_allvsall_slurm_array.sh
+submit_message="$(sbatch -a 1-${nb_of_pieces} --export=taxon=$taxon,fasta_dir=$fasta_dir,evalue=$evalue scripts/blast_allvsall_slurm_array.sh)"
+
+echo $submit_message
+echo $submit_message | cut -d' ' -f4
+jid1=`echo $submit_message | cut -d' ' -f4`
+echo $jid1
+echo lauched slurm concat that run after the blast array job has ended
+sbatch  --dependency=afterok:$jid1 --export=taxon=$taxon,evalue=$evalue scripts/blast_allvsall_concat_array.sh
