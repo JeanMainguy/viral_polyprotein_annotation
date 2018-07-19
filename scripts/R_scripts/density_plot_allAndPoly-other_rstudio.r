@@ -4,7 +4,7 @@ library(grid)
 
 csv_file='results/clustering_evaluation/homogeneity_results_merge/merge_Viruses_evalue1e-30_I2_coverage20_homogeneity.csv'
 output_dir = 'results/clustering_evaluation/homogeneity_results_merge/'
-evalue = 1e-30
+evalue = 1e-30 
 inflation = 2
 coverage = 20
 
