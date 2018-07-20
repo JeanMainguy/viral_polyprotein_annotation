@@ -99,7 +99,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 222079	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 222441	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus;unclassified Begomovirus
 44560	7	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
-44560	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
+44560_1	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 1161931	127	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Myoviridae
 41763	2	True	1	TRUE	10	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Rymovirus
 208013	163	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Baculoviridae;Alphabaculovirus
@@ -222,7 +222,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 443746	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Potyvirus
 39681	5	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Bromoviridae;Ilarvirus
 445435	5	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Tymovirales;Alphaflexiviridae;Potexvirus
-445435	5	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Tymovirales;Alphaflexiviridae;Potexvirus
+445435_1	5	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Tymovirales;Alphaflexiviridae;Potexvirus
 1087068	4	False	0	FALSE	0	Viruses;dsRNA viruses
 1522179	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unassigned Picornavirales;Bacillarnavirus;unclassified Bacillarnavirus
 1671382	3	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae;unclassified Astroviridae
@@ -592,7 +592,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 335797	50	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae;Lambdavirus;unclassified Lambda-like viruses
 1282994	49	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Myoviridae
 1518575	3	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae;Mamastrovirus;unclassified Mamastrovirus
-1462685	11	False	0	FALSE	0	Viruses;dsRNA viruses;Reoviridae;Spinareovirinae;Orthoreovirus;unclassified Orthoreovirus
+226613	11	False	0	FALSE	0	Viruses;dsRNA viruses;Reoviridae;Spinareovirinae;Orthoreovirus;unclassified Orthoreovirus
 666859	6	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Tymovirales;Betaflexiviridae;Quinvirinae;Carlavirus
 74320	127	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Baculoviridae;Alphabaculovirus
 51336	7	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
@@ -944,7 +944,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 223252	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 509531	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 260479	0	False	0	FALSE	0	Viruses;Satellites;Satellite Nucleic Acids;Single stranded DNA satellites;unclassified Single stranded DNA satellites
-223252	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
+223252_1	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 674996	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus;unclassified Begomovirus
 53010	7	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus;unclassified Begomovirus
 1001263	1	False	0	FALSE	0	Viruses;Satellites;Satellite Nucleic Acids;Single stranded DNA satellites;Alphasatellites;Begomovirus-associated alphasatellites;unclassified Begomovirus-associated alphasatellites
@@ -1303,7 +1303,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 64141	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus;Enterovirus G
 310907	1	True	1	TRUE	15	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
 1330521	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
-1330521	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+1330521_1	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
 47681	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
 239365	4	False	0	FALSE	0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus;unclassified Betaretrovirus
 166056	132	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Baculoviridae;Betabaculovirus
@@ -1379,7 +1379,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 221054	1	False	0	FALSE	0	Viruses;Satellites;Tolecusatellitidae;Betasatellite
 1853865	7	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Capulavirus
 270117	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
-429564	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
+77811	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 666147	1	False	0	FALSE	0	Viruses;Satellites;Satellite Nucleic Acids;Single stranded DNA satellites;Alphasatellites;Begomovirus-associated alphasatellites
 598494	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 307467	139	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Baculoviridae;Alphabaculovirus
@@ -1429,11 +1429,11 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 1432857	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus;unclassified Iflavirus
 48544	3	True	3	TRUE	13	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus;WEEV complex
 190061	39	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Aviadenovirus
-190061	38	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Aviadenovirus
+190061_1	38	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Aviadenovirus
 172861	39	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Aviadenovirus;Fowl aviadenovirus B
 190063	46	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Aviadenovirus
 190064	29	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Aviadenovirus
-190064	34	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Aviadenovirus
+190064_1	34	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Aviadenovirus
 190065	46	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Aviadenovirus
 10261	261	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Poxviridae;Chordopoxvirinae;Avipoxvirus
 1504569	8	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Mononegavirales;Rhabdoviridae;unclassified Rhabdoviridae
@@ -1716,18 +1716,18 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 11676	10	True	3	TRUE	19	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group
 11709	9	False	0	FALSE	0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group
 129875	36	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
-129875	35	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
+129875_1	35	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
 198503	38	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus;Human mastadenovirus B
 108098	38	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
 10522	37	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus;Human mastadenovirus B
 10519	37	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus;Human mastadenovirus B
-108098	39	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
+108098_1	39	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
 129951	38	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
 28285	36	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
 10533	36	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
 10515	36	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
 130310	38	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
-130310	19	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
+130310_1	19	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
 651580	36	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus;Human mastadenovirus D
 175567	38	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus;Human mastadenovirus E
 130308	37	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
@@ -2178,7 +2178,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 368736	4	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Virgaviridae;Tobamovirus
 1662286	16	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Polyomaviridae;unclassified Polyomaviridae
 11269	7	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Mononegavirales;Filoviridae;Marburgvirus
-11269	7	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Mononegavirales;Filoviridae;Marburgvirus
+11269_1	7	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Mononegavirales;Filoviridae;Marburgvirus
 1385658	6	False	0	FALSE	0	Viruses;ssDNA viruses;Microviridae;Gokushovirinae;unclassified Gokushovirinae
 439015	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;environmental samples
 439016	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;environmental samples
@@ -2229,7 +2229,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 1535266	1	False	0	FALSE	0	Viruses;Satellites;Satellite Nucleic Acids;Single stranded DNA satellites;Alphasatellites;Begomovirus-associated alphasatellites;unclassified Begomovirus-associated alphasatellites
 360580	1	False	0	FALSE	0	Viruses;Satellites;Tolecusatellitidae;Betasatellite
 77048	32	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae
-173824	37	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae
+145261	37	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae
 446529	77	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae
 1458670	120	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae
 1357715	170	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Myoviridae
@@ -2317,7 +2317,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 11795	3	False	0	FALSE	0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus;Murine leukemia virus
 44561	2	False	0	TRUE	1	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus;Murine leukemia virus
 129956	26	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
-129956	29	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
+129956_1	29	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
 931972	27	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus
 573199	28	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Mastadenovirus;Murine mastadenovirus C
 11830	2	True	1	TRUE	3	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus;unclassified Gammaretrovirus
@@ -2570,12 +2570,12 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 31749	4	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Virgaviridae;Tobamovirus
 12238	5	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Virgaviridae;Tobamovirus
 1247	55	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;unclassified dsDNA phages
-1247	59	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;unclassified dsDNA phages
-1247	54	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;unclassified dsDNA phages
+1247_1	59	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;unclassified dsDNA phages
+1247_2	54	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;unclassified dsDNA phages
 1249467	1	False	0	FALSE	0	Viruses;Satellites;Satellite Nucleic Acids;Single stranded DNA satellites;Alphasatellites;Begomovirus-associated alphasatellites;unclassified Begomovirus-associated alphasatellites
 908277	1	False	0	FALSE	0	Viruses;Satellites;Tolecusatellitidae;Betasatellite
 908127	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
-518829	1	False	0	FALSE	0	Viruses;Satellites;Satellite Nucleic Acids;Single stranded DNA satellites;Alphasatellites;Begomovirus-associated alphasatellites
+518829_1	1	False	0	FALSE	0	Viruses;Satellites;Satellite Nucleic Acids;Single stranded DNA satellites;Alphasatellites;Begomovirus-associated alphasatellites
 756759	1	False	0	FALSE	0	Viruses;Satellites;Tolecusatellitidae;Betasatellite
 912034	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 908124	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus;unclassified Begomovirus
@@ -3162,7 +3162,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 66834	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Cripavirus
 291589	7	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Papillomaviridae;Rhopapillomavirus
 117198	7	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
-117198	7	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
+117198_1	7	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 457286	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 714308	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 935473	8	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus;unclassified Begomovirus
@@ -3576,8 +3576,8 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 1147044	53	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae
 1168613	43	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae
 1280	59	False	0	FALSE	0	Viruses;unclassified bacterial viruses
-1280	67	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae
-445517	58	False	0	FALSE	0	Viruses;unclassified bacterial viruses
+1280_1	67	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae
+1280_2	58	False	0	FALSE	0	Viruses;unclassified bacterial viruses
 1674930	61	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae
 1399949	62	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae
 129009	65	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae
@@ -3706,7 +3706,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 225752	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 1489312	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus;unclassified Begomovirus
 2026195	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
-1489311	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus;unclassified Begomovirus
+1489311_1	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus;unclassified Begomovirus
 574890	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus;unclassified Begomovirus
 994388	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 1392388	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus;unclassified Begomovirus
@@ -3918,7 +3918,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 614034	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 713949	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 538004	1	False	0	FALSE	0	Viruses;Satellites;Satellite Nucleic Acids;Single stranded DNA satellites;Alphasatellites;Begomovirus-associated alphasatellites
-619631	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
+619631_1	6	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 526476	9	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus;unclassified Begomovirus
 575918	1	False	0	FALSE	0	Viruses;Satellites;Tolecusatellitidae;Betasatellite
 575917	7	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus;unclassified Begomovirus
@@ -4186,7 +4186,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 1046573	8	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Begomovirus
 11039	3	True	3	TRUE	14	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus;WEEV complex
 11082	2	True	2	TRUE	22	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Flavivirus;Japanese encephalitis virus group
-11082	3	True	3	TRUE	35	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Flavivirus;Japanese encephalitis virus group
+11082_1	3	True	3	TRUE	35	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Flavivirus;Japanese encephalitis virus group
 48543	4	True	1	TRUE	1	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus;WEEV complex
 1174526	4	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Mastrevirus
 10834	4	False	0	FALSE	0	Viruses;ssDNA viruses;Geminiviridae;Mastrevirus
@@ -4275,7 +4275,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 1764086	4	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Phenuiviridae;Phlebovirus;unclassified Phlebovirus
 333920	7	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Papillomaviridae;Zetapapillomavirus
 64320	1	True	1	TRUE	14	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Flavivirus
-64320	1	True	1	TRUE	14	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Flavivirus
+64320_1	1	True	1	TRUE	14	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Flavivirus
 220813	1	False	0	FALSE	0	Viruses;Satellites;Tolecusatellitidae;Betasatellite
 111418	4	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Virgaviridae;Tobamovirus
 1406816	1	True	1	TRUE	9	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Potyvirus;unclassified Potyvirus
@@ -5617,7 +5617,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 1508224	5	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Coronaviridae;Coronavirinae;Alphacoronavirus;unclassified Alphacoronavirus
 1504733	6	False	0	FALSE	0	Viruses;unclassified viruses
 1734441	10	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae
-1734441	8	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae
+1734441_1	8	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae
 1923354	2	False	0	FALSE	0	Viruses;unclassified RNA viruses
 1923355	5	False	0	FALSE	0	Viruses;unclassified RNA viruses
 1923356	1	False	0	FALSE	0	Viruses;unclassified RNA viruses
@@ -6165,7 +6165,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 1972612	8	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Mononegavirales;Rhabdoviridae;Hapavirus
 35250	76	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Herpesvirales;Herpesviridae;Alphaherpesvirinae;Mardivirus
 1112631	7	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Mononegavirales;Paramyxoviridae;Henipavirus
-198612	5	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Tospoviridae;Orthotospovirus
+40687	5	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Tospoviridae;Orthotospovirus
 1980471	3	False	0	TRUE	3	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Hantaviridae;Orthohantavirus
 210016	5	False	0	FALSE	0	Viruses;ssDNA viruses;Parvoviridae;Densovirinae;Ambidensovirus
 63330	8	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Mononegavirales;Paramyxoviridae;Henipavirus
@@ -6272,7 +6272,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 1972567	5	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Mononegavirales;Rhabdoviridae;Vesiculovirus
 1211417	88	False	0	FALSE	0	Viruses;unclassified bacterial viruses;environmental samples
 1458706	87	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Podoviridae;Sepvirinae;Tl2011virus
-886285	88	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Podoviridae;Sepvirinae;Nona33virus
+866553	88	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Podoviridae;Sepvirinae;Nona33virus
 10730	80	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Podoviridae;Sepvirinae;Nona33virus
 489779	83	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Podoviridae;Sepvirinae;Nona33virus
 1660365	84	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Podoviridae;Sepvirinae;Tl2011virus
@@ -6699,7 +6699,7 @@ taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	ta
 1776177	1	False	0	FALSE	0	Viruses;dsRNA viruses;Endornaviridae;Alphaendornavirus
 1234887	4	False	0	FALSE	0	Viruses;Genomoviridae;Gemykibivirus
 130328	29	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus
-130328	31	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus
+130328_1	31	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus
 1777015	1	False	0	FALSE	0	Viruses;dsRNA viruses;Endornaviridae;Alphaendornavirus
 1673871	275	False	0	FALSE	0	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Myoviridae;Tevenvirinae;Js98virus
 1249676	1	False	0	FALSE	0	Viruses;dsRNA viruses;Endornaviridae;Alphaendornavirus
