@@ -25,7 +25,8 @@ p = ggplot(data, aes(x=potential_signal_P_first_pep_len_aa)) +
         legend.text = element_text( size=20), legend.title =element_text(size=22,face="bold"))+
         labs( x="length first peptide annotation (aa)", fill="First peptide\nannotation type", colour="First peptide\nannotation type") +
         scale_x_continuous(breaks=c(sp_length_threshold, seq(200,max(data$potential_signal_P_first_pep_len_aa)+1, 100)))
-  p2 = p + geom_density(alpha=.2, fill="#FF6666")  # Overlay with transparent density plot
+    
+  p2 = p + geom_density(alpha=.2, fill="#FF6666")  # Overlay with transparent density plot + 
   p
   p2
   

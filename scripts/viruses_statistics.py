@@ -94,18 +94,16 @@ def getProteinStat(cds, taxon_id, taxonomy):
     #Check if the cds has a signal peptide scheme
     #Meaning that it has from 1 to 2 pep annotations and one of it annotation start at the 5' of the cds
 
-    # start/end position inverse if strand -1
-    non_polyprotein_explanation = cds.non_polyprotein_explanation
-    len_first_peptide = "None"
+    potential_signal_P_first_pep_len = "None"
 
     cds_start = cds.start if cds.bp_obj.strand == 1 else cds.end
-    first_pep_type = "None"
+    potential_signal_P_first_pep_type = "None"
     for pep in cds.peptides:
         pep_start = pep.start if cds.bp_obj.strand == 1 else pep.end
 
         if cds_start == pep_start and  0 < len(cds.peptides) <= 2:
-            len_first_peptide = len(pep)
-            first_pep_type = pep.bp_obj.type
+            potential_signal_P_first_pep_len = len(pep)
+            potential_signal_P_first_pep_type = pep.bp_obj.type
 
     #Write dict info
     dict_info = {
@@ -119,10 +117,10 @@ def getProteinStat(cds, taxon_id, taxonomy):
         "nb_unannotated_part":str(len(cds.unannotated_region)),
         "nb_cleavage_sites":str(len(cds.cleavage_sites)),
         "is_sub_protein":is_sub_protein,
-        "non_polyprotein_explanation":non_polyprotein_explanation,
-        "len_first_peptide":len_first_peptide,
+        "non_polyprotein_explanation":cds.non_polyprotein_explanation,
+        "potential_signal_P_first_pep_len":potential_signal_P_first_pep_len,
         "taxonomy":str(taxonomy),
-        "first_pep_type":first_pep_type,
+        "potential_signal_P_first_pep_type":potential_signal_P_first_pep_type,
 	    "len_protein":len(cds)
             }
     return dict_info
@@ -180,8 +178,8 @@ def initiateBasicStatFile(taxon, output_dir ):
                     "nb_cleavage_sites",
                     "is_sub_protein",
                     "non_polyprotein_explanation",
-                    "len_first_peptide",
-                    "first_pep_type",
+                    "potential_signal_P_first_pep_len",
+                    "potential_signal_P_first_pep_type",
 		            "len_protein",
                     "strand",
                     "taxonomy",

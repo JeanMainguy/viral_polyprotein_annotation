@@ -6,7 +6,7 @@ TMPDIR=/tmp/$USER/
 mkdir -p $TMPDIR
 
 #Cluster Input file
-cluster_file='data/clustering_result/Viruses/clustering_parameter_variation/Viruses_evalue_1e-20coverage50_I1_8.out'
+cluster_file='data/clustering_result/Viruses/clustering_parameter_variation/Viruses_evalue_1e-30coverage20_I2.out'
 faa_db="data/viral_proteins/Viruses_protein_db.faa"
 
 name_dir=$(basename $cluster_file)

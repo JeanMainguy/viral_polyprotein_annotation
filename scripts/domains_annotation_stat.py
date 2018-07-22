@@ -5,7 +5,7 @@ import viruses_statistics as stat
 import parser_interpro_results as do
 import os, gzip, logging, sys, csv
 from Bio import SeqIO
-
+import cluster_of_interest_identification
 
 
 def getPolyproteinDomainsStat(gb_file, writer_stat_dict, genetic_code, taxon_id, sp_treshold, gff_file):
@@ -61,9 +61,9 @@ def getPolyproteinDomainsStat(gb_file, writer_stat_dict, genetic_code, taxon_id,
 def initiateDomainStatFile(taxon, output_dir ):
     taxon = taxon.replace(',', '').replace(' ', '_')
 
-    stat_file_peptides = 'stat_peptides_{}.csv'.format(taxon)
+    stat_file_peptides = 'stat_peptides_domains_{}.csv'.format(taxon)
     stat_file_domains =  'stat_domains_{}.csv'.format(taxon)
-    stat_file_cleavage_sites =  'stat_cleavage_sites_{}.csv'.format(taxon)
+    stat_file_cleavage_sites =  'stat_cleavage_sites_domains{}.csv'.format(taxon)
 
     #PEPTIDE
     handle_stat_pep = open(os.path.join(output_dir, stat_file_peptides), "w")
@@ -160,14 +160,18 @@ if __name__ == '__main__':
     except:
         stat_output_dir = 'test'
 
-
+    print(f"Write domains stat on {taxon} in {stat_output_dir}")
     taxonomy_file ="data/taxonomy/taxonomy_virus.txt"
     sp_treshold = 90
 
     gff_file='data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
+    stat_protein_file = "results/stat_viral_protein/stat_proteins_Viruses.csv"
 
+    annotated_taxons = cluster_of_interest_identification.getAnnotatedProteinTaxId(stat_protein_file, "has_peptide", "True")
 
-    gbff_iter = tax.getAllRefseqFromTaxon(taxon, taxonomy_file)
+    gbff_iter = tax.getAllRefseqFromTaxonIdList(annotated_taxons, taxonomy_file)
+    # print(len(list(gbff_iter)))
+    # input()
 
     taxon = taxon.replace(',', '').replace(' ', '_')
 
@@ -180,7 +184,8 @@ if __name__ == '__main__':
 
     i=None
     for i, gb_dico in enumerate(gbff_iter):
-        if (i+1)%1000 == 0:
+        # print(gb_dico)
+        if (i+1)%100 == 0:
             print(i+1, 'genomes analysed')
         # print(gb_dico)
         gb_file = gb_dico['gb_file']

@@ -1,7 +1,7 @@
 
-evalue="1e-30"
-inflation='2'
-coverage="*"
+evalue="1e-50"
+inflation='*'
+coverage="20"
 filter=only_poly
 
 # evalue=$1

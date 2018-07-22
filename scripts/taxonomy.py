@@ -156,6 +156,17 @@ def getAllRefseqFromTaxon(wanted_taxonomy, taxonomy_file, excluded_taxon = None)
                 yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id':tax_id}
                 #no break here because genome with the same tax id... :-/
 
+def getAllRefseqFromTaxonIdList(wanted_taxon_ids, taxonomy_file, excluded_taxon = None):
+    with open(taxonomy_file, 'r') as taxfl:
+
+        for l in taxfl:
+            # print(l)
+            (tax_id, organism, taxonomy, genetic_code, gbff) = l.split("\t")
+
+            if tax_id in wanted_taxon_ids:
+                yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id':tax_id}
+                #no break here because genome with the same tax id... :-/
+
 def expectedPeptide(expected_pep_file):
 
         taxon_expectation = {}
@@ -228,7 +239,7 @@ if __name__ == '__main__':
     # print(tmp_output_file)
     path, file_name = os.path.split(output_file)
     tmp_output_file = os.path.join(path, 'tmp_file.tmp')
-    logging.basicConfig(filename="log/viral_protein_extraction_and_stat.log", level=logging.INFO)
+    logging.basicConfig(level=logging.INFO)
 
     viral_taxons = createTaxonomyFile( tmp_output_file, ncbi_refseq_db, alternative_taxon_id_file)
     getGeneticCode(viral_taxons, geneticcode_file,tmp_output_file, output_file)

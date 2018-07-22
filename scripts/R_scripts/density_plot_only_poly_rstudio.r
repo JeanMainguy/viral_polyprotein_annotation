@@ -2,11 +2,11 @@
 library(ggplot2)
 library(grid)
 
-csv_fileI='results/clustering_evaluation/homogeneity_results_merge/merge_Viruses_evalue1e-30_I_all_coverage20_homogeneityonly_poly.csv'
-csv_fileC='results/clustering_evaluation/homogeneity_results_merge/merge_Viruses_evalue1e-30_I2_coverage_all_homogeneityonly_poly.csv'
+csv_fileI='results/clustering_evaluation/homogeneity_results_merge/merge_Viruses_evalue1e-50_I_all_coverage20_homogeneityonly_poly.csv'
+csv_fileC='results/clustering_evaluation/homogeneity_results_merge/merge_Viruses_evalue1e-50_I2_coverage_all_homogeneityonly_poly.csv'
 csv_fileE="results/clustering_evaluation/homogeneity_results_merge/merge_Viruses_evalue_all_I2_coverage20_homogeneityonly_poly.csv"
   
-evalue = 1e-30
+evalue = 1e-50
 inflation = 2
 coverage = 20
 

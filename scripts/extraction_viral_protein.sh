@@ -8,7 +8,7 @@ taxonomy_file="data/taxonomy/taxonomy_virus.txt"
 seq_output_dir='data/viral_proteins/'
 stat_output_dir='results/stat_viral_protein/'
 taxon='ssRNA viruses'
-taxon='Alphavirus'
+# taxon='Alphavirus'
 taxon='Viruses'
 # taxon='1198013'
 # taxon="Retro-transcribing viruses"
@@ -22,7 +22,7 @@ mkdir -p ${tmpdir}$stat_output_dir
 
 echo extraction of viral proteins...
 
-python3 scripts/viral_protein_extraction.py ${taxon} ${tmpdir}$seq_output_dir $taxonomy_file  ${tresholdSP} ${tmpdir}$stat_output_dir #$gff_file 
+python3 scripts/viral_protein_extraction.py "${taxon}" ${tmpdir}$seq_output_dir $taxonomy_file  ${tresholdSP} ${tmpdir}$stat_output_dir #$gff_file
 
 echo mv file from tmp to final dir
 mv ${tmpdir}${seq_output_dir}*  ${seq_output_dir}

@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 import sys, csv
 
-def getAnnotatedProteinTaxId(stat_protein_file):
+def getAnnotatedProteinTaxId(stat_protein_file, colname_filter = 'polyprotein_outline', filter_value='True'):
     annotated_genomes = {}
     with open(stat_protein_file) as csvfile:
         reader = csv.DictReader(csvfile, delimiter='\t')
         for row in reader:
             # print(row)
-            if row['polyprotein_outline'] == "True":
+            if row[colname_filter] == filter_value:
                 annotated_genomes.setdefault(row['taxon_id'], []).append(row['protein_id'])
                 # print(row['taxon_id'], row['protein_id'])
     return annotated_genomes
