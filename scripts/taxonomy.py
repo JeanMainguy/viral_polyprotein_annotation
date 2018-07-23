@@ -156,6 +156,8 @@ def getAllRefseqFromTaxon(wanted_taxonomy, taxonomy_file, excluded_taxon = None)
                 yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id':tax_id}
                 #no break here because genome with the same tax id... :-/
 
+
+
 def getAllRefseqFromTaxonIdList(wanted_taxon_ids, taxonomy_file, excluded_taxon = None):
     with open(taxonomy_file, 'r') as taxfl:
 
@@ -166,6 +168,7 @@ def getAllRefseqFromTaxonIdList(wanted_taxon_ids, taxonomy_file, excluded_taxon 
             if tax_id in wanted_taxon_ids:
                 yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id':tax_id}
                 #no break here because genome with the same tax id... :-/
+
 
 def expectedPeptide(expected_pep_file):
 

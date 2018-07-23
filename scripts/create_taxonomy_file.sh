@@ -32,7 +32,6 @@ ncbi_refseq_dbTime=`stat -c %Y ${ncbi_refseq_db}`
 echo $outputTime
 echo $ncbi_refseq_dbTime
 
-
 set -e # exit if command fail.. this command here because before the stat commands can fail...
 
 TMPDIR=/tmp/$USER/
@@ -46,7 +45,11 @@ then
   tar -Oxf ${ncbi_current}taxonomy/new_taxdump/new_taxdump.tar.gz nodes.dmp | cut -d$'\t' -f1,13 > ${TMPDIR}$taxon_id_gencode_file # extract taxon id and the corresponding genetic code
 
   echo "creation of taxonomy file with for each taxon id the path to the genbank file in refseq db"
-  python3 scripts/taxonomy.py ${TMPDIR}${output_file} ${ncbi_refseq_db} ${TMPDIR}${taxon_id_gencode_file} ${TMPDIR}$alternative_taxon_id 2> ${output_dir}taxonomy_file_creation.log
+  python3 scripts/taxonomy.py ${TMPDIR}${output_file} \
+                              ${ncbi_refseq_db} \
+                              ${TMPDIR}${taxon_id_gencode_file} \
+                              ${TMPDIR}$alternative_taxon_id 2> ${output_dir}taxonomy_file_creation.log
+
   echo mv taxonomy files in final dir $output_dir
   mv ${TMPDIR}${output_file} $output_dir
   mv ${TMPDIR}${taxon_id_gencode_file} $output_dir
@@ -64,5 +67,4 @@ echo create taxonomy symb link files
 real_path_outputdir=`realpath ${output_dir}`
 ln -s $real_path_outputdir/*.txt data/taxonomy/
 
-
-echo END of create taxonomy script 
+echo END of create taxonomy script
