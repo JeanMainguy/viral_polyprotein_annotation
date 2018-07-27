@@ -6,12 +6,34 @@ TMPDIR=/tmp/$USER/
 mkdir -p $TMPDIR
 
 #Cluster Input file
-cluster_file='data/clustering_result/Viruses/clustering_parameter_variation/Viruses_evalue_1e-30coverage20_I2.out'
+# cluster_file='data/clustering_result/Viruses/clustering_parameter_variation/Viruses_evalue_1e-30coverage20_I2.out'
+cluster_file="data/clustering_result/Viruses/Viruses_evalue_1e-60coverage20_I1_4.out"
+# nbr=0
+# while [ ! -f ${cluster_file} ] && (($nbr<10));
+#   do
+#     echo $nbr
+#     sleep 1
+#     ((nbr++))
+# done
+#
+# if ((nbr==100));then
+#   echo 'exit'
+#   exit 1
+# fi
+
+echo lets start
+
 faa_db="data/viral_proteins/Viruses_protein_db.faa"
+
+#GET THE RefSEq date of update
+real=`realpath ${faa_db}` # /proj/viral_polyprotein_annotation/data/taxonomy/RefSeq_download_date_2018-07-21/taxonomy_virus.txt
+real_dir=`dirname $real` #/proj/viral_polyprotein_annotation/data/taxonomy/RefSeq_download_date_2018-07-21/
+RefSeq_download_date=`basename $real_dir` # RefSeq_download_date_2018-07-21
+
 
 name_dir=$(basename $cluster_file)
 name_dir=${name_dir%.*}
-alignement_dir=data/alignment/$name_dir/
+alignement_dir=data/alignment/$RefSeq_download_date/$name_dir/
 mkdir -p $alignement_dir
 
 #Stat file to identify protein that have been considered as annotated polyprotein
