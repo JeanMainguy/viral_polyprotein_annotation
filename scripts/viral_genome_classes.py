@@ -288,7 +288,7 @@ class Segment:
                 [print(pep) for pep in cds.peptides]
                 print(cds.polyprotein)
                 cds.polyprotein = False
-                logging.warning('No cleavage site identify  and no explanation in for {} in {}'.format(cds.protein_id, self.taxon_id))
+                logging.warning('No cleavage site identify  and no explanation in {} from {}'.format(cds.protein_id, self.taxon_id))
                 cds.non_polyprotein_explanation += "No cleavage site identify and no explanation"
                 # print('NO CEAVAGE SITE AND NO EXPLANATION')
                 # input()
@@ -456,7 +456,7 @@ class Segment:
                 # if pep.number == 4:
                 # print(" ",type, border)
                 # print("  CS position", start, end)
-                polyproteins = {poly for poly in pep.polyproteins if poly.start < start < poly.end} #polyprot that are compatible with the cleavage site
+                polyproteins = {poly for poly in pep.polyproteins if poly.start+9 < start < poly.end-9} #polyprot that are compatible with the cleavage site
                 # print('  border compatible with', len(polyproteins))
                 if polyproteins:
                     partial_location = False
@@ -696,6 +696,7 @@ class Protein(Sequence):
         self.sub_prot = []
         # self.alternative_start = False
         self.cleavage_sites = []
+        self.border_sites = [] # site that are at the close border of CDS
         self.polyprotein_number = 0.0
         self.sequence = ''
 
@@ -1037,6 +1038,8 @@ class CleavageSite(Peptide):
 
         CleavageSite.COUNTER +=1
         self.number = CleavageSite.COUNTER
+        #alignment analysis
+        self.start_in_aln = None
 
     def __eq__(x, y):
         return x.__key() == y.__key()
@@ -1136,6 +1139,16 @@ class Match(Sequence):
         #     string +='  pep:'+str(p.number) +'  overlap of '  + str(dist) +':   '+str(p.get_position_prot_relative( self.protein) ) + '\n'
         #     string += "  "+str(p)+'\n'
         return string
+
+    def start_aa(self, cds):
+        if cds != self.protein:
+            raise  Error('the cds of the domain and the cds given to the match object to retrieve its position are different')
+        return self.start_in_prot
+
+    def end_aa(self, cds):
+        if cds != self.protein:
+            raise  Error('the cds of the domain and the cds given to the match object to retrieve its position are different')
+        return self.end_in_prot
 
     def isEqualTo(self, other_match):
         # If 2 match has same genomic start and end and have teh same interprot id they are duplicated
