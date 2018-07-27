@@ -76,3 +76,17 @@ done <$cluster_file
 
 mv ${TMPDIR}/*.aln ${alignement_dir}
 rm -rf ${TMPDIR}
+
+aln_dir_name=`basename ${alignement_dir}`
+##Symblink of the aln dir
+echo remove symb link of the aln dir global files if exist
+if [ -L data/alignment/${aln_dir_name} ];
+then
+  echo link clustering exist
+  find  data/alignment/${aln_dir_name} -type l -delete
+else
+  echo link clustering does not exist
+fi
+echo creation of symblink
+real_path_outputdir=`realpath ${alignement_dir}`
+ln -s ${alignement_dir} data/alignment/
