@@ -6,6 +6,7 @@ import parser_interpro_results as do
 import os, gzip, logging, sys, csv
 from Bio import SeqIO
 import cluster_of_interest_identification
+import subprocess
 
 
 def getPolyproteinDomainsStat(gb_file, writer_stat_dict, genetic_code, taxon_id, sp_treshold, gff_file):
@@ -61,9 +62,9 @@ def getPolyproteinDomainsStat(gb_file, writer_stat_dict, genetic_code, taxon_id,
 def initiateDomainStatFile(taxon, output_dir ):
     taxon = taxon.replace(',', '').replace(' ', '_')
 
-    stat_file_peptides = 'stat_peptides_domains_{}.csv'.format(taxon)
-    stat_file_domains =  'stat_domains_{}.csv'.format(taxon)
-    stat_file_cleavage_sites =  'stat_cleavage_sites_domains{}.csv'.format(taxon)
+    stat_file_peptides = 'domain_peptides_stat_{}.csv'.format(taxon)
+    stat_file_domains =  'domain_stat_{}.csv'.format(taxon)
+    stat_file_cleavage_sites =  'domain_cleavage_sites_stat_{}.csv'.format(taxon)
 
     #PEPTIDE
     handle_stat_pep = open(os.path.join(output_dir, stat_file_peptides), "w")
@@ -97,6 +98,8 @@ def initiateDomainStatFile(taxon, output_dir ):
 
     domain_header = ["taxon_id",
                     "protein_id",
+                    "polyprotein_outline",
+                    "non_polyprotein_explanation",
                     "match_id",
                     "method" ,
                     "score" ,
@@ -150,22 +153,21 @@ if __name__ == '__main__':
     from time import clock; START_TIME = clock()
 
     logging.basicConfig(filename='log/domain_stats.log',level=logging.INFO)
+    logging.basicConfig(level=logging.INFO)
+    # $taxon $stat_output_dir $taxonomy_file $sp_treshold $gff_file $stat_protein_file
 
-    try:
-        taxon = sys.argv[1] # if not given then we don't compute any stat
-    except:
-        taxon = "Viruses"
-    try:
-        stat_output_dir = sys.argv[2]
-    except:
-        stat_output_dir = 'test'
+    taxon = sys.argv[1] # if not given then we don't compute any stat
+
+    stat_output_dir = sys.argv[2]
 
     print(f"Write domains stat on {taxon} in {stat_output_dir}")
-    taxonomy_file ="data/taxonomy/taxonomy_virus.txt"
-    sp_treshold = 90
 
-    gff_file='data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
-    stat_protein_file = "results/stat_viral_protein/stat_proteins_Viruses.csv"
+    taxonomy_file = sys.argv[3]
+
+    sp_treshold = int(sys.argv[4]) #90
+
+    gff_file= sys.argv[5] #'data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
+    stat_protein_file =  sys.argv[6] #"results/stat_viral_protein/stat_proteins_Viruses.csv"
 
     annotated_taxons = cluster_of_interest_identification.getAnnotatedProteinTaxId(stat_protein_file, "has_peptide", "True")
 
@@ -201,7 +203,6 @@ if __name__ == '__main__':
 
     for f in files_to_close:
         f.close()
-
 
     print('\nPROGRAM RUN TIME:%6.2f'%(clock()-START_TIME), 'seconds.');
     print('-'*20)
