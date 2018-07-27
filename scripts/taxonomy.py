@@ -150,10 +150,10 @@ def getAllRefseqFromTaxon(wanted_taxonomy, taxonomy_file, excluded_taxon = None)
             # print(taxonomy)
             if wanted_taxonomy in taxonomy.split(';') and excluded_taxon not in taxonomy.split(';'):
                 # print('taxonomy')
-                yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id':tax_id}
+                yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id':tax_id, 'taxonomy':taxonomy}
 
             if tax_id == wanted_taxonomy or organism == wanted_taxonomy:
-                yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id':tax_id}
+                yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id':tax_id, 'taxonomy':taxonomy}
                 #no break here because genome with the same tax id... :-/
 
 
@@ -166,7 +166,7 @@ def getAllRefseqFromTaxonIdList(wanted_taxon_ids, taxonomy_file, excluded_taxon 
             (tax_id, organism, taxonomy, genetic_code, gbff) = l.split("\t")
 
             if tax_id in wanted_taxon_ids:
-                yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id':tax_id}
+                yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id':tax_id, 'taxonomy':taxonomy}
                 #no break here because genome with the same tax id... :-/
 
 
