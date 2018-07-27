@@ -5,8 +5,9 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mem=300M
 #SBATCH --constraint=array-8core
-#SBATCH --output=log/%x-%j.out
-#SBATCH --error=log/%x-%j.out
+#SBATCH --output=log/%x-%A_%a.out
+#SBATCH --error=log/%x-%A_%a.out
+#SBATCH --nice=5000
 
 module load ncbiblastplus
 set -e # exit if command fail
@@ -29,6 +30,7 @@ then
   taxon='Viruses'
 fi
 echo taxon $taxon
+
 if [ -z "$evalue" ];
 then
   echo evalue not found default value used
@@ -36,10 +38,18 @@ then
 fi
 echo evalue : $evalue
 
+if [ -z "$RefSeq_download_date" ];
+then
+  echo RefSeq_download_date variable is not define we have to quit..
+  sleep 20
+  exit
+fi
+echo RefSeq_download_date $RefSeq_download_date
+
 taxon=${taxon// /_} #replace space by underscore
 taxon=${taxon//,/} # replace coma by nothing
 
-blast_result_dir="data/blast_result/${taxon}_${evalue}"
+blast_result_dir="data/blast_result/${taxon}/$RefSeq_download_date"
 mkdir -p $blast_result_dir
 
 result_name="${taxon}_blast_evalue${evalue}_${SLURM_ARRAY_TASK_ID}.out"
