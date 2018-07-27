@@ -135,22 +135,24 @@ def writeGenomeStat(taxon_id, nb_cds, nb_peptide, handle_stat_genome, taxonomy, 
 
 def getDomainStat(taxon_id, domain, domain_header):
     domain_dico = get_csv_dico(domain, domain_header)
-    try:
-        protein_id = domain.protein.protein_id
+    # try:
+    protein_id = domain.protein.protein_id
 
-        domain_dico.update({"taxon_id":taxon_id,
-                            "protein_id":protein_id,
-                            "fully included": True if any((True for pep in domain.fully_included_in if pep.__class__.__name__ == 'Peptide' )) else False, #remove the unannotated regions
-                            'partially included':True if domain.partially_included_in else False , # here we don't mind the unannotated_regions because it overlap obligatory a peptide|peptide or a peptide|unannoated region
-                            "protein_fully_covered":True if len(domain.protein.unannotated_region) == 0 else False,
-                            "nb_peptide_in_protein":len(domain.protein.peptides) ,
-                            'nb_unannotated_part_in_protein':len(domain.protein.unannotated_region)
-                            })
-    except AttributeError:
-        logging.warning(f'Domain annotation {domain.name} has no protein iD in {taxon_id} !!!')
-        protein_id = "error_no_protein"
-        domain_dico.update({"taxon_id":taxon_id,
-                            "protein_id":protein_id})
+    domain_dico.update({"taxon_id":taxon_id,
+                        "protein_id":protein_id,
+                        "fully included": True if any((True for pep in domain.fully_included_in if pep.__class__.__name__ == 'Peptide' )) else False, #remove the unannotated regions
+                        'partially included':True if domain.partially_included_in else False , # here we don't mind the unannotated_regions because it overlap obligatory a peptide|peptide or a peptide|unannoated region
+                        "protein_fully_covered":True if len(domain.protein.unannotated_region) == 0 else False,
+                        "nb_peptide_in_protein":len(domain.protein.peptides) ,
+                        'nb_unannotated_part_in_protein':len(domain.protein.unannotated_region),
+                        "polyprotein_outline":domain.protein.polyprotein,
+                        "non_polyprotein_explanation":domain.protein.non_polyprotein_explanation
+                        })
+    # except AttributeError:
+    #     logging.warning(f'Domain annotation {domain.name} has no protein iD in {taxon_id} !!!')
+    #     protein_id = "error_no_protein"
+    #     domain_dico.update({"taxon_id":taxon_id,
+    #                         "protein_id":protein_id})
     return domain_dico
 
 def getCleavageSiteStat(taxon_id, cs, cs_header):
