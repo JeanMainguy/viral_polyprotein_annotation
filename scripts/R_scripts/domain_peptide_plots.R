@@ -1,11 +1,11 @@
 #!/usr/bin/env Rscript
 library(ggplot2)
 
-csv_file="results/stat_viral_protein/stat_peptides_domains_Viruses.csv"
+csv_file="results/stat_viral_protein/domain_peptides_stat_Viruses.csv"
 output_dir = "results/figures/"
 name= 'barplot_peptide_includs_domains.png'
 
-data_o = read.csv(file = csv_file, sep = '\t', header = TRUE, stringsAsFactors = TRUE)
+data_o = read.csv(file = csv_file, sep = '\t', header = T, stringsAsFactors = TRUE)
 data = data_o[data_o$polyprotein_outline == 'True', ]
 #data = data_o
 
@@ -19,44 +19,44 @@ colnames(table_status) = c("includs_full_domain", "includs_partially_domain", 'N
 table_status$full_partial = paste(table_status$includs_full_domain,table_status$includs_partially_domain, sep='_' )
 
 table_status$status = ifelse(table_status$full_partial == "True_False", 
-                             "only full domains included ", 
+                             "only full domain annotations", 
                              "NA")
 
 table_status$status = ifelse(table_status$full_partial == "True_True", 
-                             "full and partial domains included", 
+                             "full and partial domain annotations", 
                              table_status$status)
 
 table_status$status = ifelse(table_status$full_partial == "False_False", 
-                             "includs no domains", 
+                             "no domain annotation", 
                              table_status$status)
 
 table_status$status = ifelse(table_status$full_partial == "False_True", 
-                             "only partial domains included", 
+                             "only partial domain annotations", 
                              table_status$status)
 
 
 
 table_status$includs_domains = ifelse((table_status$includs_full_domain == "True"), 
-                                      "Includs domains",
-                                      'Includs no domains')
+                                      "Has domain\nannotations",
+                                      'Has no domain\nannotations')
 table_status$includs_domains = ifelse((table_status$includs_partially_domain == "True"), 
-                                      "Includs domains",
+                                      "Has domain\nannotations",
                                       table_status$includs_domains)
 
 
 p<-ggplot(data=table_status, aes(x=includs_domains, y=Nb_of_Peptides, fill=reorder(status, Nb_of_Peptides ))) + 
   geom_bar(stat="identity") + 
   theme_minimal() +
-  labs(x =NULL, y="Number of domain annotations", fill=NULL) + 
+  labs(x =NULL, y="Number of mature peptides", fill=NULL) + 
   theme(axis.text=element_text(size=20), axis.title=element_text(size=18,face="bold"), legend.text = element_text( size=18) )
 
-p = p+scale_fill_manual(values=c("goldenrod","darkorange3", "azure4", "firebrick4"))
+p = p+scale_fill_manual(values=c("#ff6666", "#0066ff", "azure4", "#2eb82e")) #green-yellow yellow grey green 
 p
 
 
 output = paste(output_dir, name, sep='')
 
-png(filename=output,  width = 2000, height = 900, res=300)
+png(filename=output,  width = 2000, height = 900)
 p
 dev.off() 
 

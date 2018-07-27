@@ -2,14 +2,15 @@
 library(ggplot2)
 csv_file="results/clustering_evaluation/expected_taxon_cluster_evaluation.csv"
 
-coverage = 20
-inflation="2.0"
+coverage = 50
+inflation="3.0"
 evalue=1e-50
 
 output_dir = "results/clustering_evaluation/"
 
 data = read.csv(file = csv_file, sep = '\t', header = TRUE, stringsAsFactors = TRUE)
 
+data$F1_score = data$F1_score_filtered
 data$inflation = ifelse(grepl('_', data$inflation), gsub("_", ".", data$inflation), paste(data$inflation, '.0', sep=''))
 data$evalue = data$Evalue
 
@@ -43,11 +44,17 @@ dataC$evalue_s = paste('Evalue', dataC$evalue)
 
 p = ggplot(dataC, aes(x=reorder(evalue, evalue), y=inflation, z=F1_score)) +
   geom_tile(aes(fill = F1_score))+ 
-  scale_fill_gradient2(low = "yellow", high = "blue",mid='green',  midpoint = 0.5, limit=c(min(data$F1_score),max(data$F1_score)))+
+  scale_fill_gradient2(low = "yellow", 
+                       high = "blue",
+                       mid='green',  
+                       midpoint = min(dataC$F1_score) + ( max(dataC$F1_score) - min(dataC$F1_score))/2 , 
+                       limit=c(min(dataC$F1_score),max(dataC$F1_score)))+
+  
   theme(axis.text.x = element_text(size=20),
         axis.text.y = element_text(size=20), axis.title=element_text(size=22,face="bold"),
         legend.text = element_text( size=20), legend.title =element_text(size=22,face="bold"),
         plot.caption = element_text(hjust=0, size=22))+
+  
   labs( y="Inflation", fill="F-measure", x="Evalue", caption = caption_text)
 
 p
@@ -86,7 +93,11 @@ dataC$evalue_s = paste('Evalue', dataC$evalue)
 
 p = ggplot(dataC, aes(x=reorder(evalue, evalue), y=coverage, z=F1_score)) +
   geom_tile(aes(fill = F1_score))+ 
-  scale_fill_gradient2(low = "yellow", high = "blue",mid='green',  midpoint = 0.5, limit=c(min(data$F1_score),max(data$F1_score)))+
+  scale_fill_gradient2(low = "yellow", 
+                       high = "blue",
+                       mid='green',  
+                       midpoint = min(dataC$F1_score) + ( max(dataC$F1_score) - min(dataC$F1_score))/2 , 
+                       limit=c(min(dataC$F1_score),max(dataC$F1_score)))+
   theme(axis.text.x = element_text(size=20),
         axis.text.y = element_text(size=20), axis.title=element_text(size=22,face="bold"),
         legend.text = element_text( size=20), legend.title =element_text(size=22,face="bold"),
@@ -109,13 +120,6 @@ caption_text = paste('\nEvalue:',evalue)
 dataC = dataC[dataC$inflation != '1.8',]
 #dataC = dataC[dataC$inflation == '2',]
 #dataC = dataC[dataC$coverage == 20,]
-dataC = dataC[dataC$evalue != 1e-100,]
-dataC = dataC[dataC$evalue != 1e-120,]
-dataC = dataC[dataC$evalue != 1e-70,]
-dataC = dataC[dataC$evalue != 1e-40,]
-dataC = dataC[dataC$evalue != 1e-20,]
-dataC = dataC[dataC$evalue != 1e-60,]
-#dataC = dataC[dataC$evalue != 1e-10,]
 
 #dataC$inflation =  paste('I=',dataC$inflation, sep='')
 dataC$coverage =  paste(dataC$coverage, "%")
@@ -128,8 +132,12 @@ dataC$evalue_s = paste('Evalue', dataC$evalue)
 
 p = ggplot(dataC, aes(x=inflation, y=coverage, z=F1_score)) +
   geom_tile(aes(fill = F1_score))+ 
-  scale_fill_gradient2(low = "yellow", high = "blue",mid='green',  midpoint = mean(dataC$F1_score), limit=c(min(dataC$F1_score),max(dataC$F1_score)))+
-  theme(axis.text.x = element_text(size=20),
+  scale_fill_gradient2(low = "yellow", 
+                       high = "blue",
+                       mid='green',  
+                       midpoint = min(dataC$F1_score) + ( max(dataC$F1_score) - min(dataC$F1_score))/2 , 
+                       limit=c(min(dataC$F1_score),max(dataC$F1_score)))+
+   theme(axis.text.x = element_text(size=20),
         axis.text.y = element_text(size=20), axis.title=element_text(size=22,face="bold"),
         legend.text = element_text( size=20), legend.title =element_text(size=22,face="bold"),
         plot.caption = element_text(hjust=0, size=22))+
@@ -138,23 +146,26 @@ p = ggplot(dataC, aes(x=inflation, y=coverage, z=F1_score)) +
 p
 name=paste("F_measure_expected_heatmap_evalue_of_", evalue, sep='')
 output_file = paste(output_dir, name,".png", sep ='')
-png(filename=output_file,  width = 950, height = 950)
+png(filename=output_file,  width = 600, height = 400)
 p
 dev.off()
 
 #Heatmap global 
 
 data_all = data
+
+#data_all = data_all[data$coverage < 70,]
 #Filter some of  to display less data
 data_all = data_all[data_all$inflation != '1.8',]
+
 #data_all = data_all[data_all$inflation == '2',]
 #data_all = data_all[data_all$coverage == 20,]
 data_all = data_all[data_all$evalue != 1e-100,]
 data_all = data_all[data_all$evalue != 1e-120,]
-data_all = data_all[data_all$evalue != 1e-70,]
-data_all = data_all[data_all$evalue != 1e-40,]
-data_all = data_all[data_all$evalue != 1e-20,]
-data_all = data_all[data_all$evalue != 1e-60,]
+#data_all = data_all[data_all$evalue != 1e-70,]
+#data_all = data_all[data_all$evalue != 1e-40,]
+#data_all = data_all[data_all$evalue != 1e-20,]
+#data_all = data_all[data_all$evalue != 1e-60,]
 data_all = data_all[data_all$evalue != 1e-10,]
 data_all = data_all[data_all$coverage != 10,]
 #data_all = data_all[data_all$evalue != 1e-10,]
@@ -164,8 +175,12 @@ data_all$coverage_inflation = paste(data_all$coverage, 'I=',data_all$inflation)
 
 p = ggplot(data_all, aes(x=reorder(evalue, evalue), y=coverage_inflation, z=F1_score)) +
   geom_tile(aes(fill = F1_score))+ 
-  scale_fill_gradient2(low = "yellow", high = "blue",mid='green', midpoint =max(data_all$F1_score + min(data_all$F1_score))/2, limit=c(min(data_all$F1_score),max(data_all$F1_score)))+
-  theme(axis.text.x = element_text(size=18),
+  scale_fill_gradient2(low = "yellow", 
+                       high = "blue",
+                       mid='green',  
+                       midpoint = min(data_all$F1_score) + ( max(data_all$F1_score) - min(data_all$F1_score))/2 , 
+                       limit=c(min(data_all$F1_score),max(data_all$F1_score)) )+
+   theme(axis.text.x = element_text(size=18),
         axis.text.y = element_text(size=18), axis.title=element_text(size=22,face="bold"),
         legend.text = element_text( size=20), legend.title =element_text(size=22,face="bold"))+
   labs( y="Coverage and Inflation", fill="F-measure", x="Evalue")
@@ -173,6 +188,6 @@ p = ggplot(data_all, aes(x=reorder(evalue, evalue), y=coverage_inflation, z=F1_s
 p
 
 output_file = paste(output_dir, "F_measure_expected_heatmap_ALL.png", sep ='')
-png(filename=output_file,  width = 900, height = 1000)
+png(filename=output_file,  width = 1000, height = 1000)
 p
 dev.off()

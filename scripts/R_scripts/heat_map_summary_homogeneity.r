@@ -2,9 +2,9 @@
 library(ggplot2)
 
 csv_file="results/clustering_evaluation/homogeneity_summary_stat.csv"
-coverage = 20
+coverage = 0
 inflation="2.0"
-evalue=1e-30
+evalue=1e-60
 
 output_dir = "results/clustering_evaluation/"
 
@@ -108,13 +108,6 @@ caption_text = paste('\nEvalue:',evalue)
 dataC = dataC[dataC$inflation != '1.8',]
 #dataC = dataC[dataC$inflation == '2',]
 #dataC = dataC[dataC$coverage == 20,]
-dataC = dataC[dataC$evalue != 1e-100,]
-dataC = dataC[dataC$evalue != 1e-120,]
-dataC = dataC[dataC$evalue != 1e-70,]
-dataC = dataC[dataC$evalue != 1e-40,]
-dataC = dataC[dataC$evalue != 1e-20,]
-dataC = dataC[dataC$evalue != 1e-60,]
-#dataC = dataC[dataC$evalue != 1e-10,]
 
 dataC$inflation =  paste('I=',dataC$inflation, sep='')
 dataC$coverage =  paste(dataC$coverage, "%")
@@ -137,23 +130,23 @@ p = ggplot(dataC, aes(x=inflation, y=coverage, z=median)) +
 p
 name=paste("homogeneity_median_heatmap_evalue_of_", evalue, sep='')
 output_file = paste(output_dir, name,".png", sep ='')
-png(filename=output_file,  width = 950, height = 950)
+png(filename=output_file,  width = 600, height = 400)
 p
 dev.off()
 
 #Heatmap global 
 
 data_all = data
-#Filter some of  to display less data
 data_all = data_all[data_all$inflation != '1.8',]
+
 #data_all = data_all[data_all$inflation == '2',]
 #data_all = data_all[data_all$coverage == 20,]
 data_all = data_all[data_all$evalue != 1e-100,]
 data_all = data_all[data_all$evalue != 1e-120,]
-data_all = data_all[data_all$evalue != 1e-70,]
-data_all = data_all[data_all$evalue != 1e-40,]
-data_all = data_all[data_all$evalue != 1e-20,]
-data_all = data_all[data_all$evalue != 1e-60,]
+#data_all = data_all[data_all$evalue != 1e-70,]
+#data_all = data_all[data_all$evalue != 1e-40,]
+#data_all = data_all[data_all$evalue != 1e-20,]
+#data_all = data_all[data_all$evalue != 1e-60,]
 data_all = data_all[data_all$evalue != 1e-10,]
 data_all = data_all[data_all$coverage != 10,]
 #data_all = data_all[data_all$evalue != 1e-10,]
@@ -173,6 +166,6 @@ p = ggplot(data_all, aes(x=reorder(evalue, evalue), y=coverage_inflation, z=medi
 p
 
 output_file = paste(output_dir, "homogeneity_median_heatmap_ALL.png", sep ='')
-png(filename=output_file,  width = 900, height = 1000)
+png(filename=output_file,  width = 1000, height = 1000)
 p
 dev.off()

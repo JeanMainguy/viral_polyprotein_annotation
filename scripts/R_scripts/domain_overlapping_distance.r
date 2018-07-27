@@ -1,35 +1,36 @@
 library(ggplot2)
 library(scales)
 
-csv_file =  "results/stat_viral_protein/stat_domains_Viruses.csv"
+csv_file =  "results/stat_viral_protein/domain_stat_Viruses.csv"
 
 data = read.csv(csv_file, header = TRUE, sep = "\t", stringsAsFactors = FALSE)
 data$len = data$end_in_prot - data$start_in_prot +1 
 
+data = data[data$polyprotein_outline == "True",]
 data = data[data$overlapping == "True",]
 data = data[data$protein_fully_covered == "True",]
 
 data$overlapping_len_pc = data$OverlappingDistance / data$len  
+
 
 overlap_data = data[data$overlapping == 'True', ]
 #overlap_data = overlap_data[overlap_data$Expected_peptides_number == 'True', ]
 
 
 #Group overlap distance
-overlap_data$groupedby5 <-cut(overlap_data$OverlappingDistance , seq(0, 150, 10))
+overlap_data$groupedby5 <-cut(overlap_data$OverlappingDistance , seq(0, max(overlap_data$OverlappingDistance), 10))
 
 #DISTANCE OF OVERLAPING
 overlap_database = data.frame( table(overlap_data$groupedby5, overlap_data$method))
 colnames(overlap_database) = c("overlap", "method", "Nb_domains")
 
 p<-ggplot(data=overlap_database, aes(x=overlap, y=Nb_domains)) +
-  geom_bar(stat="identity",fill = "#f28759") + theme_minimal() +
+  geom_bar(stat="identity",fill = "firebrick") + theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, size=15, vjust=0.5, hjust=1),
         axis.text.y = element_text(size=15), axis.title=element_text(size=15,face="bold")) +
-  labs( y="Number of domain annotations", x="Overlap distance (amino acid)")+
-  scale_fill_manual(values=c("red"))
-
-png(filename="results/figures/domain_annotations/Overlap_distance_of_domain_annotation",  width = 700, height = 500)
+  labs( y="Number of domain annotations", x="Overlap distance (amino acid)")
+p
+png(filename="results/figures/domain_annotations/Overlap_distance_of_domain_annotation.png",  width = 700, height = 500)
 p
 dev.off()
 
@@ -48,10 +49,11 @@ dev.off()
 #COLOR BY DOMAIN ANNOTATIONS
 #We don't display the name of domain that appears less than 5 time
 #They are label as Other
+
 domains = table(overlap_data$name)
 domains = data.frame(domains, stringsAsFactors = FALSE)
 colnames(domains) = c('Domain', 'Freq')
-other_domain = domains$Domain[domains$Freq < 10]
+other_domain = domains$Domain[domains$Freq < 5]
 overlap_data$name[overlap_data$name %in% other_domain] = "Other"
 
 nb_domains = length(domains$Domain) - length(other_domain)
@@ -73,7 +75,7 @@ p<-ggplot(data=domain_annotations_data, aes(x=overlap, y=Nb_domains, fill=reorde
 p = p +  scale_fill_manual(values=c("#999999", hue_pal()(nb_domains)))
 p
 
-png(filename="results/figures/domain_annotations/Overlap_distance_by_domain_name",  width = 700, height = 500)
+png(filename="results/figures/domain_annotations/Overlap_distance_by_domain_name.png",  width = 900, height = 500)
 p
 dev.off()
 
@@ -105,7 +107,7 @@ p = ggplot(overlap_data, aes(x=overlapping_len_pc)) +
   p
   p2
 
-png(filename="results/figures/domain_annotations/Overlap_distance_of_domain_annotation",  width = 700, height = 500)
+png(filename="results/figures/domain_annotations/Overlap_distance_in_percentage_of_domain_annotation.png",  width = 700, height = 500)
 p
 dev.off()
 
