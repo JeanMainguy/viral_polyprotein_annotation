@@ -1,4 +1,3 @@
-SCREEN_SIZE = 200
 import taxonomy as tax
 import viral_genome_classes as obj
 import parser_interpro_results as do
@@ -13,6 +12,7 @@ from Bio.SeqFeature import SeqFeature, FeatureLocation
 from operator import attrgetter
 import collections
 
+SCREEN_SIZE = 250
 
 def visualisation_main(gb_file, genetic_code, gff_file, nb_line, minimum_nb_peptide, taxon_id, sp_treshold):
 
@@ -22,6 +22,7 @@ def visualisation_main(gb_file, genetic_code, gff_file, nb_line, minimum_nb_pept
     do.associateMatchWithPolyprotein(genome)
     for segment in genome.segments:
         do.getDomainOverlappingInfo(segment)
+
     # genome.getTaxonExpectation(taxon_expectation)
     # genome.identifyExpectedElement()
     # genome.getMatchObject(gff_file)
@@ -34,7 +35,7 @@ def visualisation_main(gb_file, genetic_code, gff_file, nb_line, minimum_nb_pept
 
     # genome.visualisation(nb_line, genetic_code)
     # if genome.numberOf("peptides") >= minimum_nb_peptide:
-    return genomeVisualisation(genome, nb_line, genetic_code)
+    genomeVisualisation(genome, nb_line, genetic_code)
 
 def genomeVisualisation(genome, nb_line=1, genetic_code=None):
     '''
@@ -48,7 +49,7 @@ def genomeVisualisation(genome, nb_line=1, genetic_code=None):
     ----------------------------------------
     ======>   ======================>
     '''
-    visu_string = 'GENOME of {}|{}\n'.format(genome.organism, genome.taxon_id)
+    visu_string = 'GENOME of {}|{}\n'.format(genome.segments[0].organism, genome.taxon_id)
     longuest_segment_len = max([len(s) for s in genome.segments])
 
     conversion = longuest_segment_len/SCREEN_SIZE
@@ -68,25 +69,46 @@ def genomeVisualisation(genome, nb_line=1, genetic_code=None):
         #     print('Is annotation relevant? ',p.polyprotein_number, p.isAnnotationRelevant())
         visu_string += visualisation(segment, nb_line, genetic_code)
         # print(features_strg)
-        return visu_string
+    print(visu_string)
 
 #visualisation genome
 def visualisation(self, nb_line, genetic_code):
-    visu_string = ''
-    try:
-        display_len = int(nb_line)*SCREEN_SIZE
-        conversion = int(len(self.record)) / display_len
-    except ValueError:
-        display_len = int(len(self.record)/3) if nb_line == 'aa' else int(len(self.record))
-        conversion = 3 if nb_line == 'aa' else 1
-
-
 
     compatible_dico = collections.OrderedDict()
-    compatible_dico['match'] = buildCompatibleGroup(self, self.matchs)[::-1]
-    compatible_dico['cds'] = buildCompatibleGroup(self, self.cds)
-    compatible_dico['pep'] = buildCompatibleGroup(self, self.peptides)
-    compatible_dico['unannotated_region'] = buildCompatibleGroup(self, self.unannotated_region)
+    compatible_dico['match'] = buildCompatibleGroup(self.matchs)[::-1]
+    compatible_dico['cds'] = buildCompatibleGroup(self.cds)
+    compatible_dico['pep'] = buildCompatibleGroup(self.peptides)
+    compatible_dico['unannotated_region'] = buildCompatibleGroup(self.unannotated_region)
+
+    return get_final_strings(self, nb_line, genetic_code ,compatible_dico )
+
+def getStringIndices(seq, final_seq_to_display, conversion):
+    # The whole segment is visualise
+
+    if final_seq_to_display.__class__.__name__ == 'Segment':
+        return (int(seq.start/conversion), int((seq.end-1)/conversion))
+
+    # The protein is visualise. protein reference coordinate are then returned
+    if seq == final_seq_to_display:
+        return (0, int((len(seq)/3)/conversion))
+    else:
+        return (int(seq.start_aa(final_seq_to_display)/conversion), int((seq.end_aa(final_seq_to_display)-1)/conversion))
+
+
+def get_final_strings(final_seq_to_display, nb_line, genetic_code, compatible_dico):
+    """
+    final_seq_to_display may be a segment object or a Protein object
+    the getStringIndices fct would then react differently
+    """
+    try:
+        display_len = int(nb_line) * SCREEN_SIZE
+        if final_seq_to_display.__class__.__name__ ==  'Segment':
+            conversion = int(len(final_seq_to_display)) / display_len
+        elif final_seq_to_display.__class__.__name__ ==  'Protein':
+            conversion = int(len(final_seq_to_display)/3) / display_len
+    except ValueError:
+        display_len = int(len(final_seq_to_display)/3) if nb_line == 'aa' else int(len(final_seq_to_display))
+        conversion = 3 if nb_line == 'aa' else 1
 
     strings = []
     seq_type_dico = {
@@ -97,68 +119,30 @@ def visualisation(self, nb_line, genetic_code):
         }
     color_end = '\033[0m'
     overlap_col = '\033[91m'
-
     # color = '$'
     # color_end= '$'
     for seq_type, compatible_group in compatible_dico.items():
         left, central, right, neutral = seq_type_dico[seq_type] # different symbol if it protein or peptide
         for group in compatible_group:
-            # print('GROUPPP')
             string = neutral*display_len
-            # print(string)
 
             for seq in group:
-                i_start, i_end = getStringIndices(seq, conversion)
-
+                i_start, i_end = getStringIndices(seq,final_seq_to_display, conversion)
                 string = string[:i_start] + left+central*(i_end - i_start-1)+ right + string[i_end+1:]
 
-                if seq.__class__.__name__ ==  'Protein':
-
-                    # print(seq.getSequenceRecord(self.organism, self.taxon_id, self.record, genetic_code).seq)
-                    if  nb_line == 'aa':
-                        seqaa = seq.getSequenceAA(self.record, genetic_code)
-
-                        string = string[:i_start] + seqaa + string[i_start+len(seqaa):]
-                        continue
-                    if  nb_line == 'nt':
-                        seqaa = seq.getSequenceAA(self.record, genetic_code)
-                        seqaa = ''.join([a*3 for a in seqaa])
-                        string = string[:i_start] + seqaa + string[i_start+len(seqaa):]
-                        continue
-
-                    #display positional number
-                    # if seq.polyprotein_number:
-                    #     nb = str(seq.polyprotein_number)
-                    #     string = string[:i_start+2] +nb+ string[i_start+2+len(nb):]
-                    #
-                    #Display protein number
-                    nb = str(seq.number)
-                    string = string[:i_start+2] +nb+ string[i_start+2+len(nb):]
-
-                    if False and seq.ribosomal_slippage:
-                        for position, shift in seq.ribosomal_slippage.items():
-                            string_postion = round(position/conversion)
-                            string_postion = string_postion if string_postion<i_end else string_postion-1
-                            shift_string = '+' if shift > 0 else "-"
-                            shift_string += str(abs(shift))
-
-                            string = string[:string_postion-len(shift_string)+1] + shift_string + string[string_postion+1:]
-
+                if seq.__class__.__name__ ==  'Protein' and final_seq_to_display.__class__.__name__ ==  'Segment':
+                    string = format_protein_line(seq, string, genetic_code, i_start, i_end, final_seq_to_display.record, nb_line)
                 else:
                     name = seq.getNameToDisplay()
                     string = string[:i_start+2] +name+ string[i_start+2+len(name):]
-            # if seq_type == "match" and nb_line == 1:
-                # print(string)
 
-                # string = re.sub(r"(\[#<[A-Za-z0-9]+#+\]?)", r"{}\1{}".format(color, color_end), string)
-            # print(string)
             strings.append(string)
 
     ##REGEX
     # overlap_match re.compile(r"\[#<"g)
     # match = re.compile(r"\[#[^<]"g)
     # sub_string = re.sub(r"(\[#<[A-Za-z0-9]+#+\]?)", r"{}\1{}".format(color, color_end), sub_string)
-
+    visu_string = ''
     unfinished_col_list = ["" for s in strings]
     for i in range(0, display_len, SCREEN_SIZE):
         visu_string += '/'*SCREEN_SIZE
@@ -183,15 +167,39 @@ def visualisation(self, nb_line, genetic_code):
     # return 'protein'
     return visu_string
 
-def getStringIndices(self, conversion):
-    # print(conversion,' start', self.start/conversion, 'end', (self.end-1)/conversion)
-    # print(conversion,' start', int(self.start/conversion), 'end', int((self.end-1)/conversion))
-    return (int(self.start/conversion), int((self.end-1)/conversion))
-    # return round(self.bp_obj.location.start/conversion), round(self.bp_obj.location.end/conversion)
+def format_protein_line(seq, string, genetic_code, i_start, i_end, record, nb_line):
+    # print(seq.getSequenceRecord(self.organism, self.taxon_id, self.record, genetic_code).seq)
+    if  nb_line == 'aa':
+        seqaa = seq.getSequenceAA(record, genetic_code)
 
+        string = string[:i_start] + seqaa + string[i_start+len(seqaa):]
+        return string
+    if  nb_line == 'nt':
+        seqaa = seq.getSequenceAA(record, genetic_code)
+        seqaa = ''.join([a*3 for a in seqaa])
+        string = string[:i_start] + seqaa + string[i_start+len(seqaa):]
+        return string
 
+    #display positional number
+    # if seq.polyprotein_number:
+    #     nb = str(seq.polyprotein_number)
+    #     string = string[:i_start+2] +nb+ string[i_start+2+len(nb):]
+    #
+    #Display protein number
+    nb = str(seq.number)
+    string = string[:i_start+2] +nb+ string[i_start+2+len(nb):]
 
-def buildCompatibleGroup(self, set_of_sequence):
+    if False and seq.ribosomal_slippage:
+        for position, shift in seq.ribosomal_slippage.items():
+            string_postion = round(position/conversion)
+            string_postion = string_postion if string_postion<i_end else string_postion-1
+            shift_string = '+' if shift > 0 else "-"
+            shift_string += str(abs(shift))
+
+            string = string[:string_postion-len(shift_string)+1] + shift_string + string[string_postion+1:]
+    return string
+
+def buildCompatibleGroup(set_of_sequence):
         sequences = set_of_sequence.copy() #sorted(list(set_of_sequence), key=lambda x: x.bp_obj.location.start, reverse=False)
         #Build the set of non overlaping protein
 
@@ -283,8 +291,7 @@ if __name__ == '__main__':
             print(i)
         # print('genetic code', genetic_code)
         # print(gb_file)
-        string = visualisation_main(gb_file, genetic_code, gff_file, nb_line, minimum_nb_peptide, taxon_id, sp_treshold)
-        print(string)
+        visualisation_main(gb_file, genetic_code, gff_file, nb_line, minimum_nb_peptide, taxon_id, sp_treshold)
         input()
 
     print(i+1, 'Genome analysed from taxon', taxon)

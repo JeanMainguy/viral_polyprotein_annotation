@@ -1,6 +1,7 @@
 import taxonomy as tax
 import viral_genome_classes as obj
 import parser_interpro_results as do
+import visualisation_genome
 import os, gzip, logging, sys
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
@@ -13,7 +14,7 @@ from operator import attrgetter
 
 def visualisation(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold, taxon_id):
 
-    genome = obj.gb_file_parser(gb_file, taxon_id)
+    genome = obj.gb_file_parser(gb_file, taxon_id, sp_treshold)
 
     # genome.getTaxonExpectation(taxon_expectation)
     # genome.identifyExpectedElement()
@@ -24,6 +25,8 @@ def visualisation(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold,
     # print(genome.matchs)
     # input()
     # return
+    visualisation_genome.genomeVisualisation(genome, 1, genetic_code)
+
     display_dico = {}
     display_header = []
     for i, segment in enumerate(genome.segments):
@@ -45,7 +48,7 @@ def visualisation(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold,
 
 def addColorToSequence(starts_in_alignment, ends_in_alignment, sequence):
     end_color = '\033[0m'
-    domain_color = '\033[92m'
+    domain_color = '\033[94m'
     cleavage_site_color = '\033[91m'
 
     pattern_cleavage_site = re.compile(r'([^\d])([a-z]+)')
@@ -186,7 +189,7 @@ if __name__ == '__main__':
     except IndexError:
         minimum_nb_peptide = 0
     sp_treshold=90
-    aln_row_len=280
+    aln_row_len=150
     taxonomy_file="data/taxonomy/taxonomy_virus.txt"
     expected_file =  "data/taxonomy/polyprotein_expectation_by_taxon.csv"
 
@@ -196,6 +199,7 @@ if __name__ == '__main__':
 
     taxon_ids, alignement_dico = store_alignement_line(alignement_file, aln_row_len)
     display_dico = {}
+    print(taxon_ids)
     for taxon in taxon_ids:
         # file_handle = open(os.path.join(output_dir,'cleavage_site_{}_window_{}.faa'.format(taxon, window_step_clavage_site*2)), "w")
 
@@ -212,6 +216,8 @@ if __name__ == '__main__':
             print(taxon)
             # print('genetic code', genetic_code)
             # print(gb_file)
+
+            # visualisation_genome.visualisation_main(gb_file, genetic_code, gff_file, 1, 0, taxon_id, sp_treshold)
             display_dico_i = visualisation(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold,taxon_id  )
             display_dico.update(display_dico_i)
 
