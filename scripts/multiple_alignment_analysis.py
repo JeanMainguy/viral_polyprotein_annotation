@@ -3,7 +3,7 @@
 import taxonomy as tax
 import viral_genome_classes as obj
 import viruses_statistics as stat
-
+import parser_interpro_results as do
 
 import os, gzip, logging
 from Bio import SeqIO
@@ -11,9 +11,10 @@ from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
 import sys, csv, re
 from operator import attrgetter
-from numpy import std
+from numpy import std, mean
+import operator
 
-def getCdsObject(taxon_id, protein_id, taxonomy_file):
+def getCdsObject(taxon_id, protein_id, taxonomy_file, gff_file, sp_treshold):
     #TODO this step should be optimize !
     try:
         gb_file_dict = next(tax.getAllRefseqFromTaxon(taxon_id, taxonomy_file))
@@ -21,35 +22,19 @@ def getCdsObject(taxon_id, protein_id, taxonomy_file):
         return None
     gb_file = gb_file_dict['gb_file']
 
-    genome = obj.Genome( gb_file)
-    with gzip.open(gb_file, "rt") as handle:
-        for i, record in enumerate(SeqIO.parse(handle, "genbank")):
+    genome = obj.gb_file_parser(gb_file, taxon_id, sp_treshold)
+    do.getMatchObject(genome, gff_file)
+    do.associateMatchWithPolyprotein(genome)
+    for segment in genome.segments:
+        do.getDomainOverlappingInfo(segment)
 
-
-            segment = obj.Segment(record, gb_file)
-            genome.segments.append(segment)
-
-            segment.getMatpeptidesAndPolyproteins()
-            cds_of_interest = None
-            for cds in segment.cds:
-                if cds.protein_id == protein_id:
-                    cds_of_interest = cds
-                    break
-            if not cds_of_interest:
-                continue
-
-            segment.checkPeptideRedundancy() #remove the redundant peptide
-            segment.checkSubPeptides()
-            segment.associatePepWithProt()
-
-            segment.identifySubProtein()
-
-            segment.getCleavageSites()
-            break #we have found the protein so no need to continue the parsing
-
-    if not cds.cleavage_sites:
-        logging.warning('protein has no cleavage site ... :-§')
-    return cds
+    for segment in genome.segments:
+        for cds in segment.cds:
+            if cds.protein_id == protein_id:
+                cds_of_interest = cds
+                if not cds.cleavage_sites:
+                    logging.warning('protein has no cleavage site ... :-§')
+                return cds, segment
 
 def convertAlignmentToList(alignment_seq):
     """
@@ -58,27 +43,28 @@ def convertAlignmentToList(alignment_seq):
     the following sequence :
     --ABC-D--E
     would become :
-    [None, None, 0, 1, 2, 3, None,4, None, None, 5]
+    [None, None, 0, 1, 2, None,3, None, None, 4]
     """
     gap="-"
     list=[]
     indice_seq = 0
     for i, e in enumerate(alignment_seq):
         if e != gap:
-            indice_seq += 1
-            list.append(indice_seq)
 
+            list.append(indice_seq)
+            indice_seq += 1
         else:
             list.append(None)
     return list
 
-def findCloseSites(site, site_start_in_aln, other_cds, window):
+def findCloseSites(site, site_start_in_aln, cds_list, window):
 
     site.neighboring_sites = set()
 
-    for cds in other_cds:
-        seq_part = cds.aligned_sequence[site_start_in_aln-window-1:site_start_in_aln+window+1]
-        aln_part_list = cds.aln_list[site_start_in_aln-window-1:site_start_in_aln+window+1]
+    for cds in cds_list:
+        seq_part = cds.aligned_sequence[site_start_in_aln-int(window/2)+1:site_start_in_aln+int(window/2)+1]
+
+        aln_part_list = cds.aln_list[site_start_in_aln-int(window/2)+1:site_start_in_aln+int(window/2)+1]
         # print(aln_part_list)
         # print(seq_part)
 
@@ -87,7 +73,8 @@ def findCloseSites(site, site_start_in_aln, other_cds, window):
             if position in cds.cleavage_site_positions:
 
                 adj_site = cds.cleavage_site_positions[position]
-                site.neighboring_sites.add(adj_site)
+                if adj_site != site:
+                    site.neighboring_sites.add(adj_site)
                 # print("correpsond to a CS", adj_site.taxon_id, adj_site.start_aa(cds) )
                 # print(seq_part)
                 # print(aln_part_list)
@@ -99,13 +86,15 @@ def checkCleavageSiteAcrossAlignment(cds_list, window):
         all_sites |= set(cds.cleavage_sites)
         # print()
         # print(cds.number, cds.cleavage_site_positions)
+
         for site in cds.cleavage_sites:
             site.cds_of_aln = cds
-            site_start = site.start_aa(cds) # to be in base 0 we need the -1
+            site_start = site.start_aa(cds) -1 # to be in base 0 we need the -1
+
             site_start_in_aln = cds.aln_list.index(site_start)
-            # print('CLEAVAGE SITE:::: from', site.taxon_id, site.start_aa(cds))
-            # print(cds.aligned_sequence[site_start-window-1:site_start+window+1])
-            findCloseSites(site, site_start_in_aln,  cds_list[:i]+cds_list[i+1:], window)
+            site.start_in_aln = site_start_in_aln
+            # print(cds.aln_list[site_start_in_aln-window-1:site_start_in_aln+window+1])
+            findCloseSites(site, site_start_in_aln,  cds_list, window)
 
     #make group of cleavage sites
     grouped_sites = set()
@@ -117,7 +106,8 @@ def checkCleavageSiteAcrossAlignment(cds_list, window):
             grouped_sites |= group #add site that are grouped in a the set to not process them again
             group_list.append(group)
     print('NB_GROUP', len(group_list))
-    return group_list
+    # sort list of group by the position in aln of the first site of each group
+    return sorted(group_list, key=lambda x: list(x)[0].start_in_aln)
 
 def groupCleavageSites(group, site):
     #recursivity
@@ -126,9 +116,10 @@ def groupCleavageSites(group, site):
         if adj_site not in group:
             groupCleavageSites(group, adj_site)
 
-def getStatOnGroup(group):
+def getStatOnGroup(group, cds_annotated):
     mean_positions = []
     protein_ids = set()
+
     for site in group:
         cds = site.cds_of_aln
         site_start = site.start_aa(cds)
@@ -137,25 +128,45 @@ def getStatOnGroup(group):
 
         mean_position_in_aln = sum([cds.aln_list.index(site_start), cds.aln_list.index(site_end)])/2.0
         mean_positions.append(mean_position_in_aln)
-
-    nb_protein_in_group = len(protein_ids)
-    nb_of_cleavage_site = len(group)
-    nb_cleavage_from_the_same_protein =  nb_of_cleavage_site - nb_protein_in_group
     standard_dev = std(mean_positions)
+    nb_of_cleavage_site = len(group)
+    nb_protein_in_group = len(protein_ids)
 
-    return [ nb_of_cleavage_site, nb_protein_in_group, nb_cleavage_from_the_same_protein, standard_dev, round(standard_dev)]
+    completeness = (nb_protein_in_group / cds_annotated )*100
 
-def processAlignmentFile(alignment_file, taxonomy_file, window, output_file, cluster_nb):
+    if completeness < 25:
+        category = 'from 0 to 25%'
+    elif 25 <= completeness < 50:
+        category = 'from 25% to 50%'
+    elif 50 <= completeness < 75:
+        category = 'from 50% to 75%'
+    elif 75 <= completeness:
+        category = 'from 75% to 100%'
+
+    dico_info = {
+    'nb_protein_in_group' : nb_protein_in_group,
+    'nb_of_cleavage_site' : nb_of_cleavage_site,
+    'nb_cleavage_from_the_same_protein' :  nb_of_cleavage_site - nb_protein_in_group,
+    'standard_deviation' : standard_dev,
+    "round_std" : round(standard_dev),
+    "group_completness" : completeness,
+    "completness_category": category,
+    "average_position_in_aln":mean(mean_positions)
+    }
+    #[ nb_of_cleavage_site, nb_protein_in_group, nb_cleavage_from_the_same_protein, standard_dev, round(standard_dev)]
+    return dico_info
+
+def processAlignmentFile(alignment_file, taxonomy_file, windows, csv_writer, cluster_nb, sp_treshold, gff_file):
     cds_list = []
     cds_annotated = 0
     with open(alignment_file, "rU") as handle:
         for record in SeqIO.parse(handle, "clustal") :
 
-            # 11764|YP_009109691.1|564.0|Peptide
-            taxon_id, protein_id, length, hasPeptide =  record.id.split('|')
-
-            cds = getCdsObject(taxon_id, protein_id, taxonomy_file)
+            # 11764|YP_009109691.1|564
+            taxon_id, protein_id, length =  record.id.split('|')
+            cds, segment = getCdsObject(taxon_id, protein_id, taxonomy_file, gff_file, sp_treshold )
             if cds is None:
+                logging.warning(f"TAXONID:{taxon_id} has not been found in taxonomy file")
                 continue
             cds.cleavage_site_positions = {s.start_aa(cds):s for s in cds.cleavage_sites}
             cds.aligned_sequence = record.seq
@@ -166,29 +177,50 @@ def processAlignmentFile(alignment_file, taxonomy_file, window, output_file, clu
                 cds_annotated += 1
             # print(cds.aligned_sequence)
             # print(cds.aln_list)
+    groups_of_cs_wind = {}
+    for window in windows:
+        groups_of_cs_wind[window] = checkCleavageSiteAcrossAlignment(cds_list, window)
 
-    groups_of_cs = checkCleavageSiteAcrossAlignment(cds_list, window)
-    header = ["cluster_nb",'nb_seq', 'nb_seq_with_annotation', "nb_of_cleavage_site", 'nb_protein_in_group', 'nb_cleavage_from_the_same_protein', "standard_deviation", 'round_std', "group_completness", "completness_category"]
-    general_info = [cluster_nb, len(cds_list), cds_annotated ]
-    with open(output_file, 'w') as writer:
-        writer.write("\t".join(header)+"\n")
-        for group in groups_of_cs:
-            stat_info = getStatOnGroup(group)
-            nb_protein_in_group = stat_info[1]
-            completeness = (nb_protein_in_group / cds_annotated )*100
-            if completeness < 25:
-                category = 'from 0 to 25%'
-            elif 25 <= completeness < 50:
-                category = 'from 25% to 50%'
-            elif 50 <= completeness < 75:
-                category = 'from 50% to 75%'
-            elif 75 <= completeness:
-                category = 'from 75% to 100%'
-            stat_info.append(completeness)
-            stat_info.append(category)
-            list_info_group = general_info + stat_info
-            list_info_group = [str(e) for e in list_info_group]
-            writer.write("\t".join(list_info_group)+"\n")
+    general_info = {"cluster_nb":cluster_nb,
+                    'nb_seq':len(cds_list),
+                    'nb_seq_with_annotation':cds_annotated}
+
+
+
+    for window, groups_of_cs in groups_of_cs_wind.items():
+        general_info["window"] = window
+        for i, group in enumerate(groups_of_cs):
+            #print(group)
+            group_info = getStatOnGroup(group, cds_annotated)
+            group_info.update(general_info)
+
+            print(group_info)
+            csv_writer.writerow(group_info)
+            print('='*20)
+            print('Group',i)
+            {print(k, v) for k, v in group_info.items()}
+        #    writer.write("\t".join(list_info_group)+"\n")
+
+def initiate_ouput(output_file):
+
+    header = ["cluster_nb",
+    'nb_seq',
+    'nb_seq_with_annotation',
+    "nb_of_cleavage_site",
+    'nb_protein_in_group',
+    'nb_cleavage_from_the_same_protein',
+    "standard_deviation",
+    'round_std',
+    "average_position_in_aln",
+    "group_completness",
+    "completness_category",
+    "window"]
+
+    handle_cs_out = open(output_file, "w")
+    csv_writer = csv.DictWriter(handle_cs_out, fieldnames=header, delimiter='\t')
+    csv_writer.writeheader()
+    return csv_writer, handle_cs_out
+
 
 
 if __name__ == '__main__':
@@ -198,8 +230,28 @@ if __name__ == '__main__':
     alignment_file=  sys.argv[1] #'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037.aln'
     taxonomy_file =  sys.argv[3]#"data/taxonomy/taxonomy_virus.txt"
     output_file =  sys.argv[2]#'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037_stat.csv'
-    window =  int(sys.argv[4])#20
+
+    gff_file = 'data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
+    print(sys.argv[4])
+    # window includ the cleavage in the middle
+    # cleavage sites have a length of 2
+    # then a window will always be even and >= 2
+    # to take of that we add 1 to uneven window
+
+    windows =  {int((int(w)+int(w)%2) ) for w in sys.argv[4].split(' ')} #10,20,30
+
+    assert min(windows) >= 0
+
+    print(windows,windows)
+    print('window used to analyse cleavage sites', [hw for hw in windows])
+
+    print("window", windows)
+    sp_treshold = 90
 
     re_result = re.search("cluster(\d+).aln", alignment_file)
     cluster_nb = "NA" if not re_result else re_result.group(1)
-    processAlignmentFile(alignment_file, taxonomy_file, window, output_file, cluster_nb)
+
+    print("PROCESS of CLUSTER ", cluster_nb)
+    csv_writer, handle_cs_out =  initiate_ouput(output_file)
+    processAlignmentFile(alignment_file, taxonomy_file, windows, csv_writer, cluster_nb, sp_treshold)
+    handle_cs_out.close()
