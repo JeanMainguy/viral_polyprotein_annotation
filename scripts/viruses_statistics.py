@@ -31,15 +31,16 @@ def getNonOverlappingCoveragePositionsPairs(positions):
     We want to find pair of positions that represent the coverage...
     """
     positions = sorted(positions, key=lambda x: x[0], reverse=False) # sort positions by start
+
     try:
-        s, e = positions.pop()
+        s, e = positions[0]
+        positions.remove((s, e))
     except IndexError:
         return []
 
     non_overlapping_pairs = []
-
     for new_s, new_e in positions: # positions is sorted by starts
-        if s < new_s < new_e: # the two pair are overlapping
+        if s <= new_s <= e: # the two pair are overlapping
             e = max(new_e, e)
         else: # the two pait are not overlapping then s and e are saved and replace by new s et new e
             non_overlapping_pairs.append((s, e))

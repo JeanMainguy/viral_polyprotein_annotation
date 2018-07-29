@@ -319,7 +319,7 @@ class Segment:
             elif feat.type == "mat_peptide" or feat.type == "sig_peptide" or feat.type == "proprotein":
                 self.peptides.add(Peptide(feat))
             elif feat.type == 'CDS':
-                prot_obj = Protein(feat)
+                prot_obj = Protein(feat, self)
                 self.cds.add(prot_obj)
 
 
@@ -673,11 +673,12 @@ class Protein(Sequence):
 
     COUNTER=0
 
-    def __init__(self, biopyth_obj):
+    def __init__(self, biopyth_obj, segment):
         # self.start = start
         # self.end = end
 
         self.bp_obj = biopyth_obj
+        self.segment = segment
         self.start, self.end = (biopyth_obj.location.start, biopyth_obj.location.end)
 
         self.gene_type = biopyth_obj.type
@@ -696,9 +697,11 @@ class Protein(Sequence):
         self.sub_prot = []
         # self.alternative_start = False
         self.cleavage_sites = []
+        self.predicted_cleavage_sites = []
         self.border_sites = [] # site that are at the close border of CDS
         self.polyprotein_number = 0.0
         self.sequence = ''
+
 
         Protein.COUNTER+=1
         self.number = Protein.COUNTER
@@ -711,9 +714,18 @@ class Protein(Sequence):
     def __str__(self):
 
         # status += str(self.polyprotein_number)
-        string = 'Protein {}: {}nt | {}aa | {} \n'.format(self.number,len(self), len(self)/3, self.bp_obj.location)
-        string += '  Peptide: {}\n  UnannotatedRegion {} \n'.format(len(self.peptides), len(self.unannotated_region))
+        string = 'protein {}: {}nt | {}aa | location:{} \n'.format(self.number,len(self), int(len(self)/3), self.bp_obj.location)
+        string += 'mature paptides {} | unannotated region {}\n'.format(len(self.peptides), len(self.unannotated_region))
+
+        string += f'polyprotein outline: {self.polyprotein}  {self.non_polyprotein_explanation}\n'
+        string += f'product: {self.product}\n'
+        if self.parental_prot:
+            string += f'is included in other cds: {"|".join([p.protein_id for p in self.parental_prot])}\n'
+        if self.sub_prot:
+            string += f'includs other cds: {"|".join([s.protein_id for s in self.sub_prot])}\n'
+
         # for p in self.peptides:
+
         #     string += str(p) +"\n"
         # string += "Position_number {}\n".format(self.polyprotein_number)
         # string += "{}:{}\n".format(self.gene_type, ' and '.join(self.reasons))
@@ -1094,6 +1106,39 @@ class CleavageSite(Peptide):
     #
     #     return seq
     #         # print(position_prot_relative/3)
+
+
+
+class PredictedCleavageSite(CleavageSite):
+    COUNTER = 0
+    def __init__(self, start, end, protein, group, taxon_id):
+        self.start_in_prot = int(start)
+        self.end_in_prot = int(end)
+        self.protein = protein # Set of protein
+        self.cleavage_site_group = group
+        self.taxon_id = taxon_id
+        # self.bp_obj = SeqFeature(location,
+        #     type="cleavage site",
+        #     strand=location.strand,
+        #     qualifiers={})
+        #NOTIFY PROTEINS THAT it has a predicted CLEAVAGE SITE
+        protein.predicted_cleavage_sites.append(self)
+
+        PredictedCleavageSite.COUNTER +=1
+        self.number = PredictedCleavageSite.COUNTER
+        #alignment analysis
+        self.start_in_aln = None
+
+
+    def start_aa(self, cds):
+        if cds != self.protein:
+            raise  Error('the cds of the domain and the cds given to the match object to retrieve its position are different')
+        return self.start_in_prot
+
+    def end_aa(self, cds):
+        if cds != self.protein:
+            raise  Error('the cds of the domain and the cds given to the match object to retrieve its position are different')
+        return self.end_in_prot
 
 
 class Match(Sequence):
