@@ -12,7 +12,7 @@ from Bio.SeqFeature import SeqFeature, FeatureLocation
 from operator import attrgetter
 import collections
 
-SCREEN_SIZE = 250
+SCREEN_SIZE = 200
 
 def visualisation_main(gb_file, genetic_code, gff_file, nb_line, minimum_nb_peptide, taxon_id, sp_treshold):
 
@@ -90,7 +90,7 @@ def getStringIndices(seq, final_seq_to_display, conversion):
 
     # The protein is visualise. protein reference coordinate are then returned
     if seq == final_seq_to_display:
-        return (0, int((len(seq)/3)/conversion))
+        return (0, int((len(seq)/3)/conversion)-1)
     else:
         return (int(seq.start_aa(final_seq_to_display)/conversion), int((seq.end_aa(final_seq_to_display)-1)/conversion))
 
@@ -135,7 +135,6 @@ def get_final_strings(final_seq_to_display, nb_line, genetic_code, compatible_di
                 else:
                     name = seq.getNameToDisplay()
                     string = string[:i_start+2] +name+ string[i_start+2+len(name):]
-
             strings.append(string)
 
     ##REGEX
@@ -146,9 +145,10 @@ def get_final_strings(final_seq_to_display, nb_line, genetic_code, compatible_di
     unfinished_col_list = ["" for s in strings]
     for i in range(0, display_len, SCREEN_SIZE):
         visu_string += '/'*SCREEN_SIZE
-        visu_string += '\n'
+        visu_string += '\n\n'
         for i_line, string in enumerate(strings):
             sub_string = string[i:i+SCREEN_SIZE]
+
             if unfinished_col_list[i_line]:
                 sub_string = re.sub(r"^([^ \[]+)", r"{}\1{}".format(unfinished_col_list[i_line], color_end), sub_string)
             sub_string = re.sub(r"(\[?#?<[A-Za-z0-9]+#*\]?)", r"{}\1{}".format(overlap_col, color_end), sub_string)
@@ -158,7 +158,7 @@ def get_final_strings(final_seq_to_display, nb_line, genetic_code, compatible_di
             unfinished_col_list[i_line] = '' if not ansi_list or ansi_list[-1] == color_end else ansi_list[-1]
             # if ansi_list and ansi_list[-1] != color_end:
             #     unfinished_col_dict[i_line] = ansi_list[-1]
-            visu_string += sub_string+'\n'
+            visu_string += f'  {sub_string}\n'
 
     # protein = '\n'.join(strings)
 

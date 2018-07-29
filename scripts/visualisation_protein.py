@@ -8,12 +8,9 @@ import visualisation_genome as fct_visu
 
 import sys,collections
 
-PROTEIN_SIZE_MAX=1200 # max polyprotein len is 20000 but only few protien are concerned..
-SCREEN_SIZE = 250
+# PROTEIN_SIZE_MAX=1200 # max polyprotein len is 20000 but only few protien are concerned..
 
 def visualisation_protein(cds, segment, nb_line):
-    display_len = int(nb_line)*SCREEN_SIZE
-    conversion = (len(cds)/3)/display_len
 
     compatible_dico = collections.OrderedDict()
 
@@ -23,7 +20,13 @@ def visualisation_protein(cds, segment, nb_line):
     compatible_dico['unannotated_region'] = fct_visu.buildCompatibleGroup(set(cds.unannotated_region))
 
     strings = fct_visu.get_final_strings(cds, 1, 1, compatible_dico)
-    print(strings)
+
+    protein_presentaton = f'  {segment.taxon_id}|{cds.protein_id}   {segment.organism}\n '
+    protein_presentaton += str(cds)
+    protein_presentaton += str(segment.record.annotations['taxonomy'])
+    strings = protein_presentaton + strings
+
+    return strings
 
 
 if __name__ == '__main__':
@@ -64,4 +67,4 @@ if __name__ == '__main__':
     print(f'VISUALISATION OF THE PROTEIN {taxon_id}  FROM THE TAXON {taxon_id}')
     print('*-'*100)
 
-    visualisation_protein(cds, segment, 1)
+    print(visualisation_protein(cds, segment, 1))

@@ -2,6 +2,9 @@ import taxonomy as tax
 import viral_genome_classes as obj
 import parser_interpro_results as do
 import visualisation_genome
+import visualisation_protein as view_prot
+import viruses_statistics as fct_stat
+
 import os, gzip, logging, sys
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
@@ -11,21 +14,59 @@ from Bio.Alphabet import generic_protein
 from Bio.SeqFeature import SeqFeature, FeatureLocation
 from operator import attrgetter
 
+def getPositionsInAln(cds, list_obj):
+    positions = []
+    for obj in list_obj:
+        start =cds.aln_list.index(obj.start_aa(cds)-1)
+        end = cds.aln_list.index(obj.end_aa(cds)-1)
+        positions.append((start,end))
 
-def visualisation(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold, taxon_id):
+    return positions
+
+
+def visualisation(list_cds, aln_file, line_size):
+    display_dico = {}
+    for cds in list_cds:
+
+        ##DOMAINS
+        print("do")
+        position_domains = getPositionsInAln(cds, cds.matchs)
+        print("cs")
+        position_sites = getPositionsInAln(cds, cds.cleavage_sites)
+        print("cs p")
+        position_predicted_sites = getPositionsInAln(cds, cds.predicted_cleavage_sites)
+
+        sequence_list = addColorToSequence2(position_domains, position_sites, position_predicted_sites, cds.aligned_sequence)
+
+        lines = []
+        print(' line_size', line_size)
+        # cut the sequence liste in piece of the line size and transform this pieces in string
+        for i_line in range(0, len(sequence_list), line_size):
+            line = "".join(sequence_list[i_line : i_line+line_size])
+            lines.append(line)
+            print(len(sequence_list[i_line : i_line+line_size]))
+
+
+        for l in lines:
+            print(l)
+        key=cds.protein_id
+        #
+        display_dico[key] = lines
+        # alignment dico is used only for identity and file header. not efficient at all..
+        print(view_prot.visualisation_protein(cds, cds.segment, 1))
+
+    taxon_ids, alignement_dico = store_alignement_line(aln_file, line_size)
+    display_alignement(alignement_dico, display_dico)
+
+
+
+def visualisation_old(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold, taxon_id):
 
     genome = obj.gb_file_parser(gb_file, taxon_id, sp_treshold)
 
-    # genome.getTaxonExpectation(taxon_expectation)
-    # genome.identifyExpectedElement()
-    # print(genome.taxon_id)
     do.getMatchObject(genome, gff_file)
     do.associateMatchWithPolyprotein(genome)
-    # genome.visualisation(1, genetic_code)
-    # print(genome.matchs)
-    # input()
-    # return
-    visualisation_genome.genomeVisualisation(genome, 1, genetic_code)
+    #visualisation_genome.genomeVisualisation(genome, 1, genetic_code)
 
     display_dico = {}
     display_header = []
@@ -33,18 +74,70 @@ def visualisation(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold,
         for cds in segment.cds:
             if cds.protein_id in alignement_dico:
                 # print(cds, cds.matchs)
-                starts, ends = getAnnotationBorders(cds.matchs)
-                # print(starts, ends)
-                sequence = alignement_dico[cds.protein_id]
-                sequence = '+'.join(sequence)
+                                # print(starts, ends)
+                sequence_lines = alignement_dico[cds.protein_id]
+                sequence = '+'.join(sequence_lines)
 
+                ##DOMAINS
+                starts, ends = getAnnotationBorders(cds.matchs)
                 starts_in_alignment, ends_in_alignment = getPositionInAlignment(sequence, starts, ends)
-                # number = '{}_{}'.format(i+1, cds.polyprotein_number)
-                # key = genome.expectation_node+'|'+genome.taxon_id+"|"+number
+
+                sequence_clean = ''.join(sequence_lines)
+                starts_in_alignment2, ends_in_alignment2 = getPositionInAlignment(sequence_clean, starts, ends)
+                position_domains = [(starts_in_alignment2[i], ends_in_alignment2[i]) for i in range(len(starts_in_alignment2))]
+
+                ##CLAVAGE SITES
+                positon_cleavage_sites = []
+                for s in cds.cleavage_sites:
+                    positon_cleavage_sites.append(s.start_aa(cds))
+                    positon_cleavage_sites.append(s.end_aa(cds))
+
+                position_predicted_cleavage_sites = []
+                cleavage_sites_in_aln, predicted_cleavage_sites_in_aln = getPositionInAlignment(sequence_clean, positon_cleavage_sites, position_predicted_cleavage_sites)
+                print(cleavage_sites_in_aln)
+
+
+
+                # lines2 = addColorToSequence2(position_domains, cleavage_sites_in_aln, position_predicted_cleavage_sites, sequence_lines)
+
+                sequence = addColorToSequence(starts_in_alignment, ends_in_alignment, sequence)
+                lines1 = sequence.split('+')
+
+                lines = lines1
+
+
                 key=genome.taxon_id+'|'+cds.protein_id
-                display_dico[key] = addColorToSequence(starts_in_alignment, ends_in_alignment, sequence)
+                display_dico[key] = lines
 
     return display_dico
+
+
+def addColorToSequence2(position_domains, positon_cleavage_sites, position_predicted_cleavage_sites, aln_sequence):
+    # Very unelegant to many loop for nothing but only smallvisualisation to be sure
+    end_color = '\033[0m'
+    domain_color = '\033[94m'
+    cleavage_site_color = '\033[91m'
+    predicted_site_color = '\033[93m'
+
+    sequence_list = []
+
+    for i, letter in enumerate(aln_sequence):
+
+        if any(( True for start, end in positon_cleavage_sites if start <= i <= end)):
+            sequence_list.append( cleavage_site_color + letter + end_color)
+
+        elif any(( True for start, end in position_predicted_cleavage_sites if start <= i <= end)):
+            sequence_list.append(predicted_site_color + letter + end_color)
+
+        elif any(( True for start, end in position_domains if start <= i <= end)):
+            sequence_list.append(domain_color + letter + end_color)
+
+        else:
+            sequence_list.append(letter)
+
+    # print(sequence)
+    return sequence_list
+
 
 def addColorToSequence(starts_in_alignment, ends_in_alignment, sequence):
     end_color = '\033[0m'
@@ -72,7 +165,7 @@ def addColorToSequence(starts_in_alignment, ends_in_alignment, sequence):
 
     sequence = pattern_cleavage_site.sub(r"\1{}\2{}".format(cleavage_site_color, end_color), sequence)
     # print([sequence])
-    return sequence.split('+')
+    return sequence
 
 
 def getPositionInAlignment(sequence, starts, ends):
@@ -161,7 +254,6 @@ def store_alignement_line(alignement_file, aln_row_len):
         return taxon_ids, alignement_dico
 
 
-
 def display_alignement(alignement_dico, display_dico):
 
     max_len = max([len(h) for h in display_dico]) + 6
@@ -173,7 +265,6 @@ def display_alignement(alignement_dico, display_dico):
             print(k+' '*(max_len-len(k))+v[i])
         print(' '*(max_len)+alignement_dico['identity'][i])
         print()
-
 
 
 if __name__ == '__main__':
@@ -218,9 +309,10 @@ if __name__ == '__main__':
             # print(gb_file)
 
             # visualisation_genome.visualisation_main(gb_file, genetic_code, gff_file, 1, 0, taxon_id, sp_treshold)
-            display_dico_i = visualisation(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold,taxon_id  )
+            display_dico_i = visualisation_old(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold,taxon_id  )
             display_dico.update(display_dico_i)
+
 
         # print(i+1, 'Genome analysed from taxon', taxon)
     display_alignement(alignement_dico, display_dico)
-    input()
+    # input()
