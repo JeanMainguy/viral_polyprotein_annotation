@@ -62,25 +62,20 @@ if __name__ == '__main__':
 
     output_dir =  sys.argv[2]#'data/blast_result/Alphavirus_blast_result_all_vs_all_evalue_1e-5_coverage%i.out' % threshold
 
-    threshold_min = int(sys.argv[3])
-    threshold_max = int(sys.argv[4]) +1
-    threshold_int = int(sys.argv[5])
+    coverages =  sys.argv[3]
 
-    i=5
-    evalues = []
-    while True:
-        i += 1
-        try:
-            evalues.append(float(sys.argv[i]))
-        except IndexError:
-            break
-    if not evalues:
-        evalues.append(1) # if no evalue have been given in argument by default we use value of 1
+    print('coverage', coverages) # 20 30 40 50
+    coverages = [int(c) for c in coverages.split(' ')]
+    print(coverages)
+
+
+    evalues = sys.argv[4]
+
+    print('evalues', evalues)
+    evalues = [float(e) for e in evalues.split(' ')]
     print(evalues)
 
-    coverages = range(threshold_min, threshold_max, threshold_int)
-    out_files={}
-
+    out_files= {}
     for c in coverages:
         for e in evalues:
             file_name = os.path.join(output_dir, 'evalue_{}coverage{}.out'.format(e, c))

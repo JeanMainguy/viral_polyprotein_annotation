@@ -10,11 +10,10 @@ def getMatchObject(genome, gff_file):
 
             if l.startswith(">") or l.startswith("##FASTA"):
                 break
-            if l.startswith('##sequence-region'):
+            if l.startswith('##'):
                 flag = True if l.startswith('##sequence-region {}|'.format(genome.taxon_id)) else False
                 continue
             if flag:
-                # print(l)
                 (taxseqid, method, feature_type, start, end, score, strand, phase, attributes) = l.split("\t")
                 #match = {"start":int(begin), "end":int(end), "app":method, "seqid":seqid, "taxid":taxid}
                 if feature_type == 'protein_match':
@@ -110,7 +109,7 @@ def getDomainOverlappingInfo(segment):
 
 def identifyDuplicatedMatch(segment):
     # Due to ribosomal_slippage 2 proteins have been given to interpro but they share a similar part and then may share same somain
-    # To not count twice this domain we identify the domain that have the same start and end in the genome and have same name
+    # To not count twice this domain we identify the domain that have the same start and end in the cds and have same name
 
     # The structure is not that efficient because the duplicated match check the other match and it is not usefull they should be remove
     matchs = list(segment.matchs)

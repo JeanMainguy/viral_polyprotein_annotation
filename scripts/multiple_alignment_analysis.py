@@ -4,6 +4,7 @@ import taxonomy as tax
 import viral_genome_classes as obj
 import viruses_statistics as stat
 import parser_interpro_results as do
+import visualisation_alignment as view_aln
 
 import os, gzip, logging
 from Bio import SeqIO
@@ -109,12 +110,14 @@ def checkCleavageSiteAcrossAlignment(cds_list, window):
     # sort list of group by the position in aln of the first site of each group
     return sorted(group_list, key=lambda x: list(x)[0].start_in_aln)
 
+
 def groupCleavageSites(group, site):
     #recursivity
     group.add(site)
     for adj_site in site.neighboring_sites:
         if adj_site not in group:
             groupCleavageSites(group, adj_site)
+
 
 def getStatOnGroup(group, cds_annotated):
     mean_positions = []
@@ -156,11 +159,61 @@ def getStatOnGroup(group, cds_annotated):
     #[ nb_of_cleavage_site, nb_protein_in_group, nb_cleavage_from_the_same_protein, standard_dev, round(standard_dev)]
     return dico_info
 
+
+def getPositionInSeq(cds, position, window):
+    position_in_seq = []
+    print([a for a in str(cds.aligned_sequence[position-3:position+3])])
+    print(str(cds.aligned_sequence[position]))
+    print(cds.aln_list[position-3:position+3])
+    print(cds.aln_list[position])
+    if cds.aln_list[position]: # when the position corresponf to a gap then it is None
+        position_in_seq.append(cds.aln_list[position])
+
+    for i in range(1, int(window/2)):
+
+        if cds.aln_list[position + i]:
+            position_in_seq.append(cds.aln_list[position + i])
+            if len(position_in_seq) == 2:
+                break
+
+        if  cds.aln_list[position - i]:
+
+            position_in_seq.append(cds.aln_list[position - i])
+            if len(position_in_seq) == 2:
+                break
+
+    position_in_seq.sort()
+
+    if len(position_in_seq) < 2:
+        print("No aa in the window for the cds")
+        print('could no propagate the cleavage site')
+        print(cds.aligned_sequence[position-int(window/2)+1:position+int(window/2)+1])
+    print(position_in_seq)
+    if 399 in position_in_seq:
+        input()
+    return position_in_seq
+
+
+def propagate_cleavage_sites(group, general_info, cds_list):
+    window = general_info['window']
+    average_po = int(general_info['average_position_in_aln']) -1
+    print(average_po)
+    iter_cds_non_annotated = (cds for cds in cds_list if not cds.polyprotein)
+
+    for blank_cds in iter_cds_non_annotated:
+        # print(blank_cds)
+        # print(blank_cds.aln_list[average_po-window:average_po+window])
+        position_cs = getPositionInSeq(blank_cds, average_po, window)
+        start, end = position_cs[0]+1, position_cs[1]+1
+        new_site = obj.PredictedCleavageSite(start, end, blank_cds, group, 'Unknown')
+
+
 def processAlignmentFile(alignment_file, taxonomy_file, windows, csv_writer, cluster_nb, sp_treshold, gff_file):
     cds_list = []
     cds_annotated = 0
     with open(alignment_file, "rU") as handle:
         for record in SeqIO.parse(handle, "clustal") :
+            print(record)
 
             # 11764|YP_009109691.1|564
             taxon_id, protein_id, length =  record.id.split('|')
@@ -185,21 +238,27 @@ def processAlignmentFile(alignment_file, taxonomy_file, windows, csv_writer, clu
                     'nb_seq':len(cds_list),
                     'nb_seq_with_annotation':cds_annotated}
 
-
-
     for window, groups_of_cs in groups_of_cs_wind.items():
         general_info["window"] = window
         for i, group in enumerate(groups_of_cs):
             #print(group)
             group_info = getStatOnGroup(group, cds_annotated)
+
             group_info.update(general_info)
 
+            propagate_cleavage_sites(group, group_info, cds_list)
+
             print(group_info)
-            csv_writer.writerow(group_info)
+
             print('='*20)
             print('Group',i)
             {print(k, v) for k, v in group_info.items()}
+
+            if csv_writer:
+                csv_writer.writerow(group_info)
         #    writer.write("\t".join(list_info_group)+"\n")
+
+    view_aln.visualisation(cds_list, alignment_file, 150)
 
 def initiate_ouput(output_file):
 
@@ -225,27 +284,35 @@ def initiate_ouput(output_file):
 
 if __name__ == '__main__':
 
-    logging.basicConfig(filename='log/alignment_analysis.log', level=logging.WARNING)
+    logging.basicConfig(filename='log/alignment_analysis.log', level=logging.INFO)
     # alignment_file= "data/alignment/Retro-transcribing_viruses_1e-5_coverage90_I3/seq_cluster16.aln"
-    alignment_file=  sys.argv[1] #'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037.aln'
-    taxonomy_file =  sys.argv[3]#"data/taxonomy/taxonomy_virus.txt"
-    output_file =  sys.argv[2]#'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037_stat.csv'
+
+    try:
+        alignment_file=  sys.argv[1] #'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037.aln'
+    except:
+        alignment_file=  'data/alignment/RefSeq_download_date_2018-07-21/Viruses_evalue_1e-60coverage20_I1_4/seq_cluster3.aln'
+
+    try:
+        taxonomy_file =  sys.argv[3]#"data/taxonomy/taxonomy_virus.txt"
+        output_file =  sys.argv[2]#'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037_stat.csv'
+        windows_input = sys.argv[4]
+
+    except:
+        taxonomy_file =  "data/taxonomy/taxonomy_virus.txt"
+        output_file =  'test/aln_analysis.csv'
+        windows_input = "40"
 
     gff_file = 'data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
-    print(sys.argv[4])
+
     # window includ the cleavage in the middle
     # cleavage sites have a length of 2
     # then a window will always be even and >= 2
     # to take of that we add 1 to uneven window
-
-    windows =  {int((int(w)+int(w)%2) ) for w in sys.argv[4].split(' ')} #10,20,30
-
+    windows =  {int((int(w)+int(w)%2) ) for w in windows_input.split(' ')} #10,20,30
     assert min(windows) >= 0
 
-    print(windows,windows)
-    print('window used to analyse cleavage sites', [hw for hw in windows])
+    print('window used to analyse cleavage sites',  windows)
 
-    print("window", windows)
     sp_treshold = 90
 
     re_result = re.search("cluster(\d+).aln", alignment_file)
@@ -253,5 +320,5 @@ if __name__ == '__main__':
 
     print("PROCESS of CLUSTER ", cluster_nb)
     csv_writer, handle_cs_out =  initiate_ouput(output_file)
-    processAlignmentFile(alignment_file, taxonomy_file, windows, csv_writer, cluster_nb, sp_treshold)
+    processAlignmentFile(alignment_file, taxonomy_file, windows, csv_writer, cluster_nb, sp_treshold, gff_file)
     handle_cs_out.close()
