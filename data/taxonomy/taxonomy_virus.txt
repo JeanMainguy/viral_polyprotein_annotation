@@ -1,1 +1,0 @@
-/proj/viral_polyprotein_annotation/data/taxonomy/RefSeq_download_date_2018-06-24/taxonomy_virus.txt
