@@ -8,7 +8,7 @@ data_original = read.csv(file = csv_file, sep = '\t', header = TRUE, stringsAsFa
 
 data = data_original[data_original$has_peptide == "True" ,]
 
-data$status = ifelse(data$polyprotein_outline == "True", 'Identify polyprotein', data$non_polyprotein_explanation)
+data$status = ifelse(data$polyprotein_outline == "True", 'Polyprotein', data$non_polyprotein_explanation)
 
 data$status = ifelse(data$non_polyprotein_explanation == "Intein outline: extein includes intein", 
                      'Intein-extein\nannotation', 

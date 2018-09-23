@@ -2,7 +2,7 @@
 library(ggplot2)
 
 csv_file="results/clustering_evaluation/homogeneity_summary_stat.csv"
-coverage = 0
+coverage = 60
 inflation="2.0"
 evalue=1e-60
 
@@ -20,15 +20,15 @@ dataC = data[data$coverage == coverage,]
 caption_text = paste('\nCoverage threshold:',coverage, '%' )
 
 #Filter some of  to display less dataC
-dataC = dataC[dataC$inflation != '1.8',]
+dataC = dataC[dataC$inflation != '1.6',]
 #dataC = dataC[dataC$inflation == '2',]
 #dataC = dataC[dataC$coverage == 20,]
 dataC = dataC[dataC$evalue != 1e-100,]
-dataC = dataC[dataC$evalue != 1e-120,]
+dataC = dataC[dataC$evalue != 1e-140,]
 dataC = dataC[dataC$evalue != 1e-70,]
-dataC = dataC[dataC$evalue != 1e-40,]
-dataC = dataC[dataC$evalue != 1e-20,]
-dataC = dataC[dataC$evalue != 1e-60,]
+dataC = dataC[dataC$evalue != 1e-50,]
+dataC = dataC[dataC$evalue != 1e-30,]
+dataC = dataC[dataC$evalue != 1e-10,]
 #dataC = dataC[dataC$evalue != 1e-10,]
 
 #dataC$inflation =  paste('I=',dataC$inflation, sep='')
@@ -42,7 +42,9 @@ dataC$evalue_s = paste('Evalue', dataC$evalue)
 
 p = ggplot(dataC, aes(x=reorder(evalue, evalue), y=inflation, z=median)) +
   geom_tile(aes(fill = median))+ 
-  scale_fill_gradient2(low = "yellow", high = "blue",mid='green',  midpoint = 0.6, limit=c(min(data$median),max(data$median)))+
+  scale_fill_gradient2(low = "yellow", high = "blue",mid='green',  
+                       midpoint = min(dataC$median) + ( max(dataC$median) - min(dataC$median))/2 , 
+                       limit=c(min(dataC$median),1))+
   theme(axis.text.x = element_text(size=20),
         axis.text.y = element_text(size=20), axis.title=element_text(size=22,face="bold"),
         legend.text = element_text( size=20), legend.title =element_text(size=22,face="bold"),
@@ -50,6 +52,7 @@ p = ggplot(dataC, aes(x=reorder(evalue, evalue), y=inflation, z=median)) +
   labs( y="Inflation", fill="Homogeneity\nmedian", x="Evalue", caption = caption_text)
 
 p
+
 name=paste("homogeneity_median_heatmap_coverage_of_", coverage, sep='')
 output_file = paste(output_dir, name,".png", sep ='')
 png(filename=output_file,  width = 950, height = 950)
@@ -156,7 +159,9 @@ data_all$coverage_inflation = paste(data_all$coverage, 'I=',data_all$inflation)
 
 p = ggplot(data_all, aes(x=reorder(evalue, evalue), y=coverage_inflation, z=median)) +
   geom_tile(aes(fill = median))+ 
-  scale_fill_gradient2(low = "yellow", high = "blue",mid='green',  midpoint = 0.6, limit=c(min(data$median),max(data$median)))+
+  scale_fill_gradient2(low = "yellow", high = "blue",mid='green',  
+                       midpoint = min(data$median) + ( max(data$median) - min(data$median))/2 , 
+                       limit=c(min(data$median),max(data$median)))+
   theme(axis.text.x = element_text(size=18),
         axis.text.y = element_text(size=18), axis.title=element_text(size=22,face="bold"),
         legend.text = element_text( size=20), legend.title =element_text(size=22,face="bold"),

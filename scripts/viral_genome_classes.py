@@ -166,54 +166,6 @@ class Segment:
     def __len__(self):
         return len(self.source)
 
-    #
-    # def identifyExpectedPolyprotein(self, polyprotein_expectation, variable_polyprotein_expectation):
-    #     # print("self.polyprotein_expectation", self.polyprotein_expectation)
-    #     if self.polyprotein_expectation is not None:
-    #         # print("self.polyprotein_expectation", self.polyprotein_expectation)
-    #         polyprotein_expectation = self.polyprotein_expectation
-    #         # print("polyprotein_expectation", polyprotein_expectation)
-    #     if not polyprotein_expectation:
-    #         # print(self.polyprotein_expectation)
-    #
-    #         return
-    #     # if the segment has it own polyprotein_expectation then we take them as reference
-    #
-    #
-    #     # print(polyprotein_expectation, 'Expected polyprotein in this genome')
-    #     parental_prot =  [ prot for prot in self.cds if not prot.parental_prot] # if this prot is not included in another one
-    #     if variable_polyprotein_expectation and len(parental_prot) > 1:
-    #         parental_prot = sorted(parental_prot, key=lambda x: len(x), reverse=False)
-    #         length_difference = [len(parental_prot[i]) - len(parental_prot[i-1]) for i in range(len(parental_prot))[1:]]
-    #         index_boundary  = length_difference.index(max(length_difference))
-    #         self.parental_polyproteins = parental_prot[index_boundary+1:]
-    #
-    #
-    #     elif len(parental_prot) < polyprotein_expectation:
-    #         logging.warning('Not enough parental protein found {}/{}'.format(len(parental_prot), polyprotein_expectation))
-    #         self.parental_polyproteins = parental_prot
-    #     elif len(parental_prot) == polyprotein_expectation:
-    #         self.parental_polyproteins = parental_prot
-    #     elif len(parental_prot) > polyprotein_expectation:# rule: take the biggest protein until the number match the expectation and consider them as polyprotein
-    #         self.parental_polyproteins = sorted(parental_prot, key=lambda x: len(x), reverse=True)[:polyprotein_expectation]
-    #
-    #     self.parental_polyproteins = sorted(self.parental_polyproteins, key=lambda x: x.start, reverse=False)
-    #     #giving a positional number to the polyprotein
-    #     #if the polyprotein is included it get the positional number of the parent + a decimal number between 0.1
-    #
-    #
-    #     # self.polyproteins = []
-    #     for i, p_poly in enumerate(self.parental_polyproteins):
-    #         p_poly.polyprotein_number = i+1.0
-    #         self.polyproteins.add(p_poly)
-    #         # print(p_poly)
-    #         for j, sub_poly in enumerate(sorted(p_poly.sub_prot, key=lambda x: len(x), reverse=True)):
-    #
-    #             sub_poly.polyprotein_number = (i+1)+(j+1)/10
-    #             self.polyproteins.add(sub_poly)
-    #             # print(sub_poly)
-    #             if j > 9: logging.error('polyprotein_number is not working') # subpolyprotein > 9
-    #
 
     # def getSubProteins(self):
     #     return [p for p in self.cds if p.parental_prot ] # return protein that have parental prot
@@ -260,25 +212,27 @@ class Segment:
                         logging.info('single peptide annotaion covering the whole CDS in {}|{}'.format( self.taxon_id, cds.protein_id))
                         if 1 <= pep.start_aa(cds) <=2 : # if it starts at 1 or 2 in protein sequence
 
-                            cds.non_polyprotein_explanation = "single peptide annotaion covering the whole CDS"
+                            cds.non_polyprotein_explanation = "single peptide annotation covering the whole CDS"
                         else:
-                            cds.non_polyprotein_explanation = "single peptide annotaion covering almost the whole CDS"
+                            cds.non_polyprotein_explanation = "single peptide annotation covering almost the whole CDS"
 
             #intein/extein Identification
             if len(cds.peptides) == 2:
                 # sort by start and select the first peptide no matter if the strand is -1
                 # because in case of intein the peptide cover the begining and the end of the CDS
                 pep, pep_middle = sorted(list(cds.peptides), key=lambda x: x.start, reverse=False)
+
+                cds_start_area = [cds.realStart(), cds.realStart()+12*cds.bp_obj.strand]
+                cds_start_area.sort()
                 # to identify a protein with an intein we use the mat peptide annotation that flank the mat peptide of the intein
                 # This peptide annotation covers the begining of the CDS and the end, it has then 2 parts and its length is smaller than the CDS.
-
-                if pep.realStart() == cds.realStart() and pep.realEnd() == cds.realEnd() -3*cds.bp_obj.strand:
+                # Need to be a bit flexible here because in  the genome of 1163482 the extein strat 9 nt after the actual start..
+                if cds_start_area[0] <= pep.realStart() <= cds_start_area[1] and  cds.realEnd() -3*cds.bp_obj.strand == pep.realEnd():
                     if len(pep) < len(cds)-3 and len(pep.location.parts)> 1:
-
                         cds.polyprotein = False
                         cds.non_polyprotein_explanation = "Intein outline: extein surounds intein"
                     # in some genome the mature peptide of the intein cover all the CDS and the intein peptide a small part
-                    if  len(pep) == len(cds)-3 and  pep_middle.start in pep.location and pep_middle.end in pep.location :
+                    if  len(cds)-3 >= len(pep) >= len(cds)-12 and  pep_middle.start in pep.location and pep_middle.end in pep.location :
                         cds.polyprotein = False
                         cds.non_polyprotein_explanation = "Intein outline: extein includes intein"
 
@@ -292,6 +246,7 @@ class Segment:
                 cds.non_polyprotein_explanation += "No cleavage site identify and no explanation"
                 # print('NO CEAVAGE SITE AND NO EXPLANATION')
                 # input()
+
 
 
             # if self.non_polyprotein_explanation == "":
@@ -502,7 +457,7 @@ class Segment:
                                     site = start_cleavage_sites[tuple_position]
                                     site.update(type, pep, {poly}) # this cleavage site has been already treated
                                 else: # we create the CS object
-                                    cleavage_site = CleavageSite(location, polyproteins, pep, self.taxon_id)
+                                    cleavage_site = CleavageSite(location, polyproteins, pep, self.taxon_id, type)
                                     start_cleavage_sites[tuple_position] =  cleavage_site # we store the start and end of the CS in the dico to update it and no recreate when it is nececessary
                                     # print(cleavage_site)
                                     # print(location, len(location))
@@ -519,7 +474,7 @@ class Segment:
                                     site.update(type, pep, {poly}) # this cleavage site has been already treated
                                 else: # creation of the cleavage site object
                                     location = FeatureLocation(start, end, strand=strand)
-                                    cleavage_site = CleavageSite(location, polyproteins, pep, self.taxon_id)
+                                    cleavage_site = CleavageSite(location, polyproteins, pep, self.taxon_id, type)
                                     start_cleavage_sites[(start, end)] =  cleavage_site
                                 break # we break and check a new polyprotein
 
@@ -702,6 +657,8 @@ class Protein(Sequence):
         self.polyprotein_number = 0.0
         self.sequence = ''
 
+        self.annotation_quality = 0
+
 
         Protein.COUNTER+=1
         self.number = Protein.COUNTER
@@ -736,6 +693,12 @@ class Protein(Sequence):
         # string += '\n'.join([str(p) for p in sorted(list(self.peptides), key=lambda x: x.start, reverse=False)])
         # print('ddd')
         return string
+
+    def get_unnannotated_version(self):
+        unnannotated_version = Protein(self.bp_obj, self.segment)
+        unnannotated_version.annotation_version = self
+        return unnannotated_version
+
 
     def getSequenceAA(self, record, genetic_code):
 
@@ -807,9 +770,9 @@ class Protein(Sequence):
             return True
 
 
-    def getSequenceRecord(self,organism, header, record, genetic_code, subPosition=False):
+    def getSequenceRecord(self,organism, header, genetic_code, subPosition=False):
 
-
+        record = self.segment.record
         seq = self.getSequenceAA(record, genetic_code)
 
         # print(seq)
@@ -926,8 +889,8 @@ class Peptide(Sequence):
         self.position_prot_relative = {}
 
         #Domains attr related: key=domain value len of the domain on the peptide
-        self.fully_included_domains = {}
-        self.partially_included_domains = {}
+        self.included_domains = {'fully':[], "partially":[]}
+        self.overlapped_by_domain = {'left':[], "right":[]}
 
         Peptide.COUNTER +=1
         self.number = Peptide.COUNTER
@@ -1019,8 +982,8 @@ class UnannotatedRegion(Peptide):
         self.position_prot_relative = {}
 
         #Domains attr related: key=domain value len of the domain on the peptide
-        self.fully_included_domains = {}
-        self.partially_included_domains = {}
+        self.included_domains = {'fully':[], "partially":[]}
+        self.overlapped_by_domain = {'left':[], "right":[]}
 
         Peptide.COUNTER +=1
         self.number = Peptide.COUNTER
@@ -1033,31 +996,46 @@ class UnannotatedRegion(Peptide):
 
 class CleavageSite(Peptide):
     COUNTER = 0
-    def __init__(self, location, proteins, peptide, taxon_id):
+    def __init__(self, location, proteins, peptide, taxon_id, type):
         self.start = location.start
         self.end = location.end
         self.proteins = proteins # Set of protein
         self.peptides = {peptide}
+        #cleavage site is created from the end of a peptide (the peptide is then on the left of the cleavage site)
+        # Or it is created from the start of a peptide, the peptide is then on the right of the cleavage site.
+        side = 'right' if type == 'start' else 'left'
+        self.peptide_positions = {side:{peptide}}
+
         self.position_prot_relative = {}
         self.taxon_id = taxon_id
         self.bp_obj = SeqFeature(location,
             type="cleavage site",
             strand=location.strand,
             qualifiers={})
-        #NOTIFY PROTEINS THAT THEY hAVE A CLEAVAGE SITE
+
+        # NOTIFY PROTEINS THAT THEY hAVE A CLEAVAGE SITE
         for poly in proteins:
             poly.cleavage_sites.append(self)
 
+        # Domain annotations :
+        self.overlapping_domains = {} # dict of overlapping domains with left and right distance
+
+
         CleavageSite.COUNTER +=1
         self.number = CleavageSite.COUNTER
+
         #alignment analysis
         self.start_in_aln = None
+        self.quality = 0
+        self.neighboring_sites = set()
+        self.cds_of_aln = []
+
 
     def __eq__(x, y):
         return x.__key() == y.__key()
 
     def __str__(self):
-        return 'Cleavage site {} from {} to {} ({}nt) belongs to {}, And have been made from peptide {}'.format(self.number, self.start, self.end, len(self), [p.number for p in self.proteins], [p.number for p in self.peptides] )
+        return f'Cleavage site {self.number} from {self.start} to {self.end} ({len(self)}nt) belongs to {[p.number for p in self.proteins]}, And have been made from peptide {[p.number for p in self.peptides]}'
 
     def peptide_composition(self):
         compo = set()
@@ -1070,8 +1048,13 @@ class CleavageSite(Peptide):
 
         polyproteins = polyproteins - self.proteins # new proteins that haven't been notify of the cleavage site
 
+        #NOTIFY PROT
         for poly in polyproteins:
             poly.cleavage_sites.append(self)
+        #cleavage site is created from the end of a peptide (the peptide is then on the left of the cleavage site)
+        # Or it is created from the start of a peptide, the peptide is then on the right of the cleavage site.
+        side = 'right' if type == 'start' else 'left'
+        self.peptide_positions.setdefault(side, set()).add(pep)
         self.peptides.add(pep)
         self.proteins |= polyproteins
 
@@ -1080,6 +1063,8 @@ class CleavageSite(Peptide):
 
     def __hash__(self):
         return hash(self.__key())
+
+
 
     # def extractSeq(self, organism, taxon, record, genetic_code, window_step):
     #     #window in aa to extract
@@ -1108,15 +1093,14 @@ class CleavageSite(Peptide):
     #         # print(position_prot_relative/3)
 
 
-
 class PredictedCleavageSite(CleavageSite):
     COUNTER = 0
-    def __init__(self, start, end, protein, group, taxon_id):
+    def __init__(self, start, end, protein, group, confidence_score):
         self.start_in_prot = int(start)
         self.end_in_prot = int(end)
         self.protein = protein # Set of protein
         self.cleavage_site_group = group
-        self.taxon_id = taxon_id
+        self.confidence_score = confidence_score
         # self.bp_obj = SeqFeature(location,
         #     type="cleavage site",
         #     strand=location.strand,
@@ -1159,9 +1143,13 @@ class Match(Sequence):
 
         self.overlapping = False
         self.partially_included_in = {} # all the peptides that have a part of the domains annotation in their seq
-        self.fully_included_in = []
+        self.belongs_to_peptides = []
         self.right_overlaps_peptide = 0 # distance overlap on the right with the peptide
         self.left_overlaps_peptide = 0 # distance on the left
+        self.right_overlap = {}
+        self.left_overlap = {}
+
+        self.overlapped_cleavage_sites = {}
 
         self.non_overlapping_prot = set()
 
@@ -1214,3 +1202,52 @@ class Match(Sequence):
 
     def OverlappingDistance(self):
         return self.left_overlaps_peptide + self.right_overlaps_peptide
+
+
+    #
+    # def identifyExpectedPolyprotein(self, polyprotein_expectation, variable_polyprotein_expectation):
+    #     # print("self.polyprotein_expectation", self.polyprotein_expectation)
+    #     if self.polyprotein_expectation is not None:
+    #         # print("self.polyprotein_expectation", self.polyprotein_expectation)
+    #         polyprotein_expectation = self.polyprotein_expectation
+    #         # print("polyprotein_expectation", polyprotein_expectation)
+    #     if not polyprotein_expectation:
+    #         # print(self.polyprotein_expectation)
+    #
+    #         return
+    #     # if the segment has it own polyprotein_expectation then we take them as reference
+    #
+    #
+    #     # print(polyprotein_expectation, 'Expected polyprotein in this genome')
+    #     parental_prot =  [ prot for prot in self.cds if not prot.parental_prot] # if this prot is not included in another one
+    #     if variable_polyprotein_expectation and len(parental_prot) > 1:
+    #         parental_prot = sorted(parental_prot, key=lambda x: len(x), reverse=False)
+    #         length_difference = [len(parental_prot[i]) - len(parental_prot[i-1]) for i in range(len(parental_prot))[1:]]
+    #         index_boundary  = length_difference.index(max(length_difference))
+    #         self.parental_polyproteins = parental_prot[index_boundary+1:]
+    #
+    #
+    #     elif len(parental_prot) < polyprotein_expectation:
+    #         logging.warning('Not enough parental protein found {}/{}'.format(len(parental_prot), polyprotein_expectation))
+    #         self.parental_polyproteins = parental_prot
+    #     elif len(parental_prot) == polyprotein_expectation:
+    #         self.parental_polyproteins = parental_prot
+    #     elif len(parental_prot) > polyprotein_expectation:# rule: take the biggest protein until the number match the expectation and consider them as polyprotein
+    #         self.parental_polyproteins = sorted(parental_prot, key=lambda x: len(x), reverse=True)[:polyprotein_expectation]
+    #
+    #     self.parental_polyproteins = sorted(self.parental_polyproteins, key=lambda x: x.start, reverse=False)
+    #     #giving a positional number to the polyprotein
+    #     #if the polyprotein is included it get the positional number of the parent + a decimal number between 0.1
+    #
+    #
+    #     # self.polyproteins = []
+    #     for i, p_poly in enumerate(self.parental_polyproteins):
+    #         p_poly.polyprotein_number = i+1.0
+    #         self.polyproteins.add(p_poly)
+    #         # print(p_poly)
+    #         for j, sub_poly in enumerate(sorted(p_poly.sub_prot, key=lambda x: len(x), reverse=True)):
+    #
+    #             sub_poly.polyprotein_number = (i+1)+(j+1)/10
+    #             self.polyproteins.add(sub_poly)
+    #             # print(sub_poly)
+    #             if j > 9: logging.error('polyprotein_number is not working') # subpolyprotein > 9

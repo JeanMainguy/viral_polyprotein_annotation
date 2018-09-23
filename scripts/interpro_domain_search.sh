@@ -8,12 +8,12 @@
 #SBATCH --error=log/%x-%j.out
 
 set -e # exit if command fail
-module load clustalomega
+
 # VARIABLE EXPORTED...
-echo JVBDALK
+
 if [ -z "$interpro_dir" ];
 then
-  interpro_dir="data/interpro_results/test/"
+  interpro_dir="data/interpro_results/test"
 fi
 echo interpro_dir : $interpro_dir
 
@@ -36,8 +36,8 @@ then
 fi
 echo SLURM_JOBID : $SLURM_JOBID
 
-list_seq_id=${interpro_dir}complement_new_id_list.txt
-final_interpro_result=${interpro_dir}domains_viral_sequences.gff3
+list_seq_id=${interpro_dir}/complement_new_id_list.txt
+final_interpro_result=${interpro_dir}/domains_viral_sequences.gff3
 
 
 echo Interproscan search with $(wc -l $list_seq_id) sequences

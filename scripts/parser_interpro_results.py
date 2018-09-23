@@ -35,7 +35,7 @@ def getMatchObject(genome, gff_file):
 
                     genome.matchs.append(obj.Match(taxid, seqid,  method, start, end, score, Dbxref, Name, matchID, signature_desc))
 
-def associateMatchWithPolyprotein(genome):
+def associateDomainsWithPolyprotein(genome):
     for segment in genome.segments:
         for cds in segment.cds:
             # cds.matchs = [match for match in self.matchs if match.seqid == cds.protein_id]
@@ -45,8 +45,9 @@ def associateMatchWithPolyprotein(genome):
                     match.protein = cds
                     match.getGenomicPositions(cds.start)
                     segment.matchs.add(match)
-        getDomainOverlappingInfo(segment)
+        associateDomainsWithPeptides(segment)
         identifyDuplicatedMatch(segment)
+        getDomainsOverlappingCleavageSites(segment)
 
     #small checking to be sure that all match have of the genome has at least one prot
     for match in genome.matchs:
@@ -54,28 +55,42 @@ def associateMatchWithPolyprotein(genome):
             logging.warning(f'Domain annotation {match.name} has no protein in {genome.taxon_id}')
 
 
-def getDomainOverlappingInfo(segment):
-
-    for poly in segment.cds:
-        for pep in list(poly.peptides) + poly.unannotated_region:
+def associateDomainsWithPeptides(segment):
+    for cds in segment.cds:
+        for pep in list(cds.peptides) + cds.unannotated_region:
             if getattr(pep, 'parent_peptide', False):
                 continue
 
-            pep_start = pep.start_aa(poly)
-            pep_end   = pep.end_aa(poly)
+            pep_start = pep.start_aa(cds)
+            pep_end   = pep.end_aa(cds)
 
-            for m in poly.matchs:
+            # to which peptide the match belong to? based on the length
+            max_length_in_pep = 0
+            for m in cds.matchs:
 
                 if pep_end < m.start_in_prot  or m.end_in_prot < pep_start: # the match is not on peptide seq
                     continue
 
-                if pep_start <= m.start_in_prot and m.end_in_prot <= pep_end: # The match fall into the peptide
-                    m.fully_included_in.append(pep)
-                    pep.fully_included_domains[m] = (m.start_in_prot, m.end_in_prot)
+                elif pep_start <= m.start_in_prot and m.end_in_prot <= pep_end: # The match fall into the peptide
+                    m.belongs_to_peptides.append(pep)
+
+                    pep.included_domains['fully'].append(m)
                     continue
+
                 m.overlapping = True
-                # here 3 possible scenario
-                # The match overlap on the left, on the right or overlap oon the left and on the right
+                # here 3 possible scenarios
+                # The match overlap on the left, on the right or overlap on the left and on the right
+                # Overlap on the left
+                #             [##domain_annotation##]
+                # |++++++++++peptide++++++|
+
+                # Overlap on the right
+                #   [##domain_annotation##]
+                #                    |++++++++++peptide+++++++++++++|
+
+                #Overlap on the right and on the left:
+                #   [##########_domain_annotation_#############]
+                #          |+++++++peptide+++++++|
 
                 # We find the length of the sequence that the domain annotation share with pep
                 # to later determine which peptide share the biggest sequence with annotatuon
@@ -83,12 +98,20 @@ def getDomainOverlappingInfo(segment):
                 min_end = min(pep_end, m.end_in_prot)
 
                 m.partially_included_in[pep] = min_end - max_start +1
-                pep.partially_included_domains[m] = (max_start, min_end) # position of the domain inside the peptide
+                pep.included_domains["partially"].append(m)
 
-        for m in poly.matchs:
-            #For the match that overlap 2 or more peptide
-            if not m.overlapping:
-                continue
+                if pep_end < m.end_in_prot: # the annotation overlap on the right
+                    m.right_overlap[pep] =  m.end_in_prot - pep_end
+                    pep.overlapped_by_domain["right"].append(m)
+
+                if  m.start_in_prot < pep_start: # it overlaps on the left
+                    m.left_overlap[pep] = pep_start - m.start_in_prot
+                    pep.overlapped_by_domain["left"].append(m)
+
+
+
+        for m in (m for m in cds.matchs if m.overlapping):
+
             # to which peptide the match belong to? based on the length
             max_length = 0
             for pep, length in m.partially_included_in.items():
@@ -96,15 +119,48 @@ def getDomainOverlappingInfo(segment):
                 if length > max_length:
                     max_length = length
                     peptide = pep
-            m.fully_included_in.append(peptide)
-            pep_start = peptide.start_aa(poly)
-            pep_end   = peptide.end_aa(poly)
 
-            if  pep_end < m.end_in_prot: # the annotation overlap on the right
-                m.right_overlaps_peptide =  m.end_in_prot - pep_end
+            m.belongs_to_peptides.append(peptide)
+            m.right_overlaps_peptide = m.right_overlap.setdefault(peptide, 0)
+            m.left_overlaps_peptide = m.left_overlap.setdefault(peptide, 0)
 
-            if  m.start_in_prot < pep_start: # it overlaps on the left
-                m.left_overlaps_peptide = pep_start - m.start_in_prot
+
+def getDomainsOverlappingCleavageSites(segment):
+    """
+    cleavage site has a length of 2 aa : -------//-------
+
+    extreme cases where a domain annotation does not overlap a cleavage site:
+    when domain end == cleavage site start:
+    -----------||----
+     [#########]
+    As well as when domain start == cleavage end:
+        ---------||-----------
+                  [#########]
+    """
+    for cds in segment.cds:
+        for cs in cds.cleavage_sites:
+            for domain in cds.matchs:
+
+                if domain.start_aa(cds) <= cs.start_aa(cds) < domain.end_aa(cds) : # OVERLAPPING CASE
+                    right_distance = domain.end_aa(cds) - cs.end_aa(cds) +1
+                    left_distance =  cs.start_aa(cds) - domain.start_aa(cds) +1
+
+                    side, distance = ('right', right_distance) if right_distance <= left_distance else ('left', left_distance)
+                    # distance of overlapping is the smallest distance between left and right
+
+                    domain.overlapped_cleavage_sites[cs] = {"overlapping_side":side,  'overlapping_distance':distance }
+                    cs.overlapping_domains[domain] = { 'right_distance': domain.end_aa(cds) - cs.end_aa(cds) +1,
+                                                       "left_distance": cs.start_aa(cds) - domain.start_aa(cds) +1}
+
+
+                    # print("IS OVERLLAPED BY  ")
+                    # print('domain ', domain.start_aa(cds),  domain.end_aa(cds))
+                    # print('OVERLAPING DISTANCE ')
+                    #
+                    # print(cs.overlapping_domains[domain])
+                    # input()
+
+
 
 
 def identifyDuplicatedMatch(segment):

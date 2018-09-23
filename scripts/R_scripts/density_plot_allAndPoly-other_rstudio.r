@@ -2,11 +2,11 @@
 library(ggplot2)
 library(grid)
 
-csv_file='results/clustering_evaluation/homogeneity_results_merge/merge_Viruses_evalue1e-30_I2_coverage20_homogeneity.csv'
+csv_file='/home/user/mainguy/Documents/Data_Analysis/viral_polyprotein_annotation/data/clustering_result/Viruses/clustering_parameter_variation_homogeneity_evaluation/Viruses_evalue_1e-50coverage60_I2_homogeneity.csv'
 output_dir = 'results/clustering_evaluation/homogeneity_results_merge/'
-evalue = 1e-30 
-inflation = 2
-coverage = 20
+evalue = 1e-50
+inflation = "2"
+coverage = 60
 
 
 capation_text = '\nClustering parameters:\n'

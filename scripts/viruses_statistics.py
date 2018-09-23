@@ -11,83 +11,6 @@ from Bio.SeqFeature import SeqFeature, FeatureLocation
 from operator import attrgetter
 import viral_protein_extraction as ext
 
-def get_csv_dico(self, header):
-    # get dico info to write csv. header need to follow method or attribute of the obj
-    dico = {}
-    for attribute_name in header:
-        if hasattr(self, attribute_name):
-            attribute = getattr(self, attribute_name)
-
-            if callable(attribute):
-                dico[attribute_name] = attribute()
-            else:
-                dico[attribute_name] = attribute
-
-    return dico
-
-def getNonOverlappingCoveragePositionsPairs(positions):
-    """
-    listposition is a list of tuple (start, end) that potentially  overlaped each other
-    We want to find pair of positions that represent the coverage...
-    """
-    positions = sorted(positions, key=lambda x: x[0], reverse=False) # sort positions by start
-
-    try:
-        s, e = positions[0]
-        positions.remove((s, e))
-    except IndexError:
-        return []
-
-    non_overlapping_pairs = []
-    for new_s, new_e in positions: # positions is sorted by starts
-        if s <= new_s <= e: # the two pair are overlapping
-            e = max(new_e, e)
-        else: # the two pait are not overlapping then s and e are saved and replace by new s et new e
-            non_overlapping_pairs.append((s, e))
-            s = new_s
-            e = new_e
-
-    non_overlapping_pairs.append((s, e))
-    return non_overlapping_pairs
-
-
-def getPepStat(pep, taxon_id, taxonomy):
-    #Check if the cds has a signal peptide scheme
-    #Meaning that it has from 1 to 2 pep annotations and one of it annotation start at the 5' of the cds
-
-    # start/end position inverse if strand -1
-    polyprotein_outline = any((True for p in pep.polyproteins if p.polyprotein))
-
-    fully_included_positions = getNonOverlappingCoveragePositionsPairs(pep.fully_included_domains.values())
-    len_fully_coverage = sum((end - start+1 for start, end in fully_included_positions))
-
-    included_positions = getNonOverlappingCoveragePositionsPairs(list(pep.partially_included_domains.values())+list(pep.fully_included_domains.values()))
-    len_all_coverage = sum((end - start+1 for start, end in included_positions))
-
-
-    peptide_id = "Unknown" if 'protein_id' not in pep.bp_obj.qualifiers else pep.bp_obj.qualifiers['protein_id'][0]
-
-    #Write dict info
-    dict_info = {
-        "First_node":taxonomy[1],
-        "taxon_id":taxon_id,
-        "peptide_id":peptide_id,
-        "feature_type":pep.bp_obj.type ,
-        "strand":pep.bp_obj.strand,
-        "len":len(pep),
-        "polyprotein_outline":polyprotein_outline,
-        "nb_proteins_annotated_by_pep":len(pep.polyproteins),
-        "protein_ids":'|'.join((p.protein_id for p in pep.polyproteins)),
-        "nb_protein_annotated_by_pep":len(pep.polyproteins),
-        "taxonomy":taxonomy,
-        "cover_by_domain": True if pep.fully_included_domains else False,
-        "overlapped_by_domain": True if pep.partially_included_domains else False,
-        "length_covered_by_fully_included_domains":len_fully_coverage, # length covered by domains that are fully included
-        "length_covered_by_all_domains":len_all_coverage, # length covered by domains that are fully included or not
-        }
-
-    return dict_info
-
 def getProteinStat(cds, taxon_id, taxonomy):
     has_peptide = True if cds.peptides else False
     is_sub_protein = True if cds.parental_prot else False
@@ -134,34 +57,6 @@ def writeGenomeStat(taxon_id, nb_cds, nb_peptide, handle_stat_genome, taxonomy, 
     line = [taxon_id,str(nb_cds), str(has_polyprotein), str(nb_polyprotein),  has_peptide, str(nb_peptide), ";".join(taxonomy)]
     handle_stat_genome.write("\t".join(line)+"\n")
 
-def getDomainStat(taxon_id, domain, domain_header):
-    domain_dico = get_csv_dico(domain, domain_header)
-    # try:
-    protein_id = domain.protein.protein_id
-
-    domain_dico.update({"taxon_id":taxon_id,
-                        "protein_id":protein_id,
-                        "fully included": True if any((True for pep in domain.fully_included_in if pep.__class__.__name__ == 'Peptide' )) else False, #remove the unannotated regions
-                        'partially included':True if domain.partially_included_in else False , # here we don't mind the unannotated_regions because it overlap obligatory a peptide|peptide or a peptide|unannoated region
-                        "protein_fully_covered":True if len(domain.protein.unannotated_region) == 0 else False,
-                        "nb_peptide_in_protein":len(domain.protein.peptides) ,
-                        'nb_unannotated_part_in_protein':len(domain.protein.unannotated_region),
-                        "polyprotein_outline":domain.protein.polyprotein,
-                        "non_polyprotein_explanation":domain.protein.non_polyprotein_explanation
-                        })
-    # except AttributeError:
-    #     logging.warning(f'Domain annotation {domain.name} has no protein iD in {taxon_id} !!!')
-    #     protein_id = "error_no_protein"
-    #     domain_dico.update({"taxon_id":taxon_id,
-    #                         "protein_id":protein_id})
-    return domain_dico
-
-def getCleavageSiteStat(taxon_id, cs, cs_header):
-    domain_dico = get_csv_dico(cs, cs_header)
-
-    domain_dico.update({"taxon_id":taxon_id,
-                    "protein_id": "|".join((p.protein_id for p in cs.proteins))})
-    return domain_dico
 
 def initiateBasicStatFile(taxon, output_dir ):
     taxon = taxon.replace(',', '').replace(' ', '_')
@@ -216,7 +111,13 @@ def initiateBasicStatFile(taxon, output_dir ):
 
     handle_stat_genome = open(os.path.join(output_dir, stat_file_genome), "w")
     #taxon
-    header = ["taxon_id","nb_protein", "has_annotated_poly","nb_polyprotein",  "has_peptide", "nb_peptides", "taxonomy"]
+    header = ["taxon_id",
+                "nb_protein",
+                "has_annotated_poly",
+                "nb_polyprotein",
+                 "has_peptide",
+                 "nb_peptides",
+                  "taxonomy"]
     handle_stat_genome.write('\t'.join(header)+'\n')
 
     files_to_close = [handle_stat_genome, handle_stat_prot]
@@ -225,6 +126,7 @@ def initiateBasicStatFile(taxon, output_dir ):
                         "genome":handle_stat_genome}
 
     return writer_stat_dict, files_to_close
+
 
 if __name__ == '__main__':
 

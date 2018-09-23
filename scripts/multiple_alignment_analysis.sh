@@ -1,42 +1,44 @@
 
-set -e # exit if command fail
 
 taxonomy_file="data/taxonomy/taxonomy_virus.txt"
+gff_file='data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
 # alignment_dir="data/alignment/Viruses_1e-5_coverage90_I2/"
-alignment_dir='data/alignment/Viruses_evalue_1e-40coverage40_I2/'
-alignment_dir="data/alignment/RefSeq_download_date_2018-07-21/Viruses_evalue_1e-30coverage20_I2/"
-windows="5 10 20 30"
-echo window $windows
-touch ${alignment_dir}stat_of_all_cluster.csv
-rm ${alignment_dir}stat_of_all_cluster.csv
 
-for aln in $alignment_dir*aln;
+windows="30"
+
+
+global_alignment_dir='data/alignment/Viruses/RefSeq_download_date_2018-08-13'
+
+for specific_alignment_dir in $global_alignment_dir/*;
 do
 
-  output_file=${aln%.*}.csv
-  echo $output_file
+  # specific_alignment_dir="data/alignment/Viruses/RefSeq_download_date_2018-08-13/Viruses_evalue_1e-40coverage70_I2"
+  mkdir -p ${specific_alignment_dir}/stat/
+  echo $specific_alignment_dir
 
-  python3 scripts/multiple_alignment_analysis.py $aln $output_file $taxonomy_file "$windows"
-  cat $output_file >> ${alignment_dir}stat_of_all_cluster.csv
-done
+  stat_group_file=${specific_alignment_dir}/stat/stat_cleavage_site_groups.csv
+  alignement_stat_file=${specific_alignment_dir}/stat/stat_alignments.csv # one line per cluster
 
-mkdir -p /tmp/$USER/
-grep ^'cluster' ${alignment_dir}stat_of_all_cluster.csv | uniq > tmp
-grep -v ^'cluster' ${alignment_dir}stat_of_all_cluster.csv >> tmp
-cat tmp > ${alignment_dir}stat_of_all_cluster.csv
+  if [ ! -f $alignement_stat_file ]  ; then
+    time python3 scripts/multiple_alignment_analysis.py $specific_alignment_dir "$windows" $stat_group_file $alignement_stat_file $taxonomy_file $gff_file
+  else
+    echo file exist already $positive_negative_file
+  fi
 
-rm -rf /tmp/$USER/
+  # cross_validation_stat_file=${specific_alignment_dir}/stat/cross_validation_stat_alignments.csv # one line per cluster
+  # positive_negative_file=${specific_alignment_dir}/stat/cross_validation_positive_negative.txt # one line per cluster
+
+  #   time python3 scripts/cross_validation_alignment_analysis.py $specific_alignment_dir "$windows" $cross_validation_stat_file $positive_negative_file $taxonomy_file $gff_file
+  # else
+  #   echo file exist already $positive_negative_file
+  # fi
+
+  #Make graph from the csv file result
+  # prefix_plot_file=$(basename $specific_alignment_dir)
+  # graph_output_dir="results/figures/alignment_analysis_plot/$prefix_plot_file"
+  # Rscript scripts/R_scripts/distribution_cluster_category.r $alignement_stat_file $graph_output_dir
+  #
+  # echo DONE...
 
 
-
-#Make graph from the csv file result
-prefix_plot_file=$(basename $alignment_dir)
-graph_output_dir="results/figures/alignment_analysis_plot/$prefix_plot_file/"
-
-mkdir -p $graph_output_dir
-
-for window in $windows:
-do
-  echo $window
-  Rscript scripts/R_scripts/alignment_analysis_plot.r ${alignment_dir}stat_of_all_cluster.csv $graph_output_dir $window
 done

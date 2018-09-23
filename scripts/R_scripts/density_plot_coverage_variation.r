@@ -15,7 +15,7 @@ theme(axis.text.x = element_text(size=13),
       legend.text = element_text( size=15), legend.title = element_text(size=15, face='bold'))
 
 output_file = paste(output_dir, 'homogeneity_density_coverage.png', sep ='')
-
+p
   png(filename=output_file,  width = 1368, height = 768)
 p
 dev.off()

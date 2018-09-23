@@ -1,11 +1,12 @@
 #!/bin/bash
 #
 #SBATCH --job-name=multiple_alignement
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=8
 #SBATCH --mail-type=ALL
 #SBATCH --mem=4GB
 #SBATCH --output=log/%x-%j.out
 #SBATCH --error=log/%x-%j.out
+#SBATCH --nice=5000
 
 # set -e # exit if command fail
 
@@ -22,7 +23,6 @@ if [ -z "$alignement_dir" ];
 then
   alignement_dir=data/alignment/Viruses_evalue_1e-20coverage50_I1_8/
   mkdir -p $alignement_dir
-
 fi
 
 if [ -z "$cluster_file" ];
@@ -40,6 +40,11 @@ then
   mkdir -p ${TMPDIR}
 fi
 
+if [ -z "$var" ];
+then
+  var=0
+fi
+
 echo multiplealignment dir $alignement_dir
 echo cluster_file $cluster_file
 echo faa db $faa_db
@@ -49,7 +54,7 @@ mkdir -p $alignement_dir
 
 echo TMPDIR ${TMPDIR}
 
-var=0
+
 while read l;
 do
   cluster_faa_base=seq_cluster${var}
@@ -80,13 +85,13 @@ rm -rf ${TMPDIR}
 aln_dir_name=`basename ${alignement_dir}`
 ##Symblink of the aln dir
 echo remove symb link of the aln dir global files if exist
-if [ -L data/alignment/${aln_dir_name} ];
-then
-  echo link clustering exist
-  find  data/alignment/${aln_dir_name} -type l -delete
-else
-  echo link clustering does not exist
-fi
-echo creation of symblink
-real_path_outputdir=`realpath ${alignement_dir}`
-ln -s ${alignement_dir} data/alignment/
+# if [ -L data/alignment/${aln_dir_name} ];
+# then
+#   echo link clustering exist
+#   find  data/alignment/${aln_dir_name} -type l -delete
+# else
+#   echo link clustering does not exist
+# fi
+# echo creation of symblink
+# real_path_outputdir=`realpath ${alignement_dir}`
+# ln -s ${alignement_dir} data/alignment/

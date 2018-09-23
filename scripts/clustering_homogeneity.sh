@@ -5,11 +5,11 @@ set -e # exit if command fail
 
 taxonomy_file="data/taxonomy/${taxonomy_version}taxonomy_virus.txt"
 alternative_taxon_id_file="data/taxonomy/${taxonomy_version}heterogeneous_taxon_id_taxonomy_virus.txt"
-unclassified_term_file="data/taxonomy/unclassified_terms.txt"
+unclassified_term_file="etc/unclassified_terms.txt"
 
 cluster_dir="data/clustering_result/Viruses/clustering_parameter_variation"
-
-output_dir="data/clustering_result/Viruses/clustering_parameter_variation_homogeneity_evaluation"
+cluster_dir="data/clustering_result/Viruses/RefSeq_download_date_2018-08-13/Viruses_evalue_1e-20coverage60_I1_8.out"
+output_dir="test/result_example"
 mkdir -p $output_dir
 summary_file="results/clustering_evaluation/homogeneity_summary_stat.csv"
 tmp_summary='/tmp/$USER/homogeneity_summary_stat.csv'

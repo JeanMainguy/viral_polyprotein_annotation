@@ -7,6 +7,32 @@ import os, gzip, logging, sys
 from Bio import SeqIO
 # from Bio.SeqRecord import SeqRecord
 # from Bio.Seq import Seq
+def extract_cleavage_site_sequences(cds_list, extract_window):
+    half_window = int(extract_window/2)
+    print("kalf wind",half_window )
+    for cds in cds_list:
+        organism = cds.segment.organism
+        genetic_code = cds.genetic_code
+
+        protein_sequence = cds.getSequenceAA(cds.segment.record, genetic_code)
+
+        for cs in cds.cleavage_sites:
+            seq = protein_sequence[cs.start_aa(cds)-half_window:cs.end_aa(cds)+half_window-1]
+
+            header = f'{cds.segment.taxon_id}|{cds.protein_id}|Cleavage_site_{cs.number}'
+            description = f"from {cs.start_aa(cds)} to {cs.end_aa(cds)}"
+
+            print(f'>{header}')
+            print(seq)
+
+    input()
+
+            # seq_to_write = SeqRecord(Seq(seq, generic_protein) ,id=header, description = description)
+            #
+            # SeqIO.write(seq_to_write, handle_prot,"fasta")
+
+
+
 
 def extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_id, sp_treshold):
     nb_peptide = 0
@@ -27,7 +53,7 @@ def extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_i
             if handle_prot: # if we want to write the sequences it the writer otherwise False
                 key=str(int(len(cds)/3))
                 header = '|'.join([taxon_id, cds.protein_id, key])
-                seq_to_write = cds.getSequenceRecord(segment.organism, header, segment.record, genetic_code)
+                seq_to_write = cds.getSequenceRecord(segment.organism, header, genetic_code)
                 SeqIO.write(seq_to_write, handle_prot,"fasta")
 
 
