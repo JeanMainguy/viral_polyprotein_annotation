@@ -1,0 +1,3 @@
+#   See ftp://ftp.ncbi.nlm.nih.gov/genomes/README_assembly_summary.txt for a description of the columns in this file.
+# assembly_accession	bioproject	biosample	wgs_master	refseq_category	taxid	species_taxid	organism_name	infraspecific_name	isolate	version_status	assembly_level	release_type	genome_rep	seq_rel_date	asm_name	submitter	gbrs_paired_asm	paired_asm_comp	ftp_path	excluded_from_refseq	relation_to_type_material
+GCF_000921735.1	PRJNA485481			na	11023	11023	Middelburg virus		ArB-8422	latest	Complete Genome	Major	Full	2014/09/05	ViralProj261261	NCBI RefSeq Genome Project	GCA_000921735.1	identical	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/921/735/GCF_000921735.1_ViralProj261261		ICTV species exemplar

@@ -1,0 +1,3 @@
+#   See ftp://ftp.ncbi.nlm.nih.gov/genomes/README_assembly_summary.txt for a description of the columns in this file.
+# assembly_accession	bioproject	biosample	wgs_master	refseq_category	taxid	species_taxid	organism_name	infraspecific_name	isolate	version_status	assembly_level	release_type	genome_rep	seq_rel_date	asm_name	submitter	gbrs_paired_asm	paired_asm_comp	ftp_path	excluded_from_refseq	relation_to_type_material
+GCF_000896835.1	PRJNA485481			na	48543	48543	Whataroa virus			latest	Complete Genome	Major	Full	2011/07/01	ViralProj88119	NCBI	GCA_000896835.1	identical	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/896/835/GCF_000896835.1_ViralProj88119		ICTV species exemplar
