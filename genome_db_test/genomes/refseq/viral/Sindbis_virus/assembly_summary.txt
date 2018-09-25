@@ -1,3 +1,0 @@
-#   See ftp://ftp.ncbi.nlm.nih.gov/genomes/README_assembly_summary.txt for a description of the columns in this file.
-# assembly_accession	bioproject	biosample	wgs_master	refseq_category	taxid	species_taxid	organism_name	infraspecific_name	isolate	version_status	assembly_level	release_type	genome_rep	seq_rel_date	asm_name	submitter	gbrs_paired_asm	paired_asm_comp	ftp_path	excluded_from_refseq	relation_to_type_material
-GCF_000860545.1	PRJNA485481			na	11034	11034	Sindbis virus			latest	Complete Genome	Major	Full	1993/08/03	ViralProj15316	n/a	GCA_000860545.1	identical	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/860/545/GCF_000860545.1_ViralProj15316		ICTV species exemplar

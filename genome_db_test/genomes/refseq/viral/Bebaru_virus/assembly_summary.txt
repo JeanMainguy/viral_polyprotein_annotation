@@ -1,3 +1,0 @@
-#   See ftp://ftp.ncbi.nlm.nih.gov/genomes/README_assembly_summary.txt for a description of the columns in this file.
-# assembly_accession	bioproject	biosample	wgs_master	refseq_category	taxid	species_taxid	organism_name	infraspecific_name	isolate	version_status	assembly_level	release_type	genome_rep	seq_rel_date	asm_name	submitter	gbrs_paired_asm	paired_asm_comp	ftp_path	excluded_from_refseq	relation_to_type_material
-GCF_000894395.1	PRJNA485481			na	59305	59305	Bebaru virus			latest	Complete Genome	Major	Full	2011/07/01	ViralProj88121	NCBI	GCA_000894395.1	identical	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/894/395/GCF_000894395.1_ViralProj88121		ICTV species exemplar
