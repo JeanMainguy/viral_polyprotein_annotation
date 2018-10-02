@@ -226,44 +226,33 @@ echo "## ALIGNMENTS"
 for cluster_file in ${cluster_to_aln[@]};
 do
   var=0
-
-
-  name_dir=$(basename $cluster_file)
-  name_dir=${name_dir%.*}
   alignement_dir=$(dirname $cluster_file)
-  nb_aln_file=$(ls -a ${alignement_dir}/*.aln | wc -l)
-
-  # if there is already aln file in alignement_dir we don't recompute alignment step
-  if [ ${nb_aln_file} == '0' ] || [ "$force" == true ]; then
-      
-      while read l;
-      do
-        echo alignment of cluster $var
-        cluster_faa_base=seq_cluster${var}
-
-        if [ ! -f ${alignement_dir}${cluster_faa_base}.aln ] || [ "$force" == true ]; then
-
-          echo $l | sed -e 'y/ /\n/' > ${TMPDIR}/ids.txt #replace tab by newline
-
-          # command from http://bioinformatics.cvr.ac.uk/blog/short-command-lines-for-manipulation-fastq-and-fasta-sequence-files/
-          #extract faa seq in a new file
-          perl -ne 'if(/^>(\S+)/){$c=$i{$1}}$c?print:chomp;$i{$_}=1 if @ARGV' ${TMPDIR}/ids.txt $faa_db > ${TMPDIR}/$cluster_faa_base.faa
-
-          output=${TMPDIR}/${cluster_faa_base}.aln
-          echo ALIGNEMENT of $output
-          clustalo -i ${TMPDIR}/$cluster_faa_base.faa -o $output --outfmt=clu --threads=4
-
-        else
-          echo the file ${alignement_dir}${cluster_faa_base}.aln  exist already. We dont recompute the clustering
-        fi
-        mv $output ${alignement_dir}
-        ((var++)) #increment var to know which cluster we are
 
 
-      done < $cluster_file
+  while read l;
+  do
+    echo alignment of cluster $var
+    cluster_faa_base=seq_cluster${var}
 
-   else
-     echo the alignement_dir already contain aln file $clusters_with_polyprotein. no need to recompute this step
-   fi
+    if [ ! -f ${alignement_dir}${cluster_faa_base}.aln ] || [ "$force" == true ]; then
+
+      echo $l | sed -e 'y/ /\n/' > ${TMPDIR}/ids.txt #replace tab by newline
+
+      # command from http://bioinformatics.cvr.ac.uk/blog/short-command-lines-for-manipulation-fastq-and-fasta-sequence-files/
+      #extract faa seq in a new file
+      perl -ne 'if(/^>(\S+)/){$c=$i{$1}}$c?print:chomp;$i{$_}=1 if @ARGV' ${TMPDIR}/ids.txt $faa_db > ${TMPDIR}/$cluster_faa_base.faa
+
+      output=${TMPDIR}/${cluster_faa_base}.aln
+      echo ALIGNEMENT of $output
+      clustalo -i ${TMPDIR}/$cluster_faa_base.faa -o $output --outfmt=clu --threads=4
+
+    else
+      echo the file ${alignement_dir}${cluster_faa_base}.aln  exist already. We dont recompute the alignment
+    fi
+    mv $output ${alignement_dir}
+    ((var++)) #increment var to know which cluster we are
+
+  done < $cluster_file
+
 
 done
