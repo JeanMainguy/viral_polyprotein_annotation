@@ -1,0 +1,1122 @@
+cluster_id	nb_of_protein	number_of_genome	number_of_genome_in_valid_branches	unclassified_genome	nb_polyprotein	number_leaves_in_subtree	homogeneity	shared_taxonomy	valid_branches	inflation	coverage	evalue	unclassified_cluster	first_node
+0	576	494	487	0	1	3043	0.16003943476832075	Viruses	Satellites|ssRNA viruses|ssDNA viruses|Genomoviridae	2	20	1e-05	False	Viruses
+3	354	350	349	0	1	2746	0.1270939548434086	Viruses	ssRNA viruses|ssDNA viruses	2	20	1e-05	False	Viruses
+4	351	347	346	0	1	2746	0.1260014566642389	Viruses	ssRNA viruses|ssDNA viruses	2	20	1e-05	False	Viruses
+18	235	235	29	0	1	162	0.17901234567901234	Viruses	Marnaviridae|Labyrnavirus (unassigned Picornavirales)|Picornaviridae|Dicistroviridae|Bacillarnavirus (unassigned Picornavirales)	2	20	1e-05	False	Viruses
+19	234	170	128	0	5	2109	0.06069227121858701	Viruses	ssRNA viruses|dsRNA viruses	2	20	1e-05	False	Viruses
+21	231	231	61	0	24	80	0.7625	Viruses	Secoviridae|Dicistroviridae	2	20	1e-05	False	Viruses
+22	229	164	59	0	29	72	0.8194444444444444	Viruses	Sobemovirus|Luteoviridae|Polemovirus|Barnaviridae	2	20	1e-05	False	Viruses
+73	155	154	149	0	4	150	0.9933333333333333	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Alphaflexiviridae|Gammaflexiviridae|Betaflexiviridae	2	20	1e-05	False	ssRNA viruses
+78	150	149	137	0	122	137	1.0	Viruses	Potyvirus|Bymovirus|Poacevirus|Tritimovirus|Macluravirus|Rymovirus|Ipomovirus|Brambyvirus	2	20	1e-05	False	Viruses
+81	145	137	102	0	85	103	0.9902912621359223	Viruses	Passerivirus|Hunnivirus|Teschovirus|Aquamavirus|Torchivirus|Megrivirus|Mischivirus|Sapelovirus|Kobuvirus|Aphthovirus|Cosavirus|Kunsagivirus|Rosavirus|Pasivirus|Erbovirus|Mosavirus|Sicinivirus|Senecavirus|Cardiovirus|Oscivirus|Dicipivirus|Avisivirus|Parechovirus|Potamipivirus|Tremovirus|Enterovirus|Sakobuvirus|Gallivirus|Rabovirus|Limnipivirus|Avihepatovirus|Hepatovirus	2	20	1e-05	False	Viruses
+143	110	89	40	0	68	41	0.975609756097561	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Rio Bravo virus group|Yellow fever virus group|Seaborne tick-borne virus group|tick-borne encephalitis virus group|Japanese encephalitis virus group|Dengue virus group|mosquito-borne viruses|Kokobera virus group|Ntaya virus group|Modoc virus group	2	20	1e-05	False	ssRNA viruses
+249	86	48	30	0	1	30	1.0	Viruses	Avastrovirus|Mamastrovirus	2	20	1e-05	False	Viruses
+272	83	82	35	0	2	164	0.21341463414634146	Viruses	Picornaviridae|Iflaviridae	2	20	1e-05	False	Viruses
+287	81	79	76	0	1	1975	0.03848101265822785	Viruses	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-05	False	Viruses
+367	73	70	70	0	1	135	0.5185185185185185	Viruses;Retro-transcribing viruses	Caulimoviridae|Retroviridae	2	20	1e-05	False	Retro-transcribing viruses
+388	71	50	38	0	14	38	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Coronaviridae;Coronavirinae	Gammacoronavirus|Alphacoronavirus|Betacoronavirus	2	20	1e-05	False	ssRNA viruses
+768	47	47	30	0	1	30	1.0	Viruses	Avastrovirus|Mamastrovirus	2	20	1e-05	False	Viruses
+892	43	24	14	0	34	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-05	False	ssRNA viruses
+1000	40	40	34	0	5	34	1.0	Viruses	Maculavirus|Marafivirus|Tymovirus	2	20	1e-05	False	Viruses
+1104	38	16	16	0	7	17	0.9411764705882353	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae	Arteriviridae	2	20	1e-05	False	ssRNA viruses
+1130	37	34	32	0	1	1626	0.01968019680196802	Viruses	Siphoviridae|Myoviridae	2	20	1e-05	False	Viruses
+1196	35	35	30	0	14	30	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	Sapovirus|St-Valerien swine virus|Vesivirus|Norovirus|Lagovirus|Nebovirus	2	20	1e-05	False	ssRNA viruses
+1197	35	16	16	0	6	26	0.6153846153846154	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Deltaretrovirus|Alpharetrovirus	2	20	1e-05	False	Retro-transcribing viruses
+1198	35	35	30	0	2	65	0.46153846153846156	Viruses	Phenuiviridae|Peribunyaviridae	2	20	1e-05	False	Viruses
+1243	34	24	14	0	20	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-05	False	ssRNA viruses
+1285	33	24	23	0	12	61	0.3770491803278688	Viruses;Retro-transcribing viruses;Retroviridae	Orthoretrovirinae|Spumaretrovirinae	2	20	1e-05	False	Retro-transcribing viruses
+1294	33	33	32	0	1	32	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Arenaviridae	Arenavirus (unclassified Arenaviridae)|Mammarenavirus	2	20	1e-05	False	ssRNA viruses
+1400	31	26	22	0	16	36	0.6111111111111112	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Ampelovirus|Velarivirus|Closterovirus|Crinivirus	2	20	1e-05	False	ssRNA viruses
+1680	26	26	25	0	22	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Pegivirus|Hepacivirus	2	20	1e-05	False	ssRNA viruses
+1681	26	26	7	0	1	39	0.1794871794871795	Viruses	Sfi21dt1virus|Lambdavirus|Wbetavirus	2	20	1e-05	False	Viruses
+1874	24	24	24	0	1	24	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Hantaviridae;Orthohantavirus	Orthohantavirus	2	20	1e-05	False	ssRNA viruses
+2822	18	18	18	0	10	18	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-05	False	ssRNA viruses
+3282	16	8	8	0	8	8	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-05	False	Retro-transcribing viruses
+3874	14	10	9	0	2	9	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus	Feline lentivirus group|Equine lentivirus group|Ovine/caprine lentivirus group|Primate lentivirus group|Bovine lentivirus group	2	20	1e-05	False	Retro-transcribing viruses
+3935	14	14	14	0	1	50	0.28	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Nairoviridae|Peribunyaviridae	2	20	1e-05	False	ssRNA viruses
+4139	13	13	9	0	2	76	0.11842105263157894	Viruses	Hepeviridae|Togaviridae|Astroviridae	2	20	1e-05	False	Viruses
+4163	13	13	13	0	8	18	0.7222222222222222	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-05	False	ssRNA viruses
+4548	12	12	12	0	5	12	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Pestivirus	Pestivirus	2	20	1e-05	False	ssRNA viruses
+4583	12	9	8	0	1	8	1.0	Viruses;Retro-transcribing viruses;Hepadnaviridae	Orthohepadnavirus	2	20	1e-05	False	Retro-transcribing viruses
+5035	11	11	10	0	3	10	1.0	Viruses	Vesivirus	2	20	1e-05	False	Viruses
+5037	11	9	9	0	8	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus	Comovirus	2	20	1e-05	False	ssRNA viruses
+5771	10	10	10	0	1	1975	0.005063291139240506	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-05	False	dsDNA viruses, no RNA stage
+6284	9	8	8	0	1	9	0.8888888888888888	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus	Atadenovirus	2	20	1e-05	False	dsDNA viruses, no RNA stage
+6453	9	9	3	0	3	3	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus	Murine leukemia virus	2	20	1e-05	False	Retro-transcribing viruses
+6856	8	8	7	0	2	27	0.25925925925925924	Viruses;Retro-transcribing viruses;Retroviridae	Betaretrovirus|Gammaretrovirus	2	20	1e-05	False	Retro-transcribing viruses
+6953	8	8	5	0	2	5	1.0	Viruses	Alphanodavirus	2	20	1e-05	False	Viruses
+6955	8	8	7	0	1	7	1.0	Viruses;ssDNA viruses;Parvoviridae;Densovirinae	Iteradensovirus	2	20	1e-05	False	ssDNA viruses
+6956	8	8	7	0	2	7	1.0	Viruses;dsRNA viruses;Birnaviridae	Entomobirnavirus|Avibirnavirus|Blosnavirus|Aquabirnavirus	2	20	1e-05	False	dsRNA viruses
+7015	8	8	8	0	7	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-05	False	ssRNA viruses
+7233	8	7	7	0	1	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-05	False	Retro-transcribing viruses
+7234	8	8	8	0	6	8	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Orthomyxoviridae	Influenzavirus B|Influenzavirus A	2	20	1e-05	False	ssRNA viruses
+7715	7	6	6	0	4	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus	Alpharetrovirus	2	20	1e-05	False	Retro-transcribing viruses
+7998	7	7	7	0	3	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-05	False	Retro-transcribing viruses
+9254	6	5	5	0	2	18	0.2777777777777778	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-05	False	ssRNA viruses
+9402	6	6	5	0	2	10	0.5	Viruses;Retro-transcribing viruses;Retroviridae	Betaretrovirus	2	20	1e-05	False	Retro-transcribing viruses
+9728	6	6	3	0	1	1335	0.0022471910112359553	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-05	False	Viruses
+11128	5	5	4	0	1	8	0.5	Viruses;Retro-transcribing viruses;Retroviridae	Alpharetrovirus	2	20	1e-05	False	Retro-transcribing viruses
+11331	5	5	5	0	4	5	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-05	False	ssRNA viruses
+11344	5	5	1	0	3	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Sadwavirus	2	20	1e-05	False	ssRNA viruses
+11960	5	5	5	0	1	5	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Alphatetraviridae|Permutotetraviridae|Carmotetraviridae	2	20	1e-05	False	ssRNA viruses
+12081	5	5	5	0	1	8	0.625	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-05	False	Retro-transcribing viruses
+13698	4	4	4	0	2	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-05	False	ssRNA viruses
+13969	4	4	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus	Fabavirus	2	20	1e-05	False	ssRNA viruses
+14142	4	4	4	0	1	4	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-05	False	Retro-transcribing viruses
+18039	3	3	2	0	1	3	0.6666666666666666	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Phic31virus	2	20	1e-05	False	dsDNA viruses, no RNA stage
+18334	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Benyviridae;Benyvirus	Benyvirus	2	20	1e-05	False	ssRNA viruses
+42712	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Phycodnaviridae;Coccolithovirus	Coccolithovirus	2	20	1e-05	False	dsDNA viruses, no RNA stage
+56651	1	1	1	0	1	1	1.0	Viruses;dsRNA viruses;Reoviridae;Spinareovirinae;Oryzavirus	Oryzavirus	2	20	1e-05	False	dsRNA viruses
+56757	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-05	False	ssRNA viruses
+59001	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-05	False	ssRNA viruses
+70243	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Plasmaviridae;Plasmavirus	Plasmavirus	2	20	1e-05	False	dsDNA viruses, no RNA stage
+11	150	149	137	0	122	137	1.0	Viruses	Potyvirus|Bymovirus|Poacevirus|Tritimovirus|Macluravirus|Rymovirus|Ipomovirus|Brambyvirus	2	20	1e-100	False	Viruses
+28	102	81	40	0	67	41	0.975609756097561	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae	Rio Bravo virus group|Yellow fever virus group|Seaborne tick-borne virus group|tick-borne encephalitis virus group|Japanese encephalitis virus group|Dengue virus group|mosquito-borne viruses|Kokobera virus group|Ntaya virus group|Modoc virus group	2	20	1e-100	False	ssRNA viruses
+48	93	93	87	0	4	87	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Tymovirales;Betaflexiviridae	Quinvirinae|Trivirinae	2	20	1e-100	False	ssRNA viruses
+95	71	50	38	0	14	38	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Coronaviridae;Coronavirinae	Gammacoronavirus|Alphacoronavirus|Betacoronavirus	2	20	1e-100	False	ssRNA viruses
+113	65	59	48	0	48	49	0.9795918367346939	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales	Hunnivirus|Aphthovirus|Teschovirus|Cosavirus|Enterovirus|Torchivirus|Rabovirus|Mischivirus|Erbovirus|Mosavirus|Sapelovirus|Senecavirus|Cardiovirus	2	20	1e-100	False	ssRNA viruses
+114	65	39	28	0	1	30	0.9333333333333333	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Avastrovirus|Mamastrovirus	2	20	1e-100	False	ssRNA viruses
+262	43	24	14	0	34	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-100	False	ssRNA viruses
+294	40	39	31	0	20	31	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales	Passerivirus|Oscivirus|Rosavirus|Sakobuvirus|Gallivirus|Megrivirus|Dicipivirus|Kobuvirus|Sicinivirus	2	20	1e-100	False	ssRNA viruses
+296	40	40	34	0	5	34	1.0	Viruses	Maculavirus|Marafivirus|Tymovirus	2	20	1e-100	False	Viruses
+335	38	16	16	0	7	17	0.9411764705882353	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae	Arteriviridae	2	20	1e-100	False	ssRNA viruses
+346	36	34	34	0	1	1429	0.023792862141357594	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Podoviridae|Siphoviridae	2	20	1e-100	False	dsDNA viruses, no RNA stage
+369	34	24	14	0	20	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-100	False	ssRNA viruses
+380	33	33	32	0	1	32	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Arenaviridae	Arenavirus (unclassified Arenaviridae)|Mammarenavirus	2	20	1e-100	False	ssRNA viruses
+404	32	18	18	0	25	19	0.9473684210526315	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Sobemovirus	Sobemovirus	2	20	1e-100	False	ssRNA viruses
+426	31	31	31	0	19	31	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae	Nepovirus|Fabavirus|Comovirus	2	20	1e-100	False	ssRNA viruses
+553	26	26	23	0	8	23	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	Sapovirus|Lagovirus|Vesivirus|Nebovirus	2	20	1e-100	False	ssRNA viruses
+554	26	26	25	0	22	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Pegivirus|Hepacivirus	2	20	1e-100	False	ssRNA viruses
+597	24	16	15	0	12	18	0.8333333333333334	Viruses;Retro-transcribing viruses;Retroviridae	Epsilonretrovirus|Gammaretrovirus	2	20	1e-100	False	Retro-transcribing viruses
+615	24	24	24	0	1	24	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Hantaviridae;Orthohantavirus	Orthohantavirus	2	20	1e-100	False	ssRNA viruses
+674	22	22	15	0	12	15	1.0	Viruses	Parechovirus|Potamipivirus|Aquamavirus|Kunsagivirus|Limnipivirus|Avihepatovirus|Pasivirus|Avisivirus	2	20	1e-100	False	Viruses
+675	22	15	15	0	13	15	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Velarivirus|Crinivirus	2	20	1e-100	False	ssRNA viruses
+1089	17	8	8	0	8	8	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-100	False	Retro-transcribing viruses
+1221	16	16	8	0	1	1335	0.00599250936329588	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-100	False	Viruses
+1446	14	12	12	0	5	18	0.6666666666666666	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Alpharetrovirus	2	20	1e-100	False	Retro-transcribing viruses
+1452	14	10	9	0	2	9	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus	Feline lentivirus group|Equine lentivirus group|Ovine/caprine lentivirus group|Primate lentivirus group|Bovine lentivirus group	2	20	1e-100	False	Retro-transcribing viruses
+1613	13	13	13	0	1	1975	0.006582278481012658	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-100	False	dsDNA viruses, no RNA stage
+1763	12	12	12	0	5	12	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Pestivirus	Pestivirus	2	20	1e-100	False	ssRNA viruses
+1821	12	12	12	0	1	50	0.24	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Nairoviridae|Peribunyaviridae	2	20	1e-100	False	ssRNA viruses
+1956	11	9	9	0	1	37	0.24324324324324326	Viruses;ssDNA viruses;Geminiviridae;Mastrevirus	Mastrevirus	2	20	1e-100	False	ssDNA viruses
+1980	11	9	9	0	8	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus	Comovirus	2	20	1e-100	False	ssRNA viruses
+1982	11	11	10	0	6	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Closterovirus	2	20	1e-100	False	ssRNA viruses
+2225	10	10	10	0	3	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Vesivirus	Vesivirus	2	20	1e-100	False	ssRNA viruses
+2481	9	8	8	0	5	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae	Tremovirus|Hepatovirus	2	20	1e-100	False	ssRNA viruses
+2498	9	9	8	0	1	25	0.32	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Mamastrovirus	2	20	1e-100	False	ssRNA viruses
+2522	9	8	8	0	2	10	0.8	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-100	False	Retro-transcribing viruses
+2541	9	9	3	0	3	3	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus	Murine leukemia virus	2	20	1e-100	False	Retro-transcribing viruses
+2758	8	8	8	0	4	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-100	False	ssRNA viruses
+2759	8	8	8	0	7	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-100	False	ssRNA viruses
+2834	8	7	7	0	1	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-100	False	Retro-transcribing viruses
+2841	8	6	6	0	1	1080	0.005555555555555556	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-100	False	dsDNA viruses, no RNA stage
+3158	7	7	4	0	1	5	0.8	Viruses	Aparavirus	2	20	1e-100	False	Viruses
+3236	7	7	7	0	2	27	0.25925925925925924	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Gammaretrovirus	2	20	1e-100	False	Retro-transcribing viruses
+3381	7	7	7	0	1	7	1.0	Viruses;ssDNA viruses;Parvoviridae;Densovirinae;Iteradensovirus	Iteradensovirus	2	20	1e-100	False	ssDNA viruses
+3462	7	7	7	0	6	7	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Orthomyxoviridae;Influenzavirus A	Influenzavirus A	2	20	1e-100	False	ssRNA viruses
+3846	6	6	5	0	3	8	0.625	Viruses;Retro-transcribing viruses;Retroviridae	Alpharetrovirus	2	20	1e-100	False	Retro-transcribing viruses
+3877	6	6	4	0	1	5	0.8	Viruses	Alphanodavirus	2	20	1e-100	False	Viruses
+3878	6	6	6	0	1	6	1.0	Viruses;dsRNA viruses;Birnaviridae	Avibirnavirus|Blosnavirus|Aquabirnavirus	2	20	1e-100	False	dsRNA viruses
+3883	6	6	6	0	2	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-100	False	Retro-transcribing viruses
+4044	6	6	3	0	1	1335	0.0022471910112359553	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-100	False	Viruses
+4288	6	6	6	0	6	6	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Norovirus	Norovirus	2	20	1e-100	False	ssRNA viruses
+4655	5	5	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Cheravirus	2	20	1e-100	False	ssRNA viruses
+4708	5	5	5	0	4	18	0.2777777777777778	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-100	False	ssRNA viruses
+4712	5	5	1	0	4	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Sadwavirus	2	20	1e-100	False	ssRNA viruses
+5870	4	3	3	0	1	18	0.16666666666666666	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-100	False	ssRNA viruses
+5977	4	4	4	0	1	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Hepeviridae	Orthohepevirus|Piscihepevirus	2	20	1e-100	False	ssRNA viruses
+5986	4	4	4	0	2	18	0.2222222222222222	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-100	False	ssRNA viruses
+6022	4	4	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus	Fabavirus	2	20	1e-100	False	ssRNA viruses
+6540	4	4	4	0	1	4	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-100	False	Retro-transcribing viruses
+8162	3	3	3	0	2	4	0.75	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-100	False	ssRNA viruses
+8183	3	3	3	0	1	8	0.375	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus	Alpharetrovirus	2	20	1e-100	False	Retro-transcribing viruses
+8283	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Benyviridae;Benyvirus	Benyvirus	2	20	1e-100	False	ssRNA viruses
+8286	3	3	3	0	3	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Waikavirus	Waikavirus	2	20	1e-100	False	ssRNA viruses
+8288	3	3	3	0	1	65	0.046153846153846156	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Phenuiviridae|Peribunyaviridae	2	20	1e-100	False	ssRNA viruses
+8867	3	3	3	0	1	10	0.3	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-100	False	Retro-transcribing viruses
+9214	3	3	2	0	2	21	0.09523809523809523	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae	Iflavirus	2	20	1e-100	False	ssRNA viruses
+10850	3	3	3	0	1	24	0.125	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Phenuiviridae;Phlebovirus	Phlebovirus	2	20	1e-100	False	ssRNA viruses
+11648	3	3	2	0	1	3	0.6666666666666666	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Phic31virus	2	20	1e-100	False	dsDNA viruses, no RNA stage
+12230	2	2	2	0	1	5	0.4	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-100	False	ssRNA viruses
+12232	2	2	2	0	2	5	0.4	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-100	False	ssRNA viruses
+12248	2	2	2	0	1	53	0.03773584905660377	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-100	False	ssRNA viruses
+12250	2	1	1	0	1	40	0.025	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Closteroviridae	2	20	1e-100	False	ssRNA viruses
+12412	2	2	2	0	1	18	0.1111111111111111	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-100	False	ssRNA viruses
+12425	2	2	2	0	1	53	0.03773584905660377	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-100	False	ssRNA viruses
+12484	2	2	2	0	1	135	0.014814814814814815	Viruses;Retro-transcribing viruses	Caulimoviridae|Retroviridae	2	20	1e-100	False	Retro-transcribing viruses
+12828	2	2	2	0	1	19	0.10526315789473684	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Sobemovirus	Sobemovirus	2	20	1e-100	False	ssRNA viruses
+13394	2	2	1	0	1	1	1.0	Viruses;dsRNA viruses;Birnaviridae	Entomobirnavirus	2	20	1e-100	False	dsRNA viruses
+13527	2	2	2	0	1	8	0.25	Viruses;Retro-transcribing viruses;Hepadnaviridae;Orthohepadnavirus	Orthohepadnavirus	2	20	1e-100	False	Retro-transcribing viruses
+13784	2	2	2	0	2	19	0.10526315789473684	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Sobemovirus	Sobemovirus	2	20	1e-100	False	ssRNA viruses
+15495	2	2	2	0	1	18	0.1111111111111111	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-100	False	ssRNA viruses
+16390	2	2	2	0	1	34	0.058823529411764705	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Luteoviridae;Polerovirus	Polerovirus	2	20	1e-100	False	ssRNA viruses
+24099	1	1	1	0	1	8	0.125	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-100	False	Retro-transcribing viruses
+26843	1	1	1	0	1	1080	0.000925925925925926	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-100	False	dsDNA viruses, no RNA stage
+31479	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Permutotetraviridae;Alphapermutotetravirus	Alphapermutotetravirus	2	20	1e-100	False	ssRNA viruses
+37733	1	1	1	0	1	10	0.1	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-100	False	Retro-transcribing viruses
+39119	1	1	1	0	1	5	0.2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-100	False	ssRNA viruses
+41446	1	1	1	0	1	5	0.2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nodaviridae;Alphanodavirus	Alphanodavirus	2	20	1e-100	False	ssRNA viruses
+41449	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sequivirus	Sequivirus	2	20	1e-100	False	ssRNA viruses
+42899	1	1	1	0	1	8	0.125	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-100	False	Retro-transcribing viruses
+45581	1	1	1	0	1	18	0.05555555555555555	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-100	False	ssRNA viruses
+46394	1	1	1	0	1	1	1.0	Viruses;dsRNA viruses;Reoviridae;Spinareovirinae;Oryzavirus	Oryzavirus	2	20	1e-100	False	dsRNA viruses
+46517	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-100	False	ssRNA viruses
+46518	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-100	False	ssRNA viruses
+47052	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sadwavirus	Sadwavirus	2	20	1e-100	False	ssRNA viruses
+48865	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-100	False	ssRNA viruses
+50933	1	1	1	0	1	72	0.013888888888888888	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Flavivirus	Flavivirus	2	20	1e-100	False	ssRNA viruses
+64098	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Plasmaviridae;Plasmavirus	Plasmavirus	2	20	1e-100	False	dsDNA viruses, no RNA stage
+67284	1	1	1	0	1	9	0.1111111111111111	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus	Atadenovirus	2	20	1e-100	False	dsDNA viruses, no RNA stage
+0	577	495	488	0	1	3043	0.1603680578376602	Viruses	Satellites|ssRNA viruses|ssDNA viruses|Genomoviridae	2	20	1e-10	False	Viruses
+3	354	350	349	0	1	2746	0.1270939548434086	Viruses	ssRNA viruses|ssDNA viruses	2	20	1e-10	False	Viruses
+4	347	343	342	0	1	2746	0.12454479242534595	Viruses	ssRNA viruses|ssDNA viruses	2	20	1e-10	False	Viruses
+15	233	232	61	0	23	210	0.2904761904761905	Viruses	Secoviridae|Dicistroviridae|Picornaviridae	2	20	1e-10	False	Viruses
+17	232	168	127	0	5	2109	0.0602181128496918	Viruses	ssRNA viruses|dsRNA viruses	2	20	1e-10	False	Viruses
+23	211	211	29	0	1	162	0.17901234567901234	Viruses	Marnaviridae|Labyrnavirus (unassigned Picornavirales)|Picornaviridae|Dicistroviridae|Bacillarnavirus (unassigned Picornavirales)	2	20	1e-10	False	Viruses
+67	155	154	149	0	4	150	0.9933333333333333	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Alphaflexiviridae|Gammaflexiviridae|Betaflexiviridae	2	20	1e-10	False	ssRNA viruses
+74	150	149	137	0	122	137	1.0	Viruses	Potyvirus|Bymovirus|Poacevirus|Tritimovirus|Macluravirus|Rymovirus|Ipomovirus|Brambyvirus	2	20	1e-10	False	Viruses
+76	145	137	102	0	85	103	0.9902912621359223	Viruses	Passerivirus|Hunnivirus|Teschovirus|Aquamavirus|Torchivirus|Megrivirus|Mischivirus|Sapelovirus|Kobuvirus|Aphthovirus|Cosavirus|Kunsagivirus|Rosavirus|Pasivirus|Erbovirus|Mosavirus|Sicinivirus|Senecavirus|Cardiovirus|Oscivirus|Dicipivirus|Avisivirus|Parechovirus|Potamipivirus|Tremovirus|Enterovirus|Sakobuvirus|Gallivirus|Rabovirus|Limnipivirus|Avihepatovirus|Hepatovirus	2	20	1e-10	False	Viruses
+90	133	71	58	0	29	71	0.8169014084507042	Viruses	Sobemovirus|Luteoviridae|Polemovirus	2	20	1e-10	False	Viruses
+135	110	89	40	0	68	41	0.975609756097561	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Rio Bravo virus group|Yellow fever virus group|Seaborne tick-borne virus group|tick-borne encephalitis virus group|Japanese encephalitis virus group|Dengue virus group|mosquito-borne viruses|Kokobera virus group|Ntaya virus group|Modoc virus group	2	20	1e-10	False	ssRNA viruses
+269	81	80	21	0	2	21	1.0	Viruses	Iflavirus	2	20	1e-10	False	Viruses
+270	81	44	30	0	1	30	1.0	Viruses	Avastrovirus|Mamastrovirus	2	20	1e-10	False	Viruses
+273	81	79	76	0	1	1975	0.03848101265822785	Viruses	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-10	False	Viruses
+348	73	70	70	0	1	135	0.5185185185185185	Viruses;Retro-transcribing viruses	Caulimoviridae|Retroviridae	2	20	1e-10	False	Retro-transcribing viruses
+372	71	50	38	0	14	38	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Coronaviridae;Coronavirinae	Gammacoronavirus|Alphacoronavirus|Betacoronavirus	2	20	1e-10	False	ssRNA viruses
+712	47	47	30	0	1	30	1.0	Viruses	Avastrovirus|Mamastrovirus	2	20	1e-10	False	Viruses
+842	43	24	14	0	34	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-10	False	ssRNA viruses
+939	40	40	34	0	5	34	1.0	Viruses	Maculavirus|Marafivirus|Tymovirus	2	20	1e-10	False	Viruses
+1046	38	16	16	0	7	17	0.9411764705882353	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae	Arteriviridae	2	20	1e-10	False	ssRNA viruses
+1064	37	34	32	0	1	1626	0.01968019680196802	Viruses	Siphoviridae|Myoviridae	2	20	1e-10	False	Viruses
+1121	35	35	30	0	14	30	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	Sapovirus|St-Valerien swine virus|Vesivirus|Norovirus|Lagovirus|Nebovirus	2	20	1e-10	False	ssRNA viruses
+1122	35	16	16	0	6	26	0.6153846153846154	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Deltaretrovirus|Alpharetrovirus	2	20	1e-10	False	Retro-transcribing viruses
+1123	35	35	30	0	2	65	0.46153846153846156	Viruses	Phenuiviridae|Peribunyaviridae	2	20	1e-10	False	Viruses
+1169	34	24	14	0	20	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-10	False	ssRNA viruses
+1207	33	24	23	0	12	61	0.3770491803278688	Viruses;Retro-transcribing viruses;Retroviridae	Orthoretrovirinae|Spumaretrovirinae	2	20	1e-10	False	Retro-transcribing viruses
+1215	33	33	32	0	1	32	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Arenaviridae	Arenavirus (unclassified Arenaviridae)|Mammarenavirus	2	20	1e-10	False	ssRNA viruses
+1275	32	26	22	0	16	36	0.6111111111111112	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Ampelovirus|Velarivirus|Closterovirus|Crinivirus	2	20	1e-10	False	ssRNA viruses
+1612	26	26	25	0	22	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Pegivirus|Hepacivirus	2	20	1e-10	False	ssRNA viruses
+1613	26	26	7	0	1	39	0.1794871794871795	Viruses	Sfi21dt1virus|Lambdavirus|Wbetavirus	2	20	1e-10	False	Viruses
+1786	24	24	24	0	1	24	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Hantaviridae;Orthohantavirus	Orthohantavirus	2	20	1e-10	False	ssRNA viruses
+2433	19	19	19	0	11	22	0.8636363636363636	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae	Nepovirus|Fabavirus	2	20	1e-10	False	ssRNA viruses
+3153	16	8	8	0	8	8	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-10	False	Retro-transcribing viruses
+3755	14	10	9	0	2	9	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus	Feline lentivirus group|Equine lentivirus group|Ovine/caprine lentivirus group|Primate lentivirus group|Bovine lentivirus group	2	20	1e-10	False	Retro-transcribing viruses
+3899	14	14	14	0	1	50	0.28	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Nairoviridae|Peribunyaviridae	2	20	1e-10	False	ssRNA viruses
+4041	13	13	13	0	8	18	0.7222222222222222	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-10	False	ssRNA viruses
+4370	12	12	9	0	2	76	0.11842105263157894	Viruses	Hepeviridae|Togaviridae|Astroviridae	2	20	1e-10	False	Viruses
+4403	12	12	12	0	5	12	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Pestivirus	Pestivirus	2	20	1e-10	False	ssRNA viruses
+4438	12	9	8	0	1	8	1.0	Viruses;Retro-transcribing viruses;Hepadnaviridae	Orthohepadnavirus	2	20	1e-10	False	Retro-transcribing viruses
+4884	11	9	9	0	8	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus	Comovirus	2	20	1e-10	False	ssRNA viruses
+5401	10	10	10	0	3	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Vesivirus	Vesivirus	2	20	1e-10	False	ssRNA viruses
+5602	10	10	10	0	1	1975	0.005063291139240506	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-10	False	dsDNA viruses, no RNA stage
+6070	9	8	8	0	1	9	0.8888888888888888	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus	Atadenovirus	2	20	1e-10	False	dsDNA viruses, no RNA stage
+6233	9	9	3	0	3	3	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus	Murine leukemia virus	2	20	1e-10	False	Retro-transcribing viruses
+6722	8	8	5	0	2	5	1.0	Viruses	Alphanodavirus	2	20	1e-10	False	Viruses
+6723	8	8	7	0	2	7	1.0	Viruses;dsRNA viruses;Birnaviridae	Entomobirnavirus|Avibirnavirus|Blosnavirus|Aquabirnavirus	2	20	1e-10	False	dsRNA viruses
+6770	8	8	8	0	7	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-10	False	ssRNA viruses
+6856	8	8	7	0	1	7	1.0	Viruses;ssDNA viruses;Parvoviridae;Densovirinae	Iteradensovirus	2	20	1e-10	False	ssDNA viruses
+6966	8	7	7	0	1	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-10	False	Retro-transcribing viruses
+6967	8	8	8	0	6	8	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Orthomyxoviridae	Influenzavirus B|Influenzavirus A	2	20	1e-10	False	ssRNA viruses
+7468	7	6	6	0	4	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus	Alpharetrovirus	2	20	1e-10	False	Retro-transcribing viruses
+7713	7	7	7	0	2	27	0.25925925925925924	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Gammaretrovirus	2	20	1e-10	False	Retro-transcribing viruses
+7714	7	7	7	0	3	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-10	False	Retro-transcribing viruses
+8960	6	5	5	0	2	18	0.2777777777777778	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-10	False	ssRNA viruses
+9087	6	6	5	0	2	10	0.5	Viruses;Retro-transcribing viruses;Retroviridae	Betaretrovirus	2	20	1e-10	False	Retro-transcribing viruses
+9396	6	6	3	0	1	1335	0.0022471910112359553	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-10	False	Viruses
+10854	5	5	4	0	1	8	0.5	Viruses;Retro-transcribing viruses;Retroviridae	Alpharetrovirus	2	20	1e-10	False	Retro-transcribing viruses
+10976	5	5	5	0	4	5	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-10	False	ssRNA viruses
+10986	5	5	1	0	3	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Sadwavirus	2	20	1e-10	False	ssRNA viruses
+11580	5	5	5	0	1	5	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Alphatetraviridae|Permutotetraviridae|Carmotetraviridae	2	20	1e-10	False	ssRNA viruses
+11705	5	5	5	0	1	8	0.625	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-10	False	Retro-transcribing viruses
+13313	4	4	4	0	2	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-10	False	ssRNA viruses
+13566	4	4	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus	Fabavirus	2	20	1e-10	False	ssRNA viruses
+13714	4	4	4	0	1	4	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-10	False	Retro-transcribing viruses
+17620	3	3	2	0	1	3	0.6666666666666666	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Phic31virus	2	20	1e-10	False	dsDNA viruses, no RNA stage
+17892	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Benyviridae;Benyvirus	Benyvirus	2	20	1e-10	False	ssRNA viruses
+44200	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Phycodnaviridae;Coccolithovirus	Coccolithovirus	2	20	1e-10	False	dsDNA viruses, no RNA stage
+60371	1	1	1	0	1	1	1.0	Viruses;dsRNA viruses;Reoviridae;Spinareovirinae;Oryzavirus	Oryzavirus	2	20	1e-10	False	dsRNA viruses
+60487	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-10	False	ssRNA viruses
+63052	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-10	False	ssRNA viruses
+76242	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Plasmaviridae;Plasmavirus	Plasmavirus	2	20	1e-10	False	dsDNA viruses, no RNA stage
+5	150	149	137	0	122	137	1.0	Viruses	Potyvirus|Bymovirus|Poacevirus|Tritimovirus|Macluravirus|Rymovirus|Ipomovirus|Brambyvirus	2	20	1e-120	False	Viruses
+21	102	81	40	0	67	41	0.975609756097561	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae	Rio Bravo virus group|Yellow fever virus group|Seaborne tick-borne virus group|tick-borne encephalitis virus group|Japanese encephalitis virus group|Dengue virus group|mosquito-borne viruses|Kokobera virus group|Ntaya virus group|Modoc virus group	2	20	1e-120	False	ssRNA viruses
+46	83	83	77	0	4	87	0.8850574712643678	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Tymovirales;Betaflexiviridae	Quinvirinae|Trivirinae	2	20	1e-120	False	ssRNA viruses
+77	71	50	38	0	14	38	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Coronaviridae;Coronavirinae	Gammacoronavirus|Alphacoronavirus|Betacoronavirus	2	20	1e-120	False	ssRNA viruses
+103	62	36	25	0	1	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Mamastrovirus	2	20	1e-120	False	ssRNA viruses
+215	43	24	14	0	34	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-120	False	ssRNA viruses
+242	40	39	31	0	20	31	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales	Passerivirus|Oscivirus|Rosavirus|Sakobuvirus|Gallivirus|Megrivirus|Dicipivirus|Kobuvirus|Sicinivirus	2	20	1e-120	False	ssRNA viruses
+243	40	40	34	0	5	34	1.0	Viruses	Maculavirus|Marafivirus|Tymovirus	2	20	1e-120	False	Viruses
+279	38	16	16	0	7	17	0.9411764705882353	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae	Arteriviridae	2	20	1e-120	False	ssRNA viruses
+293	36	34	34	0	1	1429	0.023792862141357594	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Podoviridae|Siphoviridae	2	20	1e-120	False	dsDNA viruses, no RNA stage
+308	34	24	14	0	20	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-120	False	ssRNA viruses
+318	33	28	24	0	22	24	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae	Hunnivirus|Aphthovirus|Teschovirus|Cosavirus|Torchivirus|Mischivirus|Erbovirus|Mosavirus|Senecavirus|Cardiovirus	2	20	1e-120	False	ssRNA viruses
+320	33	33	32	0	1	32	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Arenaviridae	Arenavirus (unclassified Arenaviridae)|Mammarenavirus	2	20	1e-120	False	ssRNA viruses
+337	32	31	24	0	26	25	0.96	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales	Rabovirus|Enterovirus|Sapelovirus	2	20	1e-120	False	ssRNA viruses
+390	28	18	18	0	22	19	0.9473684210526315	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Sobemovirus	Sobemovirus	2	20	1e-120	False	ssRNA viruses
+445	26	26	23	0	8	23	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	Sapovirus|Lagovirus|Vesivirus|Nebovirus	2	20	1e-120	False	ssRNA viruses
+447	26	26	25	0	22	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Pegivirus|Hepacivirus	2	20	1e-120	False	ssRNA viruses
+512	24	24	24	0	1	24	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Hantaviridae;Orthohantavirus	Orthohantavirus	2	20	1e-120	False	ssRNA viruses
+522	23	16	15	0	12	18	0.8333333333333334	Viruses;Retro-transcribing viruses;Retroviridae	Epsilonretrovirus|Gammaretrovirus	2	20	1e-120	False	Retro-transcribing viruses
+560	22	15	15	0	13	15	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Velarivirus|Crinivirus	2	20	1e-120	False	ssRNA viruses
+724	19	19	12	0	11	12	1.0	Viruses	Parechovirus|Potamipivirus|Limnipivirus|Avihepatovirus|Pasivirus|Avisivirus	2	20	1e-120	False	Viruses
+843	18	18	18	0	10	18	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-120	False	ssRNA viruses
+1018	16	8	8	0	8	8	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-120	False	Retro-transcribing viruses
+1284	13	13	13	0	9	13	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae	Fabavirus|Comovirus	2	20	1e-120	False	ssRNA viruses
+1286	13	11	11	0	4	18	0.6111111111111112	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Alpharetrovirus	2	20	1e-120	False	Retro-transcribing viruses
+1444	12	12	12	0	5	12	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Pestivirus	Pestivirus	2	20	1e-120	False	ssRNA viruses
+1481	12	12	12	0	1	1975	0.0060759493670886075	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-120	False	dsDNA viruses, no RNA stage
+1498	12	12	12	0	1	50	0.24	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Nairoviridae|Peribunyaviridae	2	20	1e-120	False	ssRNA viruses
+1615	11	9	9	0	8	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus	Comovirus	2	20	1e-120	False	ssRNA viruses
+1617	11	11	10	0	6	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Closterovirus	2	20	1e-120	False	ssRNA viruses
+1668	11	8	8	0	2	10	0.8	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-120	False	Retro-transcribing viruses
+1852	10	10	10	0	3	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Vesivirus	Vesivirus	2	20	1e-120	False	ssRNA viruses
+2079	9	8	8	0	5	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae	Tremovirus|Hepatovirus	2	20	1e-120	False	ssRNA viruses
+2124	9	9	3	0	3	3	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus	Murine leukemia virus	2	20	1e-120	False	Retro-transcribing viruses
+2322	8	8	8	0	4	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-120	False	ssRNA viruses
+2323	8	8	8	0	7	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-120	False	ssRNA viruses
+2383	8	4	4	0	2	4	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-120	False	Retro-transcribing viruses
+2404	8	7	7	0	1	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-120	False	Retro-transcribing viruses
+2408	8	6	6	0	1	1080	0.005555555555555556	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-120	False	dsDNA viruses, no RNA stage
+2689	7	7	4	0	1	5	0.8	Viruses	Aparavirus	2	20	1e-120	False	Viruses
+2754	7	6	5	0	4	8	0.625	Viruses;Retro-transcribing viruses;Retroviridae	Alpharetrovirus	2	20	1e-120	False	Retro-transcribing viruses
+2758	7	7	7	0	2	27	0.25925925925925924	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Gammaretrovirus	2	20	1e-120	False	Retro-transcribing viruses
+2877	7	7	7	0	1	7	1.0	Viruses;ssDNA viruses;Parvoviridae;Densovirinae;Iteradensovirus	Iteradensovirus	2	20	1e-120	False	ssDNA viruses
+2911	7	7	7	0	1	37	0.1891891891891892	Viruses;ssDNA viruses;Geminiviridae;Mastrevirus	Mastrevirus	2	20	1e-120	False	ssDNA viruses
+2959	7	7	7	0	6	7	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Orthomyxoviridae;Influenzavirus A	Influenzavirus A	2	20	1e-120	False	ssRNA viruses
+3303	6	6	6	0	1	6	1.0	Viruses;dsRNA viruses;Birnaviridae	Avibirnavirus|Blosnavirus|Aquabirnavirus	2	20	1e-120	False	dsRNA viruses
+3308	6	6	6	0	2	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-120	False	Retro-transcribing viruses
+3382	6	6	5	0	1	25	0.2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Mamastrovirus	2	20	1e-120	False	ssRNA viruses
+3625	6	6	6	0	6	6	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Norovirus	Norovirus	2	20	1e-120	False	ssRNA viruses
+3989	5	5	5	0	4	18	0.2777777777777778	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-120	False	ssRNA viruses
+3994	5	5	4	0	1	5	0.8	Viruses	Alphanodavirus	2	20	1e-120	False	Viruses
+3995	5	5	1	0	4	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Sadwavirus	2	20	1e-120	False	ssRNA viruses
+4144	5	5	3	0	1	1335	0.0022471910112359553	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-120	False	Viruses
+4974	4	4	4	0	2	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-120	False	ssRNA viruses
+4976	4	3	3	0	1	18	0.16666666666666666	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-120	False	ssRNA viruses
+5070	4	4	4	0	1	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Hepeviridae	Orthohepevirus|Piscihepevirus	2	20	1e-120	False	ssRNA viruses
+5103	4	4	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus	Fabavirus	2	20	1e-120	False	ssRNA viruses
+5528	4	4	4	0	1	4	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-120	False	Retro-transcribing viruses
+6901	3	3	3	0	2	4	0.75	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-120	False	ssRNA viruses
+6902	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae	Aquamavirus|Kunsagivirus	2	20	1e-120	False	ssRNA viruses
+6924	3	3	3	0	1	8	0.375	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus	Alpharetrovirus	2	20	1e-120	False	Retro-transcribing viruses
+7009	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Benyviridae;Benyvirus	Benyvirus	2	20	1e-120	False	ssRNA viruses
+7012	3	3	3	0	3	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Waikavirus	Waikavirus	2	20	1e-120	False	ssRNA viruses
+7517	3	3	3	0	1	10	0.3	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-120	False	Retro-transcribing viruses
+7784	3	3	3	0	1	65	0.046153846153846156	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Phenuiviridae|Peribunyaviridae	2	20	1e-120	False	ssRNA viruses
+7826	3	3	2	0	2	21	0.09523809523809523	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae	Iflavirus	2	20	1e-120	False	ssRNA viruses
+9199	3	3	3	0	1	24	0.125	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Phenuiviridae;Phlebovirus	Phlebovirus	2	20	1e-120	False	ssRNA viruses
+9879	3	3	2	0	1	3	0.6666666666666666	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Phic31virus	2	20	1e-120	False	dsDNA viruses, no RNA stage
+10391	2	2	2	0	1	5	0.4	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-120	False	ssRNA viruses
+10392	2	2	2	0	2	5	0.4	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-120	False	ssRNA viruses
+10409	2	2	2	0	1	53	0.03773584905660377	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-120	False	ssRNA viruses
+10411	2	1	1	0	1	40	0.025	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Closteroviridae	2	20	1e-120	False	ssRNA viruses
+10574	2	2	2	0	1	18	0.1111111111111111	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-120	False	ssRNA viruses
+10582	2	2	2	0	1	53	0.03773584905660377	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-120	False	ssRNA viruses
+10635	2	2	2	0	1	135	0.014814814814814815	Viruses;Retro-transcribing viruses	Caulimoviridae|Retroviridae	2	20	1e-120	False	Retro-transcribing viruses
+10637	2	2	2	0	1	1335	0.00149812734082397	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	ssRNA positive-strand viruses, no DNA stage	2	20	1e-120	False	ssRNA viruses
+11409	2	2	1	0	1	1	1.0	Viruses;dsRNA viruses;Birnaviridae	Entomobirnavirus	2	20	1e-120	False	dsRNA viruses
+11511	2	2	2	0	1	8	0.25	Viruses;Retro-transcribing viruses;Hepadnaviridae;Orthohepadnavirus	Orthohepadnavirus	2	20	1e-120	False	Retro-transcribing viruses
+11726	2	2	2	0	2	19	0.10526315789473684	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Sobemovirus	Sobemovirus	2	20	1e-120	False	ssRNA viruses
+11995	2	2	2	0	2	19	0.10526315789473684	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Sobemovirus	Sobemovirus	2	20	1e-120	False	ssRNA viruses
+13230	2	2	2	0	1	18	0.1111111111111111	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-120	False	ssRNA viruses
+13655	2	2	2	0	1	19	0.10526315789473684	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Sobemovirus	Sobemovirus	2	20	1e-120	False	ssRNA viruses
+13979	2	2	2	0	1	34	0.058823529411764705	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Luteoviridae;Polerovirus	Polerovirus	2	20	1e-120	False	ssRNA viruses
+14308	2	2	2	0	1	19	0.10526315789473684	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Sobemovirus	Sobemovirus	2	20	1e-120	False	ssRNA viruses
+20647	1	1	1	0	1	18	0.05555555555555555	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-120	False	ssRNA viruses
+20747	1	1	1	0	1	8	0.125	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-120	False	Retro-transcribing viruses
+23182	1	1	1	0	1	1080	0.000925925925925926	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-120	False	dsDNA viruses, no RNA stage
+27322	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Permutotetraviridae;Alphapermutotetravirus	Alphapermutotetravirus	2	20	1e-120	False	ssRNA viruses
+28051	1	1	1	0	1	18	0.05555555555555555	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-120	False	ssRNA viruses
+33109	1	1	1	0	1	10	0.1	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-120	False	Retro-transcribing viruses
+34353	1	1	1	0	1	5	0.2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-120	False	ssRNA viruses
+36648	1	1	1	0	1	5	0.2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nodaviridae;Alphanodavirus	Alphanodavirus	2	20	1e-120	False	ssRNA viruses
+36651	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sequivirus	Sequivirus	2	20	1e-120	False	ssRNA viruses
+40337	1	1	1	0	1	18	0.05555555555555555	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-120	False	ssRNA viruses
+41025	1	1	1	0	1	1	1.0	Viruses;dsRNA viruses;Reoviridae;Spinareovirinae;Oryzavirus	Oryzavirus	2	20	1e-120	False	dsRNA viruses
+41142	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-120	False	ssRNA viruses
+41143	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-120	False	ssRNA viruses
+41611	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sadwavirus	Sadwavirus	2	20	1e-120	False	ssRNA viruses
+43206	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-120	False	ssRNA viruses
+43207	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-120	False	ssRNA viruses
+45043	1	1	1	0	1	72	0.013888888888888888	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Flavivirus	Flavivirus	2	20	1e-120	False	ssRNA viruses
+57113	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Plasmaviridae;Plasmavirus	Plasmavirus	2	20	1e-120	False	dsDNA viruses, no RNA stage
+59968	1	1	1	0	1	9	0.1111111111111111	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus	Atadenovirus	2	20	1e-120	False	dsDNA viruses, no RNA stage
+6	142	141	130	0	117	130	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae	Potyvirus|Poacevirus|Tritimovirus|Rymovirus|Ipomovirus|Brambyvirus	2	20	1e-140	False	ssRNA viruses
+18	102	81	40	0	67	41	0.975609756097561	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae	Rio Bravo virus group|Yellow fever virus group|Seaborne tick-borne virus group|tick-borne encephalitis virus group|Japanese encephalitis virus group|Dengue virus group|mosquito-borne viruses|Kokobera virus group|Ntaya virus group|Modoc virus group	2	20	1e-140	False	ssRNA viruses
+43	78	78	72	0	4	87	0.8275862068965517	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Tymovirales;Betaflexiviridae	Quinvirinae|Trivirinae	2	20	1e-140	False	ssRNA viruses
+58	71	50	38	0	14	38	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Coronaviridae;Coronavirinae	Gammacoronavirus|Alphacoronavirus|Betacoronavirus	2	20	1e-140	False	ssRNA viruses
+84	61	36	25	0	1	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Mamastrovirus	2	20	1e-140	False	ssRNA viruses
+189	43	24	14	0	34	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-140	False	ssRNA viruses
+214	40	39	31	0	20	31	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales	Passerivirus|Oscivirus|Rosavirus|Sakobuvirus|Gallivirus|Megrivirus|Dicipivirus|Kobuvirus|Sicinivirus	2	20	1e-140	False	ssRNA viruses
+215	40	40	34	0	5	34	1.0	Viruses	Maculavirus|Marafivirus|Tymovirus	2	20	1e-140	False	Viruses
+238	38	16	16	0	7	17	0.9411764705882353	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae	Arteriviridae	2	20	1e-140	False	ssRNA viruses
+249	36	34	34	0	1	1429	0.023792862141357594	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Podoviridae|Siphoviridae	2	20	1e-140	False	dsDNA viruses, no RNA stage
+263	34	24	14	0	20	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-140	False	ssRNA viruses
+272	33	28	24	0	22	24	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae	Hunnivirus|Aphthovirus|Teschovirus|Cosavirus|Torchivirus|Mischivirus|Erbovirus|Mosavirus|Senecavirus|Cardiovirus	2	20	1e-140	False	ssRNA viruses
+286	32	31	24	0	26	25	0.96	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales	Rabovirus|Enterovirus|Sapelovirus	2	20	1e-140	False	ssRNA viruses
+310	30	18	18	0	24	19	0.9473684210526315	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Sobemovirus	Sobemovirus	2	20	1e-140	False	ssRNA viruses
+374	26	26	23	0	8	23	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	Sapovirus|Lagovirus|Vesivirus|Nebovirus	2	20	1e-140	False	ssRNA viruses
+423	24	24	24	0	1	24	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Hantaviridae;Orthohantavirus	Orthohantavirus	2	20	1e-140	False	ssRNA viruses
+430	23	16	15	0	12	18	0.8333333333333334	Viruses;Retro-transcribing viruses;Retroviridae	Epsilonretrovirus|Gammaretrovirus	2	20	1e-140	False	Retro-transcribing viruses
+484	21	15	15	0	13	15	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Velarivirus|Crinivirus	2	20	1e-140	False	ssRNA viruses
+694	18	18	18	0	10	18	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-140	False	ssRNA viruses
+768	17	17	16	0	15	16	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Hepacivirus	2	20	1e-140	False	ssRNA viruses
+837	16	16	9	0	9	9	1.0	Viruses	Parechovirus|Potamipivirus|Avihepatovirus|Pasivirus|Avisivirus	2	20	1e-140	False	Viruses
+863	16	8	8	0	8	8	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-140	False	Retro-transcribing viruses
+1084	13	13	13	0	1	31	0.41935483870967744	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Arenaviridae;Mammarenavirus	Mammarenavirus	2	20	1e-140	False	ssRNA viruses
+1089	13	13	13	0	9	13	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae	Fabavirus|Comovirus	2	20	1e-140	False	ssRNA viruses
+1097	13	12	10	0	7	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Closterovirus	2	20	1e-140	False	ssRNA viruses
+1237	12	12	12	0	5	12	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Pestivirus	Pestivirus	2	20	1e-140	False	ssRNA viruses
+1282	12	12	12	0	1	50	0.24	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Nairoviridae|Peribunyaviridae	2	20	1e-140	False	ssRNA viruses
+1378	11	9	9	0	4	10	0.9	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-140	False	Retro-transcribing viruses
+1397	11	9	9	0	8	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus	Comovirus	2	20	1e-140	False	ssRNA viruses
+1602	10	10	10	0	3	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Vesivirus	Vesivirus	2	20	1e-140	False	ssRNA viruses
+1762	9	7	6	0	4	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae	Alpharetrovirus	2	20	1e-140	False	Retro-transcribing viruses
+1769	9	8	8	0	5	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae	Tremovirus|Hepatovirus	2	20	1e-140	False	ssRNA viruses
+1803	9	9	9	0	1	1975	0.004556962025316456	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-140	False	dsDNA viruses, no RNA stage
+1811	9	9	3	0	3	3	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus	Murine leukemia virus	2	20	1e-140	False	Retro-transcribing viruses
+1885	9	9	9	0	7	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Pegivirus	Pegivirus	2	20	1e-140	False	ssRNA viruses
+1951	8	8	7	0	5	7	1.0	Viruses	Macluravirus|Bymovirus	2	20	1e-140	False	Viruses
+1994	8	8	8	0	4	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-140	False	ssRNA viruses
+1995	8	8	8	0	7	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-140	False	ssRNA viruses
+2036	8	4	4	0	2	4	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-140	False	Retro-transcribing viruses
+2054	8	7	7	0	1	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-140	False	Retro-transcribing viruses
+2295	7	7	4	0	1	5	0.8	Viruses	Aparavirus	2	20	1e-140	False	Viruses
+2352	7	7	7	0	2	27	0.25925925925925924	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Gammaretrovirus	2	20	1e-140	False	Retro-transcribing viruses
+2521	7	7	7	0	6	7	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Orthomyxoviridae;Influenzavirus A	Influenzavirus A	2	20	1e-140	False	ssRNA viruses
+2865	6	6	6	0	1	6	1.0	Viruses;dsRNA viruses;Birnaviridae	Avibirnavirus|Blosnavirus|Aquabirnavirus	2	20	1e-140	False	dsRNA viruses
+2868	6	6	6	0	2	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-140	False	Retro-transcribing viruses
+2937	6	6	5	0	1	25	0.2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Mamastrovirus	2	20	1e-140	False	ssRNA viruses
+2981	6	6	6	0	1	7	0.8571428571428571	Viruses;ssDNA viruses;Parvoviridae;Densovirinae;Iteradensovirus	Iteradensovirus	2	20	1e-140	False	ssDNA viruses
+2983	6	3	3	0	2	10	0.3	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-140	False	Retro-transcribing viruses
+3109	6	4	4	0	1	1080	0.003703703703703704	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-140	False	dsDNA viruses, no RNA stage
+3169	6	6	6	0	6	6	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Norovirus	Norovirus	2	20	1e-140	False	ssRNA viruses
+3462	5	5	5	0	4	18	0.2777777777777778	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-140	False	ssRNA viruses
+3599	5	5	3	0	1	1335	0.0022471910112359553	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-140	False	Viruses
+4299	4	4	4	0	2	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-140	False	ssRNA viruses
+4301	4	3	3	0	1	18	0.16666666666666666	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-140	False	ssRNA viruses
+4393	4	4	4	0	3	53	0.07547169811320754	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-140	False	ssRNA viruses
+4420	4	4	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus	Fabavirus	2	20	1e-140	False	ssRNA viruses
+4783	4	4	4	0	1	4	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-140	False	Retro-transcribing viruses
+5914	3	3	3	0	2	4	0.75	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-140	False	ssRNA viruses
+5915	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae	Aquamavirus|Kunsagivirus	2	20	1e-140	False	ssRNA viruses
+5932	3	3	3	0	1	8	0.375	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus	Alpharetrovirus	2	20	1e-140	False	Retro-transcribing viruses
+6009	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Benyviridae;Benyvirus	Benyvirus	2	20	1e-140	False	ssRNA viruses
+6014	3	3	3	0	3	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Waikavirus	Waikavirus	2	20	1e-140	False	ssRNA viruses
+6464	3	3	3	0	1	10	0.3	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-140	False	Retro-transcribing viruses
+6683	3	3	3	0	1	65	0.046153846153846156	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Phenuiviridae|Peribunyaviridae	2	20	1e-140	False	ssRNA viruses
+6718	3	3	2	0	2	21	0.09523809523809523	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae	Iflavirus	2	20	1e-140	False	ssRNA viruses
+7900	3	3	3	0	1	24	0.125	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Phenuiviridae;Phlebovirus	Phlebovirus	2	20	1e-140	False	ssRNA viruses
+8096	3	3	3	0	2	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Limnipivirus	Limnipivirus	2	20	1e-140	False	ssRNA viruses
+8468	3	3	2	0	1	3	0.6666666666666666	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Phic31virus	2	20	1e-140	False	dsDNA viruses, no RNA stage
+8939	2	2	2	0	1	5	0.4	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-140	False	ssRNA viruses
+8940	2	2	2	0	2	5	0.4	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-140	False	ssRNA viruses
+8959	2	2	2	0	1	53	0.03773584905660377	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-140	False	ssRNA viruses
+9080	2	2	2	0	1	18	0.1111111111111111	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-140	False	ssRNA viruses
+9144	2	2	2	0	1	135	0.014814814814814815	Viruses;Retro-transcribing viruses	Caulimoviridae|Retroviridae	2	20	1e-140	False	Retro-transcribing viruses
+9146	2	2	2	0	1	1335	0.00149812734082397	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	ssRNA positive-strand viruses, no DNA stage	2	20	1e-140	False	ssRNA viruses
+9813	2	2	1	0	1	1	1.0	Viruses;dsRNA viruses;Birnaviridae	Entomobirnavirus	2	20	1e-140	False	dsRNA viruses
+9914	2	2	2	0	1	8	0.25	Viruses;Retro-transcribing viruses;Hepadnaviridae;Orthohepadnavirus	Orthohepadnavirus	2	20	1e-140	False	Retro-transcribing viruses
+10328	2	2	2	0	2	19	0.10526315789473684	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Sobemovirus	Sobemovirus	2	20	1e-140	False	ssRNA viruses
+11458	2	2	2	0	1	18	0.1111111111111111	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-140	False	ssRNA viruses
+11824	2	2	2	0	1	19	0.10526315789473684	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Sobemovirus	Sobemovirus	2	20	1e-140	False	ssRNA viruses
+12095	2	2	2	0	1	34	0.058823529411764705	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Luteoviridae;Polerovirus	Polerovirus	2	20	1e-140	False	ssRNA viruses
+12393	2	2	2	0	1	19	0.10526315789473684	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Sobemovirus	Sobemovirus	2	20	1e-140	False	ssRNA viruses
+18030	1	1	1	0	1	18	0.05555555555555555	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-140	False	ssRNA viruses
+18137	1	1	1	0	1	8	0.125	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-140	False	Retro-transcribing viruses
+19648	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-140	False	ssRNA viruses
+20343	1	1	1	0	1	1080	0.000925925925925926	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-140	False	dsDNA viruses, no RNA stage
+23995	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Permutotetraviridae;Alphapermutotetravirus	Alphapermutotetravirus	2	20	1e-140	False	ssRNA viruses
+24676	1	1	1	0	1	18	0.05555555555555555	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-140	False	ssRNA viruses
+29329	1	1	1	0	1	10	0.1	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-140	False	Retro-transcribing viruses
+30403	1	1	1	0	1	5	0.2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nodaviridae;Alphanodavirus	Alphanodavirus	2	20	1e-140	False	ssRNA viruses
+30422	1	1	1	0	1	5	0.2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-140	False	ssRNA viruses
+32408	1	1	1	0	1	37	0.02702702702702703	Viruses;ssDNA viruses;Geminiviridae;Mastrevirus	Mastrevirus	2	20	1e-140	False	ssDNA viruses
+32709	1	1	1	0	1	5	0.2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nodaviridae;Alphanodavirus	Alphanodavirus	2	20	1e-140	False	ssRNA viruses
+32713	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sequivirus	Sequivirus	2	20	1e-140	False	ssRNA viruses
+33522	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Hepeviridae;Piscihepevirus	Piscihepevirus	2	20	1e-140	False	ssRNA viruses
+35994	1	1	1	0	1	18	0.05555555555555555	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-140	False	ssRNA viruses
+36599	1	1	1	0	1	1	1.0	Viruses;dsRNA viruses;Reoviridae;Spinareovirinae;Oryzavirus	Oryzavirus	2	20	1e-140	False	dsRNA viruses
+36710	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-140	False	ssRNA viruses
+36711	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-140	False	ssRNA viruses
+37125	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sadwavirus	Sadwavirus	2	20	1e-140	False	ssRNA viruses
+37126	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sadwavirus	Sadwavirus	2	20	1e-140	False	ssRNA viruses
+38539	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-140	False	ssRNA viruses
+38540	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-140	False	ssRNA viruses
+40174	1	1	1	0	1	72	0.013888888888888888	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Flavivirus	Flavivirus	2	20	1e-140	False	ssRNA viruses
+51129	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Plasmaviridae;Plasmavirus	Plasmavirus	2	20	1e-140	False	dsDNA viruses, no RNA stage
+53625	1	1	1	0	1	9	0.1111111111111111	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus	Atadenovirus	2	20	1e-140	False	dsDNA viruses, no RNA stage
+4	142	141	130	0	117	130	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae	Potyvirus|Poacevirus|Tritimovirus|Rymovirus|Ipomovirus|Brambyvirus	2	20	1e-160	False	ssRNA viruses
+16	102	81	40	0	67	41	0.975609756097561	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae	Rio Bravo virus group|Yellow fever virus group|Seaborne tick-borne virus group|tick-borne encephalitis virus group|Japanese encephalitis virus group|Dengue virus group|mosquito-borne viruses|Kokobera virus group|Ntaya virus group|Modoc virus group	2	20	1e-160	False	ssRNA viruses
+47	71	50	38	0	14	38	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Coronaviridae;Coronavirinae	Gammacoronavirus|Alphacoronavirus|Betacoronavirus	2	20	1e-160	False	ssRNA viruses
+62	63	63	58	0	2	58	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Tymovirales;Betaflexiviridae	Robigovirus|Foveavirus|Carlavirus	2	20	1e-160	False	ssRNA viruses
+69	61	36	25	0	1	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Mamastrovirus	2	20	1e-160	False	ssRNA viruses
+161	43	24	14	0	34	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-160	False	ssRNA viruses
+181	40	40	34	0	5	34	1.0	Viruses	Maculavirus|Marafivirus|Tymovirus	2	20	1e-160	False	Viruses
+210	38	16	16	0	7	17	0.9411764705882353	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae	Arteriviridae	2	20	1e-160	False	ssRNA viruses
+224	34	18	18	0	26	19	0.9473684210526315	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Sobemovirus	Sobemovirus	2	20	1e-160	False	ssRNA viruses
+225	34	24	14	0	20	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-160	False	ssRNA viruses
+235	33	28	24	0	22	24	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae	Hunnivirus|Aphthovirus|Teschovirus|Cosavirus|Torchivirus|Mischivirus|Erbovirus|Mosavirus|Senecavirus|Cardiovirus	2	20	1e-160	False	ssRNA viruses
+253	32	31	24	0	26	25	0.96	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales	Rabovirus|Enterovirus|Sapelovirus	2	20	1e-160	False	ssRNA viruses
+267	31	31	25	0	17	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales	Passerivirus|Oscivirus|Rosavirus|Sakobuvirus|Gallivirus|Dicipivirus|Kobuvirus|Sicinivirus	2	20	1e-160	False	ssRNA viruses
+298	28	27	18	0	1	20	0.9	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Eiauvirus|Guernseyvirinae|Hk578virus	2	20	1e-160	False	dsDNA viruses, no RNA stage
+329	26	26	23	0	8	23	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	Sapovirus|Lagovirus|Vesivirus|Nebovirus	2	20	1e-160	False	ssRNA viruses
+365	24	24	24	0	1	24	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Hantaviridae;Orthohantavirus	Orthohantavirus	2	20	1e-160	False	ssRNA viruses
+389	22	15	15	0	12	18	0.8333333333333334	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Epsilonretrovirus|Gammaretrovirus	2	20	1e-160	False	Retro-transcribing viruses
+477	20	15	15	0	13	15	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Velarivirus|Crinivirus	2	20	1e-160	False	ssRNA viruses
+587	18	18	18	0	10	18	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-160	False	ssRNA viruses
+730	16	16	16	0	14	16	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Hepacivirus	Hepacivirus	2	20	1e-160	False	ssRNA viruses
+731	16	8	8	0	8	8	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-160	False	Retro-transcribing viruses
+786	15	15	9	0	9	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae	Parechovirus|Potamipivirus|Avihepatovirus|Pasivirus|Avisivirus	2	20	1e-160	False	ssRNA viruses
+947	13	13	13	0	9	13	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae	Fabavirus|Comovirus	2	20	1e-160	False	ssRNA viruses
+1069	12	12	12	0	5	12	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Pestivirus	Pestivirus	2	20	1e-160	False	ssRNA viruses
+1091	12	12	12	0	1	50	0.24	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Nairoviridae|Peribunyaviridae	2	20	1e-160	False	ssRNA viruses
+1180	11	9	9	0	8	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus	Comovirus	2	20	1e-160	False	ssRNA viruses
+1181	11	11	11	0	1	31	0.3548387096774194	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Arenaviridae;Mammarenavirus	Mammarenavirus	2	20	1e-160	False	ssRNA viruses
+1184	11	9	9	0	4	10	0.9	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-160	False	Retro-transcribing viruses
+1338	10	9	7	0	5	10	0.7	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Closterovirus	2	20	1e-160	False	ssRNA viruses
+1360	10	10	10	0	3	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Vesivirus	Vesivirus	2	20	1e-160	False	ssRNA viruses
+1453	10	10	9	0	8	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Pegivirus	2	20	1e-160	False	ssRNA viruses
+1515	9	8	8	0	5	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae	Tremovirus|Hepatovirus	2	20	1e-160	False	ssRNA viruses
+1545	9	9	9	0	1	1975	0.004556962025316456	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-160	False	dsDNA viruses, no RNA stage
+1551	9	9	3	0	3	3	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus	Murine leukemia virus	2	20	1e-160	False	Retro-transcribing viruses
+1689	8	8	7	0	5	7	1.0	Viruses	Macluravirus|Bymovirus	2	20	1e-160	False	Viruses
+1691	8	6	6	0	4	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus	Alpharetrovirus	2	20	1e-160	False	Retro-transcribing viruses
+1725	8	8	8	0	4	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-160	False	ssRNA viruses
+1727	8	8	6	0	2	6	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae	Megrivirus	2	20	1e-160	False	ssRNA viruses
+1768	8	4	4	0	2	4	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-160	False	Retro-transcribing viruses
+1771	8	7	7	0	1	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-160	False	Retro-transcribing viruses
+2030	7	7	7	0	2	27	0.25925925925925924	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Gammaretrovirus	2	20	1e-160	False	Retro-transcribing viruses
+2092	7	7	7	0	7	8	0.875	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-160	False	ssRNA viruses
+2385	6	6	3	0	1	5	0.6	Viruses	Aparavirus	2	20	1e-160	False	Viruses
+2462	6	6	6	0	1	6	1.0	Viruses;dsRNA viruses;Birnaviridae	Avibirnavirus|Blosnavirus|Aquabirnavirus	2	20	1e-160	False	dsRNA viruses
+2555	6	6	6	0	1	7	0.8571428571428571	Viruses;ssDNA viruses;Parvoviridae;Densovirinae;Iteradensovirus	Iteradensovirus	2	20	1e-160	False	ssDNA viruses
+2658	6	6	6	0	2	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-160	False	Retro-transcribing viruses
+2668	6	4	4	0	1	1080	0.003703703703703704	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-160	False	dsDNA viruses, no RNA stage
+2695	6	3	3	0	2	10	0.3	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-160	False	Retro-transcribing viruses
+2730	6	6	6	0	6	6	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Norovirus	Norovirus	2	20	1e-160	False	ssRNA viruses
+3014	5	5	5	0	4	18	0.2777777777777778	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-160	False	ssRNA viruses
+3150	5	5	3	0	1	1335	0.0022471910112359553	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-160	False	Viruses
+3268	5	5	5	0	4	7	0.7142857142857143	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Orthomyxoviridae;Influenzavirus A	Influenzavirus A	2	20	1e-160	False	ssRNA viruses
+3719	4	4	4	0	2	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-160	False	ssRNA viruses
+3720	4	3	3	0	1	18	0.16666666666666666	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-160	False	ssRNA viruses
+3785	4	4	4	0	3	53	0.07547169811320754	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-160	False	ssRNA viruses
+3810	4	4	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus	Fabavirus	2	20	1e-160	False	ssRNA viruses
+3922	4	4	4	0	2	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Tymovirales;Betaflexiviridae;Trivirinae;Divavirus	Divavirus	2	20	1e-160	False	ssRNA viruses
+4039	4	4	3	0	1	25	0.12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Mamastrovirus	2	20	1e-160	False	ssRNA viruses
+5122	3	3	3	0	2	4	0.75	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-160	False	ssRNA viruses
+5123	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae	Aquamavirus|Kunsagivirus	2	20	1e-160	False	ssRNA viruses
+5204	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Benyviridae;Benyvirus	Benyvirus	2	20	1e-160	False	ssRNA viruses
+5211	3	3	3	0	3	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Waikavirus	Waikavirus	2	20	1e-160	False	ssRNA viruses
+5333	3	3	3	0	2	10	0.3	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae;Closterovirus	Closterovirus	2	20	1e-160	False	ssRNA viruses
+5611	3	3	3	0	1	10	0.3	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-160	False	Retro-transcribing viruses
+5807	3	3	3	0	1	65	0.046153846153846156	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Phenuiviridae|Peribunyaviridae	2	20	1e-160	False	ssRNA viruses
+5837	3	3	2	0	2	21	0.09523809523809523	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae	Iflavirus	2	20	1e-160	False	ssRNA viruses
+6856	3	3	3	0	1	24	0.125	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Phenuiviridae;Phlebovirus	Phlebovirus	2	20	1e-160	False	ssRNA viruses
+7031	3	3	3	0	2	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Limnipivirus	Limnipivirus	2	20	1e-160	False	ssRNA viruses
+7357	3	3	2	0	1	3	0.6666666666666666	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Phic31virus	2	20	1e-160	False	dsDNA viruses, no RNA stage
+7663	2	2	2	0	1	8	0.25	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus	Alpharetrovirus	2	20	1e-160	False	Retro-transcribing viruses
+7771	2	2	2	0	1	5	0.4	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-160	False	ssRNA viruses
+7772	2	2	2	0	2	5	0.4	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-160	False	ssRNA viruses
+7791	2	2	2	0	1	53	0.03773584905660377	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-160	False	ssRNA viruses
+7886	2	2	2	0	1	18	0.1111111111111111	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-160	False	ssRNA viruses
+7932	2	2	2	0	1	135	0.014814814814814815	Viruses;Retro-transcribing viruses	Caulimoviridae|Retroviridae	2	20	1e-160	False	Retro-transcribing viruses
+7933	2	2	2	0	1	1335	0.00149812734082397	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	ssRNA positive-strand viruses, no DNA stage	2	20	1e-160	False	ssRNA viruses
+8502	2	2	1	0	1	1	1.0	Viruses;dsRNA viruses;Birnaviridae	Entomobirnavirus	2	20	1e-160	False	dsRNA viruses
+8590	2	2	2	0	1	8	0.25	Viruses;Retro-transcribing viruses;Hepadnaviridae;Orthohepadnavirus	Orthohepadnavirus	2	20	1e-160	False	Retro-transcribing viruses
+8762	2	2	2	0	2	7	0.2857142857142857	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Orthomyxoviridae;Influenzavirus A	Influenzavirus A	2	20	1e-160	False	ssRNA viruses
+8955	2	2	2	0	2	19	0.10526315789473684	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Sobemovirus	Sobemovirus	2	20	1e-160	False	ssRNA viruses
+9974	2	2	2	0	1	18	0.1111111111111111	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-160	False	ssRNA viruses
+10530	2	2	2	0	1	34	0.058823529411764705	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Luteoviridae;Polerovirus	Polerovirus	2	20	1e-160	False	ssRNA viruses
+15971	1	1	1	0	1	18	0.05555555555555555	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-160	False	ssRNA viruses
+16080	1	1	1	0	1	8	0.125	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-160	False	Retro-transcribing viruses
+16577	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Dicipivirus	Dicipivirus	2	20	1e-160	False	ssRNA viruses
+17445	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-160	False	ssRNA viruses
+18086	1	1	1	0	1	1080	0.000925925925925926	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-160	False	dsDNA viruses, no RNA stage
+21376	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Permutotetraviridae;Alphapermutotetravirus	Alphapermutotetravirus	2	20	1e-160	False	ssRNA viruses
+22018	1	1	1	0	1	18	0.05555555555555555	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-160	False	ssRNA viruses
+22789	1	1	1	0	1	4	0.25	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-160	False	Retro-transcribing viruses
+26349	1	1	1	0	1	10	0.1	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-160	False	Retro-transcribing viruses
+27301	1	1	1	0	1	5	0.2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nodaviridae;Alphanodavirus	Alphanodavirus	2	20	1e-160	False	ssRNA viruses
+27316	1	1	1	0	1	5	0.2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-160	False	ssRNA viruses
+29325	1	1	1	0	1	37	0.02702702702702703	Viruses;ssDNA viruses;Geminiviridae;Mastrevirus	Mastrevirus	2	20	1e-160	False	ssDNA viruses
+29598	1	1	1	0	1	5	0.2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nodaviridae;Alphanodavirus	Alphanodavirus	2	20	1e-160	False	ssRNA viruses
+29602	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sequivirus	Sequivirus	2	20	1e-160	False	ssRNA viruses
+30341	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Hepeviridae;Piscihepevirus	Piscihepevirus	2	20	1e-160	False	ssRNA viruses
+32578	1	1	1	0	1	18	0.05555555555555555	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-160	False	ssRNA viruses
+33114	1	1	1	0	1	1	1.0	Viruses;dsRNA viruses;Reoviridae;Spinareovirinae;Oryzavirus	Oryzavirus	2	20	1e-160	False	dsRNA viruses
+33223	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-160	False	ssRNA viruses
+33224	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-160	False	ssRNA viruses
+33601	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sadwavirus	Sadwavirus	2	20	1e-160	False	ssRNA viruses
+33602	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sadwavirus	Sadwavirus	2	20	1e-160	False	ssRNA viruses
+34908	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-160	False	ssRNA viruses
+34909	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-160	False	ssRNA viruses
+36420	1	1	1	0	1	72	0.013888888888888888	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Flavivirus	Flavivirus	2	20	1e-160	False	ssRNA viruses
+46536	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Plasmaviridae;Plasmavirus	Plasmavirus	2	20	1e-160	False	dsDNA viruses, no RNA stage
+48631	1	1	1	0	1	9	0.1111111111111111	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus	Atadenovirus	2	20	1e-160	False	dsDNA viruses, no RNA stage
+0	574	494	487	0	1	3043	0.16003943476832075	Viruses	Satellites|ssRNA viruses|ssDNA viruses|Genomoviridae	2	20	1e-20	False	Viruses
+3	354	350	349	0	1	2746	0.1270939548434086	Viruses	ssRNA viruses|ssDNA viruses	2	20	1e-20	False	Viruses
+4	343	339	338	0	1	2746	0.12308812818645302	Viruses	ssRNA viruses|ssDNA viruses	2	20	1e-20	False	Viruses
+17	204	147	106	0	1	2109	0.05026078710289237	Viruses	ssRNA viruses|dsRNA viruses	2	20	1e-20	False	Viruses
+32	180	179	46	0	13	210	0.21904761904761905	Viruses	Secoviridae|Dicistroviridae|Picornaviridae	2	20	1e-20	False	Viruses
+51	153	152	149	0	4	150	0.9933333333333333	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Alphaflexiviridae|Gammaflexiviridae|Betaflexiviridae	2	20	1e-20	False	ssRNA viruses
+52	150	149	137	0	122	137	1.0	Viruses	Potyvirus|Bymovirus|Poacevirus|Tritimovirus|Macluravirus|Rymovirus|Ipomovirus|Brambyvirus	2	20	1e-20	False	Viruses
+61	140	132	102	0	85	103	0.9902912621359223	Viruses	Passerivirus|Hunnivirus|Teschovirus|Aquamavirus|Torchivirus|Megrivirus|Mischivirus|Sapelovirus|Kobuvirus|Aphthovirus|Cosavirus|Kunsagivirus|Rosavirus|Pasivirus|Erbovirus|Mosavirus|Sicinivirus|Senecavirus|Cardiovirus|Oscivirus|Dicipivirus|Avisivirus|Parechovirus|Potamipivirus|Tremovirus|Enterovirus|Sakobuvirus|Gallivirus|Rabovirus|Limnipivirus|Avihepatovirus|Hepatovirus	2	20	1e-20	False	Viruses
+73	128	68	58	0	29	71	0.8169014084507042	Viruses	Sobemovirus|Luteoviridae|Polemovirus	2	20	1e-20	False	Viruses
+103	110	89	40	0	68	41	0.975609756097561	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Rio Bravo virus group|Yellow fever virus group|Seaborne tick-borne virus group|tick-borne encephalitis virus group|Japanese encephalitis virus group|Dengue virus group|mosquito-borne viruses|Kokobera virus group|Ntaya virus group|Modoc virus group	2	20	1e-20	False	ssRNA viruses
+226	81	79	76	0	1	1975	0.03848101265822785	Viruses	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-20	False	Viruses
+232	80	44	30	0	1	30	1.0	Viruses	Avastrovirus|Mamastrovirus	2	20	1e-20	False	Viruses
+253	77	76	21	0	2	21	1.0	Viruses	Iflavirus	2	20	1e-20	False	Viruses
+287	73	70	70	0	1	135	0.5185185185185185	Viruses;Retro-transcribing viruses	Caulimoviridae|Retroviridae	2	20	1e-20	False	Retro-transcribing viruses
+306	71	50	38	0	14	38	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Coronaviridae;Coronavirinae	Gammacoronavirus|Alphacoronavirus|Betacoronavirus	2	20	1e-20	False	ssRNA viruses
+603	47	39	35	0	20	36	0.9722222222222222	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Ampelovirus|Velarivirus|Closterovirus|Crinivirus	2	20	1e-20	False	ssRNA viruses
+631	46	46	30	0	1	30	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Avastrovirus|Mamastrovirus	2	20	1e-20	False	ssRNA viruses
+722	43	24	14	0	34	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-20	False	ssRNA viruses
+807	40	40	34	0	5	34	1.0	Viruses	Maculavirus|Marafivirus|Tymovirus	2	20	1e-20	False	Viruses
+916	38	16	16	0	7	17	0.9411764705882353	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae	Arteriviridae	2	20	1e-20	False	ssRNA viruses
+932	37	34	32	0	1	1626	0.01968019680196802	Viruses	Siphoviridae|Myoviridae	2	20	1e-20	False	Viruses
+988	35	35	30	0	14	30	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	Sapovirus|St-Valerien swine virus|Vesivirus|Norovirus|Lagovirus|Nebovirus	2	20	1e-20	False	ssRNA viruses
+1022	34	34	33	0	21	36	0.9166666666666666	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Sadwavirus|Cheravirus|Comovirinae	2	20	1e-20	False	ssRNA viruses
+1027	34	24	14	0	20	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-20	False	ssRNA viruses
+1068	33	24	23	0	12	61	0.3770491803278688	Viruses;Retro-transcribing viruses;Retroviridae	Orthoretrovirinae|Spumaretrovirinae	2	20	1e-20	False	Retro-transcribing viruses
+1076	33	33	29	0	2	65	0.4461538461538462	Viruses	Phenuiviridae|Peribunyaviridae	2	20	1e-20	False	Viruses
+1077	33	33	32	0	1	32	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Arenaviridae	Arenavirus (unclassified Arenaviridae)|Mammarenavirus	2	20	1e-20	False	ssRNA viruses
+1173	31	12	12	0	6	18	0.6666666666666666	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Alpharetrovirus	2	20	1e-20	False	Retro-transcribing viruses
+1447	26	26	25	0	22	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Pegivirus|Hepacivirus	2	20	1e-20	False	ssRNA viruses
+1600	24	24	24	0	1	24	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Hantaviridae;Orthohantavirus	Orthohantavirus	2	20	1e-20	False	ssRNA viruses
+2037	20	8	8	0	8	8	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-20	False	Retro-transcribing viruses
+3465	14	10	9	0	2	9	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus	Feline lentivirus group|Equine lentivirus group|Ovine/caprine lentivirus group|Primate lentivirus group|Bovine lentivirus group	2	20	1e-20	False	Retro-transcribing viruses
+3603	14	14	14	0	1	50	0.28	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Nairoviridae|Peribunyaviridae	2	20	1e-20	False	ssRNA viruses
+3734	13	13	13	0	8	18	0.7222222222222222	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-20	False	ssRNA viruses
+4097	12	12	12	0	5	12	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Pestivirus	Pestivirus	2	20	1e-20	False	ssRNA viruses
+4125	12	9	8	0	1	8	1.0	Viruses;Retro-transcribing viruses;Hepadnaviridae	Orthohepadnavirus	2	20	1e-20	False	Retro-transcribing viruses
+4550	11	9	9	0	8	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus	Comovirus	2	20	1e-20	False	ssRNA viruses
+5040	10	10	10	0	3	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Vesivirus	Vesivirus	2	20	1e-20	False	ssRNA viruses
+5257	10	10	10	0	1	1975	0.005063291139240506	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-20	False	dsDNA viruses, no RNA stage
+5689	9	8	8	0	1	9	0.8888888888888888	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus	Atadenovirus	2	20	1e-20	False	dsDNA viruses, no RNA stage
+5823	9	9	3	0	3	3	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus	Murine leukemia virus	2	20	1e-20	False	Retro-transcribing viruses
+6170	8	8	4	0	1	5	0.8	Viruses	Aparavirus	2	20	1e-20	False	Viruses
+6285	8	8	4	0	1	4	1.0	Viruses	Orthohepevirus|Piscihepevirus	2	20	1e-20	False	Viruses
+6296	8	8	5	0	2	5	1.0	Viruses	Alphanodavirus	2	20	1e-20	False	Viruses
+6298	8	8	7	0	2	7	1.0	Viruses;dsRNA viruses;Birnaviridae	Entomobirnavirus|Avibirnavirus|Blosnavirus|Aquabirnavirus	2	20	1e-20	False	dsRNA viruses
+6331	8	8	8	0	7	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-20	False	ssRNA viruses
+6499	8	7	7	0	1	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-20	False	Retro-transcribing viruses
+6500	8	8	8	0	6	8	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Orthomyxoviridae	Influenzavirus B|Influenzavirus A	2	20	1e-20	False	ssRNA viruses
+7052	7	6	6	0	4	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus	Alpharetrovirus	2	20	1e-20	False	Retro-transcribing viruses
+7251	7	7	7	0	2	27	0.25925925925925924	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Gammaretrovirus	2	20	1e-20	False	Retro-transcribing viruses
+7310	7	7	7	0	3	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-20	False	Retro-transcribing viruses
+7511	7	7	7	0	1	7	1.0	Viruses;ssDNA viruses;Parvoviridae;Densovirinae;Iteradensovirus	Iteradensovirus	2	20	1e-20	False	ssDNA viruses
+8499	6	5	5	0	2	18	0.2777777777777778	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-20	False	ssRNA viruses
+8601	6	6	5	0	2	10	0.5	Viruses;Retro-transcribing viruses;Retroviridae	Betaretrovirus	2	20	1e-20	False	Retro-transcribing viruses
+8870	6	6	3	0	1	1335	0.0022471910112359553	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-20	False	Viruses
+10298	5	5	4	0	1	8	0.5	Viruses;Retro-transcribing viruses;Retroviridae	Alpharetrovirus	2	20	1e-20	False	Retro-transcribing viruses
+10402	5	5	5	0	4	5	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-20	False	ssRNA viruses
+10409	5	5	1	0	3	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Sadwavirus	2	20	1e-20	False	ssRNA viruses
+10949	5	5	5	0	1	5	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Alphatetraviridae|Permutotetraviridae|Carmotetraviridae	2	20	1e-20	False	ssRNA viruses
+11074	5	5	5	0	1	8	0.625	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-20	False	Retro-transcribing viruses
+12716	4	4	4	0	2	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-20	False	ssRNA viruses
+12969	4	4	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus	Fabavirus	2	20	1e-20	False	ssRNA viruses
+14085	4	4	4	0	1	4	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-20	False	Retro-transcribing viruses
+17352	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Benyviridae;Benyvirus	Benyvirus	2	20	1e-20	False	ssRNA viruses
+17465	3	3	2	0	1	3	0.6666666666666666	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Phic31virus	2	20	1e-20	False	dsDNA viruses, no RNA stage
+24261	2	2	2	0	1	1080	0.001851851851851852	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-20	False	dsDNA viruses, no RNA stage
+46994	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Phycodnaviridae;Coccolithovirus	Coccolithovirus	2	20	1e-20	False	dsDNA viruses, no RNA stage
+66611	1	1	1	0	1	1	1.0	Viruses;dsRNA viruses;Reoviridae;Spinareovirinae;Oryzavirus	Oryzavirus	2	20	1e-20	False	dsRNA viruses
+66753	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-20	False	ssRNA viruses
+66754	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-20	False	ssRNA viruses
+69766	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-20	False	ssRNA viruses
+86464	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Plasmaviridae;Plasmavirus	Plasmavirus	2	20	1e-20	False	dsDNA viruses, no RNA stage
+3	346	342	341	0	1	2746	0.12418062636562273	Viruses	ssRNA viruses|ssDNA viruses	2	20	1e-30	False	Viruses
+4	343	339	338	0	1	2746	0.12308812818645302	Viruses	ssRNA viruses|ssDNA viruses	2	20	1e-30	False	Viruses
+24	161	105	54	0	1	55	0.9818181818181818	Viruses	Virgaviridae|Idaeovirus	2	20	1e-30	False	Viruses
+37	153	152	149	0	4	150	0.9933333333333333	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Alphaflexiviridae|Gammaflexiviridae|Betaflexiviridae	2	20	1e-30	False	ssRNA viruses
+40	150	149	137	0	122	137	1.0	Viruses	Potyvirus|Bymovirus|Poacevirus|Tritimovirus|Macluravirus|Rymovirus|Ipomovirus|Brambyvirus	2	20	1e-30	False	Viruses
+45	140	139	30	0	3	210	0.14285714285714285	Viruses	Secoviridae|Dicistroviridae|Picornaviridae	2	20	1e-30	False	Viruses
+47	137	129	102	0	85	103	0.9902912621359223	Viruses	Passerivirus|Hunnivirus|Teschovirus|Aquamavirus|Torchivirus|Megrivirus|Mischivirus|Sapelovirus|Kobuvirus|Aphthovirus|Cosavirus|Kunsagivirus|Rosavirus|Pasivirus|Erbovirus|Mosavirus|Sicinivirus|Senecavirus|Cardiovirus|Oscivirus|Dicipivirus|Avisivirus|Parechovirus|Potamipivirus|Tremovirus|Enterovirus|Sakobuvirus|Gallivirus|Rabovirus|Limnipivirus|Avihepatovirus|Hepatovirus	2	20	1e-30	False	Viruses
+56	126	66	58	0	29	71	0.8169014084507042	Viruses	Sobemovirus|Luteoviridae|Polemovirus	2	20	1e-30	False	Viruses
+80	110	89	40	0	68	41	0.975609756097561	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Rio Bravo virus group|Yellow fever virus group|Seaborne tick-borne virus group|tick-borne encephalitis virus group|Japanese encephalitis virus group|Dengue virus group|mosquito-borne viruses|Kokobera virus group|Ntaya virus group|Modoc virus group	2	20	1e-30	False	ssRNA viruses
+197	80	44	30	0	1	30	1.0	Viruses	Avastrovirus|Mamastrovirus	2	20	1e-30	False	Viruses
+220	75	73	70	0	1	1975	0.035443037974683546	Viruses	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-30	False	Viruses
+227	74	73	17	0	2	21	0.8095238095238095	Viruses	Iflavirus	2	20	1e-30	False	Viruses
+242	73	70	70	0	1	135	0.5185185185185185	Viruses;Retro-transcribing viruses	Caulimoviridae|Retroviridae	2	20	1e-30	False	Retro-transcribing viruses
+259	71	50	38	0	14	38	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Coronaviridae;Coronavirinae	Gammacoronavirus|Alphacoronavirus|Betacoronavirus	2	20	1e-30	False	ssRNA viruses
+475	50	50	45	0	31	45	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Torradovirus|Sequivirus|Sadwavirus|Comovirinae|Cheravirus	2	20	1e-30	False	ssRNA viruses
+618	43	43	30	0	1	30	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Avastrovirus|Mamastrovirus	2	20	1e-30	False	ssRNA viruses
+619	43	24	14	0	34	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-30	False	ssRNA viruses
+641	42	41	40	0	1	40	1.0	Viruses;ssDNA viruses;Geminiviridae	Mastrevirus|Capulavirus	2	20	1e-30	False	ssDNA viruses
+701	40	40	34	0	5	34	1.0	Viruses	Maculavirus|Marafivirus|Tymovirus	2	20	1e-30	False	Viruses
+799	38	16	16	0	7	17	0.9411764705882353	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae	Arteriviridae	2	20	1e-30	False	ssRNA viruses
+883	34	24	14	0	20	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-30	False	ssRNA viruses
+918	33	24	23	0	12	61	0.3770491803278688	Viruses;Retro-transcribing viruses;Retroviridae	Orthoretrovirinae|Spumaretrovirinae	2	20	1e-30	False	Retro-transcribing viruses
+929	33	33	32	0	1	32	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Arenaviridae	Arenavirus (unclassified Arenaviridae)|Mammarenavirus	2	20	1e-30	False	ssRNA viruses
+968	32	32	29	0	14	29	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	Sapovirus|Vesivirus|Norovirus|Lagovirus|Nebovirus	2	20	1e-30	False	ssRNA viruses
+1002	31	31	29	0	2	65	0.4461538461538462	Viruses	Phenuiviridae|Peribunyaviridae	2	20	1e-30	False	Viruses
+1142	28	26	25	0	1	1626	0.015375153751537515	Viruses	Siphoviridae|Myoviridae	2	20	1e-30	False	Viruses
+1264	26	26	25	0	22	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Pegivirus|Hepacivirus	2	20	1e-30	False	ssRNA viruses
+1361	24	17	17	0	13	26	0.6538461538461539	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Ampelovirus|Velarivirus|Crinivirus	2	20	1e-30	False	ssRNA viruses
+1407	24	24	24	0	1	24	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Hantaviridae;Orthohantavirus	Orthohantavirus	2	20	1e-30	False	ssRNA viruses
+1801	20	8	8	0	8	8	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-30	False	Retro-transcribing viruses
+1813	20	10	10	0	4	10	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-30	False	Retro-transcribing viruses
+2903	15	14	10	0	7	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Closterovirus	2	20	1e-30	False	ssRNA viruses
+3149	14	10	9	0	2	9	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus	Feline lentivirus group|Equine lentivirus group|Ovine/caprine lentivirus group|Primate lentivirus group|Bovine lentivirus group	2	20	1e-30	False	Retro-transcribing viruses
+3228	14	14	14	0	1	50	0.28	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Nairoviridae|Peribunyaviridae	2	20	1e-30	False	ssRNA viruses
+3362	13	13	13	0	8	18	0.7222222222222222	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-30	False	ssRNA viruses
+3716	12	12	12	0	5	12	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Pestivirus	Pestivirus	2	20	1e-30	False	ssRNA viruses
+3732	12	9	8	0	1	8	1.0	Viruses;Retro-transcribing viruses;Hepadnaviridae	Orthohepadnavirus	2	20	1e-30	False	Retro-transcribing viruses
+4117	11	11	11	0	2	18	0.6111111111111112	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Alpharetrovirus	2	20	1e-30	False	Retro-transcribing viruses
+4149	11	9	9	0	8	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus	Comovirus	2	20	1e-30	False	ssRNA viruses
+4613	10	10	10	0	3	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Vesivirus	Vesivirus	2	20	1e-30	False	ssRNA viruses
+4800	10	10	10	0	1	1975	0.005063291139240506	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-30	False	dsDNA viruses, no RNA stage
+5194	9	8	8	0	1	9	0.8888888888888888	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus	Atadenovirus	2	20	1e-30	False	dsDNA viruses, no RNA stage
+5337	9	9	3	0	3	3	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus	Murine leukemia virus	2	20	1e-30	False	Retro-transcribing viruses
+5658	8	8	4	0	1	5	0.8	Viruses	Aparavirus	2	20	1e-30	False	Viruses
+5762	8	8	7	0	2	7	1.0	Viruses;dsRNA viruses;Birnaviridae	Entomobirnavirus|Avibirnavirus|Blosnavirus|Aquabirnavirus	2	20	1e-30	False	dsRNA viruses
+5802	8	8	8	0	7	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-30	False	ssRNA viruses
+5972	8	7	7	0	1	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-30	False	Retro-transcribing viruses
+5973	8	8	8	0	6	8	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Orthomyxoviridae	Influenzavirus B|Influenzavirus A	2	20	1e-30	False	ssRNA viruses
+6527	7	6	6	0	4	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus	Alpharetrovirus	2	20	1e-30	False	Retro-transcribing viruses
+6702	7	7	7	0	2	27	0.25925925925925924	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Gammaretrovirus	2	20	1e-30	False	Retro-transcribing viruses
+6760	7	7	5	0	2	5	1.0	Viruses	Alphanodavirus	2	20	1e-30	False	Viruses
+6765	7	7	7	0	3	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-30	False	Retro-transcribing viruses
+6977	7	7	7	0	1	7	1.0	Viruses;ssDNA viruses;Parvoviridae;Densovirinae;Iteradensovirus	Iteradensovirus	2	20	1e-30	False	ssDNA viruses
+7930	6	5	5	0	2	18	0.2777777777777778	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-30	False	ssRNA viruses
+8025	6	6	5	0	2	10	0.5	Viruses;Retro-transcribing viruses;Retroviridae	Betaretrovirus	2	20	1e-30	False	Retro-transcribing viruses
+8258	6	6	3	0	1	1335	0.0022471910112359553	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-30	False	Viruses
+9569	5	5	4	0	1	8	0.5	Viruses;Retro-transcribing viruses;Retroviridae	Alpharetrovirus	2	20	1e-30	False	Retro-transcribing viruses
+9653	5	5	5	0	4	5	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-30	False	ssRNA viruses
+9655	5	5	4	0	1	4	1.0	Viruses	Orthohepevirus|Piscihepevirus	2	20	1e-30	False	Viruses
+11926	4	4	4	0	2	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-30	False	ssRNA viruses
+12184	4	4	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus	Fabavirus	2	20	1e-30	False	ssRNA viruses
+12192	4	4	4	0	2	53	0.07547169811320754	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-30	False	ssRNA viruses
+13232	4	4	4	0	1	4	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-30	False	Retro-transcribing viruses
+16584	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Benyviridae;Benyvirus	Benyvirus	2	20	1e-30	False	ssRNA viruses
+18209	3	3	3	0	1	8	0.375	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-30	False	Retro-transcribing viruses
+21991	3	3	2	0	1	3	0.6666666666666666	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Phic31virus	2	20	1e-30	False	dsDNA viruses, no RNA stage
+23540	2	2	2	0	1	1080	0.001851851851851852	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-30	False	dsDNA viruses, no RNA stage
+25024	2	2	2	0	1	4	0.5	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Alphatetraviridae|Permutotetraviridae	2	20	1e-30	False	ssRNA viruses
+48046	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Phycodnaviridae;Coccolithovirus	Coccolithovirus	2	20	1e-30	False	dsDNA viruses, no RNA stage
+69768	1	1	1	0	1	1	1.0	Viruses;dsRNA viruses;Reoviridae;Spinareovirinae;Oryzavirus	Oryzavirus	2	20	1e-30	False	dsRNA viruses
+69921	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-30	False	ssRNA viruses
+69922	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-30	False	ssRNA viruses
+70817	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sadwavirus	Sadwavirus	2	20	1e-30	False	ssRNA viruses
+73069	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-30	False	ssRNA viruses
+92274	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Plasmaviridae;Plasmavirus	Plasmavirus	2	20	1e-30	False	dsDNA viruses, no RNA stage
+25	156	102	51	0	1	51	1.0	Viruses	Pecluvirus|Tobravirus|Hordeivirus|Furovirus|Tobamovirus|Pomovirus|Goravirus	2	20	1e-40	False	Viruses
+33	150	149	137	0	122	137	1.0	Viruses	Potyvirus|Bymovirus|Poacevirus|Tritimovirus|Macluravirus|Rymovirus|Ipomovirus|Brambyvirus	2	20	1e-40	False	Viruses
+40	137	129	102	0	85	103	0.9902912621359223	Viruses	Passerivirus|Hunnivirus|Teschovirus|Aquamavirus|Torchivirus|Megrivirus|Mischivirus|Sapelovirus|Kobuvirus|Aphthovirus|Cosavirus|Kunsagivirus|Rosavirus|Pasivirus|Erbovirus|Mosavirus|Sicinivirus|Senecavirus|Cardiovirus|Oscivirus|Dicipivirus|Avisivirus|Parechovirus|Potamipivirus|Tremovirus|Enterovirus|Sakobuvirus|Gallivirus|Rabovirus|Limnipivirus|Avihepatovirus|Hepatovirus	2	20	1e-40	False	Viruses
+46	125	65	58	0	29	71	0.8169014084507042	Viruses	Sobemovirus|Luteoviridae|Polemovirus	2	20	1e-40	False	Viruses
+50	122	121	121	0	1	364	0.3324175824175824	Viruses;ssDNA viruses;Geminiviridae;Begomovirus	Begomovirus	2	20	1e-40	False	ssDNA viruses
+59	120	119	119	0	1	364	0.3269230769230769	Viruses;ssDNA viruses;Geminiviridae;Begomovirus	Begomovirus	2	20	1e-40	False	ssDNA viruses
+71	107	86	40	0	68	41	0.975609756097561	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Rio Bravo virus group|Yellow fever virus group|Seaborne tick-borne virus group|tick-borne encephalitis virus group|Japanese encephalitis virus group|Dengue virus group|mosquito-borne viruses|Kokobera virus group|Ntaya virus group|Modoc virus group	2	20	1e-40	False	ssRNA viruses
+110	95	95	94	0	4	94	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Gammaflexiviridae|Betaflexiviridae	2	20	1e-40	False	ssRNA viruses
+176	79	43	30	0	1	30	1.0	Viruses	Avastrovirus|Mamastrovirus	2	20	1e-40	False	Viruses
+185	76	75	17	0	2	21	0.8095238095238095	Viruses	Iflavirus	2	20	1e-40	False	Viruses
+194	75	73	70	0	1	1975	0.035443037974683546	Viruses	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-40	False	Viruses
+209	73	70	70	0	1	135	0.5185185185185185	Viruses;Retro-transcribing viruses	Caulimoviridae|Retroviridae	2	20	1e-40	False	Retro-transcribing viruses
+226	71	50	38	0	14	38	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Coronaviridae;Coronavirinae	Gammacoronavirus|Alphacoronavirus|Betacoronavirus	2	20	1e-40	False	ssRNA viruses
+388	53	53	48	0	34	48	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Torradovirus|Sequivirus|Sadwavirus|Comovirinae|Cheravirus|Waikavirus	2	20	1e-40	False	ssRNA viruses
+400	52	37	37	0	1	37	1.0	Viruses;ssDNA viruses;Geminiviridae;Mastrevirus	Mastrevirus	2	20	1e-40	False	ssDNA viruses
+546	43	24	14	0	34	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-40	False	ssRNA viruses
+610	40	40	34	0	5	34	1.0	Viruses	Maculavirus|Marafivirus|Tymovirus	2	20	1e-40	False	Viruses
+676	38	38	25	0	1	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Mamastrovirus	2	20	1e-40	False	ssRNA viruses
+689	38	16	16	0	7	17	0.9411764705882353	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae	Arteriviridae	2	20	1e-40	False	ssRNA viruses
+768	34	24	14	0	20	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-40	False	ssRNA viruses
+806	33	33	32	0	1	32	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Arenaviridae	Arenavirus (unclassified Arenaviridae)|Mammarenavirus	2	20	1e-40	False	ssRNA viruses
+836	32	23	22	0	11	61	0.36065573770491804	Viruses;Retro-transcribing viruses;Retroviridae	Orthoretrovirinae|Spumaretrovirinae	2	20	1e-40	False	Retro-transcribing viruses
+990	28	26	25	0	1	1626	0.015375153751537515	Viruses	Siphoviridae|Myoviridae	2	20	1e-40	False	Viruses
+1031	27	27	27	0	2	65	0.4153846153846154	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Phenuiviridae|Peribunyaviridae	2	20	1e-40	False	ssRNA viruses
+1106	26	26	23	0	8	23	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	Sapovirus|Lagovirus|Vesivirus|Nebovirus	2	20	1e-40	False	ssRNA viruses
+1109	26	26	25	0	22	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Pegivirus|Hepacivirus	2	20	1e-40	False	ssRNA viruses
+1217	24	24	24	0	1	24	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Hantaviridae;Orthohantavirus	Orthohantavirus	2	20	1e-40	False	ssRNA viruses
+1245	23	16	16	0	13	26	0.6153846153846154	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Ampelovirus|Velarivirus|Crinivirus	2	20	1e-40	False	ssRNA viruses
+1385	21	12	12	0	4	18	0.6666666666666666	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Alpharetrovirus	2	20	1e-40	False	Retro-transcribing viruses
+1572	20	8	8	0	8	8	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-40	False	Retro-transcribing viruses
+2547	15	14	10	0	7	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Closterovirus	2	20	1e-40	False	ssRNA viruses
+2778	14	10	9	0	2	9	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus	Feline lentivirus group|Equine lentivirus group|Ovine/caprine lentivirus group|Primate lentivirus group|Bovine lentivirus group	2	20	1e-40	False	Retro-transcribing viruses
+2856	14	14	14	0	1	50	0.28	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Nairoviridae|Peribunyaviridae	2	20	1e-40	False	ssRNA viruses
+2984	13	13	13	0	8	18	0.7222222222222222	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-40	False	ssRNA viruses
+3312	12	12	12	0	5	12	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Pestivirus	Pestivirus	2	20	1e-40	False	ssRNA viruses
+3696	11	8	8	0	1	8	1.0	Viruses;Retro-transcribing viruses;Hepadnaviridae;Orthohepadnavirus	Orthohepadnavirus	2	20	1e-40	False	Retro-transcribing viruses
+3714	11	9	9	0	8	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus	Comovirus	2	20	1e-40	False	ssRNA viruses
+4119	10	10	10	0	3	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Vesivirus	Vesivirus	2	20	1e-40	False	ssRNA viruses
+4283	10	10	10	0	1	1975	0.005063291139240506	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-40	False	dsDNA viruses, no RNA stage
+4647	9	8	8	0	1	9	0.8888888888888888	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus	Atadenovirus	2	20	1e-40	False	dsDNA viruses, no RNA stage
+4723	9	9	9	0	2	10	0.9	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-40	False	Retro-transcribing viruses
+4775	9	9	3	0	3	3	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus	Murine leukemia virus	2	20	1e-40	False	Retro-transcribing viruses
+5053	8	8	4	0	1	5	0.8	Viruses	Aparavirus	2	20	1e-40	False	Viruses
+5137	8	8	7	0	2	7	1.0	Viruses;dsRNA viruses;Birnaviridae	Entomobirnavirus|Avibirnavirus|Blosnavirus|Aquabirnavirus	2	20	1e-40	False	dsRNA viruses
+5164	8	8	8	0	7	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-40	False	ssRNA viruses
+5312	8	7	7	0	1	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-40	False	Retro-transcribing viruses
+5313	8	8	8	0	6	8	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Orthomyxoviridae	Influenzavirus B|Influenzavirus A	2	20	1e-40	False	ssRNA viruses
+5819	7	6	6	0	4	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus	Alpharetrovirus	2	20	1e-40	False	Retro-transcribing viruses
+5979	7	7	7	0	2	27	0.25925925925925924	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Gammaretrovirus	2	20	1e-40	False	Retro-transcribing viruses
+6021	7	7	5	0	2	5	1.0	Viruses	Alphanodavirus	2	20	1e-40	False	Viruses
+6214	7	7	7	0	1	7	1.0	Viruses;ssDNA viruses;Parvoviridae;Densovirinae;Iteradensovirus	Iteradensovirus	2	20	1e-40	False	ssDNA viruses
+7065	6	5	5	0	2	18	0.2777777777777778	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-40	False	ssRNA viruses
+7135	6	6	6	0	6	6	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Norovirus	Norovirus	2	20	1e-40	False	ssRNA viruses
+7143	6	6	6	0	2	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-40	False	Retro-transcribing viruses
+7397	6	6	3	0	1	1335	0.0022471910112359553	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-40	False	Viruses
+8633	5	5	4	0	1	8	0.5	Viruses;Retro-transcribing viruses;Retroviridae	Alpharetrovirus	2	20	1e-40	False	Retro-transcribing viruses
+8701	5	5	5	0	4	5	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-40	False	ssRNA viruses
+8703	5	5	4	0	1	4	1.0	Viruses	Orthohepevirus|Piscihepevirus	2	20	1e-40	False	Viruses
+10778	4	4	4	0	2	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-40	False	ssRNA viruses
+11011	4	4	4	0	2	53	0.07547169811320754	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-40	False	ssRNA viruses
+11090	4	4	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus	Fabavirus	2	20	1e-40	False	ssRNA viruses
+11762	4	4	4	0	2	10	0.4	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-40	False	Retro-transcribing viruses
+12011	4	4	4	0	1	4	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-40	False	Retro-transcribing viruses
+14467	3	3	3	0	1	25	0.12	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Alpharetrovirus|Gammaretrovirus	2	20	1e-40	False	Retro-transcribing viruses
+15208	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Benyviridae;Benyvirus	Benyvirus	2	20	1e-40	False	ssRNA viruses
+16775	3	3	3	0	1	8	0.375	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-40	False	Retro-transcribing viruses
+20502	3	3	2	0	1	3	0.6666666666666666	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Phic31virus	2	20	1e-40	False	dsDNA viruses, no RNA stage
+23339	2	2	2	0	1	4	0.5	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Alphatetraviridae|Permutotetraviridae	2	20	1e-40	False	ssRNA viruses
+39098	1	1	1	0	1	8	0.125	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-40	False	Retro-transcribing viruses
+42633	1	1	1	0	1	1080	0.000925925925925926	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-40	False	dsDNA viruses, no RNA stage
+46381	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Phycodnaviridae;Coccolithovirus	Coccolithovirus	2	20	1e-40	False	dsDNA viruses, no RNA stage
+68656	1	1	1	0	1	1	1.0	Viruses;dsRNA viruses;Reoviridae;Spinareovirinae;Oryzavirus	Oryzavirus	2	20	1e-40	False	dsRNA viruses
+68804	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-40	False	ssRNA viruses
+68805	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-40	False	ssRNA viruses
+69651	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sadwavirus	Sadwavirus	2	20	1e-40	False	ssRNA viruses
+71980	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-40	False	ssRNA viruses
+91951	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Plasmaviridae;Plasmavirus	Plasmavirus	2	20	1e-40	False	dsDNA viruses, no RNA stage
+25	150	149	137	0	122	137	1.0	Viruses	Potyvirus|Bymovirus|Poacevirus|Tritimovirus|Macluravirus|Rymovirus|Ipomovirus|Brambyvirus	2	20	1e-50	False	Viruses
+35	125	65	58	0	29	71	0.8169014084507042	Viruses	Sobemovirus|Luteoviridae|Polemovirus	2	20	1e-50	False	Viruses
+46	120	119	119	0	1	364	0.3269230769230769	Viruses;ssDNA viruses;Geminiviridae;Begomovirus	Begomovirus	2	20	1e-50	False	ssDNA viruses
+48	118	117	117	0	1	364	0.32142857142857145	Viruses;ssDNA viruses;Geminiviridae;Begomovirus	Begomovirus	2	20	1e-50	False	ssDNA viruses
+54	115	107	87	0	73	88	0.9886363636363636	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales	Passerivirus|Hunnivirus|Teschovirus|Torchivirus|Megrivirus|Mischivirus|Sapelovirus|Kobuvirus|Hepatovirus|Aphthovirus|Cosavirus|Rosavirus|Erbovirus|Mosavirus|Senecavirus|Cardiovirus|Oscivirus|Dicipivirus|Tremovirus|Enterovirus|Sakobuvirus|Gallivirus|Rabovirus|Sicinivirus	2	20	1e-50	False	ssRNA viruses
+67	103	82	40	0	68	41	0.975609756097561	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae	Rio Bravo virus group|Yellow fever virus group|Seaborne tick-borne virus group|tick-borne encephalitis virus group|Japanese encephalitis virus group|Dengue virus group|mosquito-borne viruses|Kokobera virus group|Ntaya virus group|Modoc virus group	2	20	1e-50	False	ssRNA viruses
+102	94	94	94	0	4	94	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Tymovirales	Gammaflexiviridae|Betaflexiviridae	2	20	1e-50	False	ssRNA viruses
+151	79	43	30	0	1	30	1.0	Viruses	Avastrovirus|Mamastrovirus	2	20	1e-50	False	Viruses
+167	75	73	70	0	1	1975	0.035443037974683546	Viruses	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-50	False	Viruses
+180	73	70	70	0	1	135	0.5185185185185185	Viruses;Retro-transcribing viruses	Caulimoviridae|Retroviridae	2	20	1e-50	False	Retro-transcribing viruses
+191	71	50	38	0	14	38	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Coronaviridae;Coronavirinae	Gammacoronavirus|Alphacoronavirus|Betacoronavirus	2	20	1e-50	False	ssRNA viruses
+193	70	37	37	0	1	37	1.0	Viruses;ssDNA viruses;Geminiviridae;Mastrevirus	Mastrevirus	2	20	1e-50	False	ssDNA viruses
+337	53	53	48	0	34	48	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Torradovirus|Sequivirus|Sadwavirus|Comovirinae|Cheravirus|Waikavirus	2	20	1e-50	False	ssRNA viruses
+475	43	24	14	0	34	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-50	False	ssRNA viruses
+508	41	41	34	0	5	34	1.0	Viruses	Maculavirus|Marafivirus|Tymovirus	2	20	1e-50	False	Viruses
+599	38	38	25	0	1	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Mamastrovirus	2	20	1e-50	False	ssRNA viruses
+610	38	16	16	0	7	17	0.9411764705882353	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae	Arteriviridae	2	20	1e-50	False	ssRNA viruses
+685	34	24	14	0	20	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-50	False	ssRNA viruses
+715	33	33	32	0	1	32	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Arenaviridae	Arenavirus (unclassified Arenaviridae)|Mammarenavirus	2	20	1e-50	False	ssRNA viruses
+717	33	32	10	0	1	1335	0.00749063670411985	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-50	False	Viruses
+744	32	23	22	0	11	61	0.36065573770491804	Viruses;Retro-transcribing viruses;Retroviridae	Orthoretrovirinae|Spumaretrovirinae	2	20	1e-50	False	Retro-transcribing viruses
+810	30	12	12	0	6	18	0.6666666666666666	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Alpharetrovirus	2	20	1e-50	False	Retro-transcribing viruses
+866	28	26	25	0	1	1626	0.015375153751537515	Viruses	Siphoviridae|Myoviridae	2	20	1e-50	False	Viruses
+973	26	26	23	0	8	23	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	Sapovirus|Lagovirus|Vesivirus|Nebovirus	2	20	1e-50	False	ssRNA viruses
+975	26	26	25	0	22	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Pegivirus|Hepacivirus	2	20	1e-50	False	ssRNA viruses
+1077	24	24	24	0	1	24	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Hantaviridae;Orthohantavirus	Orthohantavirus	2	20	1e-50	False	ssRNA viruses
+1098	23	16	16	0	13	26	0.6153846153846154	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Ampelovirus|Velarivirus|Crinivirus	2	20	1e-50	False	ssRNA viruses
+1162	22	22	15	0	12	15	1.0	Viruses	Parechovirus|Potamipivirus|Aquamavirus|Kunsagivirus|Limnipivirus|Avihepatovirus|Pasivirus|Avisivirus	2	20	1e-50	False	Viruses
+1227	21	21	21	0	1	65	0.3230769230769231	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Phenuiviridae|Peribunyaviridae	2	20	1e-50	False	ssRNA viruses
+1848	17	8	8	0	8	8	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-50	False	Retro-transcribing viruses
+2264	15	14	10	0	7	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Closterovirus	2	20	1e-50	False	ssRNA viruses
+2466	14	10	9	0	2	9	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus	Feline lentivirus group|Equine lentivirus group|Ovine/caprine lentivirus group|Primate lentivirus group|Bovine lentivirus group	2	20	1e-50	False	Retro-transcribing viruses
+2532	14	14	14	0	1	50	0.28	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Nairoviridae|Peribunyaviridae	2	20	1e-50	False	ssRNA viruses
+2931	12	12	12	0	5	12	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Pestivirus	Pestivirus	2	20	1e-50	False	ssRNA viruses
+3286	11	8	8	0	1	8	1.0	Viruses;Retro-transcribing viruses;Hepadnaviridae;Orthohepadnavirus	Orthohepadnavirus	2	20	1e-50	False	Retro-transcribing viruses
+3302	11	9	9	0	8	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus	Comovirus	2	20	1e-50	False	ssRNA viruses
+3655	10	10	10	0	3	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Vesivirus	Vesivirus	2	20	1e-50	False	ssRNA viruses
+3810	10	10	10	0	1	1975	0.005063291139240506	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-50	False	dsDNA viruses, no RNA stage
+4119	9	9	9	0	6	18	0.5	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-50	False	ssRNA viruses
+4241	9	9	3	0	3	3	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus	Murine leukemia virus	2	20	1e-50	False	Retro-transcribing viruses
+4494	8	8	4	0	1	5	0.8	Viruses	Aparavirus	2	20	1e-50	False	Viruses
+4576	8	8	7	0	2	7	1.0	Viruses;dsRNA viruses;Birnaviridae	Entomobirnavirus|Avibirnavirus|Blosnavirus|Aquabirnavirus	2	20	1e-50	False	dsRNA viruses
+4599	8	8	8	0	7	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-50	False	ssRNA viruses
+4739	8	7	7	0	1	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-50	False	Retro-transcribing viruses
+4741	8	8	8	0	6	8	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Orthomyxoviridae	Influenzavirus B|Influenzavirus A	2	20	1e-50	False	ssRNA viruses
+5207	7	6	6	0	4	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus	Alpharetrovirus	2	20	1e-50	False	Retro-transcribing viruses
+5350	7	7	7	0	2	27	0.25925925925925924	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Gammaretrovirus	2	20	1e-50	False	Retro-transcribing viruses
+5386	7	7	7	0	6	7	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	St-Valerien swine virus|Norovirus	2	20	1e-50	False	ssRNA viruses
+5388	7	7	5	0	2	5	1.0	Viruses	Alphanodavirus	2	20	1e-50	False	Viruses
+5565	7	7	7	0	1	7	1.0	Viruses;ssDNA viruses;Parvoviridae;Densovirinae;Iteradensovirus	Iteradensovirus	2	20	1e-50	False	ssDNA viruses
+6286	6	6	6	0	1	65	0.09230769230769231	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Phenuiviridae|Peribunyaviridae	2	20	1e-50	False	ssRNA viruses
+6339	6	5	5	0	2	18	0.2777777777777778	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-50	False	ssRNA viruses
+6412	6	6	6	0	2	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-50	False	Retro-transcribing viruses
+6650	6	6	3	0	1	1335	0.0022471910112359553	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-50	False	Viruses
+7737	5	5	4	0	1	8	0.5	Viruses;Retro-transcribing viruses;Retroviridae	Alpharetrovirus	2	20	1e-50	False	Retro-transcribing viruses
+7798	5	5	5	0	4	5	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-50	False	ssRNA viruses
+9611	4	4	4	0	2	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-50	False	ssRNA viruses
+9802	4	4	4	0	1	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Hepeviridae	Orthohepevirus|Piscihepevirus	2	20	1e-50	False	ssRNA viruses
+9812	4	4	4	0	2	18	0.2222222222222222	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-50	False	ssRNA viruses
+9818	4	4	4	0	1	9	0.4444444444444444	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus	Atadenovirus	2	20	1e-50	False	dsDNA viruses, no RNA stage
+9886	4	4	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus	Fabavirus	2	20	1e-50	False	ssRNA viruses
+10715	4	4	4	0	1	4	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-50	False	Retro-transcribing viruses
+12955	3	3	3	0	1	25	0.12	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Alpharetrovirus|Gammaretrovirus	2	20	1e-50	False	Retro-transcribing viruses
+13626	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Benyviridae;Benyvirus	Benyvirus	2	20	1e-50	False	ssRNA viruses
+14544	3	3	3	0	1	10	0.3	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-50	False	Retro-transcribing viruses
+15033	3	3	2	0	2	21	0.09523809523809523	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae	Iflavirus	2	20	1e-50	False	ssRNA viruses
+18494	3	3	2	0	1	3	0.6666666666666666	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Phic31virus	2	20	1e-50	False	dsDNA viruses, no RNA stage
+19432	2	2	2	0	1	53	0.03773584905660377	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-50	False	ssRNA viruses
+19433	2	2	2	0	1	53	0.03773584905660377	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-50	False	ssRNA viruses
+21118	2	2	2	0	1	4	0.5	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Alphatetraviridae|Permutotetraviridae	2	20	1e-50	False	ssRNA viruses
+35985	1	1	1	0	1	8	0.125	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-50	False	Retro-transcribing viruses
+39470	1	1	1	0	1	1080	0.000925925925925926	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-50	False	dsDNA viruses, no RNA stage
+43076	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Phycodnaviridae;Coccolithovirus	Coccolithovirus	2	20	1e-50	False	dsDNA viruses, no RNA stage
+52874	1	1	1	0	1	10	0.1	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-50	False	Retro-transcribing viruses
+59525	1	1	1	0	1	8	0.125	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-50	False	Retro-transcribing viruses
+64531	1	1	1	0	1	1	1.0	Viruses;dsRNA viruses;Reoviridae;Spinareovirinae;Oryzavirus	Oryzavirus	2	20	1e-50	False	dsRNA viruses
+64671	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-50	False	ssRNA viruses
+64672	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-50	False	ssRNA viruses
+65432	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sadwavirus	Sadwavirus	2	20	1e-50	False	ssRNA viruses
+67748	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-50	False	ssRNA viruses
+87174	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Plasmaviridae;Plasmavirus	Plasmavirus	2	20	1e-50	False	dsDNA viruses, no RNA stage
+22	150	149	137	0	122	137	1.0	Viruses	Potyvirus|Bymovirus|Poacevirus|Tritimovirus|Macluravirus|Rymovirus|Ipomovirus|Brambyvirus	2	20	1e-60	False	Viruses
+38	119	118	118	0	1	364	0.3241758241758242	Viruses;ssDNA viruses;Geminiviridae;Begomovirus	Begomovirus	2	20	1e-60	False	ssDNA viruses
+43	115	107	87	0	73	88	0.9886363636363636	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales	Passerivirus|Hunnivirus|Teschovirus|Torchivirus|Megrivirus|Mischivirus|Sapelovirus|Kobuvirus|Hepatovirus|Aphthovirus|Cosavirus|Rosavirus|Erbovirus|Mosavirus|Senecavirus|Cardiovirus|Oscivirus|Dicipivirus|Tremovirus|Enterovirus|Sakobuvirus|Gallivirus|Rabovirus|Sicinivirus	2	20	1e-60	False	ssRNA viruses
+49	110	110	110	0	1	364	0.3021978021978022	Viruses;ssDNA viruses;Geminiviridae;Begomovirus	Begomovirus	2	20	1e-60	False	ssDNA viruses
+56	103	82	40	0	68	41	0.975609756097561	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae	Rio Bravo virus group|Yellow fever virus group|Seaborne tick-borne virus group|tick-borne encephalitis virus group|Japanese encephalitis virus group|Dengue virus group|mosquito-borne viruses|Kokobera virus group|Ntaya virus group|Modoc virus group	2	20	1e-60	False	ssRNA viruses
+90	94	94	94	0	4	94	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Tymovirales	Gammaflexiviridae|Betaflexiviridae	2	20	1e-60	False	ssRNA viruses
+116	85	43	40	0	1	52	0.7692307692307693	Viruses	Luteoviridae|Polemovirus	2	20	1e-60	False	Viruses
+131	79	43	30	0	1	30	1.0	Viruses	Avastrovirus|Mamastrovirus	2	20	1e-60	False	Viruses
+162	73	70	70	0	1	135	0.5185185185185185	Viruses;Retro-transcribing viruses	Caulimoviridae|Retroviridae	2	20	1e-60	False	Retro-transcribing viruses
+174	71	50	38	0	14	38	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Coronaviridae;Coronavirinae	Gammacoronavirus|Alphacoronavirus|Betacoronavirus	2	20	1e-60	False	ssRNA viruses
+177	70	37	37	0	1	37	1.0	Viruses;ssDNA viruses;Geminiviridae;Mastrevirus	Mastrevirus	2	20	1e-60	False	ssDNA viruses
+188	69	67	64	0	1	1975	0.03240506329113924	Viruses	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-60	False	Viruses
+428	43	24	14	0	34	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-60	False	ssRNA viruses
+480	40	40	34	0	5	34	1.0	Viruses	Maculavirus|Marafivirus|Tymovirus	2	20	1e-60	False	Viruses
+481	40	40	10	0	1	1335	0.00749063670411985	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-60	False	Viruses
+549	38	16	16	0	7	17	0.9411764705882353	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae	Arteriviridae	2	20	1e-60	False	ssRNA viruses
+554	37	19	18	0	28	19	0.9473684210526315	Viruses	Sobemovirus	2	20	1e-60	False	Viruses
+601	34	34	32	0	22	35	0.9142857142857143	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Cheravirus|Comovirinae	2	20	1e-60	False	ssRNA viruses
+602	34	24	14	0	20	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-60	False	ssRNA viruses
+624	33	33	32	0	1	32	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Arenaviridae	Arenavirus (unclassified Arenaviridae)|Mammarenavirus	2	20	1e-60	False	ssRNA viruses
+626	33	16	16	0	6	26	0.6153846153846154	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Alpharetrovirus|Deltaretrovirus	2	20	1e-60	False	Retro-transcribing viruses
+650	32	23	22	0	11	61	0.36065573770491804	Viruses;Retro-transcribing viruses;Retroviridae	Orthoretrovirinae|Spumaretrovirinae	2	20	1e-60	False	Retro-transcribing viruses
+771	28	28	15	0	1	25	0.6	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Mamastrovirus	2	20	1e-60	False	ssRNA viruses
+865	26	24	24	0	1	1626	0.014760147601476014	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Siphoviridae|Myoviridae	2	20	1e-60	False	dsDNA viruses, no RNA stage
+870	26	26	23	0	8	23	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	Sapovirus|Lagovirus|Vesivirus|Nebovirus	2	20	1e-60	False	ssRNA viruses
+872	26	26	25	0	22	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Pegivirus|Hepacivirus	2	20	1e-60	False	ssRNA viruses
+959	24	24	24	0	1	24	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Hantaviridae;Orthohantavirus	Orthohantavirus	2	20	1e-60	False	ssRNA viruses
+978	23	16	16	0	13	26	0.6153846153846154	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Ampelovirus|Velarivirus|Crinivirus	2	20	1e-60	False	ssRNA viruses
+1038	22	22	15	0	12	15	1.0	Viruses	Parechovirus|Potamipivirus|Aquamavirus|Kunsagivirus|Limnipivirus|Avihepatovirus|Pasivirus|Avisivirus	2	20	1e-60	False	Viruses
+1098	21	21	21	0	1	65	0.3230769230769231	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Phenuiviridae|Peribunyaviridae	2	20	1e-60	False	ssRNA viruses
+1360	19	19	16	0	12	17	0.9411764705882353	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Torradovirus|Sequivirus|Sadwavirus|Cheravirus|Waikavirus	2	20	1e-60	False	ssRNA viruses
+2014	15	14	10	0	7	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Closterovirus	2	20	1e-60	False	ssRNA viruses
+2185	14	10	9	0	2	9	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus	Feline lentivirus group|Equine lentivirus group|Ovine/caprine lentivirus group|Primate lentivirus group|Bovine lentivirus group	2	20	1e-60	False	Retro-transcribing viruses
+2236	14	14	14	0	1	50	0.28	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Nairoviridae|Peribunyaviridae	2	20	1e-60	False	ssRNA viruses
+2344	13	8	8	0	8	8	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-60	False	Retro-transcribing viruses
+2597	12	12	12	0	5	12	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Pestivirus	Pestivirus	2	20	1e-60	False	ssRNA viruses
+2930	11	8	8	0	1	8	1.0	Viruses;Retro-transcribing viruses;Hepadnaviridae;Orthohepadnavirus	Orthohepadnavirus	2	20	1e-60	False	Retro-transcribing viruses
+2947	11	9	9	0	8	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus	Comovirus	2	20	1e-60	False	ssRNA viruses
+3335	10	10	10	0	3	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Vesivirus	Vesivirus	2	20	1e-60	False	ssRNA viruses
+3444	10	10	10	0	1	1975	0.005063291139240506	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-60	False	dsDNA viruses, no RNA stage
+3828	9	9	3	0	3	3	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus	Murine leukemia virus	2	20	1e-60	False	Retro-transcribing viruses
+4118	8	8	8	0	4	18	0.4444444444444444	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-60	False	ssRNA viruses
+4119	8	8	7	0	2	7	1.0	Viruses;dsRNA viruses;Birnaviridae	Entomobirnavirus|Avibirnavirus|Blosnavirus|Aquabirnavirus	2	20	1e-60	False	dsRNA viruses
+4135	8	8	8	0	7	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-60	False	ssRNA viruses
+4253	8	7	7	0	1	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-60	False	Retro-transcribing viruses
+4256	8	8	8	0	6	8	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Orthomyxoviridae	Influenzavirus B|Influenzavirus A	2	20	1e-60	False	ssRNA viruses
+4699	7	7	4	0	1	5	0.8	Viruses	Aparavirus	2	20	1e-60	False	Viruses
+4808	7	6	6	0	4	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus	Alpharetrovirus	2	20	1e-60	False	Retro-transcribing viruses
+4815	7	7	7	0	2	27	0.25925925925925924	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Gammaretrovirus	2	20	1e-60	False	Retro-transcribing viruses
+4847	7	7	5	0	2	5	1.0	Viruses	Alphanodavirus	2	20	1e-60	False	Viruses
+5019	7	7	7	0	1	7	1.0	Viruses;ssDNA viruses;Parvoviridae;Densovirinae;Iteradensovirus	Iteradensovirus	2	20	1e-60	False	ssDNA viruses
+5267	7	7	7	0	6	7	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	St-Valerien swine virus|Norovirus	2	20	1e-60	False	ssRNA viruses
+5672	6	6	6	0	1	65	0.09230769230769231	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Phenuiviridae|Peribunyaviridae	2	20	1e-60	False	ssRNA viruses
+5727	6	5	5	0	2	18	0.2777777777777778	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-60	False	ssRNA viruses
+5793	6	6	6	0	2	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-60	False	Retro-transcribing viruses
+6011	6	6	3	0	1	1335	0.0022471910112359553	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-60	False	Viruses
+6979	5	5	4	0	1	8	0.5	Viruses;Retro-transcribing viruses;Retroviridae	Alpharetrovirus	2	20	1e-60	False	Retro-transcribing viruses
+7031	5	5	5	0	4	5	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-60	False	ssRNA viruses
+7033	5	5	5	0	4	18	0.2777777777777778	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-60	False	ssRNA viruses
+8784	4	4	4	0	1	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Hepeviridae	Orthohepevirus|Piscihepevirus	2	20	1e-60	False	ssRNA viruses
+8799	4	4	4	0	1	9	0.4444444444444444	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus	Atadenovirus	2	20	1e-60	False	dsDNA viruses, no RNA stage
+8859	4	4	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus	Fabavirus	2	20	1e-60	False	ssRNA viruses
+9593	4	4	4	0	1	4	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-60	False	Retro-transcribing viruses
+11677	3	3	3	0	1	25	0.12	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Alpharetrovirus|Gammaretrovirus	2	20	1e-60	False	Retro-transcribing viruses
+12053	3	3	3	0	2	4	0.75	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-60	False	ssRNA viruses
+12235	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Benyviridae;Benyvirus	Benyvirus	2	20	1e-60	False	ssRNA viruses
+13090	3	3	3	0	1	10	0.3	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-60	False	Retro-transcribing viruses
+13576	3	3	2	0	2	21	0.09523809523809523	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae	Iflavirus	2	20	1e-60	False	ssRNA viruses
+16823	3	3	2	0	1	3	0.6666666666666666	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Phic31virus	2	20	1e-60	False	dsDNA viruses, no RNA stage
+17703	2	2	2	0	1	53	0.03773584905660377	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-60	False	ssRNA viruses
+17927	2	2	2	0	1	53	0.03773584905660377	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-60	False	ssRNA viruses
+19261	2	2	2	0	1	4	0.5	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Alphatetraviridae|Permutotetraviridae	2	20	1e-60	False	ssRNA viruses
+33319	1	1	1	0	1	8	0.125	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-60	False	Retro-transcribing viruses
+36654	1	1	1	0	1	1080	0.000925925925925926	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-60	False	dsDNA viruses, no RNA stage
+49629	1	1	1	0	1	10	0.1	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-60	False	Retro-transcribing viruses
+55944	1	1	1	0	1	8	0.125	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-60	False	Retro-transcribing viruses
+60604	1	1	1	0	1	1	1.0	Viruses;dsRNA viruses;Reoviridae;Spinareovirinae;Oryzavirus	Oryzavirus	2	20	1e-60	False	dsRNA viruses
+60741	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-60	False	ssRNA viruses
+60742	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-60	False	ssRNA viruses
+61432	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sadwavirus	Sadwavirus	2	20	1e-60	False	ssRNA viruses
+63652	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-60	False	ssRNA viruses
+82087	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Plasmaviridae;Plasmavirus	Plasmavirus	2	20	1e-60	False	dsDNA viruses, no RNA stage
+20	150	149	137	0	122	137	1.0	Viruses	Potyvirus|Bymovirus|Poacevirus|Tritimovirus|Macluravirus|Rymovirus|Ipomovirus|Brambyvirus	2	20	1e-70	False	Viruses
+43	106	106	106	0	1	364	0.29120879120879123	Viruses;ssDNA viruses;Geminiviridae;Begomovirus	Begomovirus	2	20	1e-70	False	ssDNA viruses
+44	106	99	79	0	68	80	0.9875	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales	Passerivirus|Hunnivirus|Teschovirus|Torchivirus|Megrivirus|Mischivirus|Sapelovirus|Kobuvirus|Aphthovirus|Cosavirus|Rosavirus|Erbovirus|Mosavirus|Senecavirus|Cardiovirus|Oscivirus|Dicipivirus|Enterovirus|Sakobuvirus|Gallivirus|Rabovirus|Sicinivirus	2	20	1e-70	False	ssRNA viruses
+49	103	82	40	0	68	41	0.975609756097561	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae	Rio Bravo virus group|Yellow fever virus group|Seaborne tick-borne virus group|tick-borne encephalitis virus group|Japanese encephalitis virus group|Dengue virus group|mosquito-borne viruses|Kokobera virus group|Ntaya virus group|Modoc virus group	2	20	1e-70	False	ssRNA viruses
+77	93	93	87	0	4	87	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Tymovirales;Betaflexiviridae	Quinvirinae|Trivirinae	2	20	1e-70	False	ssRNA viruses
+94	85	43	40	0	1	52	0.7692307692307693	Viruses	Luteoviridae|Polemovirus	2	20	1e-70	False	Viruses
+110	79	43	30	0	1	30	1.0	Viruses	Avastrovirus|Mamastrovirus	2	20	1e-70	False	Viruses
+148	71	50	38	0	14	38	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Coronaviridae;Coronavirinae	Gammacoronavirus|Alphacoronavirus|Betacoronavirus	2	20	1e-70	False	ssRNA viruses
+372	43	24	14	0	34	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-70	False	ssRNA viruses
+417	40	40	34	0	5	34	1.0	Viruses	Maculavirus|Marafivirus|Tymovirus	2	20	1e-70	False	Viruses
+474	38	16	16	0	7	17	0.9411764705882353	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae	Arteriviridae	2	20	1e-70	False	ssRNA viruses
+481	37	19	18	0	28	19	0.9473684210526315	Viruses	Sobemovirus	2	20	1e-70	False	Viruses
+491	36	34	34	0	1	1429	0.023792862141357594	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Podoviridae|Siphoviridae	2	20	1e-70	False	dsDNA viruses, no RNA stage
+527	34	24	14	0	20	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-70	False	ssRNA viruses
+550	33	33	32	0	1	32	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Arenaviridae	Arenavirus (unclassified Arenaviridae)|Mammarenavirus	2	20	1e-70	False	ssRNA viruses
+569	32	32	32	0	1	364	0.08791208791208792	Viruses;ssDNA viruses;Geminiviridae;Begomovirus	Begomovirus	2	20	1e-70	False	ssDNA viruses
+578	32	15	15	0	6	26	0.5769230769230769	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Alpharetrovirus|Deltaretrovirus	2	20	1e-70	False	Retro-transcribing viruses
+606	31	31	31	0	19	31	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae	Nepovirus|Fabavirus|Comovirus	2	20	1e-70	False	ssRNA viruses
+755	26	17	16	0	11	18	0.8888888888888888	Viruses;Retro-transcribing viruses;Retroviridae	Epsilonretrovirus|Gammaretrovirus	2	20	1e-70	False	Retro-transcribing viruses
+767	26	26	23	0	8	23	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	Sapovirus|Lagovirus|Vesivirus|Nebovirus	2	20	1e-70	False	ssRNA viruses
+768	26	26	10	0	1	1335	0.00749063670411985	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-70	False	Viruses
+770	26	26	25	0	22	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Pegivirus|Hepacivirus	2	20	1e-70	False	ssRNA viruses
+792	25	25	14	0	1	25	0.56	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Mamastrovirus	2	20	1e-70	False	ssRNA viruses
+852	24	24	24	0	1	24	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Hantaviridae;Orthohantavirus	Orthohantavirus	2	20	1e-70	False	ssRNA viruses
+870	23	16	16	0	13	26	0.6153846153846154	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Ampelovirus|Velarivirus|Crinivirus	2	20	1e-70	False	ssRNA viruses
+941	22	22	15	0	12	15	1.0	Viruses	Parechovirus|Potamipivirus|Aquamavirus|Kunsagivirus|Limnipivirus|Avihepatovirus|Pasivirus|Avisivirus	2	20	1e-70	False	Viruses
+1977	14	10	9	0	2	9	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus	Feline lentivirus group|Equine lentivirus group|Ovine/caprine lentivirus group|Primate lentivirus group|Bovine lentivirus group	2	20	1e-70	False	Retro-transcribing viruses
+1978	14	8	8	0	8	8	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-70	False	Retro-transcribing viruses
+2024	14	14	14	0	1	50	0.28	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Nairoviridae|Peribunyaviridae	2	20	1e-70	False	ssRNA viruses
+2124	13	11	11	0	1	1080	0.010185185185185186	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-70	False	dsDNA viruses, no RNA stage
+2131	13	12	10	0	7	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Closterovirus	2	20	1e-70	False	ssRNA viruses
+2356	12	12	12	0	5	12	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Pestivirus	Pestivirus	2	20	1e-70	False	ssRNA viruses
+2419	12	12	12	0	1	37	0.32432432432432434	Viruses;ssDNA viruses;Geminiviridae;Mastrevirus	Mastrevirus	2	20	1e-70	False	ssDNA viruses
+2427	12	12	12	0	1	1975	0.0060759493670886075	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-70	False	dsDNA viruses, no RNA stage
+2658	11	8	8	0	1	8	1.0	Viruses;Retro-transcribing viruses;Hepadnaviridae;Orthohepadnavirus	Orthohepadnavirus	2	20	1e-70	False	Retro-transcribing viruses
+2673	11	9	9	0	8	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus	Comovirus	2	20	1e-70	False	ssRNA viruses
+3000	10	10	10	0	3	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Vesivirus	Vesivirus	2	20	1e-70	False	ssRNA viruses
+3330	9	8	8	0	5	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae	Tremovirus|Hepatovirus	2	20	1e-70	False	ssRNA viruses
+3461	9	9	3	0	3	3	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus	Murine leukemia virus	2	20	1e-70	False	Retro-transcribing viruses
+3726	8	8	7	0	2	7	1.0	Viruses;dsRNA viruses;Birnaviridae	Entomobirnavirus|Avibirnavirus|Blosnavirus|Aquabirnavirus	2	20	1e-70	False	dsRNA viruses
+3738	8	8	8	0	4	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-70	False	ssRNA viruses
+3739	8	8	8	0	7	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-70	False	ssRNA viruses
+3859	8	7	7	0	1	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-70	False	Retro-transcribing viruses
+4261	7	7	4	0	1	5	0.8	Viruses	Aparavirus	2	20	1e-70	False	Viruses
+4351	7	6	6	0	4	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus	Alpharetrovirus	2	20	1e-70	False	Retro-transcribing viruses
+4357	7	7	7	0	2	27	0.25925925925925924	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Gammaretrovirus	2	20	1e-70	False	Retro-transcribing viruses
+4393	7	7	5	0	2	5	1.0	Viruses	Alphanodavirus	2	20	1e-70	False	Viruses
+4533	7	7	7	0	1	7	1.0	Viruses;ssDNA viruses;Parvoviridae;Densovirinae;Iteradensovirus	Iteradensovirus	2	20	1e-70	False	ssDNA viruses
+4642	7	7	7	0	6	7	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Orthomyxoviridae;Influenzavirus A	Influenzavirus A	2	20	1e-70	False	ssRNA viruses
+4753	7	7	7	0	6	7	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	St-Valerien swine virus|Norovirus	2	20	1e-70	False	ssRNA viruses
+5223	6	6	6	0	1	65	0.09230769230769231	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Phenuiviridae|Peribunyaviridae	2	20	1e-70	False	ssRNA viruses
+5224	6	6	6	0	4	18	0.3333333333333333	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-70	False	ssRNA viruses
+5228	6	6	6	0	2	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-70	False	Retro-transcribing viruses
+5416	6	6	3	0	1	1335	0.0022471910112359553	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-70	False	Viruses
+6259	5	5	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Cheravirus	2	20	1e-70	False	ssRNA viruses
+6260	5	5	1	0	4	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Sadwavirus	2	20	1e-70	False	ssRNA viruses
+6269	5	5	4	0	1	8	0.5	Viruses;Retro-transcribing viruses;Retroviridae	Alpharetrovirus	2	20	1e-70	False	Retro-transcribing viruses
+6318	5	5	5	0	4	18	0.2777777777777778	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-70	False	ssRNA viruses
+7694	4	4	4	0	1	65	0.06153846153846154	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Phenuiviridae|Peribunyaviridae	2	20	1e-70	False	ssRNA viruses
+7741	4	3	3	0	1	18	0.16666666666666666	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-70	False	ssRNA viruses
+7874	4	4	4	0	3	5	0.8	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-70	False	ssRNA viruses
+7875	4	4	4	0	1	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Hepeviridae	Orthohepevirus|Piscihepevirus	2	20	1e-70	False	ssRNA viruses
+7886	4	4	4	0	4	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Waikavirus|Sequivirus	2	20	1e-70	False	ssRNA viruses
+7891	4	4	4	0	1	9	0.4444444444444444	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus	Atadenovirus	2	20	1e-70	False	dsDNA viruses, no RNA stage
+7944	4	4	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus	Fabavirus	2	20	1e-70	False	ssRNA viruses
+8593	4	4	4	0	1	4	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-70	False	Retro-transcribing viruses
+10420	3	3	3	0	1	25	0.12	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Alpharetrovirus|Gammaretrovirus	2	20	1e-70	False	Retro-transcribing viruses
+10769	3	3	3	0	2	4	0.75	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-70	False	ssRNA viruses
+10954	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Benyviridae;Benyvirus	Benyvirus	2	20	1e-70	False	ssRNA viruses
+11731	3	3	3	0	1	10	0.3	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-70	False	Retro-transcribing viruses
+12178	3	3	2	0	2	21	0.09523809523809523	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae	Iflavirus	2	20	1e-70	False	ssRNA viruses
+15237	3	3	2	0	1	3	0.6666666666666666	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Phic31virus	2	20	1e-70	False	dsDNA viruses, no RNA stage
+16027	2	2	2	0	1	53	0.03773584905660377	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-70	False	ssRNA viruses
+16247	2	2	2	0	1	18	0.1111111111111111	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-70	False	ssRNA viruses
+16257	2	2	2	0	1	53	0.03773584905660377	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-70	False	ssRNA viruses
+16331	2	2	2	0	1	135	0.014814814814814815	Viruses;Retro-transcribing viruses	Caulimoviridae|Retroviridae	2	20	1e-70	False	Retro-transcribing viruses
+17513	2	2	2	0	1	4	0.5	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Alphatetraviridae|Permutotetraviridae	2	20	1e-70	False	ssRNA viruses
+30681	1	1	1	0	1	8	0.125	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-70	False	Retro-transcribing viruses
+33866	1	1	1	0	1	1080	0.000925925925925926	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-70	False	dsDNA viruses, no RNA stage
+46440	1	1	1	0	1	10	0.1	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-70	False	Retro-transcribing viruses
+48234	1	1	1	0	1	5	0.2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-70	False	ssRNA viruses
+52476	1	1	1	0	1	8	0.125	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-70	False	Retro-transcribing viruses
+56844	1	1	1	0	1	1	1.0	Viruses;dsRNA viruses;Reoviridae;Spinareovirinae;Oryzavirus	Oryzavirus	2	20	1e-70	False	dsRNA viruses
+56979	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-70	False	ssRNA viruses
+56980	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-70	False	ssRNA viruses
+57633	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sadwavirus	Sadwavirus	2	20	1e-70	False	ssRNA viruses
+59778	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-70	False	ssRNA viruses
+77387	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Plasmaviridae;Plasmavirus	Plasmavirus	2	20	1e-70	False	dsDNA viruses, no RNA stage
+16	150	149	137	0	122	137	1.0	Viruses	Potyvirus|Bymovirus|Poacevirus|Tritimovirus|Macluravirus|Rymovirus|Ipomovirus|Brambyvirus	2	20	1e-80	False	Viruses
+36	105	98	79	0	68	80	0.9875	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales	Passerivirus|Hunnivirus|Teschovirus|Torchivirus|Megrivirus|Mischivirus|Sapelovirus|Kobuvirus|Aphthovirus|Cosavirus|Rosavirus|Erbovirus|Mosavirus|Senecavirus|Cardiovirus|Oscivirus|Dicipivirus|Enterovirus|Sakobuvirus|Gallivirus|Rabovirus|Sicinivirus	2	20	1e-80	False	ssRNA viruses
+40	103	82	40	0	68	41	0.975609756097561	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae	Rio Bravo virus group|Yellow fever virus group|Seaborne tick-borne virus group|tick-borne encephalitis virus group|Japanese encephalitis virus group|Dengue virus group|mosquito-borne viruses|Kokobera virus group|Ntaya virus group|Modoc virus group	2	20	1e-80	False	ssRNA viruses
+65	93	93	87	0	4	87	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Tymovirales;Betaflexiviridae	Quinvirinae|Trivirinae	2	20	1e-80	False	ssRNA viruses
+98	77	41	30	0	1	30	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Avastrovirus|Mamastrovirus	2	20	1e-80	False	ssRNA viruses
+128	71	50	38	0	14	38	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Coronaviridae;Coronavirinae	Gammacoronavirus|Alphacoronavirus|Betacoronavirus	2	20	1e-80	False	ssRNA viruses
+248	48	48	48	0	1	364	0.13186813186813187	Viruses;ssDNA viruses;Geminiviridae;Begomovirus	Begomovirus	2	20	1e-80	False	ssDNA viruses
+329	43	24	14	0	34	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-80	False	ssRNA viruses
+371	40	40	34	0	5	34	1.0	Viruses	Maculavirus|Marafivirus|Tymovirus	2	20	1e-80	False	Viruses
+417	38	16	16	0	7	17	0.9411764705882353	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Nidovirales;Arteriviridae	Arteriviridae	2	20	1e-80	False	ssRNA viruses
+431	36	18	18	0	28	19	0.9473684210526315	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Sobemovirus	Sobemovirus	2	20	1e-80	False	ssRNA viruses
+433	36	34	34	0	1	1429	0.023792862141357594	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Podoviridae|Siphoviridae	2	20	1e-80	False	dsDNA viruses, no RNA stage
+461	34	24	14	0	20	14	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Alphavirus	SFV complex|WEEV complex|VEEV complex|EEEV complex	2	20	1e-80	False	ssRNA viruses
+481	33	33	32	0	1	32	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Arenaviridae	Arenavirus (unclassified Arenaviridae)|Mammarenavirus	2	20	1e-80	False	ssRNA viruses
+534	31	31	31	0	19	31	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae	Nepovirus|Fabavirus|Comovirus	2	20	1e-80	False	ssRNA viruses
+580	29	12	12	0	6	18	0.6666666666666666	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Alpharetrovirus	2	20	1e-80	False	Retro-transcribing viruses
+598	28	28	24	0	1	34	0.7058823529411765	Viruses	Polerovirus	2	20	1e-80	False	Viruses
+655	26	17	16	0	11	18	0.8888888888888888	Viruses;Retro-transcribing viruses;Retroviridae	Epsilonretrovirus|Gammaretrovirus	2	20	1e-80	False	Retro-transcribing viruses
+666	26	26	23	0	8	23	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	Sapovirus|Lagovirus|Vesivirus|Nebovirus	2	20	1e-80	False	ssRNA viruses
+668	26	26	25	0	22	25	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Pegivirus|Hepacivirus	2	20	1e-80	False	ssRNA viruses
+727	24	16	15	0	14	15	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Velarivirus|Crinivirus	2	20	1e-80	False	ssRNA viruses
+749	24	24	24	0	1	24	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales;Hantaviridae;Orthohantavirus	Orthohantavirus	2	20	1e-80	False	ssRNA viruses
+825	22	22	15	0	12	15	1.0	Viruses	Parechovirus|Potamipivirus|Aquamavirus|Kunsagivirus|Limnipivirus|Avihepatovirus|Pasivirus|Avisivirus	2	20	1e-80	False	Viruses
+828	22	22	14	0	1	25	0.56	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Astroviridae	Mamastrovirus	2	20	1e-80	False	ssRNA viruses
+1097	19	19	8	0	1	1335	0.00599250936329588	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-80	False	Viruses
+1356	17	8	8	0	8	8	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-80	False	Retro-transcribing viruses
+1790	14	10	9	0	2	9	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus	Feline lentivirus group|Equine lentivirus group|Ovine/caprine lentivirus group|Primate lentivirus group|Bovine lentivirus group	2	20	1e-80	False	Retro-transcribing viruses
+1942	13	13	13	0	1	1975	0.006582278481012658	Viruses;dsDNA viruses, no RNA stage;Caudovirales	Siphoviridae|Podoviridae|Myoviridae	2	20	1e-80	False	dsDNA viruses, no RNA stage
+2136	12	12	12	0	5	12	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Flaviviridae;Pestivirus	Pestivirus	2	20	1e-80	False	ssRNA viruses
+2225	12	10	10	0	1	1080	0.009259259259259259	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-80	False	dsDNA viruses, no RNA stage
+2228	12	12	12	0	1	50	0.24	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Nairoviridae|Peribunyaviridae	2	20	1e-80	False	ssRNA viruses
+2410	11	9	9	0	8	9	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus	Comovirus	2	20	1e-80	False	ssRNA viruses
+2413	11	11	10	0	6	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Closteroviridae	Closterovirus	2	20	1e-80	False	ssRNA viruses
+2476	11	11	11	0	1	37	0.2972972972972973	Viruses;ssDNA viruses;Geminiviridae;Mastrevirus	Mastrevirus	2	20	1e-80	False	ssDNA viruses
+2670	10	7	7	0	1	8	0.875	Viruses;Retro-transcribing viruses;Hepadnaviridae;Orthohepadnavirus	Orthohepadnavirus	2	20	1e-80	False	Retro-transcribing viruses
+2714	10	10	10	0	3	10	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae;Vesivirus	Vesivirus	2	20	1e-80	False	ssRNA viruses
+3009	9	8	8	0	5	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae	Tremovirus|Hepatovirus	2	20	1e-80	False	ssRNA viruses
+3090	9	9	3	0	3	3	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Gammaretrovirus	Murine leukemia virus	2	20	1e-80	False	Retro-transcribing viruses
+3360	8	8	7	0	2	7	1.0	Viruses;dsRNA viruses;Birnaviridae	Entomobirnavirus|Avibirnavirus|Blosnavirus|Aquabirnavirus	2	20	1e-80	False	dsRNA viruses
+3377	8	8	8	0	4	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-80	False	ssRNA viruses
+3378	8	8	8	0	7	8	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus	Torradovirus	2	20	1e-80	False	ssRNA viruses
+3479	8	7	7	0	1	8	0.875	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-80	False	Retro-transcribing viruses
+3853	7	7	4	0	1	5	0.8	Viruses	Aparavirus	2	20	1e-80	False	Viruses
+3935	7	6	6	0	4	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Alpharetrovirus	Alpharetrovirus	2	20	1e-80	False	Retro-transcribing viruses
+3941	7	7	7	0	2	27	0.25925925925925924	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Betaretrovirus|Gammaretrovirus	2	20	1e-80	False	Retro-transcribing viruses
+3970	7	7	5	0	2	5	1.0	Viruses	Alphanodavirus	2	20	1e-80	False	Viruses
+4103	7	7	7	0	1	7	1.0	Viruses;ssDNA viruses;Parvoviridae;Densovirinae;Iteradensovirus	Iteradensovirus	2	20	1e-80	False	ssDNA viruses
+4202	7	7	7	0	6	7	1.0	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Orthomyxoviridae;Influenzavirus A	Influenzavirus A	2	20	1e-80	False	ssRNA viruses
+4288	7	7	7	0	6	7	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Caliciviridae	St-Valerien swine virus|Norovirus	2	20	1e-80	False	ssRNA viruses
+4714	6	6	6	0	1	65	0.09230769230769231	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Phenuiviridae|Peribunyaviridae	2	20	1e-80	False	ssRNA viruses
+4719	6	6	6	0	2	8	0.75	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-80	False	Retro-transcribing viruses
+4891	6	6	3	0	1	1335	0.0022471910112359553	Viruses	ssRNA positive-strand viruses, no DNA stage	2	20	1e-80	False	Viruses
+5649	5	5	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Cheravirus	2	20	1e-80	False	ssRNA viruses
+5662	5	5	4	0	1	8	0.5	Viruses;Retro-transcribing viruses;Retroviridae	Alpharetrovirus	2	20	1e-80	False	Retro-transcribing viruses
+5704	5	5	5	0	4	18	0.2777777777777778	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-80	False	ssRNA viruses
+5707	5	5	1	0	4	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Sadwavirus	2	20	1e-80	False	ssRNA viruses
+7068	4	3	3	0	1	18	0.16666666666666666	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-80	False	ssRNA viruses
+7069	4	4	4	0	1	65	0.06153846153846154	Viruses;ssRNA viruses;ssRNA negative-strand viruses;Bunyavirales	Phenuiviridae|Peribunyaviridae	2	20	1e-80	False	ssRNA viruses
+7197	4	4	4	0	1	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Hepeviridae	Orthohepevirus|Piscihepevirus	2	20	1e-80	False	ssRNA viruses
+7205	4	4	4	0	4	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Waikavirus|Sequivirus	2	20	1e-80	False	ssRNA viruses
+7207	4	4	4	0	2	18	0.2222222222222222	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-80	False	ssRNA viruses
+7253	4	4	4	0	3	4	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus	Fabavirus	2	20	1e-80	False	ssRNA viruses
+7860	4	4	4	0	1	4	1.0	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Lentivirus;Primate lentivirus group	Primate lentivirus group	2	20	1e-80	False	Retro-transcribing viruses
+9525	3	3	3	0	1	25	0.12	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae	Alpharetrovirus|Gammaretrovirus	2	20	1e-80	False	Retro-transcribing viruses
+9842	3	3	3	0	2	4	0.75	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus	Cheravirus	2	20	1e-80	False	ssRNA viruses
+10006	3	3	3	0	1	3	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Benyviridae;Benyvirus	Benyvirus	2	20	1e-80	False	ssRNA viruses
+10713	3	3	3	0	1	10	0.3	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-80	False	Retro-transcribing viruses
+11126	3	3	2	0	2	21	0.09523809523809523	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae	Iflavirus	2	20	1e-80	False	ssRNA viruses
+13994	3	3	2	0	1	3	0.6666666666666666	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Phic31virus	2	20	1e-80	False	dsDNA viruses, no RNA stage
+14702	2	2	2	0	1	5	0.4	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-80	False	ssRNA viruses
+14703	2	2	2	0	2	5	0.4	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-80	False	ssRNA viruses
+14723	2	2	2	0	1	18	0.1111111111111111	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-80	False	ssRNA viruses
+14724	2	2	2	0	1	53	0.03773584905660377	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-80	False	ssRNA viruses
+14924	2	2	2	0	1	18	0.1111111111111111	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-80	False	ssRNA viruses
+14937	2	2	2	0	1	53	0.03773584905660377	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-80	False	ssRNA viruses
+15009	2	2	2	0	1	135	0.014814814814814815	Viruses;Retro-transcribing viruses	Caulimoviridae|Retroviridae	2	20	1e-80	False	Retro-transcribing viruses
+16084	2	2	2	0	1	4	0.5	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage	Alphatetraviridae|Permutotetraviridae	2	20	1e-80	False	ssRNA viruses
+23808	1	1	1	0	1	364	0.0027472527472527475	Viruses;ssDNA viruses;Geminiviridae;Begomovirus	Begomovirus	2	20	1e-80	False	ssDNA viruses
+28428	1	1	1	0	1	8	0.125	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-80	False	Retro-transcribing viruses
+31521	1	1	1	0	1	1080	0.000925925925925926	Viruses;dsDNA viruses, no RNA stage;Caudovirales;Siphoviridae	Siphoviridae	2	20	1e-80	False	dsDNA viruses, no RNA stage
+43629	1	1	1	0	1	10	0.1	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Betaretrovirus	Betaretrovirus	2	20	1e-80	False	Retro-transcribing viruses
+45349	1	1	1	0	1	5	0.2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Potyviridae;Bymovirus	Bymovirus	2	20	1e-80	False	ssRNA viruses
+49415	1	1	1	0	1	8	0.125	Viruses;Retro-transcribing viruses;Retroviridae;Orthoretrovirinae;Deltaretrovirus	Deltaretrovirus	2	20	1e-80	False	Retro-transcribing viruses
+52539	1	1	1	0	1	18	0.05555555555555555	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus	Nepovirus	2	20	1e-80	False	ssRNA viruses
+53532	1	1	1	0	1	1	1.0	Viruses;dsRNA viruses;Reoviridae;Spinareovirinae;Oryzavirus	Oryzavirus	2	20	1e-80	False	dsRNA viruses
+53662	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-80	False	ssRNA viruses
+53663	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Togaviridae;Rubivirus	Rubivirus	2	20	1e-80	False	ssRNA viruses
+54290	1	1	1	0	1	1	1.0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sadwavirus	Sadwavirus	2	20	1e-80	False	ssRNA viruses
+56364	1	1	1	0	1	53	0.018867924528301886	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae	Secoviridae	2	20	1e-80	False	ssRNA viruses
+73399	1	1	1	0	1	1	1.0	Viruses;dsDNA viruses, no RNA stage;Plasmaviridae;Plasmavirus	Plasmavirus	2	20	1e-80	False	dsDNA viruses, no RNA stage
+77232	1	1	1	0	1	9	0.1111111111111111	Viruses;dsDNA viruses, no RNA stage;Adenoviridae;Atadenovirus	Atadenovirus	2	20	1e-80	False	dsDNA viruses, no RNA stage

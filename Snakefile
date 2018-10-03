@@ -1,12 +1,3 @@
-
-TAXON = 'Viruses'
-
-
-
-rule all:
-    input:
-        "report.html"
-
 rule create_taxonomy_file:
     input:
         ncbi_current="/mirror/ncbi/current/"
@@ -37,7 +28,7 @@ rule domains_stat:
     output:
         protein_db="results/stat_viral_protein/stat_domains_Viruses.csv",
     shell:
-        "python3 scripts/domains_annotation_stat.py {TAXON} results/stat_viral_protein/"
+        "python3 scripts/domains_annotation_stat.py Viruses results/stat_viral_protein/"
 
 
 # ## Add as parameter taxon ...
