@@ -1,7 +1,5 @@
 # viral_polyprotein_annotation
 
-
-
 ##### Identification of annotated Polyprotein in RefSeq genome.
 Base rule: all viral CSD with a mat peptide annotation are considered to be a polyprotein.
 Exception with Signal Peptide

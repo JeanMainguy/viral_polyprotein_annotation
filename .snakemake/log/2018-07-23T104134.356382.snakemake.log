@@ -1,0 +1,17 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	create_taxonomy_file
+	1
+
+rule create_taxonomy_file:
+    input: /mirror/ncbi/current/
+    output: data/taxonomy/taxonomy_virus.txt, data/taxonomy/taxon_id_gencode.txt, data/taxonomy/heterogeneous_taxon_id_taxonomy_virus.txt
+    jobid: 0
+
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /proj/viral_polyprotein_annotation/.snakemake/log/2018-07-23T104134.356382.snakemake.log
