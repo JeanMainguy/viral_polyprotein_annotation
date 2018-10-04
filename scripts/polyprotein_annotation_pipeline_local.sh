@@ -40,7 +40,7 @@ blast_evalue='1e-5'
 coverages='60'
 evalues_filtering='1e-60' # 1e-50 1e-20' #'1e-140 1e-160'
 inflations='1.8'
-split_cluster=false
+split_cluster="false"
 
 echo $taxon
 echo Parameters C $coverages E $evalues_filtering I $inflations
@@ -198,11 +198,14 @@ do
   # Split cluster that have framshiffted proteins
   if [ $split_cluster == "true" ]; then
       # Python Output file
-      clusters_with_polyprotein_splitted=${clustering_path}/clusters_with_identified_polyprotein_splitted.out
+      results_files_specific_cluster=$(dirname $clustering_path)
+      splitted_dir=${results_files_specific_cluster}_splitted/clustering/
+      mkdir -p $splitted_dir
+      clusters_with_polyprotein_splitted=${splitted_dir}/clusters_with_identified_polyprotein_splitted.out
 
      if [ ! -f ${clusters_with_polyprotein_splitted} ] || [ "$force" == true ]; then # we run the python script only if its output file does not exist...
         echo  Split cluster that have framshiffted protein
-        python3 scripts/split_cluster_with_framshiffted_protein.py $clusters_with_polyprotein $clusters_with_polyprotein_splitted
+        python3 scripts/split_cluster_with_framshiffted_protein.py $clusters_with_polyprotein $clusters_with_polyprotein_splitted $taxonomy_file
         exit_if_fail
     else
         echo the clusters_with_polyprotein file ${clusters_with_polyprotein_splitted} already exist
@@ -220,20 +223,23 @@ done
 echo "## ALIGNMENTS"
 ################################################################################
 
+aln_dirs=()
+
 for cluster_file in ${cluster_to_aln[@]};
 do
   echo $cluster_file
   var=0
   alignment_dir="$(dirname $(dirname $cluster_file))/alignment/"
-
   mkdir -p $alignment_dir
+
+  aln_dirs+=($alignment_dir)
 
   while read l;
   do
     echo alignment of cluster $var
     cluster_faa_base=seq_cluster${var}
 
-    if [ ! -f ${alignement_dir}${cluster_faa_base}.aln ] || [ "$force" == true ]; then
+    if [ ! -f ${alignment_dir}${cluster_faa_base}.aln ] || [ "$force" == true ]; then
 
       echo $l | sed -e 'y/ /\n/' > ${TMPDIR}/ids.txt #replace tab by newline
 
@@ -246,9 +252,9 @@ do
       clustalo -i ${TMPDIR}/$cluster_faa_base.faa -o $output --outfmt=clu --threads=4
 
     else
-      echo the file ${alignement_dir}${cluster_faa_base}.aln  exist already. We dont recompute the alignment
+      echo the file ${alignment_dir}${cluster_faa_base}.aln  exist already. We dont recompute the alignment
     fi
-    mv $output ${alignement_dir}
+    mv $output ${alignment_dir}
     ((var++)) #increment var to know which cluster we are
 
   done < $cluster_file
@@ -260,11 +266,28 @@ done
 echo "## ALIGNMENT ANALYSIS AND PROPAGATION OF CLEAVAGE SITES"
 ################################################################################
 
+gff_file='data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
+# alignment_dir="data/alignment/Viruses_1e-5_coverage90_I2/"
+
+windows="30"
 
 
 
+for aln_dir in ${aln_dirs[@]};
+do
+    stat_output_dir="$(dirname $aln_dir)/alignment_analysis"
+    mkdir -p ${stat_output_dir}
 
+    stat_group_file=${stat_output_dir}/stat_cleavage_site_groups.csv
+    alignement_stat_file=${stat_output_dir}/stat_alignments.csv # one line per cluster
 
+    if [ ! -f $alignement_stat_file ] ; then
+      python3 scripts/multiple_alignment_analysis.py $aln_dir "$windows" $stat_group_file $alignement_stat_file $taxonomy_file
+    else
+      echo file exist already $alignement_stat_file
+    fi
+done
 
 # DONE
 rm -r $TMPDIR
+echo DONE
