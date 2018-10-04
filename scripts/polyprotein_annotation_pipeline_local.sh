@@ -12,19 +12,15 @@ exit_if_fail () {
 }
 
 ################################################################################
-## INPUT AND OUTPUT FILES
+## INPUT GENOMES
 ################################################################################
-seq_fasta_dir='local_test/data/viral_protein/'
-stat_output_dir='local_test/results/stat_viral_protein/'
 ncbi_db_path="genome_db_test/"
 # interpro_path="/mirror/interpro"
-TMPDIR=/tmp/$USER/
+TMPDIR=/tmp/${USER}_polyprotein_annotation/
 
 
 mkdir -p log/
 mkdir -p ${TMPDIR}
-mkdir -p $stat_output_dir
-mkdir -p $seq_fasta_dir
 
 ################################################################################
 ## VARIABLES
@@ -32,7 +28,7 @@ mkdir -p $seq_fasta_dir
 
 ## extraction and basic stat
 tresholdSP="90"
-taxon='Viruses'
+taxon='Alphavirus'
 # taxon='ssRNA viruses'
 # taxon='Retro-transcribing viruses'
 # taxon='Picornavirales'
@@ -41,10 +37,10 @@ taxon='Viruses'
 blast_evalue='1e-5'
 
 ## filtering and mcl clustering
-coverages='60 70'
+coverages='60'
 evalues_filtering='1e-60' # 1e-50 1e-20' #'1e-140 1e-160'
 inflations='1.8'
-
+split_cluster=false
 
 echo $taxon
 echo Parameters C $coverages E $evalues_filtering I $inflations
@@ -58,7 +54,7 @@ echo '## TAXONOMY INDEX FILE CREATION'
 ################################################################################
 
 #output
-taxonomy_index_dir="data/taxonomy/"
+taxonomy_index_dir="results/genomes_index/"
 mkdir -p $taxonomy_index_dir
 taxonomy_file="$taxonomy_index_dir/taxonomy_virus.txt"
 
@@ -70,10 +66,10 @@ echo "\n## EXTRACTION VIRAL PROTEINS AND CREATION OF BASIC STAT_FILE\n"
 ################################################################################
 
 #Output...
-sequence_dir="data/viral_proteins/${RefSeq_download_date}"
+sequence_dir="intermediate_data/viral_proteins/${RefSeq_download_date}"
 faa_db="$sequence_dir/${taxon_name_for_path}_protein_db.faa"
 
-stat_output_dir="results/stat_viral_protein/${RefSeq_download_date}/"
+stat_output_dir="intermediate_data/stat_viral_protein/${RefSeq_download_date}/"
 stat_protein_file="${stat_output_dir}/stat_proteins_${taxon_name_for_path}.csv"
 
 if [ ! -f $faa_db ] || [ ! -f $stat_protein_file ] ; then
@@ -91,17 +87,17 @@ echo '\n## BLAST ALL VS ALL\n'
 ################################################################################
 
 #output
-blast_result_dir="data/blast_result/${taxon_name_for_path}/${RefSeq_download_date}"
+blast_result_dir="intermediate_data/blast_result/${RefSeq_download_date}"
 
 blast_result="${blast_result_dir}/${taxon_name_for_path}_blast_evalue${blast_evalue}.out"
 
 mkdir -p $blast_result_dir
 
 echo construct blast db
-~/Bioinfo_tools/usr/bin/makeblastdb -in ${faa_db} -dbtype prot
+makeblastdb -in ${faa_db} -dbtype prot
 
 if [ ! -f ${blast_result} ]; then
-  time ~/Bioinfo_tools/usr/bin/blastp -db ${faa_db} -query ${faa_db} \
+  time blastp -db ${faa_db} -query ${faa_db} \
                                   -evalue "${blast_evalue}" -out $blast_result \
                                   -num_threads 4 \
                                   -outfmt "6 qseqid sseqid qcovs qcovhsp evalue bitscore"
@@ -132,22 +128,24 @@ echo $blast_filter_dir
 echo '\n## CLUSTERING \n'
 ################################################################################
 
-clustering_dir="data/clustering_result/${taxon_name_for_path}/${RefSeq_download_date}"
-mkdir -p $clustering_dir/
-mkdir -p ${TMPDIR}/${clustering_dir}/
+# clustering_dir="intermediate_data/clustering_result/${taxon_name_for_path}/${RefSeq_download_date}"
+
 cluster_files=()
 
 for file in $blast_filter_dir/*;
   do
-  echo $file
+
+
   name=${taxon_name_for_path}_$(basename $file)
   name=${name%.*}
+  echo Clustering : $name...
 
+  # Intermediate files for the clustering
   abc_file="${TMPDIR}/${name}.abc"
-  mci_file="${TMPDIR}/${clustering_dir}/${name}.mci"
-  seq_tab="${TMPDIR}/${clustering_dir}/${name}.tab"
+  mci_file="${TMPDIR}/${name}.mci"
+  seq_tab="${TMPDIR}/${name}.tab"
 
-  echo mcxload processing
+  # echo mcxload processing
   cut -f1,2,5 $file > $abc_file
   mcxload -abc $abc_file --stream-mirror --stream-neg-log10 \
                          -stream-tf 'ceil(200)' -o $mci_file \
@@ -155,16 +153,19 @@ for file in $blast_filter_dir/*;
 
   for inflation in $inflations; #2 #1.2 1.4 1.6 1.8 2 3 5 8; #$(seq 2 2 8);
   do
-    clustering_result=${clustering_dir}/${name}_I${inflation//./_}.out
+    # Creation of the clustering folder
+    clustering_dir="results/${RefSeq_download_date}/${name}_I${inflation//./_}/clustering/"
+    mkdir -p $clustering_dir/
+
+    clustering_result=${clustering_dir}/all_clusters.out
     cluster_files+=("${clustering_result}")
 
     # if the file exist we don't recompute the clustering
     if [ ! -f $clustering_result ] || [ "$force" == true ]; then
       echo $clustering_result
       echo mcl clustering $inflation with file $name ...
-      final_result_mcl="${clustering_dir}/${name}_I${inflation//./_}.out"
 
-      mcl $mci_file -I $inflation  -use-tab $seq_tab -te 4 -o $final_result_mcl
+      mcl $mci_file -I $inflation  -use-tab $seq_tab -te 4 -o $clustering_result
 
     else
       echo the file $clustering_result exist already. We dont recompute the clustering
@@ -176,20 +177,14 @@ done
 echo "## IDENTIFY CLUSTER WITH POLYPROTEINS"
 ################################################################################
 cluster_to_aln=()
-alignement_dir_general=data/alignment/$taxon_name_for_path/$RefSeq_download_date
-mkdir -p $alignement_dir_general
 
 for cluster_file in "${cluster_files[@]}";
 do
   echo $cluster_file
-  tail $cluster_file
-  sleep 1
   #Python Output file
-  name_dir=$(basename $cluster_file)
-  name_dir=${name_dir%.*}
+  clustering_path=$(dirname $cluster_file)
 
-  mkdir -p $alignement_dir_general/$name_dir/
-  clusters_with_polyprotein=${alignement_dir_general}/$name_dir/clusters_with_identified_polyprotein.out
+  clusters_with_polyprotein=${clustering_path}/clusters_with_identified_polyprotein.out
 
 
   if [ ! -f ${clusters_with_polyprotein} ] || [ "$force" == true ]; then # we run the python script only if its output file does not exist...
@@ -201,20 +196,22 @@ do
   fi
 
   # Split cluster that have framshiffted proteins
-  # Python Output file
-  mkdir -p $alignement_dir_general/${name_dir}_splitted/
-  clusters_with_polyprotein_splitted=${alignement_dir_general}/${name_dir}_splitted/clusters_with_identified_polyprotein_splitted.out
+  if [ $split_cluster == "true" ]; then
+      # Python Output file
+      clusters_with_polyprotein_splitted=${clustering_path}/clusters_with_identified_polyprotein_splitted.out
 
-  if [ ! -f ${clusters_with_polyprotein_splitted} ] || [ "$force" == true ]; then # we run the python script only if its output file does not exist...
-    echo  Split cluster that have framshiffted protein
-    python3 scripts/split_cluster_with_framshiffted_protein.py $clusters_with_polyprotein $clusters_with_polyprotein_splitted
-    exit_if_fail
-  else
-    echo the clusters_with_polyprotein file ${clusters_with_polyprotein_splitted} already exist
+     if [ ! -f ${clusters_with_polyprotein_splitted} ] || [ "$force" == true ]; then # we run the python script only if its output file does not exist...
+        echo  Split cluster that have framshiffted protein
+        python3 scripts/split_cluster_with_framshiffted_protein.py $clusters_with_polyprotein $clusters_with_polyprotein_splitted
+        exit_if_fail
+    else
+        echo the clusters_with_polyprotein file ${clusters_with_polyprotein_splitted} already exist
+    fi
+
+    cluster_to_aln+=($clusters_with_polyprotein_splitted)
   fi
 
   cluster_to_aln+=($clusters_with_polyprotein)
-  cluster_to_aln+=($clusters_with_polyprotein_splitted)
 
 done
 
@@ -225,9 +222,11 @@ echo "## ALIGNMENTS"
 
 for cluster_file in ${cluster_to_aln[@]};
 do
+  echo $cluster_file
   var=0
-  alignement_dir=$(dirname $cluster_file)
+  alignment_dir="$(dirname $(dirname $cluster_file))/alignment/"
 
+  mkdir -p $alignment_dir
 
   while read l;
   do
@@ -256,3 +255,16 @@ do
 
 
 done
+
+################################################################################
+echo "## ALIGNMENT ANALYSIS AND PROPAGATION OF CLEAVAGE SITES"
+################################################################################
+
+
+
+
+
+
+
+# DONE
+rm -r $TMPDIR
