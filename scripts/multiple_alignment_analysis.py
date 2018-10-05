@@ -22,7 +22,7 @@ from numpy import std, mean
 import operator
 
 
-def getCdsObject(taxon_prot_ids, taxonomy_file, gff_file, sp_treshold):
+def getCdsObject(taxon_prot_ids, taxonomy_file, interpro_domains_file, sp_treshold):
 
     gb_dict_iter = tax.getAllRefseqFromTaxonIdList(taxon_prot_ids, taxonomy_file)
 
@@ -33,8 +33,8 @@ def getCdsObject(taxon_prot_ids, taxonomy_file, gff_file, sp_treshold):
         gb_file = gb_file_dict['gb_file']
 
         genome = obj.gb_file_parser(gb_file, taxon_id, sp_treshold)
-        if gff_file:  # gff_file can be set as None and the domain annotation part is not computed
-            do.getMatchObject(genome, gff_file)
+        if interpro_domains_file:  # interpro_domains_file can be set as None and the domain annotation part is not computed
+            do.getMatchObject(genome, interpro_domains_file)
             do.associateDomainsWithPolyprotein(genome)
             # for segment in genome.segments:
             #     do.getDomainOverlappingInfo(segment)
@@ -327,11 +327,10 @@ def visualisation_of_processed_aln(cds_list, alignment_file, group_info_list, di
     cds_annotated = [cds for cds in cds_list if cds.polyprotein]
     # VISUALISATION OF THE ALIGNMENT
     len_cds_max = max((len(cds) for cds in cds_list))
-    #for cds in cds_annotated:
-    #for cds in cds_list:
-        #print(view_prot.visualisation_protein(cds, 1, len_cds_max))
+    # for cds in cds_annotated:
+    # for cds in cds_list:
+    #print(view_prot.visualisation_protein(cds, 1, len_cds_max))
 
-    
     for cds in cds_list:
         cds.matchs = []
     view_aln.visualisation(cds_list, alignment_file, display_line_size, group_info_list)
@@ -391,6 +390,7 @@ def compute_alignment_stat(group_info_list, parameters, cds_list, aln_csv_writer
         # print("OK.. ")
         # print('At least one group is valid')
         aln_validity = 'At least one cleavage site group is valid'
+
     elif nb_group_with_valid_score == 0:
         # print('NOPE...')
         # print('No cleavage site groups are valid')
@@ -403,6 +403,7 @@ def compute_alignment_stat(group_info_list, parameters, cds_list, aln_csv_writer
                      "aln_validity": aln_validity,
                      "nb_group_with_valid_score": nb_group_with_valid_score
                      }
+
     aln_dict_stat.update(general_info)
 
     if aln_csv_writer:
@@ -416,6 +417,37 @@ def compute_alignment_stat(group_info_list, parameters, cds_list, aln_csv_writer
             group_info['cleavages_sites_per_seq'] = None
             print(f'group {group_info["group_index"]} score: {group_info["confidence_score"]}')
             group_site_csv_writer.writerow(group_info)
+
+
+def write_predicted_annotation(writer, cds, cluster_nb):
+    info_dict = {"cluster_nb": cluster_nb,
+                 "taxon_id": cds.segment.taxon_id,
+                 "virus_name": cds.segment.organism,
+                 "assembly_version": "GCF_..",
+                 "protein_id": cds.protein_id}
+
+    for predicted_cs in cds.predicted_cleavage_sites:
+        info_dict["cs_P1_protein_position"] = predicted_cs.start_in_prot
+        info_dict["confidence_score"] = predicted_cs.confidence_score
+        writer.writerow(info_dict)
+
+
+def initiate_reannotated_genome_file(genome_file_name):
+
+    genome_header = ["cluster_nb",
+                     "taxon_id",
+                     "virus_name",
+                     "assembly_version",
+                     "protein_id",
+                     "cs_P1_protein_position",  # P1 is aa juste before the cleavage
+                     "cs_P1_genome_position",
+                     "confidence_score"]
+
+    handle_genome_out = open(genome_file_name, "w")
+    genome_csv_writer = csv.DictWriter(handle_genome_out, fieldnames=genome_header, delimiter='\t')
+    genome_csv_writer.writeheader()
+
+    return genome_csv_writer, handle_genome_out
 
 
 def initiate_ouput(cs_group_stat_file, output_stat_aln):
@@ -476,14 +508,30 @@ def initiate_ouput(cs_group_stat_file, output_stat_aln):
     return group_site_csv_writer, aln_csv_writer, file_handles
 
 
+def parse_aln_directory_name(alignment_dir):
+    dir_info = {}
+    if alignment_dir.endswith('splitted'):
+        dir_info['cluster_with_isoforms_splitted'] = True
+    else:
+        dir_info['cluster_with_isoforms_splitted'] = False
+
+    re_result = re.search("_evalue_([\de-]+)coverage(\d+)_I(\d_{0,1}\d*)", alignment_dir)
+    dir_info['evalue'] = "NA" if not re_result else re_result.group(1)
+    dir_info['coverage'] = "NA" if not re_result else re_result.group(2)
+    dir_info['inflation'] = "NA" if not re_result else re_result.group(3)
+
+    return dir_info
+
+
 def main():
     re_result = re.search("cluster(\d+).aln", alignment_file)
     cluster_nb = "NA" if not re_result else re_result.group(1)
-    # print("PROCESS of CLUSTER ", cluster_nb)
+    print("PROCESS of CLUSTER ", cluster_nb)
     taxon_prot_ids, seq_aln_dict = parse_alignment_file(alignment_file)
 
     for window in windows:
-        cds_list = getCdsObject(taxon_prot_ids, taxonomy_file, gff_file, sp_treshold)
+        print(taxon_prot_ids)
+        cds_list = getCdsObject(taxon_prot_ids, taxonomy_file, interpro_domains_file, sp_treshold)
 
         if sum((1 for cds in cds_list if cds.polyprotein)) == 0:
             logging.warning(f'{alignment_file} has no identified polyprotein with annotation')
@@ -507,45 +555,41 @@ def main():
             group_of_cs = cs_group_list[group_info["group_index"]]
             if group_info['confidence_score'] < confidence_score_threshold:
                 propagate_cleavage_sites(group_of_cs, group_info, cds_list, window)
-                group_info['valid'] = True 
-            else: 
-                group_info['valid'] = False
+            #     group_info['valid'] = True
+            # else:
+            #     group_info['valid'] = False
 
         if not aln_csv_writer:
-            # print(f'VISUALISATION WITH WINDOW {window}')
-            count = 0
+            print(f'VISUALISATION WITH WINDOW {window}')
+
             for cds in cds_list:
-                if 'Flavivirus' in cds.segment.record.annotations['taxonomy']:
-                    count += 1 
-            if count > 0:
-                for cds in cds_list :
-                    print(cds.segment.record.annotations['taxonomy'])
-                    
-                for group in group_info_list:
-                    print(group) 
-                visualisation_of_processed_aln(cds_list, alignment_file,
+                print(cds.segment.record.annotations['taxonomy'])
+
+            for group in group_info_list:
+                print(group)
+
+            visualisation_of_processed_aln(cds_list, alignment_file,
                                            group_info_list, display_line_size)
- 
+
         if aln_csv_writer:
             parameters["cluster_nb"] = cluster_nb
             parameters['window'] = window
             compute_alignment_stat(group_info_list, parameters, cds_list,
                                    aln_csv_writer, group_site_csv_writer)
 
+        if reannotated_genome_dir:
+            iter_cds_non_annotated = (cds for cds in cds_list if not cds.polyprotein)
 
-def parse_aln_directory_name(alignment_dir):
-    dir_info = {}
-    if alignment_dir.endswith('splitted'):
-        dir_info['cluster_with_isoforms_splitted'] = True
-    else:
-        dir_info['cluster_with_isoforms_splitted'] = False
+            for blank_cds in iter_cds_non_annotated:
+                taxon_id = blank_cds.segment.taxon_id
+                if taxon_id not in genomes_output_writers:
+                    genomes_output_writers[taxon_id], fl_handle = initiate_reannotated_genome_file(
+                        path.join(reannotated_genome_dir, f'tax_id_{taxon_id}.csv'))
+                    file_handles.append(fl_handle)  # to close all files properly at the end
 
-    re_result = re.search("_evalue_([\de-]+)coverage(\d+)_I(\d_{0,1}\d*)", alignment_dir)
-    dir_info['evalue'] = "NA" if not re_result else re_result.group(1)
-    dir_info['coverage'] = "NA" if not re_result else re_result.group(2)
-    dir_info['inflation'] = "NA" if not re_result else re_result.group(3)
+                genome_csv_writer = genomes_output_writers[taxon_id]
 
-    return dir_info
+                write_predicted_annotation(genome_csv_writer, blank_cds, cluster_nb)
 
 
 if __name__ == '__main__':
@@ -557,8 +601,9 @@ if __name__ == '__main__':
         # 'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037.aln'
         alignment_file_or_dir = sys.argv[1]
     except:
-        alignment_file_or_dir = 'data/alignment/Viruses/RefSeq_download_date_2018-07-21/Viruses_evalue_1e-50coverage60_I1_4/seq_cluster13.aln'
+        alignment_file_or_dir = 'results/Alphavirus_evalue_1e-60coverage60_I1_8/alignment'
         # alignment_file_or_dir = 'data/alignment/Viruses/RefSeq_download_date_2018-07-21/Viruses_evalue_1e-40coverage40_I2/seq_cluster30.aln'
+
     try:
         # 'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037_stat.csv'
         windows_input = sys.argv[2]
@@ -569,20 +614,26 @@ if __name__ == '__main__':
         cs_group_stat_file = sys.argv[3]
         output_stat_aln = sys.argv[4]
     except:
-        cs_group_stat_file = "test_group.csv"
-        output_stat_aln = "test_aln.csv"
         cs_group_stat_file = None
         output_stat_aln = None
-
+        cs_group_stat_file = "test/test_cs_result.csv"
+        output_stat_aln = "test/test_aln_result.csv"
     try:
         taxonomy_file = sys.argv[5]  # "data/taxonomy/taxonomy_virus.txt"
-        gff_file = sys.argv[6]
     except:
-        gff_file = 'data/interpro_results_OLD/interproscan-5.30-69.0/domains_viral_sequences.gff3'
-        taxonomy_file = "data/taxonomy/taxonomy_virus.txt"
+        taxonomy_file = "results/genomes_index/taxonomy_virus.txt"
+
+    try:
+        reannotated_genome_dir = sys.argv[6]
+    except:
+        reannotated_genome_dir = "test/"
+    try:
+        interpro_domains_file = sys.argv[7]
+    except:
+        interpro_domains_file = None
 
     sp_treshold = 90
-    display_line_size = 75 #140/2
+    display_line_size = 75  # 140/2
     confidence_score_threshold = 4
 
     parameters = {"confidence_score_threshold": confidence_score_threshold}
@@ -601,10 +652,12 @@ if __name__ == '__main__':
     print("OUTPUT:")
     print(cs_group_stat_file)
     print(output_stat_aln)
+
     # window includ the cleavage in the middle
     # cleavage sites have a length of 2
     # then a window will always be even and >= 2
     # consequently we add 1 to odd window
+
     windows = {int((int(w)+int(w) % 2)) for w in windows_input.split(' ')}  # 10,20,30
     assert min(windows) >= 0
     windows = list(windows)
@@ -619,7 +672,7 @@ if __name__ == '__main__':
         group_site_csv_writer = False
         aln_csv_writer = False
         file_handles = []
-
+    genomes_output_writers = {}
     for alignment_file in alignment_files:
         print(alignment_file)
         main()  # variable needed in main() are global
