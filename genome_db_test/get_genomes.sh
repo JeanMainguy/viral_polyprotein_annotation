@@ -1,6 +1,6 @@
 
-tax_index_file=data/taxonomy/taxonomy_virus.txt
-taxon=Alphavirus
+tax_index_file="data/taxonomy/RefSeq_download_date_2018-08-13/taxonomy_virus.txt"
+taxon=Flaviviridae
 
 grep $taxon $tax_index_file | while read -r line; do
    echo LINE  $line
