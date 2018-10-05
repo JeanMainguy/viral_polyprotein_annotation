@@ -1,0 +1,12 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+0	64283	Entebbe bat virus	GCF_..	YP_950477.1	116		0.9133091896785875
+0	64283	Entebbe bat virus	GCF_..	YP_950477.1	212		0.06023593964334724
+0	64283	Entebbe bat virus	GCF_..	YP_950477.1	289		0.094405462501886
+0	64283	Entebbe bat virus	GCF_..	YP_950477.1	776		0.0028814524560342937
+0	64283	Entebbe bat virus	GCF_..	YP_950477.1	1132		0.2539608496459817
+0	64283	Entebbe bat virus	GCF_..	YP_950477.1	1357		0.07351853373880024
+0	64283	Entebbe bat virus	GCF_..	YP_950477.1	1487		0.019932171119176736
+0	64283	Entebbe bat virus	GCF_..	YP_950477.1	2107		0.013454861111111112
+0	64283	Entebbe bat virus	GCF_..	YP_950477.1	2233		0.02761430511543685
+0	64283	Entebbe bat virus	GCF_..	YP_950477.1	2256		0.0012324796640899027
+0	64283	Entebbe bat virus	GCF_..	YP_950477.1	2505		0.0774876472457945

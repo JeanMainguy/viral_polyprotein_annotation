@@ -1,0 +1,12 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+0	1244565	Ochlerotatus caspius flavivirus	GCF_..	YP_009352228.1	134		0.9133091896785875
+0	1244565	Ochlerotatus caspius flavivirus	GCF_..	YP_009352228.1	219		0.06023593964334724
+0	1244565	Ochlerotatus caspius flavivirus	GCF_..	YP_009352228.1	277		0.094405462501886
+0	1244565	Ochlerotatus caspius flavivirus	GCF_..	YP_009352228.1	715		0.0028814524560342937
+0	1244565	Ochlerotatus caspius flavivirus	GCF_..	YP_009352228.1	1095		0.2539608496459817
+0	1244565	Ochlerotatus caspius flavivirus	GCF_..	YP_009352228.1	1325		0.07351853373880024
+0	1244565	Ochlerotatus caspius flavivirus	GCF_..	YP_009352228.1	1470		0.019932171119176736
+0	1244565	Ochlerotatus caspius flavivirus	GCF_..	YP_009352228.1	2070		0.013454861111111112
+0	1244565	Ochlerotatus caspius flavivirus	GCF_..	YP_009352228.1	2208		0.02761430511543685
+0	1244565	Ochlerotatus caspius flavivirus	GCF_..	YP_009352228.1	2231		0.0012324796640899027
+0	1244565	Ochlerotatus caspius flavivirus	GCF_..	YP_009352228.1	2492		0.0774876472457945

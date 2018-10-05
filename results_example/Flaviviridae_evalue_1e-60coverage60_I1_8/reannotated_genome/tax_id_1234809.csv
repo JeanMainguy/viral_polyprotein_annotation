@@ -1,0 +1,12 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+2	1234809	Pestivirus strain Aydin/04-TR	GCF_..	YP_006860588.1	168		3.4444444444444446
+2	1234809	Pestivirus strain Aydin/04-TR	GCF_..	YP_006860588.1	268		3.4444444444444446
+2	1234809	Pestivirus strain Aydin/04-TR	GCF_..	YP_006860588.1	495		3.4444444444444446
+2	1234809	Pestivirus strain Aydin/04-TR	GCF_..	YP_006860588.1	690		0.0625
+2	1234809	Pestivirus strain Aydin/04-TR	GCF_..	YP_006860588.1	1063		0.0625
+2	1234809	Pestivirus strain Aydin/04-TR	GCF_..	YP_006860588.1	1133		3.4444444444444446
+2	1234809	Pestivirus strain Aydin/04-TR	GCF_..	YP_006860588.1	1586		3.4444444444444446
+2	1234809	Pestivirus strain Aydin/04-TR	GCF_..	YP_006860588.1	2269		3.4444444444444446
+2	1234809	Pestivirus strain Aydin/04-TR	GCF_..	YP_006860588.1	2333		3.4444444444444446
+2	1234809	Pestivirus strain Aydin/04-TR	GCF_..	YP_006860588.1	2680		3.4444444444444446
+2	1234809	Pestivirus strain Aydin/04-TR	GCF_..	YP_006860588.1	3177		3.4444444444444446
