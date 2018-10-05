@@ -18,21 +18,21 @@ import re
 from Bio.Alphabet import generic_protein
 from Bio.SeqFeature import SeqFeature, FeatureLocation
 from operator import attrgetter
-#FORGROUND
-RED   = 31
+# FORGROUND
+RED = 31
 GREEN = 32
 YELLOW = 33
-BLUE  = 34
+BLUE = 34
 PURPLE = 35
-CYAN  =36
+CYAN = 36
 WHITE = 37
 
-#BACKGROUND
+# BACKGROUND
 BG_BLUE = 44
 BG_LIGTH_GREEN = 46
 BG_BLACK = 40
 
-#STYLE
+# STYLE
 NORMAL = 0
 BOLD = 1
 UNDERLINE = 4
@@ -51,14 +51,15 @@ def getPositionsInAln(cds, list_obj):
     return positions
 
 
-def visualisation(list_cds, aln_file, line_size, group_info_list):
+def visualisation(list_cds, aln_file, line_size, group_info_list, file_handle):
     display_dico = {}
     for cds in list_cds:
 
         # DOMAINS
         position_domains = getPositionsInAln(cds, cds.matchs)
         position_sites = getPositionsInAln(cds, cds.cleavage_sites)
-        position_poor_sites=getPositionsInAln(cds,[site for site in cds.cleavage_sites if site.quality is False])
+        position_poor_sites = getPositionsInAln(
+            cds, [site for site in cds.cleavage_sites if site.quality is False])
         position_predicted_sites = getPositionsInAln(cds, cds.predicted_cleavage_sites)
         validated_groups = [(group['position_min'], group['position_max'])
                             for group in group_info_list if group["valid"]]
@@ -71,7 +72,6 @@ def visualisation(list_cds, aln_file, line_size, group_info_list):
             line = "".join(sequence_list[i_line: i_line+line_size])
             lines.append(line)
 
-
         if hasattr(cds, 'info_to_display'):
             info = str(cds.info_to_display)
         elif cds.polyprotein:
@@ -79,36 +79,39 @@ def visualisation(list_cds, aln_file, line_size, group_info_list):
         else:
             info = ''
         key = f'{cds.segment.organism}|{cds.protein_id}|{info}'
-        
 
         display_dico[key] = lines
         # alignment dico is used only for identity and filevisualisation_protein(cds, segment, nb_line): header. not efficient at all..
         # print(view_prot.visualisation_protein(cds, cds.segment, 1))
     taxon_ids, alignement_dico = store_alignement_line(aln_file, line_size)
     add_score_line(alignement_dico, group_info_list)
-    display_alignement(alignement_dico, display_dico)
+    display_alignement(alignement_dico, display_dico, file_handle)
 
 
 def add_score_line(alignement_dico, group_info_list):
     len_aln = len(''.join(alignement_dico['identity']))
     row_len = len(alignement_dico['identity'][0])
     print(len_aln)
-    
+
     group_line = ' '*len_aln
     score_line = ' '*len_aln
-    
+
     for grp in group_info_list:
 
         grp_po = round(grp['average_position_in_aln'])
-        grp_message = f' group {grp["group_index"]+1}' 
+        grp_message = f' group {grp["group_index"]+1}'
         score_message = f'score {grp["confidence_score"]:.2f}'
         len_message_grp = len(grp_message)
         len_message_score = len(score_message)
-        group_line = group_line[:int(grp_po - round(len(grp_message)/2)-len(grp_message)%2)] +grp_message + group_line[int(grp_po+round(len(grp_message)/2)):]
-        score_line = score_line[:int(grp_po - round(len(score_message)/2)-len(score_message)%2)] +score_message + score_line[int(grp_po+round(len(score_message)/2)):]
+        group_line = group_line[:int(grp_po - round(len(grp_message)/2)-len(grp_message) % 2)] + \
+            grp_message + group_line[int(grp_po+round(len(grp_message)/2)):]
+        score_line = score_line[:int(grp_po - round(len(score_message)/2)-len(score_message) % 2)] + \
+            score_message + score_line[int(grp_po+round(len(score_message)/2)):]
 
-    alignement_dico["grp_index_line"] = [group_line[i:i+row_len] for i in range(0, len_aln, row_len)]
-    alignement_dico["grp_score_line"] = [score_line[i:i+row_len] for i in range(0, len_aln, row_len)]
+    alignement_dico["grp_index_line"] = [group_line[i:i+row_len]
+                                         for i in range(0, len_aln, row_len)]
+    alignement_dico["grp_score_line"] = [score_line[i:i+row_len]
+                                         for i in range(0, len_aln, row_len)]
 
 
 def visualisation_old(gb_file, genetic_code, gff_file, alignement_dico, sp_treshold, taxon_id):
@@ -164,18 +167,17 @@ def visualisation_old(gb_file, genetic_code, gff_file, alignement_dico, sp_tresh
     return display_dico
 
 
+def addColorToSequence2(position_domains, positon_cleavage_sites, position_poor_sites, position_predicted_cleavage_sites, validated_groups, aln_sequence):
 
-def addColorToSequence2(position_domains, positon_cleavage_sites,position_poor_sites, position_predicted_cleavage_sites, validated_groups, aln_sequence):
-    
     # Very unelegant to many loop for nothing but only smallvisualisation to be sure
     end_color = RESET
 
-    domain_bg = BG_LIGTH_GREEN #'\x1b[94m'
+    domain_bg = BG_LIGTH_GREEN  # '\x1b[94m'
     style_domain = BOLD
 
-    cleavage_site_color = RED #'\x1b[91m'
-    predicted_site_color = GREEN #'\x1b[92m'
-    poor_site_color =  RED # '\x1b[93m'
+    cleavage_site_color = RED  # '\x1b[91m'
+    predicted_site_color = GREEN  # '\x1b[92m'
+    poor_site_color = RED  # '\x1b[93m'
 
     group_highlight = REVERSE
     group_highlight = BOLD
@@ -186,11 +188,11 @@ def addColorToSequence2(position_domains, positon_cleavage_sites,position_poor_s
     bg = BG_BLACK
     fg = BG_BLACK
     bg = WHITE
-    
+
     default_style = NORMAL
     default_fg = NORMAL
     default_bg = NORMAL
-    
+
     #default_fg = BG_BLACK
     #default_bg = WHITE
 
@@ -205,7 +207,7 @@ def addColorToSequence2(position_domains, positon_cleavage_sites,position_poor_s
             # sequence_list.append(domain_color + letter + end_color)
 
         if any((True for start, end in position_poor_sites if start <= i <= end)):
-            fg =poor_site_color
+            fg = poor_site_color
 
         elif any((True for start, end in positon_cleavage_sites if start <= i <= end)):
             fg = cleavage_site_color
@@ -218,14 +220,13 @@ def addColorToSequence2(position_domains, positon_cleavage_sites,position_poor_s
         if any((True for start, end in validated_groups if start <= i <= end)):
             style = group_highlight
 
+        color_style = f'\x1b[{style};{fg};{bg}m' if not (style == default_style and
+                                                         fg == default_fg and
+                                                         bg == default_bg) else ''
 
-        color_style= f'\x1b[{style};{fg};{bg}m' if not (style == default_style and
-                                                       fg == default_fg and
-                                                       bg == default_bg)  else ''
-        
-        color_style= f'\x1b[{group_highlight};{fg}m' if not (style == default_style and
-                                                fg == default_fg and
-                                                bg == default_bg)  else ''
+        color_style = f'\x1b[{group_highlight};{fg}m' if not (style == default_style and
+                                                              fg == default_fg and
+                                                              bg == default_bg) else ''
         letter_colored = color_style + letter + RESET
 
         sequence_list.append(letter_colored)
@@ -348,21 +349,21 @@ def store_alignement_line(alignement_file, aln_row_len):
         return taxon_ids, alignement_dico
 
 
-def display_alignement(alignement_dico, display_dico):
+def display_alignement(alignement_dico, display_dico, file_handle=sys.stdout):
 
     max_len = max([len(h) for h in display_dico]) + 6
 
-    print(alignement_dico['file_header'])
+    print(alignement_dico['file_header'], file=file_handle)
 
     for i in range(len(alignement_dico['identity'])):
         for k, v in display_dico.items():
-            print(k+' '*(max_len-len(k))+v[i])
-        print(' '*(max_len)+alignement_dico['identity'][i])
+            print(k+' '*(max_len-len(k))+v[i],  file=file_handle)
+        print(' '*(max_len)+alignement_dico['identity'][i], file=file_handle)
         if "grp_index_line" in alignement_dico:
-            print(' '*(max_len)+alignement_dico['grp_index_line'][i])
-            print(' '*(max_len)+alignement_dico['grp_score_line'][i])
-        print()
-        print()
+            print(' '*(max_len)+alignement_dico['grp_index_line'][i], file=file_handle)
+            print(' '*(max_len)+alignement_dico['grp_score_line'][i],  file=file_handle)
+        print("\n\n", file=file_handle)
+
 
 if __name__ == '__main__':
     # logging.basicConfig(filename='log/genbankparser.log',level=logging.INFO)

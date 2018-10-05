@@ -28,7 +28,7 @@ mkdir -p ${TMPDIR}
 
 ## extraction and basic stat
 tresholdSP="90"
-taxon='Alphavirus'
+taxon='Flaviviridae'
 # taxon='ssRNA viruses'
 # taxon='Retro-transcribing viruses'
 # taxon='Picornavirales'

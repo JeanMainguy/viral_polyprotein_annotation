@@ -322,7 +322,7 @@ def parse_alignment_file(alignment_file):
     return taxon_prot_ids, seq_aln_dict
 
 
-def visualisation_of_processed_aln(cds_list, alignment_file, group_info_list, display_line_size=180):
+def visualisation_of_processed_aln(cds_list, alignment_file, group_info_list, file_handle, display_line_size=180):
 
     cds_annotated = [cds for cds in cds_list if cds.polyprotein]
     # VISUALISATION OF THE ALIGNMENT
@@ -333,7 +333,9 @@ def visualisation_of_processed_aln(cds_list, alignment_file, group_info_list, di
 
     for cds in cds_list:
         cds.matchs = []
-    view_aln.visualisation(cds_list, alignment_file, display_line_size, group_info_list)
+
+    view_aln.visualisation(cds_list, alignment_file, display_line_size,
+                           group_info_list, file_handle)
 
 
 def analyse_cleavage_site_groups(cds_list, window):
@@ -416,6 +418,8 @@ def compute_alignment_stat(group_info_list, parameters, cds_list, aln_csv_writer
 
             group_info['cleavages_sites_per_seq'] = None
             print(f'group {group_info["group_index"]} score: {group_info["confidence_score"]}')
+            # remove valid needed to visualise but useless for the csv
+            group_info.pop('valid', None)
             group_site_csv_writer.writerow(group_info)
 
 
@@ -555,11 +559,11 @@ def main():
             group_of_cs = cs_group_list[group_info["group_index"]]
             if group_info['confidence_score'] < confidence_score_threshold:
                 propagate_cleavage_sites(group_of_cs, group_info, cds_list, window)
-            #     group_info['valid'] = True
-            # else:
-            #     group_info['valid'] = False
+                group_info['valid'] = True
+            else:
+                group_info['valid'] = False
 
-        if not aln_csv_writer:
+        if not aln_csv_writer or 1:
             print(f'VISUALISATION WITH WINDOW {window}')
 
             for cds in cds_list:
@@ -567,9 +571,13 @@ def main():
 
             for group in group_info_list:
                 print(group)
-
+            if write_visualization_path:
+                file_handle = open(path.join(write_visualization_path,
+                                             f"visualization_cluster{cluster_nb}.aln"), 'w')
+            else:
+                file_handle = sys.stdout
             visualisation_of_processed_aln(cds_list, alignment_file,
-                                           group_info_list, display_line_size)
+                                           group_info_list, file_handle, display_line_size)
 
         if aln_csv_writer:
             parameters["cluster_nb"] = cluster_nb
@@ -635,6 +643,7 @@ if __name__ == '__main__':
     sp_treshold = 90
     display_line_size = 75  # 140/2
     confidence_score_threshold = 4
+    write_visualization_path = path.dirname(output_stat_aln)
 
     parameters = {"confidence_score_threshold": confidence_score_threshold}
 
