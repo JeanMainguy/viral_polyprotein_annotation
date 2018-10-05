@@ -271,18 +271,19 @@ gff_file='data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.g
 
 windows="30"
 
-
-
 for aln_dir in ${aln_dirs[@]};
 do
     stat_output_dir="$(dirname $aln_dir)/alignment_analysis"
     mkdir -p ${stat_output_dir}
 
+    reannotated_genome_dir="$(dirname $aln_dir)/reannotated_genome"
+    mkdir -p ${reannotated_genome_dir}
+
     stat_group_file=${stat_output_dir}/stat_cleavage_site_groups.csv
     alignement_stat_file=${stat_output_dir}/stat_alignments.csv # one line per cluster
 
     if [ ! -f $alignement_stat_file ] ; then
-      python3 scripts/multiple_alignment_analysis.py $aln_dir "$windows" $stat_group_file $alignement_stat_file $taxonomy_file
+      python3 scripts/multiple_alignment_analysis.py $aln_dir "$windows" $stat_group_file $alignement_stat_file $taxonomy_file $reannotated_genome_dir
     else
       echo file exist already $alignement_stat_file
     fi
