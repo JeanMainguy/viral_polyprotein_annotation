@@ -1,5 +1,5 @@
 cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
-0	64297	Uganda S virus	GCF_..	YP_009344968.1	103		0.9133091896785875
+0	64297	Uganda S virus	GCF_..	YP_009344968.1	103		0.9133091896785873
 0	64297	Uganda S virus	GCF_..	YP_009344968.1	197		0.06023593964334724
 0	64297	Uganda S virus	GCF_..	YP_009344968.1	274		0.094405462501886
 0	64297	Uganda S virus	GCF_..	YP_009344968.1	763		0.0028814524560342937

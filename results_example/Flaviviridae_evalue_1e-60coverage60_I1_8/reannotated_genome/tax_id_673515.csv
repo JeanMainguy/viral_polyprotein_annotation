@@ -1,5 +1,5 @@
 cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
-0	673515	Mosquito flavivirus	GCF_..	YP_007877501.1	132		0.9133091896785875
+0	673515	Mosquito flavivirus	GCF_..	YP_007877501.1	132		0.9133091896785873
 0	673515	Mosquito flavivirus	GCF_..	YP_007877501.1	218		0.06023593964334724
 0	673515	Mosquito flavivirus	GCF_..	YP_007877501.1	271		0.094405462501886
 0	673515	Mosquito flavivirus	GCF_..	YP_007877501.1	705		0.0028814524560342937

@@ -1,5 +1,5 @@
 cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
-0	577122	T'Ho virus	GCF_..	YP_009351820.1	114		0.9133091896785875
+0	577122	T'Ho virus	GCF_..	YP_009351820.1	114		0.9133091896785873
 0	577122	T'Ho virus	GCF_..	YP_009351820.1	211		0.06023593964334724
 0	577122	T'Ho virus	GCF_..	YP_009351820.1	288		0.094405462501886
 0	577122	T'Ho virus	GCF_..	YP_009351820.1	787		0.0028814524560342937

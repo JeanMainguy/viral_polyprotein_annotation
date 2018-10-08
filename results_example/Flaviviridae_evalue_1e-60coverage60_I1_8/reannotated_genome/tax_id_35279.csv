@@ -1,5 +1,5 @@
 cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
-0	35279	Meaban virus	GCF_..	YP_009345031.1	109		0.9133091896785875
+0	35279	Meaban virus	GCF_..	YP_009345031.1	109		0.9133091896785873
 0	35279	Meaban virus	GCF_..	YP_009345031.1	201		0.06023593964334724
 0	35279	Meaban virus	GCF_..	YP_009345031.1	278		0.094405462501886
 0	35279	Meaban virus	GCF_..	YP_009345031.1	768		0.0028814524560342937
