@@ -436,6 +436,58 @@ def write_predicted_annotation(writer, cds, cluster_nb):
         writer.writerow(info_dict)
 
 
+def write_gff_annotation(writer, cds):
+    # attribute = f'GCF..;taxon_id_{cds.segment.taxon_id};cluster_{cluster_nb}'
+    info_dict = {"attributes": "Dbxref=taxon",
+                 "source": '.',
+                 "score": '.',
+                 "strand": '.',
+                 "phase": '.'}
+    # Write the cds:
+    info_dict["seqid"] = cds.protein_id
+    info_dict["type"] = "polypeptide"
+    info_dict["start"] = 1
+    info_dict["end"] = int(len(cds)/3)
+    writer.writerow(info_dict)
+
+    # start of the cs is the first aa of the cs
+    # which is the last aa of mat_peptides
+    cs_positions = [cs.start_in_prot for cs in cds.predicted_cleavage_sites]
+    cs_positions.append(int(len(cds)/3)-1)  # end of the prot == end of the last mat_pep
+    start_position = 1  # start of the first pep
+    for end_position in cs_positions:
+        # Write the mat pep:
+        info_dict["seqid"] = cds.protein_id
+        info_dict["type"] = "mat_peptide"
+        info_dict["start"] = start_position
+        info_dict["end"] = end_position
+        writer.writerow(info_dict)
+        start_position = end_position + 1
+
+
+def initiate_gff_file(genome_file_name):
+
+    genome_header = ["seqid",  # name of the chromosome or scaffold; chromosome names can be given with or without the 'chr' prefix. Important note: the seq ID must be one used within Ensembl, i.e. a standard chromosome name or an Ensembl identifier such as a scaffold ID, without any additional content such as species or assembly. See the example GFF output below.
+                     # name of the program that generated this feature, or the data source (database or project name)
+                     "source",
+                     "type",  # type of feature. Must be a term or accession from the SOFA sequence ontology
+                     # Start position of the feature, with sequence numbering starting at 1.
+                     "start",
+                     "end",  # End position of the feature, with sequence numbering starting at 1.
+                     "score",  # A floating point value.
+                     "strand",  # defined as + (forward) or", # (reverse).
+                     "phase",  # One of '0', '1' or '2'. '0' indicates that the first base of the feature is the first base of a codon, '1' that the second base is the first base of a codon, and so on..
+                     "attributes",  # A semicolon#separated list of tag#value pairs, providing additional information about each feature. Some of these tags are predefined, e.g. ID, Name, Alias, Parent", # see the GFF documentation for more details.
+                     ]
+
+    handle_genome_out = open(genome_file_name, "w")
+    handle_genome_out.write("##gff-version 3\n")
+    genome_csv_writer = csv.DictWriter(handle_genome_out, fieldnames=genome_header, delimiter='\t')
+    # genome_csv_writer.writeheader()
+
+    return genome_csv_writer, handle_genome_out
+
+
 def initiate_reannotated_genome_file(genome_file_name):
 
     genome_header = ["cluster_nb",
@@ -594,10 +646,15 @@ def main():
                     genomes_output_writers[taxon_id], fl_handle = initiate_reannotated_genome_file(
                         path.join(reannotated_genome_dir, f'tax_id_{taxon_id}.csv'))
                     file_handles.append(fl_handle)  # to close all files properly at the end
+                    gff_writers[taxon_id], fl_handle = initiate_gff_file(
+                        path.join(reannotated_genome_dir, f'tax_id_{taxon_id}.gff'))
+                    file_handles.append(fl_handle)  # to close all files properly at the end
 
                 genome_csv_writer = genomes_output_writers[taxon_id]
-
                 write_predicted_annotation(genome_csv_writer, blank_cds, cluster_nb)
+
+                gff_writer = gff_writers[taxon_id]
+                write_gff_annotation(gff_writer, blank_cds)
 
 
 if __name__ == '__main__':
@@ -681,7 +738,10 @@ if __name__ == '__main__':
         group_site_csv_writer = False
         aln_csv_writer = False
         file_handles = []
+
     genomes_output_writers = {}
+    gff_writers = {}
+
     for alignment_file in alignment_files:
         print(alignment_file)
         main()  # variable needed in main() are global

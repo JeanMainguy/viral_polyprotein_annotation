@@ -282,11 +282,11 @@ do
     stat_group_file=${stat_output_dir}/stat_cleavage_site_groups.csv
     alignement_stat_file=${stat_output_dir}/stat_alignments.csv # one line per cluster
 
-    if [ ! -f $alignement_stat_file ] ; then
+    # if [ ! -f $alignement_stat_file ] ; then
       python3 scripts/multiple_alignment_analysis.py $aln_dir "$windows" $stat_group_file $alignement_stat_file $taxonomy_file $reannotated_genome_dir
-    else
-      echo file exist already $alignement_stat_file
-    fi
+    # else
+    #   echo file exist already $alignement_stat_file
+    # fi
 done
 
 # DONE
