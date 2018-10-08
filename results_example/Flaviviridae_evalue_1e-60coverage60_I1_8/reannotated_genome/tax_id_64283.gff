@@ -1,0 +1,14 @@
+##gff-version 3
+YP_950477.1	.	polypeptide	1	3412	.	.	.	.
+YP_950477.1	.	mat_peptide	1	116	.	.	.	.
+YP_950477.1	.	mat_peptide	117	212	.	.	.	.
+YP_950477.1	.	mat_peptide	213	289	.	.	.	.
+YP_950477.1	.	mat_peptide	290	776	.	.	.	.
+YP_950477.1	.	mat_peptide	777	1132	.	.	.	.
+YP_950477.1	.	mat_peptide	1133	1357	.	.	.	.
+YP_950477.1	.	mat_peptide	1358	1487	.	.	.	.
+YP_950477.1	.	mat_peptide	1488	2107	.	.	.	.
+YP_950477.1	.	mat_peptide	2108	2233	.	.	.	.
+YP_950477.1	.	mat_peptide	2234	2256	.	.	.	.
+YP_950477.1	.	mat_peptide	2257	2505	.	.	.	.
+YP_950477.1	.	mat_peptide	2506	3411	.	.	.	.

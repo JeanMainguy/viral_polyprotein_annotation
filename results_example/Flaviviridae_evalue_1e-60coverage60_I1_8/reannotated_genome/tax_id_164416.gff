@@ -1,0 +1,14 @@
+##gff-version 3
+YP_002922020.1	.	polypeptide	1	3406	.	.	.	.
+YP_002922020.1	.	mat_peptide	1	113	.	.	.	.
+YP_002922020.1	.	mat_peptide	114	205	.	.	.	.
+YP_002922020.1	.	mat_peptide	206	282	.	.	.	.
+YP_002922020.1	.	mat_peptide	283	770	.	.	.	.
+YP_002922020.1	.	mat_peptide	771	1126	.	.	.	.
+YP_002922020.1	.	mat_peptide	1127	1349	.	.	.	.
+YP_002922020.1	.	mat_peptide	1350	1479	.	.	.	.
+YP_002922020.1	.	mat_peptide	1480	2102	.	.	.	.
+YP_002922020.1	.	mat_peptide	2103	2228	.	.	.	.
+YP_002922020.1	.	mat_peptide	2229	2251	.	.	.	.
+YP_002922020.1	.	mat_peptide	2252	2498	.	.	.	.
+YP_002922020.1	.	mat_peptide	2499	3405	.	.	.	.
