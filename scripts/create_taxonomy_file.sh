@@ -64,11 +64,13 @@ else
   echo The RefSeq database is older than $taxonomy_index_file . So no need to compute again the file
 fi
 
-echo remove all symbolic link of the taxonomy dir
-find data/taxonomy/  -type l -delete
 
-echo create taxonomy symb link files
-real_path_outputdir=`realpath ${output_dir}/`
-ln -s $real_path_outputdir/*.txt data/taxonomy/
+# echo remove all symbolic link of the taxonomy dir
+# find $output_dir  -type l -delete
+#
+# #
+# echo create taxonomy symb link files
+# real_path_outputdir=`realpath ${output_dir}/`
+# ln -s $real_path_outputdir/*.txt $output_dir/
 
 echo END of create taxonomy script

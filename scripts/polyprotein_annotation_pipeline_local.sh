@@ -29,6 +29,7 @@ mkdir -p ${TMPDIR}
 ## extraction and basic stat
 tresholdSP="90"
 taxon='Flaviviridae'
+taxon='Alphavirus'
 # taxon='ssRNA viruses'
 # taxon='Retro-transcribing viruses'
 # taxon='Picornavirales'
@@ -59,7 +60,7 @@ mkdir -p $taxonomy_index_dir
 taxonomy_file="$taxonomy_index_dir/taxonomy_virus.txt"
 
 bash scripts/create_taxonomy_file.sh $ncbi_db_path $taxonomy_index_dir
-
+exit_if_fail
 
 ################################################################################
 echo "\n## EXTRACTION VIRAL PROTEINS AND CREATION OF BASIC STAT_FILE\n"
