@@ -11,6 +11,7 @@ from Bio.Seq import Seq
 import sys
 import csv
 import re
+import os.path
 from Bio.Alphabet import generic_protein
 from Bio.SeqFeature import SeqFeature, FeatureLocation
 from operator import attrgetter
@@ -23,8 +24,9 @@ def visualisation_main(gb_file, genetic_code, gff_file, nb_line, minimum_nb_pept
 
     genome = obj.gb_file_parser(gb_file, taxon_id, sp_treshold)
 
-    do.getMatchObject(genome, gff_file)
-    do.associateDomainsWithPolyprotein(genome)
+    if gff_file:
+        do.getMatchObject(genome, gff_file)
+        do.associateDomainsWithPolyprotein(genome)
     # for segment in genome.segments:
     #     do.getDomainOverlappingInfo(segment)
 
@@ -271,10 +273,14 @@ if __name__ == '__main__':
         minimum_nb_peptide = 0
 
     sp_treshold = 90
-    taxonomy_file = "data/taxonomy/taxonomy_virus.txt"
+    taxonomy_file = "results_example/genomes_index/taxonomy_virus.txt"
     expected_file = "data/taxonomy/polyprotein_expectation_by_taxon.csv"
 
     gff_file = 'data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
+
+    if not os.path.isfile(gff_file):
+        logging.warning('///No interproscan result file found///')
+        gff_file = None
 
     try:
         taxon = sys.argv[1]
