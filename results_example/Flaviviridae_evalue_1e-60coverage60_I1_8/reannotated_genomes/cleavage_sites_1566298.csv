@@ -1,5 +1,5 @@
 cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
-0	1566298	Paraiso Escondido virus	GCF_..	YP_009169331.1	117		0.9133091896785878
+0	1566298	Paraiso Escondido virus	GCF_..	YP_009169331.1	117		0.9133091896785875
 0	1566298	Paraiso Escondido virus	GCF_..	YP_009169331.1	234		0.06023593964334724
 0	1566298	Paraiso Escondido virus	GCF_..	YP_009169331.1	310		0.094405462501886
 0	1566298	Paraiso Escondido virus	GCF_..	YP_009169331.1	800		0.0028814524560342937

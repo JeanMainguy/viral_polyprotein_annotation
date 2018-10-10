@@ -277,7 +277,7 @@ do
     stat_output_dir="$(dirname $aln_dir)/alignment_analysis"
     mkdir -p ${stat_output_dir}
 
-    reannotated_genome_dir="$(dirname $aln_dir)/reannotated_genome"
+    reannotated_genome_dir="$(dirname $aln_dir)/reannotated_genomes"
     mkdir -p ${reannotated_genome_dir}
     mkdir -p $TMPDIR/${reannotated_genome_dir}
 
@@ -290,6 +290,14 @@ do
     #   echo file exist already $alignement_stat_file
     # fi
     mv $TMPDIR/${reannotated_genome_dir}/* ${reannotated_genome_dir}/
+
+    if [ -x "$(command -v aha)" ]; then
+        echo 'Conversion of the alignment visualisation file in html'
+        for f in $stat_output_dir/*.aln;
+        do
+            cat $f | aha >  ${f//.*/.html}
+        done
+    fi
 done
 
 # DONE

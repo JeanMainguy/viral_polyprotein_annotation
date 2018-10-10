@@ -1,0 +1,12 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+2	1562066	Norway rat pestivirus	GCF_..	YP_009109567.1	273		3.4444444444444446
+2	1562066	Norway rat pestivirus	GCF_..	YP_009109567.1	373		3.4444444444444446
+2	1562066	Norway rat pestivirus	GCF_..	YP_009109567.1	604		3.4444444444444446
+2	1562066	Norway rat pestivirus	GCF_..	YP_009109567.1	802		0.0625
+2	1562066	Norway rat pestivirus	GCF_..	YP_009109567.1	1181		0.0625
+2	1562066	Norway rat pestivirus	GCF_..	YP_009109567.1	1250		3.4444444444444446
+2	1562066	Norway rat pestivirus	GCF_..	YP_009109567.1	1702		3.4444444444444446
+2	1562066	Norway rat pestivirus	GCF_..	YP_009109567.1	2385		3.4444444444444446
+2	1562066	Norway rat pestivirus	GCF_..	YP_009109567.1	2448		3.4444444444444446
+2	1562066	Norway rat pestivirus	GCF_..	YP_009109567.1	2791		3.4444444444444446
+2	1562066	Norway rat pestivirus	GCF_..	YP_009109567.1	3276		3.4444444444444446
