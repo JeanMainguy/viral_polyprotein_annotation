@@ -8,7 +8,7 @@ import visualisation_alignment as view_aln
 import visualisation_protein as view_prot
 import viral_protein_extraction as extract
 
-from os import path, listdir
+from os import path, listdir, rename
 import gzip
 import logging
 from Bio import SeqIO
@@ -58,8 +58,8 @@ def getCdsObject(taxon_prot_ids, taxonomy_file, interpro_domains_file, sp_tresho
         for cds in cds_list:
             set_retrieved.add(f'{cds.segment.taxon_id}|{cds.protein_id}')
 
-        print(set_retrieved)
-        print(set_requested - set_retrieved)
+        # print(set_retrieved)
+        # print(set_requested - set_retrieved)
 
     return cds_list
 
@@ -237,7 +237,7 @@ def getStatOnGroup(group, nb_cds_annotated, absent_annotated_cds_penalty):
         'position_min': min(positions)-1,
         'confidence_score': confidence_score
     }
-    #[ nb_of_cleavage_site, nb_protein_in_group, nb_cleavage_from_the_same_protein, standard_dev, round(standard_dev)]
+    # [ nb_of_cleavage_site, nb_protein_in_group, nb_cleavage_from_the_same_protein, standard_dev, round(standard_dev)]
     return dico_info
 
 
@@ -292,6 +292,22 @@ def propagate_cleavage_sites(group, general_info, cds_list, window):
             new_site = obj.PredictedCleavageSite(start, end, blank_cds, group, confidence_score)
 
 
+def get_predicted_mat_peptide(cds):
+
+    end_mat_pep = [cs.start + 2 for cs in cds.predicted_cleavage_sites]
+
+    # print(cds.start, cds.end)
+    # end of the prot -3 (because of the stop codon) == end of the last mat_pep
+    end_mat_pep.append(cds.end - 3)
+    start_position = cds.start  # start of the first pep
+    for end_position in end_mat_pep:
+        # Write the mat pep:
+        pep = obj.Predicted_peptide(cds, start_position, end_position)
+        cds.predicted_mat_peptides.append(pep)
+
+        start_position = end_position + 1
+
+
 def filter_cds_cleavage_sites(cds_list):
     # stamp cleavage sites that
     # are made from only one mature peptide border
@@ -329,7 +345,7 @@ def visualisation_of_processed_aln(cds_list, alignment_file, group_info_list, fi
     len_cds_max = max((len(cds) for cds in cds_list))
     # for cds in cds_annotated:
     # for cds in cds_list:
-    #print(view_prot.visualisation_protein(cds, 1, len_cds_max))
+    # print(view_prot.visualisation_protein(cds, 1, len_cds_max))
 
     for cds in cds_list:
         cds.matchs = []
@@ -438,7 +454,7 @@ def write_predicted_annotation(writer, cds, cluster_nb):
 
 def write_gff_annotation(writer, cds):
     # attribute = f'GCF..;taxon_id_{cds.segment.taxon_id};cluster_{cluster_nb}'
-    info_dict = {"attributes": "Dbxref=taxon",
+    info_dict = {"attributes": f"Dbxref=taxon:{cds.segment.taxon_id}",
                  "source": '.',
                  "score": '.',
                  "strand": '.',
@@ -447,12 +463,13 @@ def write_gff_annotation(writer, cds):
     info_dict["seqid"] = cds.protein_id
     info_dict["type"] = "polypeptide"
     info_dict["start"] = 1
-    info_dict["end"] = int(len(cds)/3)
+    info_dict["end"] = int(len(cds)/3) - 1  # doesn't take into account stop codon
     writer.writerow(info_dict)
 
     # start of the cs is the first aa of the cs
     # which is the last aa of mat_peptides
-    cs_positions = [cs.start_in_prot for cs in cds.predicted_cleavage_sites]
+    # +1 because gff starts at 1 and not 0
+    cs_positions = [cs.start_in_prot + 1 for cs in cds.predicted_cleavage_sites]
     cs_positions.append(int(len(cds)/3)-1)  # end of the prot == end of the last mat_pep
     start_position = 1  # start of the first pep
     for end_position in cs_positions:
@@ -463,6 +480,34 @@ def write_gff_annotation(writer, cds):
         info_dict["end"] = end_position
         writer.writerow(info_dict)
         start_position = end_position + 1
+
+
+def write_reannotated_genbank_file(cds, output_dir):
+
+    # gb_file = cds.segment.gb_file
+    # # for cs in cds.
+    # Predicted_peptide(cds, start, end)
+    reannotated_gb_file = path.join(output_dir, f'genome_{cds.segment.taxon_id}.gbff')
+    tmp_file = path.join(output_dir, 'tmp.gbff')
+    if path.exists(reannotated_gb_file):
+        fl_read = open(reannotated_gb_file, 'r')
+    else:
+        gb_file = cds.segment.gb_file
+        fl_read = gzip.open(gb_file, 'rt')
+
+    fl_write = open(tmp_file, 'w')
+
+    for record in SeqIO.parse(fl_read, "genbank"):
+        if record.id == cds.segment.record.id:
+            cds_index = [i for i, f in enumerate(record.features) if cds.bp_obj.qualifiers ==
+                         f.qualifiers and cds.bp_obj.type == f.type and cds.bp_obj.location == f.location].pop()
+            predicted_peps_bp_obj = [pep.bp_obj for pep in cds.predicted_mat_peptides]
+            record.features = record.features[:cds_index+1] + \
+                predicted_peps_bp_obj + record.features[cds_index+1:]
+
+        SeqIO.write(record, fl_write, 'genbank')
+
+    rename(tmp_file, reannotated_gb_file)  # os import
 
 
 def initiate_gff_file(genome_file_name):
@@ -586,7 +631,7 @@ def main():
     taxon_prot_ids, seq_aln_dict = parse_alignment_file(alignment_file)
 
     for window in windows:
-        print(taxon_prot_ids)
+        # print(taxon_prot_ids)
         cds_list = getCdsObject(taxon_prot_ids, taxonomy_file, interpro_domains_file, sp_treshold)
 
         if sum((1 for cds in cds_list if cds.polyprotein)) == 0:
@@ -615,14 +660,35 @@ def main():
             else:
                 group_info['valid'] = False
 
+        iter_cds_non_annotated = (cds for cds in cds_list if not cds.polyprotein)
+        for blank_cds in iter_cds_non_annotated:
+            get_predicted_mat_peptide(blank_cds)
+
+        # for cds in cds_list:
+        #     print(cds.start)
+        #     if cds.polyprotein:
+        #         print('ANNOTATED')
+        #         print([(cs.start, cs.end) for cs in cds.cleavage_sites])
+        #         print(cds.start % 3)
+        #         print([(cs.start % 3, cs.end % 3) for cs in cds.cleavage_sites])
+        #     else:
+        #         print('unnatotadeD')
+        #         print([(cs.start, cs.end) for cs in cds.cleavage_sites])
+        #         print(cds.start % 3)
+        #         print([(cs.start % 3, cs.end % 3) for cs in cds.cleavage_sites])
+
+        ######################
+        #   OUTPUT
+        ######################
+
         if not aln_csv_writer or 1:
-            print(f'VISUALISATION WITH WINDOW {window}')
+            # print(f'VISUALISATION WITH WINDOW {window}')
 
-            for cds in cds_list:
-                print(cds.segment.record.annotations['taxonomy'])
+            # for cds in cds_list:
+            #     print(cds.segment.record.annotations['taxonomy'])
 
-            for group in group_info_list:
-                print(group)
+            # for group in group_info_list:
+            #     print(group)
             if write_visualization_path:
                 file_handle = open(path.join(write_visualization_path,
                                              f"visualization_cluster{cluster_nb}.aln"), 'w')
@@ -644,10 +710,11 @@ def main():
                 taxon_id = blank_cds.segment.taxon_id
                 if taxon_id not in genomes_output_writers:
                     genomes_output_writers[taxon_id], fl_handle = initiate_reannotated_genome_file(
-                        path.join(reannotated_genome_dir, f'tax_id_{taxon_id}.csv'))
+                        path.join(reannotated_genome_dir, f'cleavage_sites_{taxon_id}.csv'))
                     file_handles.append(fl_handle)  # to close all files properly at the end
+
                     gff_writers[taxon_id], fl_handle = initiate_gff_file(
-                        path.join(reannotated_genome_dir, f'tax_id_{taxon_id}.gff'))
+                        path.join(reannotated_genome_dir, f'mature_peptides_{taxon_id}.gff'))
                     file_handles.append(fl_handle)  # to close all files properly at the end
 
                 genome_csv_writer = genomes_output_writers[taxon_id]
@@ -655,6 +722,8 @@ def main():
 
                 gff_writer = gff_writers[taxon_id]
                 write_gff_annotation(gff_writer, blank_cds)
+
+                write_reannotated_genbank_file(blank_cds, reannotated_genome_dir)
 
 
 if __name__ == '__main__':
@@ -666,7 +735,7 @@ if __name__ == '__main__':
         # 'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037.aln'
         alignment_file_or_dir = sys.argv[1]
     except:
-        alignment_file_or_dir = 'results/Alphavirus_evalue_1e-60coverage60_I1_8/alignment'
+        alignment_file_or_dir = 'results/Alphavirus_evalue_1e-60coverage60_I1_8/alignment/seq_cluster1.aln'
         # alignment_file_or_dir = 'data/alignment/Viruses/RefSeq_download_date_2018-07-21/Viruses_evalue_1e-40coverage40_I2/seq_cluster30.aln'
 
     try:

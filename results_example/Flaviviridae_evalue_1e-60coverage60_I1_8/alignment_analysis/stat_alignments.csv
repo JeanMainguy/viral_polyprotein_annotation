@@ -3,5 +3,5 @@ cluster_nb	nb_sequences	nb_seq_with_annotation	nb_unannotated_seq	nb_group_of_cl
 5	8	8	0	6	30	6	6	6	All cleavage sites groups have a good score	4	False	1e-60	60	1_8	[6, 6, 6, 6, 6, 6, 6, 6]
 1	16	14	2	12	30	9	10	9	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	4	False	1e-60	60	1_8	[10, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9]
 4	9	7	2	16	30	6	10	7	At least one cleavage site group is valid	4	False	1e-60	60	1_8	[9, 7, 9, 7, 9, 9, 10]
-0	83	49	34	17	30	11	13	10	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	4	False	1e-60	60	1_8	[12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11, 11, 12, 12, 11, 12, 12, 12, 12, 12, 12, 10, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 12, 10]
+0	83	49	34	17	30	11	13	10	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	4	False	1e-60	60	1_8	[12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11, 12, 11, 12, 12, 11, 12, 12, 12, 12, 12, 12, 10, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 12, 10]
 2	11	4	7	11	30	11	11	2	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	4	False	1e-60	60	1_8	[11, 11, 2, 11]

@@ -1,4 +1,4 @@
-
+results/intermediate_files
 
 ################################################################################
 ## FUNCTIONS
@@ -29,7 +29,7 @@ mkdir -p ${TMPDIR}
 ## extraction and basic stat
 tresholdSP="90"
 taxon='Flaviviridae'
-taxon='Alphavirus'
+# taxon='Alphavirus'
 # taxon='ssRNA viruses'
 # taxon='Retro-transcribing viruses'
 # taxon='Picornavirales'
@@ -45,13 +45,13 @@ split_cluster="false"
 
 echo $taxon
 echo Parameters C $coverages E $evalues_filtering I $inflations
-sleep 1
+
 
 taxon_name_for_path=${taxon// /_} #replace space by underscore
 taxon_name_for_path=${taxon_name_for_path//,/} # replace coma by nothing
 
 ################################################################################
-echo '## TAXONOMY INDEX FILE CREATION'
+echo '## GENOME INDEX FILE CREATION'
 ################################################################################
 
 #output
@@ -67,10 +67,10 @@ echo "\n## EXTRACTION VIRAL PROTEINS AND CREATION OF BASIC STAT_FILE\n"
 ################################################################################
 
 #Output...
-sequence_dir="intermediate_data/viral_proteins/${RefSeq_download_date}"
+sequence_dir="results/intermediate_files/viral_proteins/${RefSeq_download_date}"
 faa_db="$sequence_dir/${taxon_name_for_path}_protein_db.faa"
 
-stat_output_dir="intermediate_data/stat_viral_protein/${RefSeq_download_date}/"
+stat_output_dir="results/intermediate_files/stat_viral_protein/${RefSeq_download_date}/"
 stat_protein_file="${stat_output_dir}/stat_proteins_${taxon_name_for_path}.csv"
 
 if [ ! -f $faa_db ] || [ ! -f $stat_protein_file ] ; then
@@ -88,7 +88,7 @@ echo '\n## BLAST ALL VS ALL\n'
 ################################################################################
 
 #output
-blast_result_dir="intermediate_data/blast_result/${RefSeq_download_date}"
+blast_result_dir="results/intermediate_files/blast_result/${RefSeq_download_date}"
 
 blast_result="${blast_result_dir}/${taxon_name_for_path}_blast_evalue${blast_evalue}.out"
 
@@ -129,7 +129,7 @@ echo $blast_filter_dir
 echo '\n## CLUSTERING \n'
 ################################################################################
 
-# clustering_dir="intermediate_data/clustering_result/${taxon_name_for_path}/${RefSeq_download_date}"
+# clustering_dir="results/intermediate_files/clustering_result/${taxon_name_for_path}/${RefSeq_download_date}"
 
 cluster_files=()
 
@@ -279,15 +279,17 @@ do
 
     reannotated_genome_dir="$(dirname $aln_dir)/reannotated_genome"
     mkdir -p ${reannotated_genome_dir}
+    mkdir -p $TMPDIR/${reannotated_genome_dir}
 
     stat_group_file=${stat_output_dir}/stat_cleavage_site_groups.csv
     alignement_stat_file=${stat_output_dir}/stat_alignments.csv # one line per cluster
 
     # if [ ! -f $alignement_stat_file ] ; then
-      python3 scripts/multiple_alignment_analysis.py $aln_dir "$windows" $stat_group_file $alignement_stat_file $taxonomy_file $reannotated_genome_dir
+      python3 scripts/multiple_alignment_analysis.py $aln_dir "$windows" $stat_group_file $alignement_stat_file $taxonomy_file $TMPDIR/${reannotated_genome_dir}
     # else
     #   echo file exist already $alignement_stat_file
     # fi
+    mv $TMPDIR/${reannotated_genome_dir}/* ${reannotated_genome_dir}/
 done
 
 # DONE

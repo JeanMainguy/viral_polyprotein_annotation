@@ -1,0 +1,153 @@
+taxon_id	protein_id	polyprotein_outline	has_peptide	nb_peptides	nb_unannotated_part	nb_cleavage_sites	is_sub_protein	non_polyprotein_explanation	potential_signal_P_first_pep_len	potential_signal_P_first_pep_type	len_protein	strand	taxonomy	First_node
+402584	YP_002967452.1	False	False	0	0	0	False		None	None	11700	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pestivirus']	ssRNA viruses
+64280	NP_620045.1	True	True	13	0	12	False		None	None	10116	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Rio Bravo virus group']	ssRNA viruses
+64285	NP_620044.1	True	True	13	0	12	False		None	None	10140	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Rio Bravo virus group']	ssRNA viruses
+412969	YP_008992092.1	False	False	0	0	0	False		None	None	11757	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pestivirus']	ssRNA viruses
+649187	YP_009056848.1	True	True	14	0	12	False		None	None	10305	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+649187	YP_009268582.1	True	True	9	0	7	True		None	None	4689	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+64283	YP_950477.1	False	False	0	0	0	False		None	None	10236	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Rio Bravo virus group']	ssRNA viruses
+1307801	YP_009256194.1	True	True	10	0	9	False		None	None	9321	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pegivirus']	ssRNA viruses
+1325446	YP_009325330.1	False	False	0	0	0	False		None	None	8916	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus', 'unclassified Hepacivirus']	ssRNA viruses
+1244565	YP_009352228.1	False	False	0	0	0	False		None	None	10158	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+1983570	YP_009388303.1	False	False	0	0	0	False		None	None	19845	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+1495316	YP_009028573.1	False	False	0	0	0	False		None	None	17718	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+64294	NP_872627.1	False	False	0	0	0	False		None	None	10278	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Ntaya virus group']	ssRNA viruses
+64290	YP_002790883.1	True	True	14	0	12	False		None	None	10281	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Ntaya virus group']	ssRNA viruses
+1821222	YP_009256193.1	False	False	0	0	0	False		None	None	10191	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+64309	YP_009344969.1	False	False	0	0	0	False		None	None	10173	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+59563	YP_001040006.1	True	True	14	0	12	False		None	None	10275	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'mosquito-borne viruses']	ssRNA viruses
+64299	YP_009126871.1	False	False	0	0	0	False		None	None	10125	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Modoc virus group']	ssRNA viruses
+11079	YP_006485886.1	True	True	9	0	6	True		None	None	3594	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Japanese encephalitis virus group']	ssRNA viruses
+11079	NP_051124.1	True	True	15	0	12	False		None	None	10305	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Japanese encephalitis virus group']	ssRNA viruses
+1963247	YP_009351861.1	False	False	0	0	0	False		None	None	10251	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+39113	NP_056931.1	True	True	12	0	10	False		None	None	8595	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+1562039	YP_009109558.1	True	True	10	0	9	False		None	None	8568	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus', 'unclassified Hepacivirus']	ssRNA viruses
+358764	NP_620062.1	True	True	13	0	11	False		None	None	11688	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pestivirus']	ssRNA viruses
+11099	NP_040937.1	True	True	13	0	11	False		None	None	11967	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pestivirus']	ssRNA viruses
+1805494	YP_009345036.1	False	False	0	0	0	False		None	None	10203	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+1485186	YP_009026410.1	False	False	0	0	0	False		None	None	10338	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+631267	YP_005454257.1	True	True	14	0	12	False		None	None	10308	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+631267	YP_009259651.1	True	True	9	0	7	True		None	None	4692	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+164416	YP_002922020.1	False	False	0	0	0	False		None	None	10218	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Yellow fever virus group']	ssRNA viruses
+64318	YP_009222008.1	True	True	14	0	12	False		None	None	10290	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+1685953	YP_009175071.1	False	False	0	0	0	False		None	None	22002	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+390845	YP_009259320.1	True	True	8	0	6	True		None	None	4071	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+390845	YP_003029843.1	True	True	14	0	12	False		None	None	10026	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+985683	YP_009259522.1	True	True	9	0	7	True		None	None	4410	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+985683	YP_005352889.1	True	True	14	0	12	False		None	None	10335	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+64296	YP_009256192.1	False	False	0	0	0	False		None	None	10206	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Yellow fever virus group']	ssRNA viruses
+11084	NP_043135.1	True	True	13	0	12	False		None	None	10245	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'tick-borne encephalitis virus group']	ssRNA viruses
+35279	YP_009345031.1	False	False	0	0	0	False		None	None	10266	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Seaborne tick-borne virus group']	ssRNA viruses
+64295	YP_009344961.1	False	False	0	0	0	False		None	None	10173	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Yellow fever virus group']	ssRNA viruses
+119222	NP_620053.1	True	True	1	2	2	False		None	None	11970	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pestivirus']	ssRNA viruses
+1302179	YP_009344962.1	False	False	0	0	0	False		None	None	10095	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+54290	NP_043570.1	True	True	8	0	7	False		None	None	8622	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pegivirus']	ssRNA viruses
+11089	NP_041726.1	True	True	13	0	12	False		None	None	10236	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Yellow fever virus group']	ssRNA viruses
+2014960	YP_009407716.1	False	False	0	0	0	False		None	None	11772	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pestivirus']	ssRNA viruses
+40012	YP_009345037.1	False	False	0	0	0	False		None	None	10269	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Seaborne tick-borne virus group']	ssRNA viruses
+1125677	YP_009259489.1	True	True	14	0	12	False		None	None	10158	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+1125677	YP_009268614.1	True	True	8	0	6	True		None	None	4101	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+486494	YP_009345019.1	False	False	0	0	0	False		None	None	10329	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+11082	NP_041724.2	True	True	14	0	12	False		None	None	10293	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Japanese encephalitis virus group']	ssRNA viruses
+11082	YP_009164950.1	True	True	8	0	6	True		None	None	3576	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Japanese encephalitis virus group']	ssRNA viruses
+11082_1	YP_006485883.2	True	True	8	0	6	True		None	None	3588	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Japanese encephalitis virus group']	ssRNA viruses
+11082_1	YP_009246337.1	True	True	13	0	11	True		None	None	7662	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Japanese encephalitis virus group']	ssRNA viruses
+11082_1	YP_001527877.1	True	True	14	0	12	False		None	None	10302	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Japanese encephalitis virus group']	ssRNA viruses
+31658	YP_009259257.1	True	True	12	0	11	False		None	None	10026	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+1873455	YP_009268709.1	False	False	0	0	0	False		None	None	10908	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pestivirus']	ssRNA viruses
+2008771	YP_009322132.1	False	False	0	0	0	False		None	None	8706	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+1307803	YP_007697649.1	True	True	10	0	9	False		None	None	10035	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pegivirus']	ssRNA viruses
+42182	YP_001469634.1	True	True	10	0	9	False		None	None	9060	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+42182	YP_009272658.1	False	True	1	0	0	True	single peptide annotation covering the whole CDS	375	mat_peptide	378	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+1544901	YP_009272536.1	True	True	10	0	9	False		None	None	9042	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+1544901	YP_009305096.1	False	True	1	0	0	True	single peptide annotation covering the whole CDS	363	mat_peptide	366	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+40271	YP_001469630.1	True	True	10	0	9	False		None	None	9102	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+40271	YP_009272619.1	False	True	1	0	0	True	single peptide annotation covering the whole CDS	375	mat_peptide	378	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+356114	YP_001469631.1	True	True	10	0	9	False		None	None	9066	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+356114	YP_009272631.1	False	True	1	0	0	True	single peptide annotation covering the whole CDS	375	mat_peptide	378	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+33746	YP_001469633.1	True	True	10	0	9	False		None	None	9045	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+33746	YP_009272646.1	False	True	1	0	0	True	single peptide annotation covering the whole CDS	375	mat_peptide	378	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+33745	YP_009272634.1	False	True	1	0	0	True	single peptide annotation covering the whole CDS	375	mat_peptide	378	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+33745	YP_001469632.1	True	True	10	0	9	False		None	None	9027	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+41856	NP_803170.1	False	True	1	0	0	True	single peptide annotation covering the whole CDS	483	mat_peptide	486	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+41856	NP_671491.1	True	True	10	0	9	False		None	None	9036	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+1562066	YP_009109567.1	False	False	0	0	0	False		None	None	11982	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pestivirus']	ssRNA viruses
+1286143	YP_009041466.1	False	False	0	0	0	False		None	None	10071	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+64319	YP_009350103.1	False	False	0	0	0	False		None	None	10293	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+577122	YP_009351820.1	False	False	0	0	0	False		None	None	10284	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+64286	YP_164264.1	True	True	14	0	12	False		None	None	10305	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Japanese encephalitis virus group']	ssRNA viruses
+64286	YP_006485884.1	True	True	8	0	6	True		None	None	3594	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Japanese encephalitis virus group']	ssRNA viruses
+1708574	YP_009164031.1	True	True	14	0	12	False		None	None	10212	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+1708574	YP_009259274.1	True	True	8	0	6	True		None	None	4176	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+1903340	YP_009305198.1	False	False	0	0	0	False		None	None	927	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+1903340	YP_009305197.1	True	True	13	0	11	False		None	None	10026	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+12542	NP_878909.1	False	False	0	0	0	False		None	None	10245	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'tick-borne encephalitis virus group']	ssRNA viruses
+11083	NP_620099.1	True	True	13	0	12	False		None	None	10248	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'tick-borne encephalitis virus group']	ssRNA viruses
+64307	YP_009345034.1	False	False	0	0	0	False		None	None	10251	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+40004	YP_009001464.1	False	False	0	0	0	False		None	None	10269	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Seaborne tick-borne virus group']	ssRNA viruses
+1969397	YP_009388577.1	True	True	12	0	12	False		None	None	10029	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+1633878	YP_009130616.1	True	True	10	0	9	False		None	None	8322	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus', 'unclassified Hepacivirus']	ssRNA viruses
+64293	YP_004734464.1	True	True	14	0	12	False		None	None	10278	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Ntaya virus group']	ssRNA viruses
+64292	YP_006846328.2	True	True	14	0	12	False		None	None	10284	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Ntaya virus group']	ssRNA viruses
+390844	YP_006470608.1	True	True	8	0	6	True		None	None	4203	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+390844	YP_899469.2	True	True	14	0	12	False		None	None	10092	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+64303	YP_001040004.1	True	True	14	0	12	False		None	None	10290	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+1985364	YP_009361867.1	False	False	0	0	0	False		None	None	8919	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pegivirus']	ssRNA viruses
+64317	YP_009126875.1	False	False	0	0	0	False		None	None	10242	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+64310	YP_009345035.1	False	False	0	0	0	False		None	None	10215	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+11085	NP_620108.1	True	True	11	0	10	False		None	None	10245	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'tick-borne encephalitis virus group']	ssRNA viruses
+64297	YP_009344968.1	False	False	0	0	0	False		None	None	10182	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Yellow fever virus group']	ssRNA viruses
+1354498	YP_009325369.1	True	True	10	0	9	False		None	None	10002	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus']	ssRNA viruses
+1456752	YP_009001771.1	False	False	0	0	0	False		None	None	10260	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+667516	YP_009268598.1	True	True	8	0	6	True		None	None	4194	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+667516	YP_009259488.1	True	True	14	0	12	False		None	None	10122	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+64320	YP_002790881.1	True	True	14	0	12	False		None	None	10260	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+64320_1	YP_009428568.1	True	True	14	0	12	False		None	None	10272	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+1566298	YP_009169331.1	False	False	0	0	0	False		None	None	10326	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+11060	NP_056776.2	True	True	14	0	12	False		None	None	10176	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Dengue virus group']	ssRNA viruses
+11053	NP_059433.1	True	True	14	0	12	False		None	None	10179	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Dengue virus group']	ssRNA viruses
+11069	YP_001621843.1	True	True	14	0	12	False		None	None	10173	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Dengue virus group']	ssRNA viruses
+11070	NP_073286.1	True	True	14	0	12	False		None	None	10164	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Dengue virus group']	ssRNA viruses
+218849	YP_006491219.1	True	True	8	0	6	True		None	None	4110	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+218849	NP_891560.1	True	True	14	0	12	False		None	None	10074	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+1562065	YP_009109602.1	False	False	0	0	0	False		None	None	10023	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pegivirus', 'unclassified Pegivirus']	ssRNA viruses
+1307800	NP_045010.1	True	True	8	0	7	False		None	None	8904	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pegivirus']	ssRNA viruses
+1454041	YP_009044207.1	True	True	10	0	9	False		None	None	8697	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pegivirus']	ssRNA viruses
+1172985	YP_009351917.1	False	False	0	0	0	False		None	None	2745	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+1172985	YP_009351920.1	False	False	0	0	0	False		None	None	2262	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+1172985	YP_009351918.1	False	False	0	0	0	False		None	None	2427	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+1172985	YP_009351919.1	False	False	0	0	0	False		None	None	2352	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+64314	YP_009433741.1	False	False	0	0	0	False		None	None	10173	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Rio Bravo virus group']	ssRNA viruses
+64284	YP_009344967.1	False	False	0	0	0	False		None	None	10173	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Rio Bravo virus group']	ssRNA viruses
+64312	NP_689391.1	True	True	13	0	12	False		None	None	10125	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+64300	NP_619758.1	True	True	13	0	12	False		None	None	10125	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Modoc virus group']	ssRNA viruses
+1821227	YP_009350102.1	False	False	0	0	0	False		None	None	10245	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+1969400	YP_009389296.1	False	False	0	0	0	False		None	None	10026	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+499854	YP_009328360.1	True	True	14	0	12	False		None	None	10230	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Kokobera virus group']	ssRNA viruses
+44024	YP_001040007.1	True	True	14	0	12	False		None	None	10233	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Kokobera virus group']	ssRNA viruses
+11096	NP_075354.1	True	True	13	0	11	False		None	None	11697	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pestivirus']	ssRNA viruses
+64894	YP_009350101.1	False	False	0	0	0	False		None	None	10131	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'tick-borne encephalitis virus group']	ssRNA viruses
+643132	YP_006491221.1	True	True	8	0	6	True		None	None	4182	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+643132	YP_002884239.1	True	True	14	0	12	False		None	None	10080	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+673515	YP_007877501.1	False	False	0	0	0	False		None	None	10080	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+1281454	YP_007905733.1	True	True	10	0	9	False		None	None	8247	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus', 'unclassified Hepacivirus']	ssRNA viruses
+1445557	YP_009268566.1	True	True	9	0	7	True		None	None	4602	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+1445557	YP_009056847.1	True	True	14	0	12	False		None	None	10356	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae']	ssRNA viruses
+1562038	YP_009109557.1	True	True	10	0	9	False		None	None	8976	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus', 'unclassified Hepacivirus']	ssRNA viruses
+64305	YP_009333101.1	True	True	8	0	6	True		None	None	3582	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+64305	YP_009126874.1	True	True	14	0	12	False		None	None	10284	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+188938	YP_009026415.1	False	False	0	0	0	False		None	None	11694	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pestivirus']	ssRNA viruses
+1234809	YP_006860588.1	False	False	0	0	0	False		None	None	11688	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pestivirus']	ssRNA viruses
+1729141	YP_009227295.1	True	True	10	0	9	False		None	None	9174	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pegivirus']	ssRNA viruses
+11080	YP_001008348.1	True	True	14	0	12	False		None	None	10293	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Japanese encephalitis virus group']	ssRNA viruses
+161675	NP_658908.1	True	True	13	0	12	False		None	None	10053	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+1321391	YP_007905734.1	True	True	11	0	10	False		None	None	10455	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pegivirus', 'unclassified Pegivirus']	ssRNA viruses
+44026	YP_950478.1	False	False	0	0	0	False		None	None	10218	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'mosquito-borne viruses']	ssRNA viruses
+64311	YP_002790882.1	True	True	14	0	12	False		None	None	10227	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+1416349	YP_009058898.1	True	True	10	0	9	False		None	None	8832	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Hepacivirus', 'unclassified Hepacivirus']	ssRNA viruses
+11072	NP_059434.1	True	True	14	0	12	False		None	None	10299	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Japanese encephalitis virus group']	ssRNA viruses
+11072	YP_006355435.1	True	True	8	0	6	True		None	None	3597	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'Japanese encephalitis virus group']	ssRNA viruses
+11086	NP_044677.1	True	True	13	0	13	False		None	None	10245	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus', 'tick-borne encephalitis virus group']	ssRNA viruses
+1708654	YP_009164029.1	True	True	14	0	12	False		None	None	10155	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+1708654	YP_009259258.1	True	True	8	0	6	True		None	None	4116	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
+1691889	YP_009162613.1	True	True	11	0	10	False		None	None	10245	1	['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Flavivirus']	ssRNA viruses
