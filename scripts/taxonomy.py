@@ -1,7 +1,8 @@
 import os
 import logging
 import re
-import gzip, csv
+import gzip
+import csv
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
@@ -40,11 +41,12 @@ def getGbffFile(virus_name, ncbi_refseq_db):
         all_assembly_content = os.listdir(all_assembly_dir)
         if len(all_assembly_content) == 1 and all_assembly_content[0] == 'suppressed':
             logging.info('No latest_assembly_versions folder for {}'.format(virus_name))
-            logging.info('only suppressed dir in all assembly: {} | we can ignore this virus : {}'.format(all_assembly_content,virus_name ))
+            logging.info('only suppressed dir in all assembly: {} | we can ignore this virus : {}'.format(
+                all_assembly_content, virus_name))
         else:
             logging.warning('No latest_assembly_versions folder for {}'.format(virus_name))
-            logging.warning('NOT only suppressed dir in all assembly.. {} | This virus has a problem.. :'.format(all_assembly_content,virus_name ))
-
+            logging.warning('NOT only suppressed dir in all assembly.. {} | This virus has a problem.. :'.format(
+                all_assembly_content, virus_name))
 
         # raise Exception(assembly_path, 'the virus folder does not have "latest_assembly_versions" directory...')
         return []
@@ -60,6 +62,7 @@ def getGbffFile(virus_name, ncbi_refseq_db):
             logging.warning('No gbff file have been found in the directory: '+gb_file)
             # raise Exception(assembly_path, 'No gbff file have been found in the directory')
     return gb_files
+
 
 def getTaxonomy(gb_file, error_taxon_ids):
     # polyprot = []
@@ -77,7 +80,7 @@ def getTaxonomy(gb_file, error_taxon_ids):
             # print(record.annotations)
             for f in record.features:
                 if f.type == 'source':
-                    taxon=False
+                    taxon = False
                     for item in f.qualifiers['db_xref']:
                         if item.startswith('taxon'):
                             taxon = item.replace('taxon:', '')
@@ -92,13 +95,16 @@ def getTaxonomy(gb_file, error_taxon_ids):
 
             error_taxon_ids.append(';'.join(taxon_set)+'\t'+gb_file+'\n')
             taxon_sort = sorted([int(t) for t in taxon_set])
-            taxon_set = {taxon_sort[0]} # select the first taxon id from the list
-            logging.warning(f'Taxon id is not homogenous ({taxon_sort}) in {gb_file}. Ids stored in error_taxon_ids file and the first id {taxon_sort[0]} is used')
+            taxon_set = {taxon_sort[0]}  # select the first taxon id from the list
+            logging.warning(
+                f'Taxon id is not homogenous ({taxon_sort}) in {gb_file}. Ids stored in error_taxon_ids file and the first id {taxon_sort[0]} is used')
         if len(taxonomy_set) > 1:
             sort_taxonomys = sorted(list(taxonomy_set))
-            logging.warning(f'Taxonomy is not homogenous ({sort_taxonomys}) in {gb_file}. the first taxonomy is used: {sort_taxonomys[0]}')
+            logging.warning(
+                f'Taxonomy is not homogenous ({sort_taxonomys}) in {gb_file}. the first taxonomy is used: {sort_taxonomys[0]}')
 
         return taxonomy_set.pop(), organism, taxon_set.pop()
+
 
 def createTaxonomyFile(taxonomy_file, ncbi_refseq_db, alternative_taxon_id_file):
     """
@@ -119,16 +125,18 @@ def createTaxonomyFile(taxonomy_file, ncbi_refseq_db, alternative_taxon_id_file)
             for gb in gb_files:
                 taxonomy, organism, taxon = getTaxonomy(gb, error_taxon_ids)
                 taxon = int(taxon)
-                if taxon in viral_taxons: # if the taxon id is already found in the dict then..
-                    duplicated_taxon_ids[taxon] = duplicated_taxon_ids.setdefault(taxon, 0) +1
+                if taxon in viral_taxons:  # if the taxon id is already found in the dict then..
+                    duplicated_taxon_ids[taxon] = duplicated_taxon_ids.setdefault(taxon, 0) + 1
                     # duplicated_taxon_ids[taxon] += 1
-                    duplicated_taxon = f'{taxon}_{duplicated_taxon_ids[taxon]}' # duplicated stored with underscore follow by the number of duplication
-                    logging.warning(f'Duplicated taxon id: taxon id {taxon} is found in more than one genbank file.. new_taxon_id used: {duplicated_taxon}')
+                    # duplicated stored with underscore follow by the number of duplication
+                    duplicated_taxon = f'{taxon}_{duplicated_taxon_ids[taxon]}'
+                    logging.warning(
+                        f'Duplicated taxon id: taxon id {taxon} is found in more than one genbank file.. new_taxon_id used: {duplicated_taxon}')
                     taxon = duplicated_taxon
                 else:
                     viral_taxons[taxon] = None
 
-                handle.write( "{}\t{}\t{}\t{}\n".format(taxon, organism, taxonomy, gb))
+                handle.write("{}\t{}\t{}\t{}\n".format(taxon, organism, taxonomy, gb))
 
             if (i/nb_genome)*100 > last_percent + 10:
                 print(round((i/nb_genome)*100), "% processed")
@@ -141,7 +149,7 @@ def createTaxonomyFile(taxonomy_file, ncbi_refseq_db, alternative_taxon_id_file)
     return viral_taxons
 
 
-def getAllRefseqFromTaxon(wanted_taxonomy, taxonomy_file, excluded_taxon = None):
+def getAllRefseqFromTaxon(wanted_taxonomy, taxonomy_file, excluded_taxon=None):
     with open(taxonomy_file, 'r') as taxfl:
 
         for l in taxfl:
@@ -150,15 +158,14 @@ def getAllRefseqFromTaxon(wanted_taxonomy, taxonomy_file, excluded_taxon = None)
             # print(taxonomy)
             if wanted_taxonomy in taxonomy.split(';') and excluded_taxon not in taxonomy.split(';'):
                 # print('taxonomy')
-                yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id':tax_id, 'taxonomy':taxonomy}
+                yield {'gb_file': gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id': tax_id, 'taxonomy': taxonomy}
 
             if tax_id == wanted_taxonomy or organism == wanted_taxonomy:
-                yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id':tax_id, 'taxonomy':taxonomy}
-                #no break here because genome with the same tax id... :-/
+                yield {'gb_file': gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id': tax_id, 'taxonomy': taxonomy}
+                # no break here because genome with the same tax id... :-/
 
 
-
-def getAllRefseqFromTaxonIdList(wanted_taxon_ids, taxonomy_file, excluded_taxon = None):
+def getAllRefseqFromTaxonIdList(wanted_taxon_ids, taxonomy_file, excluded_taxon=None):
     with open(taxonomy_file, 'r') as taxfl:
 
         for l in taxfl:
@@ -166,35 +173,36 @@ def getAllRefseqFromTaxonIdList(wanted_taxon_ids, taxonomy_file, excluded_taxon 
             (tax_id, organism, taxonomy, genetic_code, gbff) = l.split("\t")
 
             if tax_id in wanted_taxon_ids:
-                yield {'gb_file':gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id':tax_id, 'taxonomy':taxonomy}
-                #no break here because genome with the same tax id... :-/
+                yield {'gb_file': gbff.rstrip(), 'genetic_code': genetic_code, 'taxon_id': tax_id, 'taxonomy': taxonomy}
+                # no break here because genome with the same tax id... :-/
 
 
 def expectedPeptide(expected_pep_file):
 
-        taxon_expectation = {}
-        with open(expected_pep_file, "r", newline='') as fl:
-            reader = csv.DictReader(fl, delimiter='\t')
-            for row in reader:
-                row = dict(row)
-                #conversion in int
-                for key in row:
-                    if key == 'taxon':
-                        taxon = row[key]
-                        continue
-                    row[key] = None if not row[key] else int(row[key])
+    taxon_expectation = {}
+    with open(expected_pep_file, "r", newline='') as fl:
+        reader = csv.DictReader(fl, delimiter='\t')
+        for row in reader:
+            row = dict(row)
+            #conversion in int
+            for key in row:
+                if key == 'taxon':
+                    taxon = row[key]
+                    continue
+                row[key] = None if not row[key] else int(row[key])
 
-                if row["peptide"] > 0:
-                    taxon_expectation[taxon] = row
-                # print(row['first_name'], row['last_name'])
-            #
-            # for l in fl:
-            #     line_elements = l.split("\t")
-            #     expected_peptide = int(expected_peptide)
-            #     polyprotein = None if not polyprotein else int(polyprotein)
-            #     if expected_peptide > 0:
-            #         taxon_expectation[taxon] = {"polyprotein":polyprotein, "peptide":expected_peptide}
-        return taxon_expectation
+            if row["peptide"] > 0:
+                taxon_expectation[taxon] = row
+            # print(row['first_name'], row['last_name'])
+        #
+        # for l in fl:
+        #     line_elements = l.split("\t")
+        #     expected_peptide = int(expected_peptide)
+        #     polyprotein = None if not polyprotein else int(polyprotein)
+        #     if expected_peptide > 0:
+        #         taxon_expectation[taxon] = {"polyprotein":polyprotein, "peptide":expected_peptide}
+    return taxon_expectation
+
 
 def getGeneticCode(viral_taxons, geneticcode_file, tmp_output_file, output_file):
     count = 0
@@ -222,8 +230,10 @@ def getGeneticCode(viral_taxons, geneticcode_file, tmp_output_file, output_file)
         taxon = int(taxon)
         try:
             genetic_code = int(viral_taxons[taxon])
-        except TypeError: # if taxon has not been found in genetic code file then the value of the dict is None and int(None) through an error
-            logging.warning('The genetic code of the taxon {} was not found. By default genetic code 1 is provided'.format(taxon))
+        # if taxon has not been found in genetic code file then the value of the dict is None and int(None) through an error
+        except TypeError:
+            logging.warning(
+                'The genetic code of the taxon {} was not found. By default genetic code 1 is provided'.format(taxon))
             genetic_code = "1"
         newline = line_split[:-1] + [str(genetic_code), line_split[-1]]
         outfl.write('\t'.join(newline))
@@ -232,10 +242,11 @@ def getGeneticCode(viral_taxons, geneticcode_file, tmp_output_file, output_file)
     tmpfl.close()
     genetfl.close()
 
+
 if __name__ == '__main__':
     print('#Creation of taxonomy file')
 
-    output_file= sys.argv[1]
+    output_file = sys.argv[1]
     ncbi_refseq_db = sys.argv[2]
     geneticcode_file = sys.argv[3]
     alternative_taxon_id_file = sys.argv[4]
@@ -244,11 +255,10 @@ if __name__ == '__main__':
     tmp_output_file = os.path.join(path, 'tmp_file.tmp')
     logging.basicConfig(level=logging.INFO)
 
-    viral_taxons = createTaxonomyFile( tmp_output_file, ncbi_refseq_db, alternative_taxon_id_file)
-    getGeneticCode(viral_taxons, geneticcode_file,tmp_output_file, output_file)
+    viral_taxons = createTaxonomyFile(tmp_output_file, ncbi_refseq_db, alternative_taxon_id_file)
+    getGeneticCode(viral_taxons, geneticcode_file, tmp_output_file, output_file)
 
     print('END of taxonomy.py')
-
 
     # print(viral_taxons)
     # taxonomy_file = "/home/user/mainguy/Documents/Data_Analysis/data/taxonomy/taxonomy_virus.txt"
