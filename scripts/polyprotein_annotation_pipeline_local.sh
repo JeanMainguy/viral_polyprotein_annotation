@@ -1,4 +1,4 @@
-results/intermediate_files
+#!/bin/bash
 
 ################################################################################
 ## FUNCTIONS
@@ -14,8 +14,26 @@ exit_if_fail () {
 ################################################################################
 ## INPUT GENOMES
 ################################################################################
-ncbi_db_path="genome_db_test/"
+genetic_code_path="genome_db_test/taxonomy/new_taxdump/"
+
+genbank_files_db_path="genome_db_test/genomes/refseq/viral/"
+RefSeq_structure="True"
+# genbank_files_db_path='flat_db_Alphavirus/'
+# RefSeq_structure="False"
+#Structure of the genbank files database : True or False
+# False is a list of genbank files in a folder
+# True same structure as in RefSeq:
+# ── genomes
+#     └── refseq
+#         └── viral
+#             ├── Aedes_flavivirus
+#             │   └── latest_assembly_versions
+#             │       └── GCF_000885715.1_ViralProj39601
+#             │           └── GCF_000885715.1_ViralProj39601_genomic.gbff.gz
+
+
 # interpro_path="/mirror/interpro"
+
 TMPDIR=/tmp/${USER}_polyprotein_annotation/
 
 
@@ -29,7 +47,7 @@ mkdir -p ${TMPDIR}
 ## extraction and basic stat
 tresholdSP="90"
 taxon='Flaviviridae'
-# taxon='Alphavirus'
+taxon='Alphavirus'
 # taxon='ssRNA viruses'
 # taxon='Retro-transcribing viruses'
 # taxon='Picornavirales'
@@ -38,10 +56,12 @@ taxon='Flaviviridae'
 blast_evalue='1e-5'
 
 ## filtering and mcl clustering
-coverages='60'
+coverages='60 70'
 evalues_filtering='1e-60' # 1e-50 1e-20' #'1e-140 1e-160'
 inflations='1.8'
 split_cluster="false"
+
+
 
 echo $taxon
 echo Parameters C $coverages E $evalues_filtering I $inflations
@@ -57,10 +77,45 @@ echo '## GENOME INDEX FILE CREATION'
 #output
 taxonomy_index_dir="results/genomes_index/"
 mkdir -p $taxonomy_index_dir
-taxonomy_file="$taxonomy_index_dir/taxonomy_virus.txt"
 
-bash scripts/create_taxonomy_file.sh $ncbi_db_path $taxonomy_index_dir
-exit_if_fail
+alternative_taxon_id="$taxonomy_index_dir/heterogeneous_taxon_id_taxonomy_virus.txt"
+
+if [ ! -f ${taxon_id_gencode_file} ] || [ "$force" == true ];
+then
+    echo Creation of the genetic code file
+     # extract taxon id and the corresponding genetic code
+    tar -Oxf ${genetic_code_path}/new_taxdump.tar.gz nodes.dmp | cut -d$'\t' -f1,13 > ${TMPDIR}/taxon_id_gencode_file.tmp
+    exit_if_fail
+
+    mv ${TMPDIR}/taxon_id_gencode_file.tmp $taxon_id_gencode_file
+fi
+
+taxonomy_file="$taxonomy_index_dir/taxonomy_virus.txt"
+taxon_id_gencode_file="$taxonomy_index_dir/taxon_id_gencode.txt"
+
+#Check if we need to recompute the taxonomy file
+outputTime=`stat -c %Y ${taxonomy_file}`
+ncbi_refseq_dbTime=`stat -c %Y ${genbank_files_db_path}`
+force=true
+
+if [ ! -f ${taxonomy_file} ] || [ $ncbi_refseq_dbTime -gt $outputTime ] || [ "$force" == true ];
+then
+
+  echo "creation of genome index file: taxon id, path to the genbank file, genome taxonomy.. "
+  python3 scripts/taxonomy.py ${TMPDIR}/taxonomy_index_file.tmp \
+                              ${genbank_files_db_path} \
+                              ${taxon_id_gencode_file} \
+                              ${TMPDIR}/alternative_taxon_id.tmp \
+                              $RefSeq_structure 2> ${taxonomy_index_dir}/taxonomy_file_creation.log
+  exit_if_fail
+
+  mv ${TMPDIR}/taxonomy_index_file.tmp $taxonomy_file
+  mv ${TMPDIR}/alternative_taxon_id.tmp $alternative_taxon_id
+
+else
+  echo The RefSeq database is older than $taxonomy_file . So no need to compute again the file
+fi
+
 
 ################################################################################
 echo "\n## EXTRACTION VIRAL PROTEINS AND CREATION OF BASIC STAT_FILE\n"

@@ -23,6 +23,15 @@ else
   echo "output_dir is $output_dir";
 fi
 
+if [ -z ${3+x} ];
+then
+  # ncbi_current="/mirror/ncbi/current/"
+  echo "genbank db structure not provided" # $ncbi_current is used by default";
+  RefSeq_structure="True";
+else
+  RefSeq_structure=$3;
+fi
+echo "RefSeq db structure: $output_dir";
 
 taxonomy_index_file="taxonomy_virus.txt"
 taxon_id_gencode_file="taxon_id_gencode.txt"
@@ -52,7 +61,8 @@ then
   python3 scripts/taxonomy.py ${TMPDIR}/${taxonomy_index_file} \
                               ${ncbi_refseq_db} \
                               ${TMPDIR}/${taxon_id_gencode_file} \
-                              ${TMPDIR}/$alternative_taxon_id 2> ${output_dir}taxonomy_file_creation.log
+                              ${TMPDIR}/$alternative_taxon_id \
+                              $RefSeq_structure  2> ${output_dir}/taxonomy_file_creation.log
 
   echo mv taxonomy files in final dir $output_dir
   mkdir -p $output_dir

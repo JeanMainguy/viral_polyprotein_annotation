@@ -19,49 +19,50 @@ def see_objet(obj):
             print(attr, " ", getattr(obj, attr))
 
 
-def getGbffFile(virus_name, ncbi_refseq_db):
-    # ncbi_refseq_db = "/mirror/ncbi/current/genomes/refseq/viral/"
+def get_gb_file_from_RefSeq_db(genbank_file_db):
+    # genbank_file_db = "/mirror/ncbi/current/genomes/refseq/viral/"
     # virus_name = "Ageratum_yellow_vein_China_virus"
+    for virus_name in os.listdir(genbank_file_db):
+        virus_path = os.path.join(genbank_file_db, virus_name)
 
-    virus_path = os.path.join(ncbi_refseq_db, virus_name)
+        assembly_path = os.path.join(virus_path, 'latest_assembly_versions')
+        # gb_files = []
+        # Checking if the path exist..
+        if not os.path.isdir(virus_path):
+            logging.info('Cannot find the virus folder: '+virus_path)
+            if not virus_name.endswith('.txt'):
+                logging.warning('Cannot find the virus folder and not a txt file: '+virus_path)
+            # raise Exception(virus_path, 'the virus folder does not exist..')
+            # return []
 
-    assembly_path = os.path.join(virus_path, 'latest_assembly_versions')
-    gb_files = []
-    # Checking if the path exist..
-    if not os.path.isdir(virus_path):
-        logging.info('Cannot find the virus folder: '+virus_path)
-        if not virus_name.endswith('.txt'):
-            logging.warning('Cannot find the virus folder and not a txt file: '+virus_path)
-        # raise Exception(virus_path, 'the virus folder does not exist..')
-        return []
+        if not os.path.isdir(assembly_path):
 
-    if not os.path.isdir(assembly_path):
+            all_assembly_dir = os.path.join(virus_path, 'all_assembly_versions')
+            all_assembly_content = os.listdir(all_assembly_dir)
+            if len(all_assembly_content) == 1 and all_assembly_content[0] == 'suppressed':
+                logging.info('No latest_assembly_versions folder for {}'.format(virus_name))
+                logging.info('only suppressed dir in all assembly: {} | we can ignore this virus : {}'.format(
+                    all_assembly_content, virus_name))
+            else:
+                logging.warning('No latest_assembly_versions folder for {}'.format(virus_name))
+                logging.warning('NOT only suppressed dir in all assembly.. {} | This virus has a problem.. :'.format(
+                    all_assembly_content, virus_name))
 
-        all_assembly_dir = os.path.join(virus_path, 'all_assembly_versions')
-        all_assembly_content = os.listdir(all_assembly_dir)
-        if len(all_assembly_content) == 1 and all_assembly_content[0] == 'suppressed':
-            logging.info('No latest_assembly_versions folder for {}'.format(virus_name))
-            logging.info('only suppressed dir in all assembly: {} | we can ignore this virus : {}'.format(
-                all_assembly_content, virus_name))
-        else:
-            logging.warning('No latest_assembly_versions folder for {}'.format(virus_name))
-            logging.warning('NOT only suppressed dir in all assembly.. {} | This virus has a problem.. :'.format(
-                all_assembly_content, virus_name))
+            # raise Exception(assembly_path, 'the virus folder does not have "latest_assembly_versions" directory...')
+            # return []
+        if len(os.listdir(assembly_path)) == 0:
+            logging.warning('the path {} is empty'.format(assembly_path))
 
-        # raise Exception(assembly_path, 'the virus folder does not have "latest_assembly_versions" directory...')
-        return []
-    if len(os.listdir(assembly_path)) == 0:
-        logging.warning('the path {} is empty'.format(assembly_path))
-
-    for assembly in os.listdir(assembly_path):
-        gb_file = os.path.join(assembly_path, assembly, assembly+'_genomic.gbff.gz')
-        # print(gb_file)
-        if os.path.exists(gb_file):
-            gb_files.append(gb_file)
-        else:
-            logging.warning('No gbff file have been found in the directory: '+gb_file)
-            # raise Exception(assembly_path, 'No gbff file have been found in the directory')
-    return gb_files
+        for assembly in os.listdir(assembly_path):
+            gb_file = os.path.join(assembly_path, assembly, assembly+'_genomic.gbff.gz')
+            # print(gb_file)
+            if os.path.exists(gb_file):
+                yield gb_file
+                # gb_files.append(gb_file)
+            else:
+                logging.warning('No gbff file have been found in the directory: '+gb_file)
+                # raise Exception(assembly_path, 'No gbff file have been found in the directory')
+        # return gb_files
 
 
 def getTaxonomy(gb_file, error_taxon_ids):
@@ -72,7 +73,9 @@ def getTaxonomy(gb_file, error_taxon_ids):
     # print('='*20)
     taxonomy_set = set()
     taxon_set = set()
-    with gzip.open(gb_file, "rt") as handle:
+    proper_open = gzip.open if gb_file.endswith('.gz') else open
+
+    with proper_open(gb_file, "rt") as handle:
         for record in SeqIO.parse(handle, "genbank"):
             taxonomy = record.annotations['taxonomy']
             taxonomy_set.add(";".join(taxonomy))
@@ -106,46 +109,51 @@ def getTaxonomy(gb_file, error_taxon_ids):
         return taxonomy_set.pop(), organism, taxon_set.pop()
 
 
-def createTaxonomyFile(taxonomy_file, ncbi_refseq_db, alternative_taxon_id_file):
+def createTaxonomyFile(taxonomy_file, genbank_file_db, alternative_taxon_id_file, refseq_structure):
     """
     create csv file from the genome refseq db with info on avaible genome
     """
     viral_taxons = {}
     error_taxon_ids = []
     # taxonomy_file = os.path.join(output_dir, 'taxonomy_virus.txt')
-    nb_genome = len(os.listdir(ncbi_refseq_db))
+    nb_genome = len(os.listdir(genbank_file_db))
     last_percent = 0
     duplicated_taxon_ids = {}
+
+    if refseq_structure:
+        gb_files = get_gb_file_from_RefSeq_db(genbank_file_db)
+
+    else:
+        gb_files = (os.path.join(genbank_file_db, file) for file in os.listdir(genbank_file_db)
+                    if file.endswith('.gb') or file.endswith('.gbff'))
+
     with open(taxonomy_file, 'w') as handle:
-        for i, virus in enumerate(os.listdir(ncbi_refseq_db)):
 
-            gb_files = getGbffFile(virus, ncbi_refseq_db)
-            # print(gb_files)
+        for i, gb in enumerate(gb_files):
+            taxonomy, organism, taxon = getTaxonomy(gb, error_taxon_ids)
+            taxon = int(taxon)
+            if taxon in viral_taxons:  # if the taxon id is already found in the dict then..
+                duplicated_taxon_ids[taxon] = duplicated_taxon_ids.setdefault(taxon, 0) + 1
+                # duplicated_taxon_ids[taxon] += 1
+                # duplicated stored with underscore follow by the number of duplication
+                duplicated_taxon = f'{taxon}_{duplicated_taxon_ids[taxon]}'
+                logging.warning(
+                    f'Duplicated taxon id: taxon id {taxon} is found in more than one genbank file.. new_taxon_id used: {duplicated_taxon}')
+                taxon = duplicated_taxon
+            else:
+                viral_taxons[taxon] = None
 
-            for gb in gb_files:
-                taxonomy, organism, taxon = getTaxonomy(gb, error_taxon_ids)
-                taxon = int(taxon)
-                if taxon in viral_taxons:  # if the taxon id is already found in the dict then..
-                    duplicated_taxon_ids[taxon] = duplicated_taxon_ids.setdefault(taxon, 0) + 1
-                    # duplicated_taxon_ids[taxon] += 1
-                    # duplicated stored with underscore follow by the number of duplication
-                    duplicated_taxon = f'{taxon}_{duplicated_taxon_ids[taxon]}'
-                    logging.warning(
-                        f'Duplicated taxon id: taxon id {taxon} is found in more than one genbank file.. new_taxon_id used: {duplicated_taxon}')
-                    taxon = duplicated_taxon
-                else:
-                    viral_taxons[taxon] = None
+            handle.write("{}\t{}\t{}\t{}\n".format(taxon, organism, taxonomy, gb))
 
-                handle.write("{}\t{}\t{}\t{}\n".format(taxon, organism, taxonomy, gb))
-
-            if (i/nb_genome)*100 > last_percent + 10:
+            if (i/nb_genome)*100 > last_percent + 10 and (i/nb_genome)*100 <= 100:
                 print(round((i/nb_genome)*100), "% processed")
                 last_percent = (i/nb_genome)*100
+
     with open(alternative_taxon_id_file, 'w') as handle:
         for l in error_taxon_ids:
             handle.write(l)
 
-    print(round((i/nb_genome)*100), "% processed")
+    # print(round((i/nb_genome)*100), "% processed")
     return viral_taxons
 
 
@@ -247,15 +255,23 @@ if __name__ == '__main__':
     print('#Creation of taxonomy file')
 
     output_file = sys.argv[1]
-    ncbi_refseq_db = sys.argv[2]
+    genbank_file_db = sys.argv[2]
     geneticcode_file = sys.argv[3]
     alternative_taxon_id_file = sys.argv[4]
+    try:
+        refseq_structure = False if sys.argv[5].upper().startswith('F') else True
+    except IndexError:
+        print('RefSeq structure bool info not provided.')
+        print('By default genbank files are considered stored in a RefSeq structure')
+        refseq_structure = True
+
     # print(tmp_output_file)
     path, file_name = os.path.split(output_file)
     tmp_output_file = os.path.join(path, 'tmp_file.tmp')
     logging.basicConfig(level=logging.INFO)
 
-    viral_taxons = createTaxonomyFile(tmp_output_file, ncbi_refseq_db, alternative_taxon_id_file)
+    viral_taxons = createTaxonomyFile(
+        tmp_output_file, genbank_file_db, alternative_taxon_id_file, refseq_structure)
     getGeneticCode(viral_taxons, geneticcode_file, tmp_output_file, output_file)
 
     print('END of taxonomy.py')

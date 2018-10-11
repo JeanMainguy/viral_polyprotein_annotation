@@ -493,7 +493,8 @@ def write_reannotated_genbank_file(cds, output_dir):
         fl_read = open(reannotated_gb_file, 'r')
     else:
         gb_file = cds.segment.gb_file
-        fl_read = gzip.open(gb_file, 'rt')
+        proper_open = gzip.open if gb_file.endswith('.gz') else open
+        fl_read = proper_open(gb_file, 'rt')
 
     fl_write = open(tmp_file, 'w')
 
@@ -508,6 +509,9 @@ def write_reannotated_genbank_file(cds, output_dir):
         SeqIO.write(record, fl_write, 'genbank')
 
     rename(tmp_file, reannotated_gb_file)  # os import
+
+    fl_read.close()
+    fl_write.close()
 
 
 def initiate_gff_file(genome_file_name):

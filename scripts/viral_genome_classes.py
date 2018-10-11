@@ -25,8 +25,10 @@ def gb_file_parser(gb_file, taxon_id, sp_treshold):
 
     genome = Genome(gb_file, taxon_id)
 
-    with gzip.open(gb_file, "rt") as handle:
-        # with open("/home/user/mainguy/Documents/Data_Analysis/GCF_000885175.1_ViralMultiSegProj39867_genomic_MODIFIED.gbff", "rt") as handle:
+    # Manage compress and not compress gb file
+    proper_open = gzip.open if gb_file.endswith('.gz') else open
+
+    with proper_open(gb_file, "rt") as handle:
         for i, record in enumerate(SeqIO.parse(handle, "genbank")):
             segment = Segment(record, gb_file)
             genome.segments.append(segment)
