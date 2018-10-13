@@ -18,8 +18,8 @@ genetic_code_path="genome_db_test/taxonomy/new_taxdump/"
 
 genbank_files_db_path="genome_db_test/genomes/refseq/viral/"
 RefSeq_structure="True"
-# genbank_files_db_path='flat_db_Alphavirus/'
-# RefSeq_structure="False"
+genbank_files_db_path='flat_db_Alphavirus/'
+RefSeq_structure="False"
 #Structure of the genbank files database : True or False
 # False is a list of genbank files in a folder
 # True same structure as in RefSeq:
@@ -61,11 +61,14 @@ evalues_filtering='1e-60' # 1e-50 1e-20' #'1e-140 1e-160'
 inflations='1.8'
 split_cluster="false"
 
+# Get results Folder.. results_[name of the gb databse]_[databse_date]
+databse_date="`stat -c %y ${genbank_files_db_path} | cut -d' ' -f1`"
+results_folder="results_db_$(basename $genbank_files_db_path)_$databse_date"
 
 
 echo $taxon
 echo Parameters C $coverages E $evalues_filtering I $inflations
-
+echo Results are written in $results_folder
 
 taxon_name_for_path=${taxon// /_} #replace space by underscore
 taxon_name_for_path=${taxon_name_for_path//,/} # replace coma by nothing
@@ -75,10 +78,11 @@ echo '## GENOME INDEX FILE CREATION'
 ################################################################################
 
 #output
-taxonomy_index_dir="results/genomes_index/"
+taxonomy_index_dir="${results_folder}/genomes_index/"
 mkdir -p $taxonomy_index_dir
 
 alternative_taxon_id="$taxonomy_index_dir/heterogeneous_taxon_id_taxonomy_virus.txt"
+taxon_id_gencode_file="$taxonomy_index_dir/taxon_id_gencode.txt"
 
 if [ ! -f ${taxon_id_gencode_file} ] || [ "$force" == true ];
 then
@@ -91,12 +95,12 @@ then
 fi
 
 taxonomy_file="$taxonomy_index_dir/taxonomy_virus.txt"
-taxon_id_gencode_file="$taxonomy_index_dir/taxon_id_gencode.txt"
+
 
 #Check if we need to recompute the taxonomy file
 outputTime=`stat -c %Y ${taxonomy_file}`
 ncbi_refseq_dbTime=`stat -c %Y ${genbank_files_db_path}`
-force=true
+# force=true
 
 if [ ! -f ${taxonomy_file} ] || [ $ncbi_refseq_dbTime -gt $outputTime ] || [ "$force" == true ];
 then
@@ -122,10 +126,10 @@ echo "\n## EXTRACTION VIRAL PROTEINS AND CREATION OF BASIC STAT_FILE\n"
 ################################################################################
 
 #Output...
-sequence_dir="results/intermediate_files/viral_proteins/${RefSeq_download_date}"
+sequence_dir="${results_folder}/intermediate_files/viral_proteins/${RefSeq_download_date}"
 faa_db="$sequence_dir/${taxon_name_for_path}_protein_db.faa"
 
-stat_output_dir="results/intermediate_files/stat_viral_protein/${RefSeq_download_date}/"
+stat_output_dir="${results_folder}/intermediate_files/stat_viral_protein/${RefSeq_download_date}/"
 stat_protein_file="${stat_output_dir}/stat_proteins_${taxon_name_for_path}.csv"
 
 if [ ! -f $faa_db ] || [ ! -f $stat_protein_file ] ; then
@@ -143,7 +147,7 @@ echo '\n## BLAST ALL VS ALL\n'
 ################################################################################
 
 #output
-blast_result_dir="results/intermediate_files/blast_result/${RefSeq_download_date}"
+blast_result_dir="${results_folder}/intermediate_files/blast_result/${RefSeq_download_date}"
 
 blast_result="${blast_result_dir}/${taxon_name_for_path}_blast_evalue${blast_evalue}.out"
 
@@ -184,7 +188,7 @@ echo $blast_filter_dir
 echo '\n## CLUSTERING \n'
 ################################################################################
 
-# clustering_dir="results/intermediate_files/clustering_result/${taxon_name_for_path}/${RefSeq_download_date}"
+# clustering_dir="${results_folder}/intermediate_files/clustering_result/${taxon_name_for_path}/${RefSeq_download_date}"
 
 cluster_files=()
 
@@ -210,7 +214,7 @@ for file in $blast_filter_dir/*;
   for inflation in $inflations; #2 #1.2 1.4 1.6 1.8 2 3 5 8; #$(seq 2 2 8);
   do
     # Creation of the clustering folder
-    clustering_dir="results/${RefSeq_download_date}/${name}_I${inflation//./_}/clustering/"
+    clustering_dir="${results_folder}/${RefSeq_download_date}/${name}_I${inflation//./_}/clustering/"
     mkdir -p $clustering_dir/
 
     clustering_result=${clustering_dir}/all_clusters.out
@@ -341,6 +345,7 @@ do
 
     # if [ ! -f $alignement_stat_file ] ; then
       python3 scripts/multiple_alignment_analysis.py $aln_dir "$windows" $stat_group_file $alignement_stat_file $taxonomy_file $TMPDIR/${reannotated_genome_dir}
+      exit_if_fail
     # else
     #   echo file exist already $alignement_stat_file
     # fi
