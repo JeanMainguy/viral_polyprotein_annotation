@@ -16,6 +16,9 @@ from Bio.SeqFeature import SeqFeature, FeatureLocation
 from operator import attrgetter
 
 SCREEN_SIZE = 200
+###########
+# Function
+##########
 
 
 def gb_file_parser(gb_file, taxon_id, sp_treshold):
@@ -49,6 +52,59 @@ def gb_file_parser(gb_file, taxon_id, sp_treshold):
             segment.identifyAnnotatedPolyproteins(sp_treshold)
 
     return genome
+
+
+def getGenomicLocation(sequence, start_in_seq, end_in_seq):
+    ''' We know the start and end position of a mature peptide/interpro domain in the protein sequence
+        and we want to know the start and end position of this peptide in the genome.
+        Take care of potential frameshift in the sequence '''
+    print(sequence)
+    print(len(sequence))
+    assert len(sequence.bp_obj.location) / \
+        3 >= end_in_seq, f'{len(sequence.bp_obj.location) / 3} >= {end_in_seq}'
+
+    none_location = FeatureLocation(0, 0, ref='tmp')
+    previous_seq_location = none_location
+    pep_location = none_location  # to be able to add FeatureLocation from it
+    for seq_location in sequence.bp_obj.location.parts:
+
+        if start_in_seq - 1 < len(seq_location + previous_seq_location)/3:
+            # petide starts before are in the current seq_location
+
+            if len(pep_location):
+                # pep_location contains already a valid Featurelocation found earlier
+                # that means start peptide is before the current seq_location
+                # Then the new Featurelocation starts where the seq_location starts
+                start_pep_nt = seq_location.start
+            else:
+                # the peptide start inside the current location
+                start_pep_nt = seq_location.start + \
+                    (start_in_seq-1)*3 - len(previous_seq_location)
+
+            if end_in_seq <= len(seq_location + previous_seq_location)/3:
+                # The end of the peptide is inside the current location
+                # We can add a Feature Location and break the loop
+                # The peptide doesn't continue further
+                end_in_seq = start_pep_nt + \
+                    (end_in_seq - start_in_seq + 1)*3 - len(pep_location)
+                pep_location += FeatureLocation(start_pep_nt,
+                                                end_in_seq, strand=seq_location.strand)
+                break
+            else:
+                # The peptide doesn't end in the current location
+                # We add a intermediate Feature Location to pep_location
+                pep_location += FeatureLocation(start_pep_nt,
+                                                seq_location.end, strand=seq_location.strand)
+
+        previous_seq_location += seq_location
+
+    pep_location.parts.remove(none_location)  # clean pep location
+
+    return pep_location
+
+############
+# Class
+############
 
 
 class Genome:
@@ -616,6 +672,7 @@ class Sequence:
         return self.end if self.bp_obj.strand == 1 else self.start
 
     def getGenomicPositions(self, prot_start):
+        # TODO CHANGE INTO getGenomicLocation
         # for uncovered region and match to get the genomic position and not the prot relative position
         self.start = prot_start - 1 + self.start_in_prot*3 - 2 - 1
         self.end = prot_start + self.end_in_prot*3 - 1
@@ -937,8 +994,8 @@ class Peptide(Sequence):
             # print("subprotpart ", subprotpart)
             # print(self.start, self.start%3)
             # print(subprotpart.start, subprotpart.start%3 )
-
-            if subprotpart.start <= self.start <= subprotpart.end:
+            len_from_prot_start_to_pep_start = len_previous_part + subprotpart.start + self.start
+            if subprotpart.start <= self.start <= subprotpart.end and len_from_prot_start_to_pep_start % 3 == 1:
 
                 pstart = len_previous_part + self.start-subprotpart.start + 1
                 p_end = pstart + len(self.bp_obj) - 1
@@ -969,26 +1026,36 @@ class Peptide(Sequence):
 
 
 class Predicted_peptide(Peptide):
-    def __init__(self, cds, start, end):
+    def __init__(self, cds, start_in_prot, end_in_prot):
 
-        self.start = start
-        self.end = end
-        strand = cds.bp_obj.location.strand
+        self.start_in_prot = start_in_prot
+        self.end_in_prot = end_in_prot
+        self.strand = cds.bp_obj.location.strand
         # HERE ONLY SIMPLE CASE WHERE NO SHIFT IN SEQUENCE
         # NEED PARTS IN LOCATION WHEN THERE IS A SHIFFTING
         # location = partial_location + \
         #     FeatureLocation(part.start, new_end, strand=strand)
-        location = FeatureLocation(start, end, strand=strand)
-        bp_obj = SeqFeature(location,
-                            strand=strand,
-                            type="mat_peptide",
-                            qualifiers={"note": 'predicted mature peptide'})
-        self.location = location
-        self.bp_obj = bp_obj
+        self.location = getGenomicLocation(cds, start_in_prot, end_in_prot)
+        # assert len(self.location) % 3 == 0
+        self.start = self.location.start
+        self.end = self.location.end
+        self.bp_obj = SeqFeature(self.location,
+                                 strand=self.location.strand,
+                                 type="mat_peptide",
+                                 qualifiers={"note": 'predicted mature peptide'})
 
         self.polyproteins = {cds}
 
         self.position_prot_relative = {}
+        # self.start_aa(cds)
+
+        print('real po', start_in_prot, end_in_prot)
+
+        # print('fct', self.position_prot_relative[cds.protein_id])
+        assert self.start_aa(cds) == start_in_prot, self.end_aa(cds) == end_in_prot
+
+    def __str__(self):
+        return 'predicted peptide object'
 
 
 class UnannotatedRegion(Peptide):
@@ -1114,9 +1181,9 @@ class CleavageSite(Peptide):
 class PredictedCleavageSite(CleavageSite):
     COUNTER = 0
 
-    def __init__(self, start, end, cds, group, confidence_score):
-        self.start_in_prot = int(start)
-        self.end_in_prot = int(end)
+    def __init__(self, start_in_prot, end_in_prot, cds, group, confidence_score):
+        self.start_in_prot = int(start_in_prot)
+        self.end_in_prot = int(end_in_prot)
         self.protein = cds  # Set of protein
         self.cleavage_site_group = group
         self.confidence_score = confidence_score
@@ -1133,7 +1200,15 @@ class PredictedCleavageSite(CleavageSite):
         self.start_in_aln = None
 
         # Get positions genome relative
-        self.start, self.end = self.get_genome_coordinates(cds)
+        # = self.get_genome_coordinates(cds)
+        self.location = getGenomicLocation(cds, start_in_prot, end_in_prot)
+        # assert len(self.location) % 3 == 0
+        self.start = self.location.start
+        self.end = self.location.end
+        self.bp_obj = SeqFeature(self.location,
+                                 strand=self.location.strand,
+                                 type="misc_feature",
+                                 qualifiers={"note": 'predicted cleavage site'})
 
     def get_genome_coordinates(self, cds):
         # print(cds.bp_obj.location)

@@ -181,10 +181,10 @@ def getStatOnGroup(group, nb_cds_annotated, absent_annotated_cds_penalty):
             But here to compute stat on the group we consider the cleavaged site the number of time it appears in
             the group to make it less confusing
             """
-            if not cds.polyprotein:
-                print(cds)
-                print(site)
-                input()
+            # if not cds.polyprotein:
+            #     print(cds)
+            #     print(site)
+            #     input()
             site_start = site.start_aa(cds)
             site_end = site.end_aa(cds)
             protein_in_group_list += site.cds_of_aln
@@ -294,15 +294,18 @@ def propagate_cleavage_sites(group, general_info, cds_list, window):
 
 def get_predicted_mat_peptide(cds):
 
-    end_mat_pep = [cs.start + 2 for cs in cds.predicted_cleavage_sites]
-
+    end_mat_pep = [cs.start_in_prot + 2 for cs in cds.predicted_cleavage_sites]
+    print(end_mat_pep)
     # print(cds.start, cds.end)
     # end of the prot -3 (because of the stop codon) == end of the last mat_pep
-    end_mat_pep.append(cds.end - 3)
-    start_position = cds.start  # start of the first pep
+    end_mat_pep.append(int(len(cds)/3 - 3))
+    start_position = 1  # cds.start  # start of the first pep
     for end_position in end_mat_pep:
+        print('POSITION IN PROT')
+        print(start_position, end_position)
+        input()
         # Write the mat pep:
-        pep = obj.Predicted_peptide(cds, start_position, end_position)
+        pep = obj.Predicted_peptide(cds, start_in_prot=start_position, end_in_prot=end_position)
         cds.predicted_mat_peptides.append(pep)
 
         start_position = end_position + 1
