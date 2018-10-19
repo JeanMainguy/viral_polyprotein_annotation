@@ -124,7 +124,10 @@ def groupCleavageSitesAcrossAlignment(cds_list, window):
         all_sites |= set(cds.cleavage_sites)
         # print()
         # print(cds.number, cds.cleavage_site_positions)
-
+        # print(cds)
+        # print(len(cds)/3)
+        # print(cds.aln_list)
+        # print(cds.segment.taxon_id)
         for site in cds.cleavage_sites:
             site.cds_of_aln.append(cds)
             site_start = site.start_aa(cds) - 1  # to be in base 0 we need the -1
@@ -185,9 +188,11 @@ def getStatOnGroup(group, nb_cds_annotated, absent_annotated_cds_penalty):
             #     print(cds)
             #     print(site)
             #     input()
-            site_start = site.start_aa(cds)
-            site_end = site.end_aa(cds)
+            # -1 to be in base 0 because it'll be use as a list index
+            site_start = site.start_aa(cds) - 1
+            site_end = site.end_aa(cds) - 1
             protein_in_group_list += site.cds_of_aln
+            # pfnt(len([i for i in cds.aln_list if i is not None]))
             positions += [cds.aln_list.index(site_start), cds.aln_list.index(site_end)]
             mean_position_in_aln = sum([cds.aln_list.index(site_start),
                                         cds.aln_list.index(site_end)])/2.0
@@ -292,19 +297,20 @@ def propagate_cleavage_sites(group, general_info, cds_list, window):
             new_site = obj.PredictedCleavageSite(start, end, blank_cds, group, confidence_score)
 
 
-def get_predicted_mat_peptide(cds):
+def get_predicted_mat_peptide(cds, cleavage_site_attrb="predicted_cleavage_sites"):
 
-    end_mat_pep = [cs.start_in_prot + 2 for cs in cds.predicted_cleavage_sites]
-    print(end_mat_pep)
-    # print(cds.start, cds.end)
+    end_mat_pep = [cs.start_aa(cds) for cs in getattr(cds, cleavage_site_attrb)]
+    end_mat_pep.sort()
     # end of the prot -3 (because of the stop codon) == end of the last mat_pep
-    end_mat_pep.append(int(len(cds)/3 - 3))
+    end_mat_pep.append(int(len(cds)/3 - 1))
+    # print('end_mat_pep', end_mat_pep)
+    # print(len(cds))
+    # print(len(cds)/3)
+    # input()
     start_position = 1  # cds.start  # start of the first pep
     for end_position in end_mat_pep:
-        print('POSITION IN PROT')
-        print(start_position, end_position)
-        input()
         # Write the mat pep:
+        # print(start_position, end_position)
         pep = obj.Predicted_peptide(cds, start_in_prot=start_position, end_in_prot=end_position)
         cds.predicted_mat_peptides.append(pep)
 
@@ -500,7 +506,7 @@ def write_reannotated_genbank_file(cds, output_dir):
         fl_read = proper_open(gb_file, 'rt')
 
     fl_write = open(tmp_file, 'w')
-
+    # print(reannotated_gb_file)
     for record in SeqIO.parse(fl_read, "genbank"):
         if record.id == cds.segment.record.id:
             cds_index = [i for i, f in enumerate(record.features) if cds.bp_obj.qualifiers ==

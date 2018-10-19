@@ -17,7 +17,7 @@ from operator import attrgetter
 
 SCREEN_SIZE = 200
 ###########
-# Function
+# Functions
 ##########
 
 
@@ -58,11 +58,11 @@ def getGenomicLocation(sequence, start_in_seq, end_in_seq):
     ''' We know the start and end position of a mature peptide/interpro domain in the protein sequence
         and we want to know the start and end position of this peptide in the genome.
         Take care of potential frameshift in the sequence '''
-    print(sequence)
-    print(len(sequence))
+
     assert len(sequence.bp_obj.location) / \
         3 >= end_in_seq, f'{len(sequence.bp_obj.location) / 3} >= {end_in_seq}'
-
+    # print(sequence)
+    # print('GET GENOMIC FROM', start_in_seq, end_in_seq)
     none_location = FeatureLocation(0, 0, ref='tmp')
     previous_seq_location = none_location
     pep_location = none_location  # to be able to add FeatureLocation from it
@@ -100,7 +100,31 @@ def getGenomicLocation(sequence, start_in_seq, end_in_seq):
 
     pep_location.parts.remove(none_location)  # clean pep location
 
+    if len(pep_location.parts) == 1:
+        pep_location = pep_location.parts[0]
     return pep_location
+
+
+def getProteinLocation(peptide, cds):
+    assert len(cds) % 3 == 0 and len(peptide) % 3 == 0
+    len_peptide = len(peptide)
+    start_pep_nt = peptide.start
+    len_previous_parts = 0  # length of the cds from its start to the current location
+    # print('start_pep_nt', start_pep_nt)
+    for cds_location_part in cds.bp_obj.location.parts:
+        # print("cds_location_part", cds_location_part)
+        if start_pep_nt in cds_location_part:
+            # print('  START IS IN LOCATION')
+            len_cds_until_pep_start = len_previous_parts + \
+                (start_pep_nt - cds_location_part.start)
+            # print("   len_cds_until_pep_start", len_cds_until_pep_start, len_cds_until_pep_start % 3)
+            if len_cds_until_pep_start % 3 == 0:  # if the cds is in frame with the peptide start
+                start_aa = len_cds_until_pep_start/3 + 1
+                end_aa = start_aa + len(peptide)/3 - 1
+                return int(start_aa), int(end_aa)
+                break
+        len_previous_parts += len(cds_location_part)
+
 
 ############
 # Class
@@ -425,7 +449,6 @@ class Segment:
                     prot.sub_prot.append(prot_next)
                     prot_next.checkforAlternativeStart(prot)
 
-    #
     # def writeAnnotatedProteins(self, file_handle, genetic_code):
     #     for polyprotein in self.polyproteins:
     #         if polyprotein.peptides: # we write every protein that have at least one peptide annotation
@@ -445,6 +468,60 @@ class Segment:
     #         SeqIO.write(site_seq, file_handle, "fasta")
 
     def getCleavageSites(self):
+
+        # detected cleavage site located at
+        # the border of the cds are ignore
+        # need to give a margin: default is 3 aa at the begining and end of cds
+        margin = 0  # 3  # in aa
+
+        cleavage_site_dict = {}
+
+        peptide_list = sorted(list(self.peptides | self.unannotated_region),
+                              key=lambda x: x.start, reverse=False)
+
+        for pep in peptide_list:
+
+            strand = pep.bp_obj.strand
+
+            for cds in pep.polyproteins:
+                margin_end = (len(cds)-3)/3 - margin
+                type = "start"
+                end_aa_cs = pep.start_aa(cds)
+                start_aa_cs = end_aa_cs - 1
+                # print("PEP", pep.number, pep.position_prot_relative)
+                # print(type, start_aa_cs, end_aa_cs)
+                # input()
+                if margin < start_aa_cs < (len(cds)-3)/3 - margin:
+                    cs_location = getGenomicLocation(cds, start_aa_cs, end_aa_cs)
+                    tuple_location = (cs_location.start, cs_location.end,
+                                      cs_location.strand)
+                    if tuple_location in cleavage_site_dict:
+                        site = cleavage_site_dict[tuple_location]
+                        site.update(type, pep, {cds})
+                    else:
+                        cleavage_site = CleavageSite(cs_location, {cds}, pep, self.taxon_id, type)
+                        cleavage_site_dict[tuple_location] = cleavage_site
+
+                type = 'end'  # end of the peptide give the cs
+                start_aa_cs = pep.end_aa(cds)
+                end_aa_cs = start_aa_cs + 1
+                # print("PEP", pep.number, pep.position_prot_relative)
+                # print(type, start_aa_cs, end_aa_cs)
+                # input()
+                if margin < end_aa_cs < (len(cds)-3)/3 - margin:  # -3 to remove the stop codon
+                    cs_location = getGenomicLocation(cds, start_aa_cs, end_aa_cs)
+                    tuple_location = (cs_location.start, cs_location.end,
+                                      cs_location.strand)
+                    if tuple_location in cleavage_site_dict:
+                        site = cleavage_site_dict[tuple_location]
+                        site.update(type, pep, {cds})
+                    else:
+                        cleavage_site = CleavageSite(cs_location, {cds}, pep, self.taxon_id, type)
+                        cleavage_site_dict[tuple_location] = cleavage_site
+
+        self.cleavages_sites_new = list(cleavage_site_dict.values())
+
+    def getCleavageSites_old(self):
 
         start_cleavage_sites = {}
         # print("-*********** GET CS ***************")
@@ -930,7 +1007,7 @@ class Peptide(Sequence):
     COUNTER = 0
 
     def __init__(self, bp_obj):
-        # by default the start and end is in amino acid
+        assert len(bp_obj) % 3 == 0, "length of the peptide nucleotide sequence is not a multiple of 3"
         self.bp_obj = bp_obj
         self.location = bp_obj.location
         self.start = bp_obj.location.start
@@ -967,25 +1044,26 @@ class Peptide(Sequence):
 
     def start_aa(self, prot):
         if prot.protein_id not in self.position_prot_relative:
-            self.getProteinPosition(prot)
+            self.get_position_prot_relative(prot)
 
         return self.position_prot_relative[prot.protein_id][0]
 
     def end_aa(self, prot):
 
         if prot.protein_id not in self.position_prot_relative:
-            self.getProteinPosition(prot)
+            self.get_position_prot_relative(prot)
 
         return self.position_prot_relative[prot.protein_id][1]
 
     def get_position_prot_relative(self, prot):
         if prot.protein_id not in self.position_prot_relative:
-            self.getProteinPosition(prot)
+            start_aa, end_aa = getProteinLocation(self, prot)
+            self.position_prot_relative[prot.protein_id] = (start_aa, end_aa)
 
-        return self.position_prot_relative[prot.protein_id]
+        # return self.position_prot_relative[prot.protein_id]
 
-    def getProteinPosition(self, prot):
-        # print("==================getProteinPosition======")
+    def getProteinPosition_old(self, prot):
+
         len_previous_part = 0
         bp_prot = prot.bp_obj
         # Searching the peptides position protein relative
@@ -1003,6 +1081,9 @@ class Peptide(Sequence):
                 if p_end <= bp_prot.location.end:
                     if self.bp_obj.strand == -1:
                         pstart, p_end = len(prot)-p_end+1, len(prot)-pstart+1
+                    print(pstart, p_end)
+                    print('postion aa', (pstart-1)/3+1, (p_end-2-1)/3+1)
+                    input()
                     self.position_prot_relative[prot.protein_id] = (
                         int((pstart-1)/3+1), int((p_end-2-1)/3+1))
                     break
@@ -1017,6 +1098,9 @@ class Peptide(Sequence):
                 if p_end <= bp_prot.location.end:
                     self.position_prot_relative[prot.protein_id] = (
                         int((pstart-1)/3+1), int((p_end-2-1)/3+1))
+                    # print(pstart, p_end)
+                    # print('postion aa', (pstart-1)/3+1, (p_end-2-1)/3+1)
+                    # input()
                     break
 
             len_previous_part += len(subprotpart)
@@ -1026,6 +1110,8 @@ class Peptide(Sequence):
 
 
 class Predicted_peptide(Peptide):
+    COUNTER = 0
+
     def __init__(self, cds, start_in_prot, end_in_prot):
 
         self.start_in_prot = start_in_prot
@@ -1047,9 +1133,11 @@ class Predicted_peptide(Peptide):
         self.polyproteins = {cds}
 
         self.position_prot_relative = {}
+        Predicted_peptide.COUNTER += 1
+        self.number = Predicted_peptide.COUNTER
         # self.start_aa(cds)
 
-        print('real po', start_in_prot, end_in_prot)
+        # print('real po', start_in_prot, end_in_prot)
 
         # print('fct', self.position_prot_relative[cds.protein_id])
         assert self.start_aa(cds) == start_in_prot, self.end_aa(cds) == end_in_prot
@@ -1085,6 +1173,7 @@ class CleavageSite(Peptide):
     COUNTER = 0
 
     def __init__(self, location, proteins, peptide, taxon_id, type):
+        self.location = location
         self.start = location.start
         self.end = location.end
         self.proteins = proteins  # Set of protein
@@ -1121,7 +1210,11 @@ class CleavageSite(Peptide):
         return x.__key() == y.__key()
 
     def __str__(self):
-        return f'Cleavage site {self.number} from {self.start} to {self.end} ({len(self)}nt) belongs to {[p.number for p in self.proteins]}, And have been made from peptide {[p.number for p in self.peptides]}'
+        str_cs = f'Cleavage site {self.number}: {self.start} => {self.end} ({len(self)}nt)'
+        for cds in self.proteins:
+            str_cs += f'Protein{cds.number}: {self.start_aa(cds)} => {self.end_aa(cds)}\n'
+        str_cs += f'And have been made from peptide {[p.number for p in self.peptides]}\n'
+        return str_cs
 
     def peptide_composition(self):
         compo = set()
