@@ -3,13 +3,20 @@ import taxonomy as tax
 import viral_genome_classes as obj
 import viruses_statistics as stat
 import parser_interpro_results as do
-import os, gzip, logging, sys
+import visualisation_protein as visu
+
+import os
+import gzip
+import logging
+import sys
 from Bio import SeqIO
 # from Bio.SeqRecord import SeqRecord
 # from Bio.Seq import Seq
+
+
 def extract_cleavage_site_sequences(cds_list, extract_window):
     half_window = int(extract_window/2)
-    print("kalf wind",half_window )
+    print("kalf wind", half_window)
     for cds in cds_list:
         organism = cds.segment.organism
         genetic_code = cds.genetic_code
@@ -27,11 +34,9 @@ def extract_cleavage_site_sequences(cds_list, extract_window):
 
     input()
 
-            # seq_to_write = SeqRecord(Seq(seq, generic_protein) ,id=header, description = description)
-            #
-            # SeqIO.write(seq_to_write, handle_prot,"fasta")
-
-
+    # seq_to_write = SeqRecord(Seq(seq, generic_protein) ,id=header, description = description)
+    #
+    # SeqIO.write(seq_to_write, handle_prot,"fasta")
 
 
 def extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_id, sp_treshold):
@@ -49,16 +54,23 @@ def extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_i
             if cds.polyprotein:
                 nb_polyprotein += 1
 
-            #WRITE PROTEIN SEQUENCE
-            if handle_prot: # if we want to write the sequences it the writer otherwise False
-                key=str(int(len(cds)/3))
+            # WRITE PROTEIN SEQUENCE
+            if handle_prot:  # if we want to write the sequences it the writer otherwise False
+                key = str(int(len(cds)/3))
                 header = '|'.join([taxon_id, cds.protein_id, key])
                 seq_to_write = cds.getSequenceRecord(segment.organism, header, genetic_code)
-                SeqIO.write(seq_to_write, handle_prot,"fasta")
+                SeqIO.write(seq_to_write, handle_prot, "fasta")
 
+            # identification of poorly annotated cds
+            if len(cds.unannotated_region) > 0:
+                string_info = "="*100
+                string_info += f'The cds {cds.protein_id} from taxon:{cds.segment.taxon_id} seems poorly annotated '
+                string_info += f'It has {len(cds.unannotated_region)} unnanotated part'
+                string_info += visu.visualisation_protein(cds, 1, len(cds))
+                irrelevant_annotatation_file.write(string_info)
 
-            #WRITE PROTEIN STAT
-            if  writer_stat_dict: # may be False if we don't want to write stat
+            # WRITE PROTEIN STAT
+            if writer_stat_dict:  # may be False if we don't want to write stat
                 info_dict = stat.getProteinStat(cds, taxon_id, taxonomy)
                 writer_stat_dict['protein'].writerow(info_dict)
 
@@ -71,10 +83,10 @@ def extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_i
         #         pep_info_dict = stat.getPepStat(pep, taxon_id, taxonomy)
         #         writer_stat_dict['peptide'].writerow(pep_info_dict)
 
-
     if writer_stat_dict:
         # WRITE GENOME STAT
-        stat.writeGenomeStat(taxon_id, nb_cds, nb_peptide, writer_stat_dict['genome'], taxonomy, nb_polyprotein)
+        stat.writeGenomeStat(taxon_id, nb_cds, nb_peptide,
+                             writer_stat_dict['genome'], taxonomy, nb_polyprotein)
 
         # # WRITE DOMAIN STAT
         # domain_header = writer_stat_dict['domain'].fieldnames
@@ -91,9 +103,11 @@ def extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_i
 
 
 if __name__ == '__main__':
-    from time import clock; START_TIME = clock()
+    from time import clock
+    START_TIME = clock()
 
-    logging.basicConfig(filename='log/viral_protein_extraction_and_stat.log',level=logging.INFO)
+    logging.basicConfig(filename='log/viral_protein_extraction_and_stat.log',
+                        level=logging.INFO)
 
     taxon = sys.argv[1]
     output_dir = sys.argv[2]
@@ -102,12 +116,11 @@ if __name__ == '__main__':
     sp_treshold = int(sys.argv[4])
 
     try:
-        stat_output_dir = sys.argv[5] # if not given then we don't compute any stat
+        stat_output_dir = sys.argv[5]  # if not given then we don't compute any stat
         print(f'Write genomes, proteins and peptides in {stat_output_dir} statistics')
     except:
         print("No statistics...")
         stat_output_dir = False
-
 
     gbff_iter = tax.getAllRefseqFromTaxon(taxon, taxonomy_file)
 
@@ -119,16 +132,16 @@ if __name__ == '__main__':
         files_to_close = []
         writer_stat_dict = False
 
-
     protein_db = "{}_protein_db.faa".format(taxon)
 
-    handle_prot = open(os.path.join(output_dir,protein_db), "w")
+    handle_prot = open(os.path.join(output_dir, protein_db), "w")
     files_to_close.append(handle_prot)
-
-
-    i=None
+    irrelevant_annotatation_file = open(os.path.join(
+        stat_output_dir, 'irrelevant_annotation_identification.txt'), "w")
+    files_to_close.append(handle_prot)
+    i = None
     for i, gb_dico in enumerate(gbff_iter):
-        if (i+1)%1000 == 0:
+        if (i+1) % 1000 == 0:
             print(i+1, 'genomes analysed')
         # print(gb_dico)
         gb_file = gb_dico['gb_file']
@@ -138,13 +151,12 @@ if __name__ == '__main__':
         extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_id, sp_treshold)
 
     if i == None:
-        raise NameError("No genome have been found with taxon:",taxon)
+        raise NameError("No genome have been found with taxon:", taxon)
     else:
         print(f'Analysis completed for {i+1} genomes')
 
     for f in files_to_close:
         f.close()
 
-
-    print('\nPROGRAM RUN TIME:%6.2f'%(clock()-START_TIME), 'seconds.');
+    print('\nPROGRAM RUN TIME:%6.2f' % (clock()-START_TIME), 'seconds.')
     print('-'*20)

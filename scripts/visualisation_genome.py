@@ -17,7 +17,7 @@ from Bio.SeqFeature import SeqFeature, FeatureLocation
 from operator import attrgetter
 import collections
 
-SCREEN_SIZE = 200
+SCREEN_SIZE = 100
 
 
 def visualisation_main(gb_file, genetic_code, gff_file, nb_line, minimum_nb_peptide, taxon_id, sp_treshold):
