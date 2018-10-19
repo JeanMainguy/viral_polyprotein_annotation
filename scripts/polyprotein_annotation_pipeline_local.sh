@@ -18,8 +18,8 @@ genetic_code_path="genome_db_test/taxonomy/new_taxdump/"
 
 genbank_files_db_path="genome_db_test/genomes/refseq/viral/"
 RefSeq_structure="True"
-genbank_files_db_path='flat_db_Alphavirus/'
-RefSeq_structure="False"
+# genbank_files_db_path='flat_db_Alphavirus/'
+# RefSeq_structure="False"
 #Structure of the genbank files database : True or False
 # False is a list of genbank files in a folder
 # True same structure as in RefSeq:
@@ -47,7 +47,8 @@ mkdir -p ${TMPDIR}
 ## extraction and basic stat
 tresholdSP="90"
 taxon='Flaviviridae'
-taxon='Alphavirus'
+# taxon='Alphavirus'
+
 # taxon='ssRNA viruses'
 # taxon='Retro-transcribing viruses'
 # taxon='Picornavirales'
@@ -310,11 +311,11 @@ do
       output=${TMPDIR}/${cluster_faa_base}.aln
       echo ALIGNEMENT of $output
       clustalo -i ${TMPDIR}/$cluster_faa_base.faa -o $output --outfmt=clu --threads=4
-
+      mv $output ${alignment_dir}
     else
       echo the file ${alignment_dir}${cluster_faa_base}.aln  exist already. We dont recompute the alignment
     fi
-    mv $output ${alignment_dir}
+
     ((var++)) #increment var to know which cluster we are
 
   done < $cluster_file
