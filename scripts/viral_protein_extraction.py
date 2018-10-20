@@ -62,12 +62,16 @@ def extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_i
                 SeqIO.write(seq_to_write, handle_prot, "fasta")
 
             # identification of poorly annotated cds
-            if len(cds.unannotated_region) > 0:
-                string_info = "="*100
-                string_info += f'The cds {cds.protein_id} from taxon:{cds.segment.taxon_id} seems poorly annotated '
-                string_info += f'It has {len(cds.unannotated_region)} unnanotated part'
-                string_info += visu.visualisation_protein(cds, 1, len(cds))
+            if len(cds.unannotated_region) > 1:
+                string_info = f'\nThe cds {cds.protein_id} from taxon:{cds.segment.taxon_id} seems poorly annotated\n'
+                string_info += f'It has {len(cds.unannotated_region)} unnanotated part\n'
+                string_info += visu.visualisation_protein(cds, 1, len(cds))[:-4]
+                string_info += "\n" + ":/"*50 + "\n"
                 irrelevant_annotatation_file.write(string_info)
+
+                # BLACK LIST
+                if black_list_annotation:
+                    black_list_writer.write(f"{taxon_id}|{cds.protein_id}\n")
 
             # WRITE PROTEIN STAT
             if writer_stat_dict:  # may be False if we don't want to write stat
@@ -121,6 +125,10 @@ if __name__ == '__main__':
     except:
         print("No statistics...")
         stat_output_dir = False
+    try:
+        black_list_annotation = True if sys.argv[5].lower().startswith("t") else False
+    except ValueError:
+        black_list_annotation = False
 
     gbff_iter = tax.getAllRefseqFromTaxon(taxon, taxonomy_file)
 
@@ -136,9 +144,19 @@ if __name__ == '__main__':
 
     handle_prot = open(os.path.join(output_dir, protein_db), "w")
     files_to_close.append(handle_prot)
+
     irrelevant_annotatation_file = open(os.path.join(
         stat_output_dir, 'irrelevant_annotation_identification.txt'), "w")
     files_to_close.append(handle_prot)
+
+    if black_list_annotation:
+        print("Creation of a black list of irrelevant mat_peptide annotations")
+        black_list_writer = open(os.path.join(
+            stat_output_dir, 'black_list_annotation.txt'), "w")
+        files_to_close.append(black_list_writer)
+    else:
+        print('No black list of irrelevant mat_peptide annotations')
+
     i = None
     for i, gb_dico in enumerate(gbff_iter):
         if (i+1) % 1000 == 0:
