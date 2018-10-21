@@ -790,6 +790,7 @@ class Protein(Sequence):
         # self.alternative_start = False
         self.cleavage_sites = []
         self.predicted_cleavage_sites = []
+        self.black_listed_cleavage_sites = []
         self.border_sites = []  # site that are at the close border of CDS
         self.polyprotein_number = 0.0
         self.sequence = ''
@@ -873,10 +874,22 @@ class Protein(Sequence):
                 logging.warning('{}:The cleavage site position in the sequence is wrong {}'.format(
                     self.protein_id, site_position))
 
-            seq = seq[:site_position] + seq[site_position:site_position+2].lower() + \
-                seq[site_position+2:]
+            # Lower case cleavage sites
+            if any([True for peptide in site.peptide_positions['left'] if type(peptide).__name__ != "UnannotatedRegion"]):
+                seq = seq[:site_position] + seq[site_position:site_position+1].lower() + \
+                    seq[site_position+1:]
+            if any([True for peptide in site.peptide_positions['right'] if type(peptide).__name__ != "UnannotatedRegion"]):
+                seq = seq[:site_position+1] + seq[site_position +
+                                                  1:site_position+2].lower() + seq[site_position+2:]
 
+            # seq = seq[:site_position] + seq[site_position:site_position+2].lower() + \
+            #     seq[site_position+2:]
+            #
+            # print(site)
+            # print(site.peptide_positions)
             # print(seq[site_position-8:site_position+8])
+            # input()
+
         self.sequence = seq
 
         return seq
@@ -1180,8 +1193,9 @@ class CleavageSite(Peptide):
         self.peptides = {peptide}
         # cleavage site is created from the end of a peptide (the peptide is then on the left of the cleavage site)
         # Or it is created from the start of a peptide, the peptide is then on the right of the cleavage site.
+        self.peptide_positions = {'left': set(), 'right': set()}
         side = 'right' if type == 'start' else 'left'
-        self.peptide_positions = {side: {peptide}}
+        self.peptide_positions[side].add(peptide)  # method .update() fills also the dict..
 
         self.position_prot_relative = {}
         self.taxon_id = taxon_id
