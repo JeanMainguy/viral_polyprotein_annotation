@@ -48,6 +48,7 @@ mkdir -p ${TMPDIR}
 tresholdSP="90"
 taxon='Flaviviridae'
 # taxon='Alphavirus'
+taxon='Picornavirales'
 
 # taxon='ssRNA viruses'
 # taxon='Retro-transcribing viruses'
@@ -57,7 +58,7 @@ taxon='Flaviviridae'
 blast_evalue='1e-5'
 
 ## filtering and mcl clustering
-coverages='60 70'
+coverages='60'
 evalues_filtering='1e-60' # 1e-50 1e-20' #'1e-140 1e-160'
 inflations='1.8'
 split_cluster="false"
@@ -127,18 +128,32 @@ echo "\n## EXTRACTION VIRAL PROTEINS AND CREATION OF BASIC STAT_FILE\n"
 ################################################################################
 
 #Output...
-sequence_dir="${results_folder}/intermediate_files/viral_proteins/${RefSeq_download_date}"
+sequence_dir="${results_folder}/intermediate_files/viral_proteins/"
 faa_db="$sequence_dir/${taxon_name_for_path}_protein_db.faa"
 
-stat_output_dir="${results_folder}/intermediate_files/stat_viral_protein/${RefSeq_download_date}/"
+stat_output_dir="${results_folder}/viral_protein_stat/"
 stat_protein_file="${stat_output_dir}/stat_proteins_${taxon_name_for_path}.csv"
+black_list_file="${stat_output_dir}/black_list_annotation_${taxon_name_for_path}.txt"
+
+#Create a black list of poorly annotated cds
+black_list=True
 
 if [ ! -f $faa_db ] || [ ! -f $stat_protein_file ] ; then
-  echo $taxonomy_file
-  echo $seq_output_dir
-  echo $sequence_dir
-  bash scripts/extraction_viral_protein.sh "$taxon" $tresholdSP $taxonomy_file $sequence_dir $stat_output_dir
-  exit_if_fail
+
+    mkdir -p ${TMPDIR}/$sequence_dir  ${TMPDIR}/$stat_output_dir
+    mkdir -p ${sequence_dir} ${stat_output_dir}
+
+    python3 scripts/viral_protein_extraction.py "${taxon}" \
+                                                ${TMPDIR}$sequence_dir \
+                                                $taxonomy_file \
+                                                $tresholdSP \
+                                                ${TMPDIR}$stat_output_dir \
+                                                $black_list
+    exit_if_fail
+
+    mv ${TMPDIR}${sequence_dir}/*  ${sequence_dir}/
+    mv ${TMPDIR}${stat_output_dir}/*  ${stat_output_dir}/
+
 else
   echo protein sequence database exists already : $faa_db
 fi
@@ -148,7 +163,7 @@ echo '\n## BLAST ALL VS ALL\n'
 ################################################################################
 
 #output
-blast_result_dir="${results_folder}/intermediate_files/blast_result/${RefSeq_download_date}"
+blast_result_dir="${results_folder}/intermediate_files/blast_result/"
 
 blast_result="${blast_result_dir}/${taxon_name_for_path}_blast_evalue${blast_evalue}.out"
 
@@ -215,7 +230,7 @@ for file in $blast_filter_dir/*;
   for inflation in $inflations; #2 #1.2 1.4 1.6 1.8 2 3 5 8; #$(seq 2 2 8);
   do
     # Creation of the clustering folder
-    clustering_dir="${results_folder}/${RefSeq_download_date}/${name}_I${inflation//./_}/clustering/"
+    clustering_dir="${results_folder}/${name}_I${inflation//./_}/clustering/"
     mkdir -p $clustering_dir/
 
     clustering_result=${clustering_dir}/all_clusters.out
@@ -345,10 +360,16 @@ do
     alignement_stat_file=${stat_output_dir}/stat_alignments.csv # one line per cluster
 
     # if [ ! -f $alignement_stat_file ] ; then
-      python3 scripts/multiple_alignment_analysis.py $aln_dir "$windows" $stat_group_file $alignement_stat_file $taxonomy_file $TMPDIR/${reannotated_genome_dir}
+      python3 scripts/multiple_alignment_analysis.py $aln_dir \
+                                                    "$windows" \
+                                                    $stat_group_file \
+                                                    $alignement_stat_file \
+                                                    $taxonomy_file \
+                                                    $TMPDIR/${reannotated_genome_dir} \
+                                                    # $black_list_file
       exit_if_fail
     # else
-    #   echo file exist already $alignement_stat_file
+    #   echo file exists already $alignement_stat_file
     # fi
     mv $TMPDIR/${reannotated_genome_dir}/* ${reannotated_genome_dir}/
 

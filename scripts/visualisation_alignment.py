@@ -52,19 +52,30 @@ def getPositionsInAln(cds, list_obj):
 
 
 def visualisation(list_cds, aln_file, line_size, group_info_list, file_handle):
+
+    colors = {"Already annotated cleavage sites": RED,
+              "Predicted cleavage sites": GREEN,
+              "Black listed cleavage_sites": CYAN}
     display_dico = {}
+    sites_to_color_dict = {}
+
     for cds in list_cds:
 
         # DOMAINS
         position_domains = getPositionsInAln(cds, cds.matchs)
+
+        # Sites in the aln
         position_sites = getPositionsInAln(cds, cds.cleavage_sites)
-        position_poor_sites = getPositionsInAln(
-            cds, [site for site in cds.cleavage_sites if site.quality is False])
+
         position_predicted_sites = getPositionsInAln(cds, cds.predicted_cleavage_sites)
-        validated_groups = [(group['position_min'], group['position_max'])
-                            for group in group_info_list if group["valid"]]
+        black_listed_sites = getPositionsInAln(cds, cds.black_listed_cleavage_sites)
+
+        sites_to_color_dict[colors["Already annotated cleavage sites"]] = position_sites
+        sites_to_color_dict[colors["Predicted cleavage sites"]] = position_predicted_sites
+        sites_to_color_dict[colors["Black listed cleavage_sites"]] = black_listed_sites
+
         sequence_list = addColorToSequence2(
-            position_domains, position_sites, position_poor_sites, position_predicted_sites, validated_groups, cds.aligned_sequence)
+            position_domains, sites_to_color_dict, cds.aligned_sequence)
 
         lines = []
         # cut the sequence liste in piece of the line size and transform this pieces in string
@@ -76,16 +87,30 @@ def visualisation(list_cds, aln_file, line_size, group_info_list, file_handle):
             info = str(cds.info_to_display)
         elif cds.polyprotein:
             info = 'annotated'
+        elif cds.polyprotein is None:
+            info = 'black_listed'
         else:
             info = ''
-        key = f'{cds.segment.organism}|{cds.protein_id}|{info}'
+        key = f'{cds.segment.taxon_id}|{cds.protein_id}|{info}'
 
         display_dico[key] = lines
         # alignment dico is used only for identity and filevisualisation_protein(cds, segment, nb_line): header. not efficient at all..
         # print(view_prot.visualisation_protein(cds, cds.segment, 1))
     taxon_ids, alignement_dico = store_alignement_line(aln_file, line_size)
     add_score_line(alignement_dico, group_info_list)
+    add_legend(alignement_dico, colors)
     display_alignement(alignement_dico, display_dico, file_handle)
+
+
+def add_legend(alignement_dico, colors):
+    legend = ''
+    for category, color in colors.items():
+
+        print(category, color)
+        legend += f'{category}:\x1b[{color}m xx\x1b[0m \n'
+    alignement_dico['legend'] = legend
+    print(legend)
+    input()
 
 
 def add_score_line(alignement_dico, group_info_list):
@@ -167,7 +192,7 @@ def visualisation_old(gb_file, genetic_code, gff_file, alignement_dico, sp_tresh
     return display_dico
 
 
-def addColorToSequence2(position_domains, positon_cleavage_sites, position_poor_sites, position_predicted_cleavage_sites, validated_groups, aln_sequence):
+def addColorToSequence2(position_domains, sites_to_color_dict, aln_sequence):
 
     # Very unelegant to many loop for nothing but only smallvisualisation to be sure
     end_color = RESET
@@ -200,25 +225,14 @@ def addColorToSequence2(position_domains, positon_cleavage_sites, position_poor_
         style = default_style
         fg = default_fg
         bg = default_bg
+
         if any((True for start, end in position_domains if start <= i <= end)):
-            # bg = domain_bg
             style = BOLD
-            # bg=BG_LIGTH_GREEN
-            # sequence_list.append(domain_color + letter + end_color)
 
-        if any((True for start, end in position_poor_sites if start <= i <= end)):
-            fg = poor_site_color
-
-        elif any((True for start, end in positon_cleavage_sites if start <= i <= end)):
-            fg = cleavage_site_color
-            # sequence_list.append(cleavage_site_color + letter + end_color)
-
-        elif any((True for start, end in position_predicted_cleavage_sites if start <= i <= end)):
-            fg = predicted_site_color
-            # sequence_list.append(predicted_site_color + letter + end_color)
-
-        if any((True for start, end in validated_groups if start <= i <= end)):
-            style = group_highlight
+        for color, site_positions in sites_to_color_dict.items():
+            if any((True for start, end in site_positions if start <= i <= end)):
+                fg = color
+                break
 
         color_style = f'\x1b[{style};{fg};{bg}m' if not (style == default_style and
                                                          fg == default_fg and
@@ -353,6 +367,7 @@ def display_alignement(alignement_dico, display_dico, file_handle=sys.stdout):
 
     max_len = max([len(h) for h in display_dico]) + 6
 
+    print(alignement_dico['legend'], file=file_handle)
     print(alignement_dico['file_header'], file=file_handle)
 
     for i in range(len(alignement_dico['identity'])):

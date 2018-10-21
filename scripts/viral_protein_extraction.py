@@ -126,7 +126,7 @@ if __name__ == '__main__':
         print("No statistics...")
         stat_output_dir = False
     try:
-        black_list_annotation = True if sys.argv[5].lower().startswith("t") else False
+        black_list_annotation = True if sys.argv[6].lower().startswith("t") else False
     except ValueError:
         black_list_annotation = False
 
@@ -146,13 +146,13 @@ if __name__ == '__main__':
     files_to_close.append(handle_prot)
 
     irrelevant_annotatation_file = open(os.path.join(
-        stat_output_dir, 'irrelevant_annotation_identification.txt'), "w")
+        stat_output_dir, f'irrelevant_annotation_identification_{taxon}.txt'), "w")
     files_to_close.append(handle_prot)
 
     if black_list_annotation:
         print("Creation of a black list of irrelevant mat_peptide annotations")
         black_list_writer = open(os.path.join(
-            stat_output_dir, 'black_list_annotation.txt'), "w")
+            stat_output_dir, f'black_list_annotation_{taxon}.txt'), "w")
         files_to_close.append(black_list_writer)
     else:
         print('No black list of irrelevant mat_peptide annotations')

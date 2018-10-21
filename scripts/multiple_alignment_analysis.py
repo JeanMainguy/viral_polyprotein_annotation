@@ -122,12 +122,7 @@ def groupCleavageSitesAcrossAlignment(cds_list, window):
 
     for i, cds in enumerate(annotated_cds_list):
         all_sites |= set(cds.cleavage_sites)
-        # print()
-        # print(cds.number, cds.cleavage_site_positions)
-        # print(cds)
-        # print(len(cds)/3)
-        # print(cds.aln_list)
-        # print(cds.segment.taxon_id)
+
         for site in cds.cleavage_sites:
             site.cds_of_aln.append(cds)
             site_start = site.start_aa(cds) - 1  # to be in base 0 we need the -1
@@ -137,7 +132,7 @@ def groupCleavageSitesAcrossAlignment(cds_list, window):
             site.start_in_aln = site_start_in_aln
             site.end_in_aln = site_end_in_aln
 
-            findCloseSites(site, site_start_in_aln, site_end_in_aln,  annotated_cds_list, window)
+            findCloseSites(site, site_start_in_aln, site_end_in_aln, annotated_cds_list, window)
 
     # make group of cleavage sites
     grouped_sites = set()
@@ -646,6 +641,14 @@ def main():
     for window in windows:
         # print(taxon_prot_ids)
         cds_list = getCdsObject(taxon_prot_ids, taxonomy_file, interpro_domains_file, sp_treshold)
+        for cds in cds_list:
+            if f'{cds.segment.taxon_id}|{cds.protein_id}' in black_list:
+                # cds annotation has been black listed
+                cds.black_listed_peptides = cds.peptides
+                cds.black_listed_cleavage_sites = cds.cleavage_sites
+                cds.peptides = set()
+                cds.cleavage_sites = []
+                cds.polyprotein = None
 
         if sum((1 for cds in cds_list if cds.polyprotein)) == 0:
             logging.warning(f'{alignment_file} has no identified polyprotein with annotation')
@@ -676,19 +679,6 @@ def main():
         iter_cds_non_annotated = (cds for cds in cds_list if not cds.polyprotein)
         for blank_cds in iter_cds_non_annotated:
             get_predicted_mat_peptide(blank_cds)
-
-        # for cds in cds_list:
-        #     print(cds.start)
-        #     if cds.polyprotein:
-        #         print('ANNOTATED')
-        #         print([(cs.start, cs.end) for cs in cds.cleavage_sites])
-        #         print(cds.start % 3)
-        #         print([(cs.start % 3, cs.end % 3) for cs in cds.cleavage_sites])
-        #     else:
-        #         print('unnatotadeD')
-        #         print([(cs.start, cs.end) for cs in cds.cleavage_sites])
-        #         print(cds.start % 3)
-        #         print([(cs.start % 3, cs.end % 3) for cs in cds.cleavage_sites])
 
         ######################
         #   OUTPUT
@@ -748,7 +738,7 @@ if __name__ == '__main__':
         # 'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037.aln'
         alignment_file_or_dir = sys.argv[1]
     except:
-        alignment_file_or_dir = 'results/Alphavirus_evalue_1e-60coverage60_I1_8/alignment/seq_cluster1.aln'
+        alignment_file_or_dir = 'results_db_viral_2018-10-19/Picornavirales_evalue_1e-60coverage60_I1_8/alignment/seq_cluster6.aln'
         # alignment_file_or_dir = 'data/alignment/Viruses/RefSeq_download_date_2018-07-21/Viruses_evalue_1e-40coverage40_I2/seq_cluster30.aln'
 
     try:
@@ -768,7 +758,7 @@ if __name__ == '__main__':
     try:
         taxonomy_file = sys.argv[5]  # "data/taxonomy/taxonomy_virus.txt"
     except:
-        taxonomy_file = "results/genomes_index/taxonomy_virus.txt"
+        taxonomy_file = "results_db_viral_2018-10-19/genomes_index/taxonomy_virus.txt"
 
     try:
         reannotated_genome_dir = sys.argv[6]
@@ -779,10 +769,15 @@ if __name__ == '__main__':
     except:
         interpro_domains_file = None
 
+    black_list_file = "results_db_viral_2018-10-19/viral_protein_stat/black_list_annotation_Picornavirales.txt"
+
     sp_treshold = 90
     display_line_size = 75  # 140/2
     confidence_score_threshold = 4
-    write_visualization_path = path.dirname(output_stat_aln)
+    if output_stat_aln:
+        write_visualization_path = path.dirname(output_stat_aln)
+    else:
+        write_visualization_path = False
 
     parameters = {"confidence_score_threshold": confidence_score_threshold}
 
@@ -820,6 +815,12 @@ if __name__ == '__main__':
         group_site_csv_writer = False
         aln_csv_writer = False
         file_handles = []
+
+    black_list = []
+    # Black list preparation
+    if black_list_file:
+        with open(black_list_file, "r") as fl:
+            black_list = fl.read().split('\n')
 
     genomes_output_writers = {}
     gff_writers = {}
