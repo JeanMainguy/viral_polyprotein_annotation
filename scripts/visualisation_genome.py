@@ -273,8 +273,7 @@ if __name__ == '__main__':
         minimum_nb_peptide = 0
 
     sp_treshold = 90
-    taxonomy_file = "results_example/genomes_index/taxonomy_virus.txt"
-    expected_file = "data/taxonomy/polyprotein_expectation_by_taxon.csv"
+    taxonomy_file = "results_db_viral_2018-10-19/genomes_index/taxonomy_virus.txt"
 
     gff_file = 'data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
 

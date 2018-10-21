@@ -109,8 +109,6 @@ def add_legend(alignement_dico, colors):
         print(category, color)
         legend += f'{category}:\x1b[{color}m xx\x1b[0m \n'
     alignement_dico['legend'] = legend
-    print(legend)
-    input()
 
 
 def add_score_line(alignement_dico, group_info_list):
