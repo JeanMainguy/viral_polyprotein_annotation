@@ -194,7 +194,7 @@ def getStatOnGroup(group, nb_cds_annotated, absent_annotated_cds_penalty):
             mean_positions.append(mean_position_in_aln)
 
     standard_dev = std(mean_positions)
-    average_position_in_aln = mean(mean_positions)
+    average_position_in_aln = mean(mean_positions) + 1
     deviation_length = [abs(average_position_in_aln - po) for po in mean_positions]
     sum_of_deviation = sum(deviation_length)
 
