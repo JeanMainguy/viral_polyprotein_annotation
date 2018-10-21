@@ -32,8 +32,8 @@ RefSeq_structure="True"
 #             │           └── GCF_000885715.1_ViralProj39601_genomic.gbff.gz
 
 
-# interpro_path="/mirror/interpro"
-
+interpro_path="/mirror/interpro"
+# interpro_path="."
 TMPDIR=/tmp/${USER}_polyprotein_annotation/
 
 
@@ -338,6 +338,34 @@ do
 
 done
 
+
+################################################################################
+echo "## INTERPROSCAN: DOMAIN ANNOTATIONS"
+################################################################################
+interproscan_version=$(ls $interpro_path | grep interproscan*.* -o)
+interpro_dir="${results_folder}/intermediate_files/interproscan_results/${interproscan_version}"
+seq_id_list=${interpro_dir}/tmp_new_id_list.txt
+# ####### WARNING
+# interpro_dir="test/interpro_results/${interproscan_version}"
+mkdir -p $interpro_dir
+## MERGE ALL CLUSTER FILE INTO ONE
+rm -f ${interpro_dir}/merge_all_tmp_new_id_list.txt
+for cluster_file in ${cluster_to_aln[@]};
+do
+  cat $cluster_file | sed -e 'y/\t/\n/'  >> ${interpro_dir}/merge_all_tmp_new_id_list.txt
+done
+
+
+cat ${interpro_dir}/merge_all_tmp_new_id_list.txt | sort | uniq > $seq_id_list
+
+rm ${interpro_dir}/merge_all_tmp_new_id_list.txt
+
+bash scripts/interproscan_preparation.sh $interpro_dir $clustering_dir $faa_db $seq_id_list
+exit_if_fail
+
+
+echo INTERPRO DONE
+
 ################################################################################
 echo "## ALIGNMENT ANALYSIS AND PROPAGATION OF CLEAVAGE SITES"
 ################################################################################
@@ -384,4 +412,3 @@ done
 
 # DONE
 rm -r $TMPDIR
-echo DONE
