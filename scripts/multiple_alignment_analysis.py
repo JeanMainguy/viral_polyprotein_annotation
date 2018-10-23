@@ -768,9 +768,10 @@ if __name__ == '__main__':
         interpro_domains_file = sys.argv[7]
     except:
         interpro_domains_file = None
-
-    black_list_file = "results_db_viral_2018-10-19/viral_protein_stat/black_list_annotation_Picornavirales.txt"
-
+    try:
+        black_list_file = sys.argv[8]
+    except:
+        black_list_file = None
     sp_treshold = 90
     display_line_size = 75  # 140/2
     confidence_score_threshold = 4
