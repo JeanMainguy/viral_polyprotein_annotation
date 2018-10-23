@@ -157,13 +157,6 @@ def getDomainsOverlappingCleavageSites(segment):
                     cs.overlapping_domains[domain] = {'right_distance': domain.end_aa(cds) - cs.end_aa(cds) + 1,
                                                       "left_distance": cs.start_aa(cds) - domain.start_aa(cds) + 1}
 
-                    # print("IS OVERLLAPED BY  ")
-                    # print('domain ', domain.start_aa(cds),  domain.end_aa(cds))
-                    # print('OVERLAPING DISTANCE ')
-                    #
-                    # print(cs.overlapping_domains[domain])
-                    # input()
-
 
 def identifyDuplicatedMatch(segment):
     # Due to ribosomal_slippage 2 proteins have been given to interpro but they share a similar part and then may share same somain

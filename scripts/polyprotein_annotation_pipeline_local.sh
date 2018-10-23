@@ -33,9 +33,8 @@ RefSeq_structure="True"
 
 
 interpro_path="/mirror/interpro"
-# interpro_path="."
-TMPDIR=/tmp/${USER}_polyprotein_annotation/
 
+TMPDIR=/tmp/${USER}_polyprotein_annotation/
 
 mkdir -p log/
 mkdir -p ${TMPDIR}
@@ -63,24 +62,31 @@ evalues_filtering='1e-60' # 1e-50 1e-20' #'1e-140 1e-160'
 inflations='1.8'
 split_cluster="false"
 
+#Conflict between domain annotation and cleavage site annotation
+threshold_overlap_prct=10
+threshold_overlap_aa=15
+ignoring_threshold_ratio=0.5
+
+taxon_name_for_path=${taxon// /_} #replace space by underscore
+taxon_name_for_path=${taxon_name_for_path//,/} # replace coma by nothing
+
 # Get results Folder.. results_[name of the gb databse]_[databse_date]
 databse_date="`stat -c %y ${genbank_files_db_path} | cut -d' ' -f1`"
-results_folder="results_db_$(basename $genbank_files_db_path)_$databse_date"
-
+results_folder_db="results_db_$(basename $genbank_files_db_path)_$databse_date"
+results_folder=$results_folder_db/$taxon_name_for_path
 
 echo $taxon
 echo Parameters C $coverages E $evalues_filtering I $inflations
 echo Results are written in $results_folder
 
-taxon_name_for_path=${taxon// /_} #replace space by underscore
-taxon_name_for_path=${taxon_name_for_path//,/} # replace coma by nothing
+
 
 ################################################################################
 echo '## GENOME INDEX FILE CREATION'
 ################################################################################
 
 #output
-taxonomy_index_dir="${results_folder}/genomes_index/"
+taxonomy_index_dir="${results_folder_db}/genomes_index/"
 mkdir -p $taxonomy_index_dir
 
 alternative_taxon_id="$taxonomy_index_dir/heterogeneous_taxon_id_taxonomy_virus.txt"
@@ -281,7 +287,9 @@ do
 
      if [ ! -f ${clusters_with_polyprotein_splitted} ] || [ "$force" == true ]; then # we run the python script only if its output file does not exist...
         echo  Split cluster that have framshiffted protein
-        python3 scripts/split_cluster_with_framshiffted_protein.py $clusters_with_polyprotein $clusters_with_polyprotein_splitted $taxonomy_file
+        python3 scripts/split_cluster_with_framshiffted_protein.py $clusters_with_polyprotein \
+                                                                   $clusters_with_polyprotein_splitted \
+                                                                   $taxonomy_file
         exit_if_fail
     else
         echo the clusters_with_polyprotein file ${clusters_with_polyprotein_splitted} already exist
@@ -321,7 +329,8 @@ do
 
       # command from http://bioinformatics.cvr.ac.uk/blog/short-command-lines-for-manipulation-fastq-and-fasta-sequence-files/
       #extract faa seq in a new file
-      perl -ne 'if(/^>(\S+)/){$c=$i{$1}}$c?print:chomp;$i{$_}=1 if @ARGV' ${TMPDIR}/ids.txt $faa_db > ${TMPDIR}/$cluster_faa_base.faa
+      perl -ne 'if(/^>(\S+)/){$c=$i{$1}}$c?print:chomp;$i{$_}=1 if @ARGV' ${TMPDIR}/ids.txt \
+                                                                          $faa_db > ${TMPDIR}/$cluster_faa_base.faa
 
       output=${TMPDIR}/${cluster_faa_base}.aln
       echo ALIGNEMENT of $output
@@ -343,10 +352,9 @@ done
 echo "## INTERPROSCAN: DOMAIN ANNOTATIONS"
 ################################################################################
 interproscan_version=$(ls $interpro_path | grep interproscan*.* -o)
-interpro_dir="${results_folder}/intermediate_files/interproscan_results/${interproscan_version}"
+interpro_dir="${results_folder_db}/interproscan_results/${interproscan_version}"
 seq_id_list=${interpro_dir}/tmp_new_id_list.txt
-# ####### WARNING
-# interpro_dir="test/interpro_results/${interproscan_version}"
+
 mkdir -p $interpro_dir
 ## MERGE ALL CLUSTER FILE INTO ONE
 rm -f ${interpro_dir}/merge_all_tmp_new_id_list.txt
@@ -355,23 +363,39 @@ do
   cat $cluster_file | sed -e 'y/\t/\n/'  >> ${interpro_dir}/merge_all_tmp_new_id_list.txt
 done
 
-
 cat ${interpro_dir}/merge_all_tmp_new_id_list.txt | sort | uniq > $seq_id_list
-
 rm ${interpro_dir}/merge_all_tmp_new_id_list.txt
 
 bash scripts/interproscan_preparation.sh $interpro_dir $clustering_dir $faa_db $seq_id_list
 exit_if_fail
 
+################################################################################
+echo "## DOMAIN ANNOTATIONS STAT AND CONFLICT IDENTIFICATION"
+################################################################################
+gff_domain_file="$interpro_dir/domains_viral_sequences.gff3"
+#Ouput :
+domain_stat_file=$stat_output_dir/${taxon}_domain_stat.csv
 
-echo INTERPRO DONE
+python3 scripts/domains_annotation_stat.py $taxon \
+                                            $stat_output_dir/ \
+                                            $taxonomy_file \
+                                            $tresholdSP \
+                                            $gff_domain_file \
+                                            $stat_protein_file
+exit_if_fail
+#output file
+conflicting_annotation_with_domain=$stat_output_dir/${taxon}_conflicting_annotation.txt
+
+python3 scripts/conflict_annotation_identification.py $domain_stat_file \
+                                                      $conflicting_annotation_with_domain \
+                                                      $threshold_overlap_prct \
+                                                      $threshold_overlap_aa  \
+                                                      $ignoring_threshold_ratio
+exit_if_fail
 
 ################################################################################
 echo "## ALIGNMENT ANALYSIS AND PROPAGATION OF CLEAVAGE SITES"
 ################################################################################
-
-gff_file='data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
-# alignment_dir="data/alignment/Viruses_1e-5_coverage90_I2/"
 
 windows="30"
 
@@ -394,11 +418,9 @@ do
                                                     $alignement_stat_file \
                                                     $taxonomy_file \
                                                     $TMPDIR/${reannotated_genome_dir} \
-                                                    # $black_list_file
+                                                    $black_list_file
       exit_if_fail
-    # else
-    #   echo file exists already $alignement_stat_file
-    # fi
+
     mv $TMPDIR/${reannotated_genome_dir}/* ${reannotated_genome_dir}/
 
     if [ -x "$(command -v aha)" ]; then
