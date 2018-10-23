@@ -275,7 +275,7 @@ if __name__ == '__main__':
     sp_treshold = 90
     taxonomy_file = "results_db_viral_2018-10-19/genomes_index/taxonomy_virus.txt"
 
-    gff_file = 'data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
+    gff_file = 'results_db_viral_2018-10-19/intermediate_files/interproscan_results/domains_viral_sequences.gff3'
 
     if not os.path.isfile(gff_file):
         logging.warning('///No interproscan result file found///')

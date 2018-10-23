@@ -1,9 +1,10 @@
-import re, logging
+import re
+import logging
 import viral_genome_classes as obj
 
 
 def getMatchObject(genome, gff_file):
-    #retreive all the match that belong to the genome
+    # retreive all the match that belong to the genome
     flag = False
     with open(gff_file) as fl:
         for l in fl:
@@ -11,10 +12,12 @@ def getMatchObject(genome, gff_file):
             if l.startswith(">") or l.startswith("##FASTA"):
                 break
             if l.startswith('##'):
-                flag = True if l.startswith('##sequence-region {}|'.format(genome.taxon_id)) else False
+                flag = True if l.startswith(
+                    '##sequence-region {}|'.format(genome.taxon_id)) else False
                 continue
             if flag:
-                (taxseqid, method, feature_type, start, end, score, strand, phase, attributes) = l.split("\t")
+                (taxseqid, method, feature_type, start, end,
+                 score, strand, phase, attributes) = l.split("\t")
                 #match = {"start":int(begin), "end":int(end), "app":method, "seqid":seqid, "taxid":taxid}
                 if feature_type == 'protein_match':
                     (taxid, seqid, length) = taxseqid.split("|")
@@ -23,7 +26,7 @@ def getMatchObject(genome, gff_file):
 
                     # signature_desc
                     re_result = re.search("signature_desc=([^;]+)", attributes)
-                    signature_desc= "" if not re_result else re_result.group(1)
+                    signature_desc = "" if not re_result else re_result.group(1)
 
                     # Domain name
                     re_result = re.search("Name=([\d\w]+)", attributes)
@@ -31,9 +34,11 @@ def getMatchObject(genome, gff_file):
 
                     # Dbxref
                     re_result = re.search('Dbxref="([^"]+)"', attributes)
-                    Dbxref= "" if not re_result else re_result.group(1)
+                    Dbxref = "" if not re_result else re_result.group(1)
 
-                    genome.matchs.append(obj.Match(taxid, seqid,  method, start, end, score, Dbxref, Name, matchID, signature_desc))
+                    genome.matchs.append(obj.Match(taxid, seqid,  method, start,
+                                                   end, score, Dbxref, Name, matchID, signature_desc))
+
 
 def associateDomainsWithPolyprotein(genome):
     for segment in genome.segments:
@@ -49,7 +54,7 @@ def associateDomainsWithPolyprotein(genome):
         identifyDuplicatedMatch(segment)
         getDomainsOverlappingCleavageSites(segment)
 
-    #small checking to be sure that all match have of the genome has at least one prot
+    # small checking to be sure that all match have of the genome has at least one prot
     for match in genome.matchs:
         if not match.protein:
             logging.warning(f'Domain annotation {match.name} has no protein in {genome.taxon_id}')
@@ -62,16 +67,16 @@ def associateDomainsWithPeptides(segment):
                 continue
 
             pep_start = pep.start_aa(cds)
-            pep_end   = pep.end_aa(cds)
+            pep_end = pep.end_aa(cds)
 
             # to which peptide the match belong to? based on the length
             max_length_in_pep = 0
             for m in cds.matchs:
 
-                if pep_end < m.start_in_prot  or m.end_in_prot < pep_start: # the match is not on peptide seq
+                if pep_end < m.start_in_prot or m.end_in_prot < pep_start:  # the match is not on peptide seq
                     continue
 
-                elif pep_start <= m.start_in_prot and m.end_in_prot <= pep_end: # The match fall into the peptide
+                elif pep_start <= m.start_in_prot and m.end_in_prot <= pep_end:  # The match fall into the peptide
                     m.belongs_to_peptides.append(pep)
 
                     pep.included_domains['fully'].append(m)
@@ -88,7 +93,7 @@ def associateDomainsWithPeptides(segment):
                 #   [##domain_annotation##]
                 #                    |++++++++++peptide+++++++++++++|
 
-                #Overlap on the right and on the left:
+                # Overlap on the right and on the left:
                 #   [##########_domain_annotation_#############]
                 #          |+++++++peptide+++++++|
 
@@ -97,18 +102,16 @@ def associateDomainsWithPeptides(segment):
                 max_start = max(pep_start, m.start_in_prot)
                 min_end = min(pep_end, m.end_in_prot)
 
-                m.partially_included_in[pep] = min_end - max_start +1
+                m.partially_included_in[pep] = min_end - max_start + 1
                 pep.included_domains["partially"].append(m)
 
-                if pep_end < m.end_in_prot: # the annotation overlap on the right
-                    m.right_overlap[pep] =  m.end_in_prot - pep_end
+                if pep_end < m.end_in_prot:  # the annotation overlap on the right
+                    m.right_overlap[pep] = m.end_in_prot - pep_end
                     pep.overlapped_by_domain["right"].append(m)
 
-                if  m.start_in_prot < pep_start: # it overlaps on the left
+                if m.start_in_prot < pep_start:  # it overlaps on the left
                     m.left_overlap[pep] = pep_start - m.start_in_prot
                     pep.overlapped_by_domain["left"].append(m)
-
-
 
         for m in (m for m in cds.matchs if m.overlapping):
 
@@ -141,17 +144,18 @@ def getDomainsOverlappingCleavageSites(segment):
         for cs in cds.cleavage_sites:
             for domain in cds.matchs:
 
-                if domain.start_aa(cds) <= cs.start_aa(cds) < domain.end_aa(cds) : # OVERLAPPING CASE
-                    right_distance = domain.end_aa(cds) - cs.end_aa(cds) +1
-                    left_distance =  cs.start_aa(cds) - domain.start_aa(cds) +1
+                if domain.start_aa(cds) <= cs.start_aa(cds) < domain.end_aa(cds):  # OVERLAPPING CASE
+                    right_distance = domain.end_aa(cds) - cs.end_aa(cds) + 1
+                    left_distance = cs.start_aa(cds) - domain.start_aa(cds) + 1
 
-                    side, distance = ('right', right_distance) if right_distance <= left_distance else ('left', left_distance)
+                    side, distance = ('right', right_distance) if right_distance <= left_distance else (
+                        'left', left_distance)
                     # distance of overlapping is the smallest distance between left and right
 
-                    domain.overlapped_cleavage_sites[cs] = {"overlapping_side":side,  'overlapping_distance':distance }
-                    cs.overlapping_domains[domain] = { 'right_distance': domain.end_aa(cds) - cs.end_aa(cds) +1,
-                                                       "left_distance": cs.start_aa(cds) - domain.start_aa(cds) +1}
-
+                    domain.overlapped_cleavage_sites[cs] = {
+                        "overlapping_side": side,  'overlapping_distance': distance}
+                    cs.overlapping_domains[domain] = {'right_distance': domain.end_aa(cds) - cs.end_aa(cds) + 1,
+                                                      "left_distance": cs.start_aa(cds) - domain.start_aa(cds) + 1}
 
                     # print("IS OVERLLAPED BY  ")
                     # print('domain ', domain.start_aa(cds),  domain.end_aa(cds))
@@ -159,8 +163,6 @@ def getDomainsOverlappingCleavageSites(segment):
                     #
                     # print(cs.overlapping_domains[domain])
                     # input()
-
-
 
 
 def identifyDuplicatedMatch(segment):
