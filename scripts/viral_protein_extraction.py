@@ -70,8 +70,7 @@ def extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_i
                 irrelevant_annotatation_file.write(string_info)
 
                 # BLACK LIST
-                if black_list_annotation:
-                    black_list_writer.write(f"{taxon_id}|{cds.protein_id}\n")
+                black_list_writer.write(f"{taxon_id}|{cds.protein_id}\n")
 
             # WRITE PROTEIN STAT
             if writer_stat_dict:  # may be False if we don't want to write stat
@@ -126,9 +125,9 @@ if __name__ == '__main__':
         print("No statistics...")
         stat_output_dir = False
     try:
-        black_list_annotation = True if sys.argv[6].lower().startswith("t") else False
-    except ValueError:
-        black_list_annotation = False
+        irrelevant_annotation_list_fl = sys.argv[6]
+    except:
+        irrelevant_annotation_list_fl = "test/irrelevant_annotation_list.txt"
 
     gbff_iter = tax.getAllRefseqFromTaxon(taxon, taxonomy_file)
 
@@ -149,13 +148,9 @@ if __name__ == '__main__':
         stat_output_dir, f'irrelevant_annotation_identification_{taxon}.txt'), "w")
     files_to_close.append(handle_prot)
 
-    if black_list_annotation:
-        print("Creation of a black list of irrelevant mat_peptide annotations")
-        black_list_writer = open(os.path.join(
-            stat_output_dir, f'black_list_annotation_{taxon}.txt'), "w")
-        files_to_close.append(black_list_writer)
-    else:
-        print('No black list of irrelevant mat_peptide annotations')
+    print("Creation of a list of irrelevant mat_peptide annotations")
+    black_list_writer = open(irrelevant_annotation_list_fl, "w")
+    files_to_close.append(black_list_writer)
 
     i = None
     for i, gb_dico in enumerate(gbff_iter):

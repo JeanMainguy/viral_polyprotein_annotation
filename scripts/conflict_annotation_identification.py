@@ -189,8 +189,9 @@ if __name__ == '__main__':
     threshold_overlap_prct = sys.argv[3]  # 10
     threshold_overlap_aa = sys.argv[4]  # 10
     ignoring_threshold_ratio = float(sys.argv[5])  # 0.5
-    notify_file = path.join(path.dirname(
-        domain_stat_file), 'conflict_between_peptide_and_domain_annotations.txt')
+
+    notify_file = sys.argv[6]
+
     try:
         threshold_overlap_prct = float(threshold_overlap_prct)
     except ValueError:

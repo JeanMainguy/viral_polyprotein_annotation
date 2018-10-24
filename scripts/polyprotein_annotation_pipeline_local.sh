@@ -34,6 +34,10 @@ RefSeq_structure="True"
 
 interpro_path="/mirror/interpro"
 
+#Create a black list of poorly annotated cds
+black_list_conflict_domain='true'
+black_list_irrelevant_pattern='true'
+
 TMPDIR=/tmp/${USER}_polyprotein_annotation/
 
 mkdir -p log/
@@ -46,7 +50,7 @@ mkdir -p ${TMPDIR}
 ## extraction and basic stat
 tresholdSP="90"
 taxon='Flaviviridae'
-# taxon='Alphavirus'
+taxon='Alphavirus'
 taxon='Picornavirales'
 
 # taxon='ssRNA viruses'
@@ -61,6 +65,9 @@ coverages='60'
 evalues_filtering='1e-60' # 1e-50 1e-20' #'1e-140 1e-160'
 inflations='1.8'
 split_cluster="false"
+
+# multiple alignment anlysis
+windows="30" # used to group cleavage sites
 
 #Conflict between domain annotation and cleavage site annotation
 threshold_overlap_prct=10
@@ -139,10 +146,7 @@ faa_db="$sequence_dir/${taxon_name_for_path}_protein_db.faa"
 
 stat_output_dir="${results_folder}/viral_protein_stat/"
 stat_protein_file="${stat_output_dir}/stat_proteins_${taxon_name_for_path}.csv"
-black_list_file="${stat_output_dir}/black_list_annotation_${taxon_name_for_path}.txt"
-
-#Create a black list of poorly annotated cds
-black_list=True
+irrelevant_cds_file="${stat_output_dir}/list_irrelevant_annotation_${taxon_name_for_path}.txt"
 
 if [ ! -f $faa_db ] || [ ! -f $stat_protein_file ] ; then
 
@@ -154,7 +158,7 @@ if [ ! -f $faa_db ] || [ ! -f $stat_protein_file ] ; then
                                                 $taxonomy_file \
                                                 $tresholdSP \
                                                 ${TMPDIR}$stat_output_dir \
-                                                $black_list
+                                                $irrelevant_cds_file
     exit_if_fail
 
     mv ${TMPDIR}${sequence_dir}/*  ${sequence_dir}/
@@ -374,7 +378,7 @@ echo "## DOMAIN ANNOTATIONS STAT AND CONFLICT IDENTIFICATION"
 ################################################################################
 gff_domain_file="$interpro_dir/domains_viral_sequences.gff3"
 #Ouput :
-domain_stat_file=$stat_output_dir/${taxon}_domain_stat.csv
+domain_stat_file=$stat_output_dir/stat_domain_${taxon_name_for_path}.csv
 
 python3 scripts/domains_annotation_stat.py $taxon \
                                             $stat_output_dir/ \
@@ -384,20 +388,39 @@ python3 scripts/domains_annotation_stat.py $taxon \
                                             $stat_protein_file
 exit_if_fail
 #output file
-conflicting_annotation_with_domain=$stat_output_dir/${taxon}_conflicting_annotation.txt
+conflict_annotation_list_file=$stat_output_dir/list_annotation_conflicts_${taxon_name_for_path}.txt
+conflict_manual_checking_file=$stat_output_dir/conflicting_annotation_identification_${taxon_name_for_path}.txt
 
 python3 scripts/conflict_annotation_identification.py $domain_stat_file \
-                                                      $conflicting_annotation_with_domain \
+                                                      $conflict_annotation_list_file \
                                                       $threshold_overlap_prct \
                                                       $threshold_overlap_aa  \
-                                                      $ignoring_threshold_ratio
+                                                      $ignoring_threshold_ratio \
+                                                      $conflict_manual_checking_file
 exit_if_fail
 
 ################################################################################
 echo "## ALIGNMENT ANALYSIS AND PROPAGATION OF CLEAVAGE SITES"
 ################################################################################
+black_list_file=$stat_output_dir/black_list_annotation_${taxon_name_for_path}.txt
+echo '# black list of annotated cds' > $black_list_file
 
-windows="30"
+if [ "$black_list_irrelevant_pattern" == true ];
+then
+    echo '# Identification from irrelevant pattern' >> $black_list_file
+    cat $irrelevant_cds_file >> $black_list_file
+else
+    echo '# "Identification from irrelevant pattern" HAS BEEN TURNED OFF' >> $black_list_file
+fi
+if [ "$black_list_conflict_domain" == true ];
+then
+    echo '# Identification from conflict between peptide annotation and domain annotation' >> $black_list_file
+    cat $conflict_annotation_list_file >> $black_list_file
+
+else
+    echo '# "Identification from conflict between peptide annotation and domain annotation" HAS BEEN TURNED OFF' >> $black_list_file
+
+fi
 
 for aln_dir in ${aln_dirs[@]};
 do
@@ -418,6 +441,7 @@ do
                                                     $alignement_stat_file \
                                                     $taxonomy_file \
                                                     $TMPDIR/${reannotated_genome_dir} \
+                                                    $gff_domain_file \
                                                     $black_list_file
       exit_if_fail
 

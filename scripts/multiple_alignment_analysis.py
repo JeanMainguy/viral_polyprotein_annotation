@@ -821,7 +821,7 @@ if __name__ == '__main__':
     # Black list preparation
     if black_list_file:
         with open(black_list_file, "r") as fl:
-            black_list = fl.read().split('\n')
+            black_list = {seq for seq in fl.read().split('\n') if not seq.startswith('#')}
 
     genomes_output_writers = {}
     gff_writers = {}

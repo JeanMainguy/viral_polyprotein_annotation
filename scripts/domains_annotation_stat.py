@@ -194,8 +194,8 @@ def getNonOverlappingCoveragePositionsPairs(positions):
 def initiateDomainStatFile(taxon, output_dir):
     taxon = taxon.replace(',', '').replace(' ', '_')
 
-    stat_file_peptides = '{}_domain_peptides_stat.csv'.format(taxon)
-    stat_file_domains = '{}_domain_stat.csv'.format(taxon)
+    stat_file_peptides = 'stat_domain_peptides_{}.csv'.format(taxon)
+    stat_file_domains = 'stat_domain_{}.csv'.format(taxon)
     # stat_file_cleavage_sites = '{}_domain_cleavage_sites_stat.csv'.format(taxon)
 
     # PEPTIDE
