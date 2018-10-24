@@ -1,0 +1,10 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+2	1394142	Ferret parechovirus	GCF_..	YP_009361997.1	242		0.33564814814814764
+2	1394142	Ferret parechovirus	GCF_..	YP_009361997.1	472		0.4114583333333333
+2	1394142	Ferret parechovirus	GCF_..	YP_009361997.1	784		1.2345679012345707
+2	1394142	Ferret parechovirus	GCF_..	YP_009361997.1	938		1.168000000000002
+2	1394142	Ferret parechovirus	GCF_..	YP_009361997.1	1075		0.1574074074074032
+2	1394142	Ferret parechovirus	GCF_..	YP_009361997.1	1409		0.7592592592592635
+2	1394142	Ferret parechovirus	GCF_..	YP_009361997.1	1511		0.8820435762584505
+2	1394142	Ferret parechovirus	GCF_..	YP_009361997.1	1546		0.09027777777777778
+2	1394142	Ferret parechovirus	GCF_..	YP_009361997.1	1740		0.2210648148148064

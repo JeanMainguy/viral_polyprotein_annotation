@@ -1,0 +1,70 @@
+cluster_nb	nb_sequences	nb_seq_with_annotation	window	nb_protein_in_group	nb_of_cleavage_site	nb_cleavage_from_the_same_protein	standard_deviation	round_std	group_completeness	completeness_category	average_position_in_aln	position_max	position_min	group_index	aln_validity	confidence_score	confidence_score_threshold	cluster_with_isoforms_splitted	evalue	coverage	inflation	cleavages_sites_per_seq
+3	10	10	30	9	9	0	0.4969039949999533	0.0	90.0	from 75% to 100%	108.94444444444444	108	106	0	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.49382716049382697	4	False	1e-60	60	1_8	
+3	10	10	30	9	9	0	0.0	0.0	90.0	from 75% to 100%	131.5	130	129	1	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.49382716049382713	4	False	1e-60	60	1_8	
+3	10	10	30	9	9	0	0.0	0.0	90.0	from 75% to 100%	229.5	228	227	2	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.49382716049382713	4	False	1e-60	60	1_8	
+3	10	10	30	9	9	0	0.0	0.0	90.0	from 75% to 100%	305.5	304	303	3	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.49382716049382713	4	False	1e-60	60	1_8	
+3	10	10	30	10	10	0	0.0	0.0	100.0	from 75% to 100%	810.5	809	808	4	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.11	4	False	1e-60	60	1_8	
+3	10	10	30	10	10	0	0.0	0.0	100.0	from 75% to 100%	1163.5	1162	1161	5	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.11	4	False	1e-60	60	1_8	
+3	10	10	30	4	4	0	0.0	0.0	40.0	from 25% to 50%	1390.5	1389	1388	6	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	11.5625	4	False	1e-60	60	1_8	
+5	8	8	30	8	8	0	0.0	0.0	100.0	from 75% to 100%	147.5	146	145	0	All cleavage sites groups have a good score	0.140625	4	False	1e-60	60	1_8	
+5	8	8	30	8	8	0	0.7071067811865476	1.0	100.0	from 75% to 100%	168.0	167	164	1	All cleavage sites groups have a good score	0.140625	4	False	1e-60	60	1_8	
+5	8	8	30	8	8	0	0.0	0.0	100.0	from 75% to 100%	252.5	251	250	2	All cleavage sites groups have a good score	0.140625	4	False	1e-60	60	1_8	
+5	8	8	30	8	8	0	0.0	0.0	100.0	from 75% to 100%	318.5	317	316	3	All cleavage sites groups have a good score	0.140625	4	False	1e-60	60	1_8	
+5	8	8	30	8	8	0	0.0	0.0	100.0	from 75% to 100%	753.5	752	751	4	All cleavage sites groups have a good score	0.140625	4	False	1e-60	60	1_8	
+5	8	8	30	8	8	0	1.4523687548277813	1.0	100.0	from 75% to 100%	1168.375	1168	1163	5	All cleavage sites groups have a good score	0.15625	4	False	1e-60	60	1_8	
+1	16	14	30	13	13	0	1.8998598515736107	2.0	92.85714285714286	from 75% to 100%	248.57692307692307	256	243	0	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.3186162949476552	4	False	1e-60	60	1_8	
+1	16	14	30	1	1	0	0.0	0.0	7.142857142857142	from 0 to 25%	303.5	302	301	1	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	392.0	4	False	1e-60	60	1_8	
+1	16	14	30	14	14	0	0.8601138984851641	1.0	100.0	from 75% to 100%	489.7142857142857	490	485	2	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.08454810495626872	4	False	1e-60	60	1_8	
+1	16	14	30	1	1	0	0.0	0.0	7.142857142857142	from 0 to 25%	906.5	905	904	3	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	392.0	4	False	1e-60	60	1_8	
+1	16	14	30	1	1	0	0.0	0.0	7.142857142857142	from 0 to 25%	923.5	922	921	4	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	392.0	4	False	1e-60	60	1_8	
+1	16	14	30	13	13	0	0.5756395979652218	1.0	92.85714285714286	from 75% to 100%	962.7307692307693	962	959	5	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.26035502958580287	4	False	1e-60	60	1_8	
+1	16	14	30	14	14	0	1.4953158153898798	1.0	100.0	from 75% to 100%	1029.1785714285713	1032	1025	6	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.12718658892127882	4	False	1e-60	60	1_8	
+1	16	14	30	14	14	0	0.2575393768188564	0.0	100.0	from 75% to 100%	1260.5714285714287	1260	1258	7	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.07653061224490491	4	False	1e-60	60	1_8	
+1	16	14	30	14	14	0	1.2797480619406367	1.0	100.0	from 75% to 100%	1896.4285714285713	1899	1892	8	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.10787172011661211	4	False	1e-60	60	1_8	
+1	16	14	30	14	14	0	0.12876968840942818	0.0	100.0	from 75% to 100%	1960.5357142857142	1960	1958	9	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.07653061224489333	4	False	1e-60	60	1_8	
+1	16	14	30	14	14	0	0.0	0.0	100.0	from 75% to 100%	2227.5	2226	2225	10	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.07653061224489796	4	False	1e-60	60	1_8	
+1	16	14	30	14	14	0	0.25753937681885636	0.0	100.0	from 75% to 100%	3164.4285714285716	3163	3161	11	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.07653061224490725	4	False	1e-60	60	1_8	
+4	9	7	30	1	1	0	0.0	0.0	14.285714285714285	from 0 to 25%	31.5	30	29	0	At least one cleavage site group is valid	182.0	4	False	1e-60	60	1_8	
+4	9	7	30	5	5	0	0.9797958971132713	1.0	71.42857142857143	from 50% to 75%	261.7	262	258	1	At least one cleavage site group is valid	2.703999999999999	4	False	1e-60	60	1_8	
+4	9	7	30	4	4	0	0.3535533905932738	0.0	57.14285714285714	from 50% to 75%	464.0	463	461	2	At least one cleavage site group is valid	5.9375	4	False	1e-60	60	1_8	
+4	9	7	30	1	1	0	0.0	0.0	14.285714285714285	from 0 to 25%	481.5	480	479	3	At least one cleavage site group is valid	182.0	4	False	1e-60	60	1_8	
+4	9	7	30	2	2	0	0.0	0.0	28.57142857142857	from 25% to 50%	596.5	595	594	4	At least one cleavage site group is valid	38.25	4	False	1e-60	60	1_8	
+4	9	7	30	4	4	0	1.0897247358851685	1.0	57.14285714285714	from 50% to 75%	912.25	912	908	5	At least one cleavage site group is valid	5.96875	4	False	1e-60	60	1_8	
+4	9	7	30	1	1	0	0.0	0.0	14.285714285714285	from 0 to 25%	1130.5	1129	1128	6	At least one cleavage site group is valid	182.0	4	False	1e-60	60	1_8	
+4	9	7	30	7	7	0	6.114552731152198	6.0	100.0	from 75% to 100%	1194.0714285714287	1198	1182	7	At least one cleavage site group is valid	0.7405247813411019	4	False	1e-60	60	1_8	
+4	9	7	30	7	7	0	0.45175395145262565	0.0	100.0	from 75% to 100%	1442.2142857142858	1441	1439	8	At least one cleavage site group is valid	0.16326530612245826	4	False	1e-60	60	1_8	
+4	9	7	30	2	2	0	0.5	0.0	28.57142857142857	from 25% to 50%	2053.0	2052	2050	9	At least one cleavage site group is valid	38.25	4	False	1e-60	60	1_8	
+4	9	7	30	5	5	0	0.0	0.0	71.42857142857143	from 50% to 75%	2077.5	2076	2075	10	At least one cleavage site group is valid	2.64	4	False	1e-60	60	1_8	
+4	9	7	30	1	1	0	0.0	0.0	14.285714285714285	from 0 to 25%	2118.5	2117	2116	11	At least one cleavage site group is valid	182.0	4	False	1e-60	60	1_8	
+4	9	7	30	4	4	0	0.0	0.0	57.14285714285714	from 50% to 75%	2161.5	2160	2159	12	At least one cleavage site group is valid	5.9375	4	False	1e-60	60	1_8	
+4	9	7	30	2	2	0	0.0	0.0	28.57142857142857	from 25% to 50%	2180.5	2179	2178	13	At least one cleavage site group is valid	38.25	4	False	1e-60	60	1_8	
+4	9	7	30	7	7	0	3.5699997141713715	4.0	100.0	from 75% to 100%	2484.5714285714284	2487	2478	14	At least one cleavage site group is valid	0.5218658892128253	4	False	1e-60	60	1_8	
+4	9	7	30	7	7	0	0.0	0.0	100.0	from 75% to 100%	3258.5	3257	3256	15	At least one cleavage site group is valid	0.16326530612244897	4	False	1e-60	60	1_8	
+0	83	49	30	47	90	43	17.226465427101147	17.0	95.91836734693877	from 75% to 100%	186.4	217	163	0	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.6975101856043456	4	False	1e-60	60	1_8	
+0	83	49	30	45	45	0	0.0	0.0	91.83673469387756	from 75% to 100%	324.5	323	322	1	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.0819753086419753	4	False	1e-60	60	1_8	
+0	83	49	30	47	48	1	3.6826710377417937	4.0	95.91836734693877	from 75% to 100%	407.5208333333333	413	403	2	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.10617549419043286	4	False	1e-60	60	1_8	
+0	83	49	30	49	48	2	0.44990627928670623	0.0	100.0	from 75% to 100%	951.5408163265306	953	948	3	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.022456629465613637	4	False	1e-60	60	1_8	
+0	83	49	30	49	49	3	14.852141259764533	15.0	100.0	from 75% to 100%	1423.67	1455	1398	4	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.2583340274885473	4	False	1e-60	60	1_8	
+0	83	49	30	1	1	0	0.0	0.0	2.0408163265306123	from 0 to 25%	1729.5	1728	1727	5	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	1442.0	4	False	1e-60	60	1_8	
+0	83	49	30	1	1	0	0.0	0.0	2.0408163265306123	from 0 to 25%	1749.5	1748	1747	6	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	1442.0	4	False	1e-60	60	1_8	
+0	83	49	30	1	1	0	0.0	0.0	2.0408163265306123	from 0 to 25%	1769.5	1768	1767	7	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	1442.0	4	False	1e-60	60	1_8	
+0	83	49	30	46	45	2	1.9080963702166684	2.0	93.87755102040816	from 75% to 100%	1803.9782608695652	1806	1798	8	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.0742787868825517	4	False	1e-60	60	1_8	
+0	83	49	30	1	1	0	0.0	0.0	2.0408163265306123	from 0 to 25%	1872.5	1871	1870	9	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	1442.0	4	False	1e-60	60	1_8	
+0	83	49	30	49	48	2	2.0164876412540393	2.0	100.0	from 75% to 100%	1962.5102040816328	1964	1956	10	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.040654829195318785	4	False	1e-60	60	1_8	
+0	83	49	30	48	47	2	0.0	0.0	97.95918367346938	from 75% to 100%	2629.5	2628	2627	11	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.03428819444444445	4	False	1e-60	60	1_8	
+0	83	49	30	1	1	0	0.0	0.0	2.0408163265306123	from 0 to 25%	2663.5	2662	2661	12	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	1442.0	4	False	1e-60	60	1_8	
+0	83	49	30	47	46	2	0.0	0.0	95.91836734693877	from 75% to 100%	2806.5	2805	2804	13	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.0488909008601177	4	False	1e-60	60	1_8	
+0	83	49	30	49	48	2	0.14139190265868387	0.0	100.0	from 75% to 100%	2830.5204081632655	2830	2828	14	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.02082465639317406	4	False	1e-60	60	1_8	
+0	83	49	30	47	47	0	0.6051686235458678	1.0	95.91836734693877	from 75% to 100%	3124.31914893617	3124	3120	15	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	0.04954586170694372	4	False	1e-60	60	1_8	
+0	83	49	30	1	1	0	0.0	0.0	2.0408163265306123	from 0 to 25%	3145.5	3144	3143	16	Number of valid cleavage_site groups >= minimum number of cleavage site/cds annotated	1442.0	4	False	1e-60	60	1_8	
+2	11	3	30	3	3	0	0.0	0.0	100.0	from 75% to 100%	286.5	285	284	0	All cleavage sites groups have a good score	0.4444444444444444	4	False	1e-60	60	1_8	
+2	11	3	30	3	3	0	0.0	0.0	100.0	from 75% to 100%	398.5	397	396	1	All cleavage sites groups have a good score	0.4444444444444444	4	False	1e-60	60	1_8	
+2	11	3	30	3	3	0	0.0	0.0	100.0	from 75% to 100%	636.5	635	634	2	All cleavage sites groups have a good score	0.4444444444444444	4	False	1e-60	60	1_8	
+2	11	3	30	3	3	0	0.0	0.0	100.0	from 75% to 100%	835.5	834	833	3	All cleavage sites groups have a good score	0.4444444444444444	4	False	1e-60	60	1_8	
+2	11	3	30	3	3	0	0.0	0.0	100.0	from 75% to 100%	1236.5	1236	1233	4	All cleavage sites groups have a good score	0.4444444444444444	4	False	1e-60	60	1_8	
+2	11	3	30	3	3	0	0.0	0.0	100.0	from 75% to 100%	1307.5	1306	1305	5	All cleavage sites groups have a good score	0.4444444444444444	4	False	1e-60	60	1_8	
+2	11	3	30	3	3	0	0.0	0.0	100.0	from 75% to 100%	1886.5	1885	1884	6	All cleavage sites groups have a good score	0.4444444444444444	4	False	1e-60	60	1_8	
+2	11	3	30	3	3	0	0.0	0.0	100.0	from 75% to 100%	2575.5	2574	2573	7	All cleavage sites groups have a good score	0.4444444444444444	4	False	1e-60	60	1_8	
+2	11	3	30	3	3	0	0.0	0.0	100.0	from 75% to 100%	2642.5	2641	2640	8	All cleavage sites groups have a good score	0.4444444444444444	4	False	1e-60	60	1_8	
+2	11	3	30	3	3	0	0.0	0.0	100.0	from 75% to 100%	2989.5	2988	2987	9	All cleavage sites groups have a good score	0.4444444444444444	4	False	1e-60	60	1_8	
+2	11	3	30	3	3	0	0.0	0.0	100.0	from 75% to 100%	3582.5	3581	3580	10	All cleavage sites groups have a good score	0.4444444444444444	4	False	1e-60	60	1_8	

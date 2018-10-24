@@ -1,0 +1,7 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+1	487492	Mikania micrantha mosaic virus	GCF_..	YP_002158824.1	321		3.6351165980795628
+1	487492	Mikania micrantha mosaic virus	GCF_..	YP_002158824.1	912		0.36108284144107516
+1	487492	Mikania micrantha mosaic virus	GCF_..	YP_002158824.1	940		0.330078125
+1	487492	Mikania micrantha mosaic virus	GCF_..	YP_002158824.1	1148		0.3154296875
+11	487492	Mikania micrantha mosaic virus	GCF_..	YP_002158823.1	420		0.75
+11	487492	Mikania micrantha mosaic virus	GCF_..	YP_002158823.1	822		0.75

@@ -1,0 +1,4 @@
+# black list of annotated cds
+# Identification from irrelevant pattern
+119222|NP_620053.1
+# Identification from conflict between peptide annotation and domain annotation

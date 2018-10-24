@@ -1,0 +1,3 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+6	370833	Tomato torrado virus	GCF_..	YP_001040018.1	732		0.19444444444444445
+6	370833	Tomato torrado virus	GCF_..	YP_001040018.1	974		0.19444444444444445

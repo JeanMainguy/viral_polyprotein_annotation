@@ -1,7 +1,0 @@
-cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
-4	1562065	Norway rat pegivirus	GCF_..	YP_009109602.1	222		2.5839999999999987
-4	1562065	Norway rat pegivirus	GCF_..	YP_009109602.1	1014		0.8017492711370203
-4	1562065	Norway rat pegivirus	GCF_..	YP_009109602.1	1259		0.07871720116617678
-4	1562065	Norway rat pegivirus	GCF_..	YP_009109602.1	1887		2.44
-4	1562065	Norway rat pegivirus	GCF_..	YP_009109602.1	2218		0.4169096209912563
-4	1562065	Norway rat pegivirus	GCF_..	YP_009109602.1	2773		0.02040816326530612

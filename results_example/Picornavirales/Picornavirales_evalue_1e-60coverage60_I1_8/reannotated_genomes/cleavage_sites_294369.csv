@@ -1,0 +1,4 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+7	294369	Solenopsis invicta virus-1	GCF_..	YP_164441.1	429		2.0
+7	294369	Solenopsis invicta virus-1	GCF_..	YP_164441.1	553		2.0
+7	294369	Solenopsis invicta virus-1	GCF_..	YP_164441.1	925		2.0

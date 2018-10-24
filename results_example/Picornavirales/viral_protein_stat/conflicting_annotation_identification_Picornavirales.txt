@@ -1,0 +1,85 @@
+Identification of conflict between domain annotations and cleavage site annotations:
+Parameters:
+Maximum overlapping distance (in aa or in percentage of the domain length) which is consider as accepatble:
+acceptable_overlap_threshold = 15aa or 10.0% of the domain length
+A domain annotation need to be found overlapping in 50.0% of cases to be ignored by the program
+
+The distance of overlapping corresponds to the smallest distance of the domain on the right or on the left of the cleavage site 
+----------------------------------------------------------------------------------------------------
+Conflict with the domain annotation PS50507
+The domain annotation is found in 114 sequences
+It is overlapping cleavage sites in 113 sequences
+In 1 sequences the overlapping distance is greater than the given treshold
+   Sequence 12274 | NP_619689.1 : overlapping distance 57aa (45.6% of the domain lenght)
+
+----------------------------------------------------------------------------------------------------
+Conflict with the domain annotation PF00680
+The domain annotation is found in 114 sequences
+It is overlapping cleavage sites in 109 sequences
+In 4 sequences the overlapping distance is greater than the given treshold
+   Sequence 470166 | YP_001976147.1 : overlapping distance 183aa (42.4% of the domain lenght)
+   Sequence 370833 | YP_001039627.1 : overlapping distance 167aa (39.9% of the domain lenght)
+   Sequence 12274 | NP_619689.1 : overlapping distance 174aa (36.2% of the domain lenght)
+   Sequence 1675864 | YP_009165593.1 : overlapping distance 48aa (10.8% of the domain lenght)
+
+----------------------------------------------------------------------------------------------------
+Conflict with the domain annotation cd01699
+The domain annotation is found in 114 sequences
+It is overlapping cleavage sites in 110 sequences
+In 4 sequences the overlapping distance is greater than the given treshold
+   Sequence 470166 | YP_001976147.1 : overlapping distance 34aa (12.0% of the domain lenght)
+   Sequence 370833 | YP_001039627.1 : overlapping distance 31aa (11.0% of the domain lenght)
+   Sequence 12274 | NP_619689.1 : overlapping distance 123aa (43.0% of the domain lenght)
+   Sequence 1675864 | YP_009165593.1 : overlapping distance 25aa (8.6% of the domain lenght)
+
+----------------------------------------------------------------------------------------------------
+Conflict with the domain annotation PS51218
+The domain annotation is found in 114 sequences
+It is overlapping cleavage sites in 108 sequences
+In 6 sequences the overlapping distance is greater than the given treshold
+   Sequence 470166 | YP_001976147.1 : overlapping distance 71aa (42.0% of the domain lenght)
+   Sequence 1481465 | YP_009165993.1 : overlapping distance 71aa (42.0% of the domain lenght)
+   Sequence 370833 | YP_001039627.1 : overlapping distance 70aa (41.7% of the domain lenght)
+   Sequence 661101 | YP_003097229.1 : overlapping distance 85aa (50.3% of the domain lenght)
+   Sequence 1675864 | YP_009165593.1 : overlapping distance 65aa (37.4% of the domain lenght)
+   Sequence 487492 | YP_002158824.1 : overlapping distance 112aa (67.1% of the domain lenght)
+
+----------------------------------------------------------------------------------------------------
+Conflict with the domain annotation PF00910
+The domain annotation is found in 114 sequences
+It is overlapping cleavage sites in 108 sequences
+In 2 sequences the overlapping distance is greater than the given treshold
+   Sequence 661101 | YP_003097229.1 : overlapping distance 23aa (21.5% of the domain lenght)
+   Sequence 487492 | YP_002158824.1 : overlapping distance 49aa (47.1% of the domain lenght)
+
+----------------------------------------------------------------------------------------------------
+Conflict with the domain annotation cd00205
+The domain annotation is found in 216 sequences
+It is overlapping cleavage sites in 211 sequences
+In 4 sequences the overlapping distance is greater than the given treshold
+   Sequence 1534547 | YP_009054901.1 : overlapping distance 54aa (26.1% of the domain lenght)
+   Sequence 1675864 | YP_009165593.1 : overlapping distance 118aa (65.2% of the domain lenght)
+   Sequence 1675864 | YP_009165593.1 : overlapping distance 92aa (44.2% of the domain lenght)
+   Sequence 1534548 | YP_009054902.1 : overlapping distance 48aa (22.1% of the domain lenght)
+
+----------------------------------------------------------------------------------------------------
+Conflict with the domain annotation PF00073
+The domain annotation is found in 190 sequences
+It is overlapping cleavage sites in 188 sequences
+In 2 sequences the overlapping distance is greater than the given treshold
+   Sequence 2220002 | YP_009480535.1 : overlapping distance 31aa (21.7% of the domain lenght)
+   Sequence 928289 | YP_004564600.1 : overlapping distance 22aa (12.1% of the domain lenght)
+
+----------------------------------------------------------------------------------------------------
+Conflict with the domain annotation PF02226
+The domain annotation is found in 18 sequences
+It is overlapping cleavage sites in 17 sequences
+In 1 sequences the overlapping distance is greater than the given treshold
+   Sequence 1603962 | YP_009118268.1 : overlapping distance 19aa (30.6% of the domain lenght)
+
+====================================================================================================
+45 different domain annotations have been found 1376 times in the 149 analysed sequences
+   Domain annotations that do not overlap cleavage sites: 34
+   Domain annotations overlapping but ignored because they overlap in more than 50.0% of the cases: 3
+   Domain annotations in conflict with cleavage sites; 8
+   Sequence annotation in conflict with domain annotation: 24

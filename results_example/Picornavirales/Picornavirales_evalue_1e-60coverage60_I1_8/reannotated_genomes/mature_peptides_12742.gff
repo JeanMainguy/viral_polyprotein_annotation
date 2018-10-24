@@ -1,0 +1,4 @@
+##gff-version 3
+NP_620559.1	.	polypeptide	1	3085	.	.	.	Dbxref=taxon:12742
+NP_620559.1	.	mat_peptide	1	1084	.	.	.	Dbxref=taxon:12742
+NP_620559.1	.	mat_peptide	1085	3085	.	.	.	Dbxref=taxon:12742

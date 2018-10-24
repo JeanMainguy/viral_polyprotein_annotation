@@ -1,0 +1,4 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+7	294365	Israeli acute paralysis virus	GCF_..	YP_001040003.2	318		2.0
+7	294365	Israeli acute paralysis virus	GCF_..	YP_001040003.2	387		2.0
+7	294365	Israeli acute paralysis virus	GCF_..	YP_001040003.2	688		2.0

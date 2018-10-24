@@ -1,0 +1,9 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+0	1987144	Hedgehog hepatovirus Igel8Erieur2014	GCF_..	YP_009179215.1	26		0.4365868167902371
+0	1987144	Hedgehog hepatovirus Igel8Erieur2014	GCF_..	YP_009179215.1	255		0.1090495867768595
+0	1987144	Hedgehog hepatovirus Igel8Erieur2014	GCF_..	YP_009179215.1	499		0.4067230224609375
+0	1987144	Hedgehog hepatovirus Igel8Erieur2014	GCF_..	YP_009179215.1	917		0.5810249307479224
+0	1987144	Hedgehog hepatovirus Igel8Erieur2014	GCF_..	YP_009179215.1	1409		0.10050434695042154
+0	1987144	Hedgehog hepatovirus Igel8Erieur2014	GCF_..	YP_009179215.1	1490		0.050774134790529946
+0	1987144	Hedgehog hepatovirus Igel8Erieur2014	GCF_..	YP_009179215.1	1509		0.10667818509615246
+0	1987144	Hedgehog hepatovirus Igel8Erieur2014	GCF_..	YP_009179215.1	1732		0.04139553530912586

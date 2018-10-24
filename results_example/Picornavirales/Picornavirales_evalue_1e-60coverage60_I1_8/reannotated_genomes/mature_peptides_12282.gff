@@ -1,0 +1,7 @@
+##gff-version 3
+NP_919040.1	.	polypeptide	1	2304	.	.	.	Dbxref=taxon:12282
+NP_919040.1	.	mat_peptide	1	642	.	.	.	Dbxref=taxon:12282
+NP_919040.1	.	mat_peptide	643	1241	.	.	.	Dbxref=taxon:12282
+NP_919040.1	.	mat_peptide	1242	1268	.	.	.	Dbxref=taxon:12282
+NP_919040.1	.	mat_peptide	1269	1485	.	.	.	Dbxref=taxon:12282
+NP_919040.1	.	mat_peptide	1486	2304	.	.	.	Dbxref=taxon:12282

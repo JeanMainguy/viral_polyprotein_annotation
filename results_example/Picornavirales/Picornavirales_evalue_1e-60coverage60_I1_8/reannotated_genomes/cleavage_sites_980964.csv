@@ -1,0 +1,10 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+0	980964	Turkey hepatitis virus 2993D	GCF_..	YP_007974220.1	10		0.4365868167902371
+0	980964	Turkey hepatitis virus 2993D	GCF_..	YP_007974220.1	290		0.1090495867768595
+0	980964	Turkey hepatitis virus 2993D	GCF_..	YP_007974220.1	552		0.4067230224609375
+0	980964	Turkey hepatitis virus 2993D	GCF_..	YP_007974220.1	851		2.8347000697035565
+0	980964	Turkey hepatitis virus 2993D	GCF_..	YP_007974220.1	1353		0.5810249307479224
+0	980964	Turkey hepatitis virus 2993D	GCF_..	YP_007974220.1	1935		0.10050434695042154
+0	980964	Turkey hepatitis virus 2993D	GCF_..	YP_007974220.1	2112		0.050774134790529946
+0	980964	Turkey hepatitis virus 2993D	GCF_..	YP_007974220.1	2135		0.10667818509615246
+0	980964	Turkey hepatitis virus 2993D	GCF_..	YP_007974220.1	2340		0.04139553530912586

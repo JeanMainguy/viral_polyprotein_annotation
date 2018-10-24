@@ -1,0 +1,6 @@
+##gff-version 3
+NP_066242.1	.	polypeptide	1	914	.	.	.	Dbxref=taxon:92444
+NP_066242.1	.	mat_peptide	1	325	.	.	.	Dbxref=taxon:92444
+NP_066242.1	.	mat_peptide	326	407	.	.	.	Dbxref=taxon:92444
+NP_066242.1	.	mat_peptide	408	707	.	.	.	Dbxref=taxon:92444
+NP_066242.1	.	mat_peptide	708	914	.	.	.	Dbxref=taxon:92444

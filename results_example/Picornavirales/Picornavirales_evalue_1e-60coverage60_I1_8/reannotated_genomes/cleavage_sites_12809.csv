@@ -1,0 +1,5 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+1	12809	Raspberry ringspot virus	GCF_..	NP_944487.1	632		3.6351165980795628
+1	12809	Raspberry ringspot virus	GCF_..	NP_944487.1	1233		0.36108284144107516
+1	12809	Raspberry ringspot virus	GCF_..	NP_944487.1	1259		0.330078125
+1	12809	Raspberry ringspot virus	GCF_..	NP_944487.1	1474		0.3154296875

@@ -1,0 +1,3 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+16	167161	Strawberry mottle virus	GCF_..	NP_599087.1	314		2.0
+16	167161	Strawberry mottle virus	GCF_..	NP_599087.1	1203		2.0

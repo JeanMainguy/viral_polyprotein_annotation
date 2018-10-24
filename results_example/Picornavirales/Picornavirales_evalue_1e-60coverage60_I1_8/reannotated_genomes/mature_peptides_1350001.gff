@@ -1,0 +1,12 @@
+##gff-version 3
+YP_009030047.1	.	polypeptide	1	2839	.	.	.	Dbxref=taxon:1350001
+YP_009030047.1	.	mat_peptide	1	5	.	.	.	Dbxref=taxon:1350001
+YP_009030047.1	.	mat_peptide	6	46	.	.	.	Dbxref=taxon:1350001
+YP_009030047.1	.	mat_peptide	47	326	.	.	.	Dbxref=taxon:1350001
+YP_009030047.1	.	mat_peptide	327	588	.	.	.	Dbxref=taxon:1350001
+YP_009030047.1	.	mat_peptide	589	1366	.	.	.	Dbxref=taxon:1350001
+YP_009030047.1	.	mat_peptide	1367	1959	.	.	.	Dbxref=taxon:1350001
+YP_009030047.1	.	mat_peptide	1960	2135	.	.	.	Dbxref=taxon:1350001
+YP_009030047.1	.	mat_peptide	2136	2160	.	.	.	Dbxref=taxon:1350001
+YP_009030047.1	.	mat_peptide	2161	2365	.	.	.	Dbxref=taxon:1350001
+YP_009030047.1	.	mat_peptide	2366	2839	.	.	.	Dbxref=taxon:1350001

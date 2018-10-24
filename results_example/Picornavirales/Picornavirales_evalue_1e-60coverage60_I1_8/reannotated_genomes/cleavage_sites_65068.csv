@@ -1,0 +1,5 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+1	65068	Peach rosette mosaic virus	GCF_..	YP_009351878.1	535		3.6351165980795628
+1	65068	Peach rosette mosaic virus	GCF_..	YP_009351878.1	1158		0.36108284144107516
+1	65068	Peach rosette mosaic virus	GCF_..	YP_009351878.1	1187		0.330078125
+1	65068	Peach rosette mosaic virus	GCF_..	YP_009351878.1	1428		0.3154296875

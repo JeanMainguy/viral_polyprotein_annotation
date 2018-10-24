@@ -1,0 +1,7 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+3	328061	Radish mosaic virus	GCF_..	YP_001911127.1	475		0.140625
+3	328061	Radish mosaic virus	GCF_..	YP_001911127.1	849		0.18749999999999645
+1	328061	Radish mosaic virus	GCF_..	YP_001911126.1	306		3.6351165980795628
+1	328061	Radish mosaic virus	GCF_..	YP_001911126.1	908		0.36108284144107516
+1	328061	Radish mosaic virus	GCF_..	YP_001911126.1	937		0.330078125
+1	328061	Radish mosaic virus	GCF_..	YP_001911126.1	1147		0.3154296875

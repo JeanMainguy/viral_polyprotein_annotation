@@ -1,0 +1,12 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+2	188938	Pronghorn antelope pestivirus	GCF_..	YP_009026415.1	168		0.4444444444444444
+2	188938	Pronghorn antelope pestivirus	GCF_..	YP_009026415.1	265		0.4444444444444444
+2	188938	Pronghorn antelope pestivirus	GCF_..	YP_009026415.1	492		0.4444444444444444
+2	188938	Pronghorn antelope pestivirus	GCF_..	YP_009026415.1	686		0.4444444444444444
+2	188938	Pronghorn antelope pestivirus	GCF_..	YP_009026415.1	1058		0.4444444444444444
+2	188938	Pronghorn antelope pestivirus	GCF_..	YP_009026415.1	1128		0.4444444444444444
+2	188938	Pronghorn antelope pestivirus	GCF_..	YP_009026415.1	1587		0.4444444444444444
+2	188938	Pronghorn antelope pestivirus	GCF_..	YP_009026415.1	2270		0.4444444444444444
+2	188938	Pronghorn antelope pestivirus	GCF_..	YP_009026415.1	2332		0.4444444444444444
+2	188938	Pronghorn antelope pestivirus	GCF_..	YP_009026415.1	2679		0.4444444444444444
+2	188938	Pronghorn antelope pestivirus	GCF_..	YP_009026415.1	3179		0.4444444444444444

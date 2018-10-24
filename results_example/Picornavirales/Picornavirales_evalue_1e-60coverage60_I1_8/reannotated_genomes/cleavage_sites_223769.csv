@@ -1,0 +1,6 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+1	223769	Grapevine Anatolian ringspot virus	GCF_..	YP_006576510.1	586		3.6351165980795628
+1	223769	Grapevine Anatolian ringspot virus	GCF_..	YP_006576510.1	1183		0.36108284144107516
+1	223769	Grapevine Anatolian ringspot virus	GCF_..	YP_006576510.1	1210		0.330078125
+1	223769	Grapevine Anatolian ringspot virus	GCF_..	YP_006576510.1	1420		0.3154296875
+4	223769	Grapevine Anatolian ringspot virus	GCF_..	YP_006576511.1	842		0.4166666666666667

@@ -1,0 +1,7 @@
+##gff-version 3
+YP_004382746.1	.	polypeptide	1	2112	.	.	.	Dbxref=taxon:12615
+YP_004382746.1	.	mat_peptide	1	533	.	.	.	Dbxref=taxon:12615
+YP_004382746.1	.	mat_peptide	534	1123	.	.	.	Dbxref=taxon:12615
+YP_004382746.1	.	mat_peptide	1124	1149	.	.	.	Dbxref=taxon:12615
+YP_004382746.1	.	mat_peptide	1150	1392	.	.	.	Dbxref=taxon:12615
+YP_004382746.1	.	mat_peptide	1393	2112	.	.	.	Dbxref=taxon:12615

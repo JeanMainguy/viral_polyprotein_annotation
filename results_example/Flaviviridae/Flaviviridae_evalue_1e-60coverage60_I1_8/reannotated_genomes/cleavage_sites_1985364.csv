@@ -1,0 +1,7 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+4	1985364	Pegivirus K	GCF_..	YP_009361867.1	15		2.703999999999999
+4	1985364	Pegivirus K	GCF_..	YP_009361867.1	745		0.7405247813411019
+4	1985364	Pegivirus K	GCF_..	YP_009361867.1	989		0.16326530612245826
+4	1985364	Pegivirus K	GCF_..	YP_009361867.1	1620		2.64
+4	1985364	Pegivirus K	GCF_..	YP_009361867.1	1963		0.5218658892128253
+4	1985364	Pegivirus K	GCF_..	YP_009361867.1	2399		0.16326530612244897

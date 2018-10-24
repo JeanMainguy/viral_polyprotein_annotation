@@ -1,0 +1,4 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+7	1432856	Formica exsecta virus 1	GCF_..	YP_008888536.1	262		2.0
+7	1432856	Formica exsecta virus 1	GCF_..	YP_008888536.1	332		2.0
+7	1432856	Formica exsecta virus 1	GCF_..	YP_008888536.1	630		2.0

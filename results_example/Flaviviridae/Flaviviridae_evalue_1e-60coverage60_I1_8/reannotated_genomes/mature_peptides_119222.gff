@@ -1,0 +1,14 @@
+##gff-version 3
+NP_620053.1	.	polypeptide	1	3989	.	.	.	Dbxref=taxon:119222
+NP_620053.1	.	mat_peptide	1	169	.	.	.	Dbxref=taxon:119222
+NP_620053.1	.	mat_peptide	170	267	.	.	.	Dbxref=taxon:119222
+NP_620053.1	.	mat_peptide	268	494	.	.	.	Dbxref=taxon:119222
+NP_620053.1	.	mat_peptide	495	689	.	.	.	Dbxref=taxon:119222
+NP_620053.1	.	mat_peptide	690	1063	.	.	.	Dbxref=taxon:119222
+NP_620053.1	.	mat_peptide	1064	1133	.	.	.	Dbxref=taxon:119222
+NP_620053.1	.	mat_peptide	1134	1680	.	.	.	Dbxref=taxon:119222
+NP_620053.1	.	mat_peptide	1681	2363	.	.	.	Dbxref=taxon:119222
+NP_620053.1	.	mat_peptide	2364	2427	.	.	.	Dbxref=taxon:119222
+NP_620053.1	.	mat_peptide	2428	2774	.	.	.	Dbxref=taxon:119222
+NP_620053.1	.	mat_peptide	2775	3271	.	.	.	Dbxref=taxon:119222
+NP_620053.1	.	mat_peptide	3272	3989	.	.	.	Dbxref=taxon:119222

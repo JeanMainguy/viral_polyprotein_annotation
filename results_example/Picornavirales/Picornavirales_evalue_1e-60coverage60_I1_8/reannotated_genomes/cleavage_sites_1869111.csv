@@ -1,0 +1,6 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+8	1869111	Dioscorea mosaic-associated virus	GCF_..	YP_009316187.1	430		3.7777777777777777
+8	1869111	Dioscorea mosaic-associated virus	GCF_..	YP_009316187.1	940		3.9259259259259176
+8	1869111	Dioscorea mosaic-associated virus	GCF_..	YP_009316187.1	961		3.7777777777777524
+8	1869111	Dioscorea mosaic-associated virus	GCF_..	YP_009316187.1	1188		0.4375
+17	1869111	Dioscorea mosaic-associated virus	GCF_..	YP_009316179.1	393		2.0

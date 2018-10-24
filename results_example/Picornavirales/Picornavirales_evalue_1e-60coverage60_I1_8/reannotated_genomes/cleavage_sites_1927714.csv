@@ -1,0 +1,5 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+1	1927714	Soybean latent spherical virus	GCF_..	YP_009330271.1	574		3.6351165980795628
+1	1927714	Soybean latent spherical virus	GCF_..	YP_009330271.1	1192		0.36108284144107516
+1	1927714	Soybean latent spherical virus	GCF_..	YP_009330271.1	1221		0.330078125
+1	1927714	Soybean latent spherical virus	GCF_..	YP_009330271.1	1459		0.3154296875

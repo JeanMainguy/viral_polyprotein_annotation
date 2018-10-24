@@ -1,0 +1,9 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+0	1564115	Bovine picornavirus	GCF_..	YP_009116874.1	4		0.6517349467852449
+0	1564115	Bovine picornavirus	GCF_..	YP_009116874.1	99		0.4365868167902371
+0	1564115	Bovine picornavirus	GCF_..	YP_009116874.1	336		0.1090495867768595
+0	1564115	Bovine picornavirus	GCF_..	YP_009116874.1	994		0.5810249307479224
+0	1564115	Bovine picornavirus	GCF_..	YP_009116874.1	1408		0.10050434695042154
+0	1564115	Bovine picornavirus	GCF_..	YP_009116874.1	1505		0.050774134790529946
+0	1564115	Bovine picornavirus	GCF_..	YP_009116874.1	1526		0.10667818509615246
+0	1564115	Bovine picornavirus	GCF_..	YP_009116874.1	1753		0.04139553530912586

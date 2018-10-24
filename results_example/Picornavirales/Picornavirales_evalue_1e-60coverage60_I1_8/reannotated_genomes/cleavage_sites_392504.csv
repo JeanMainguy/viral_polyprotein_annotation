@@ -1,0 +1,7 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+3	392504	Turnip ringspot virus	GCF_..	YP_003193666.1	469		0.140625
+3	392504	Turnip ringspot virus	GCF_..	YP_003193666.1	843		0.18749999999999645
+1	392504	Turnip ringspot virus	GCF_..	YP_003193665.1	309		3.6351165980795628
+1	392504	Turnip ringspot virus	GCF_..	YP_003193665.1	910		0.36108284144107516
+1	392504	Turnip ringspot virus	GCF_..	YP_003193665.1	939		0.330078125
+1	392504	Turnip ringspot virus	GCF_..	YP_003193665.1	1149		0.3154296875

@@ -1,0 +1,12 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+2	1873455	Atypical porcine pestivirus 1	GCF_..	YP_009268709.1	180		0.4444444444444444
+2	1873455	Atypical porcine pestivirus 1	GCF_..	YP_009268709.1	291		0.4444444444444444
+2	1873455	Atypical porcine pestivirus 1	GCF_..	YP_009268709.1	501		0.4444444444444444
+2	1873455	Atypical porcine pestivirus 1	GCF_..	YP_009268709.1	700		0.4444444444444444
+2	1873455	Atypical porcine pestivirus 1	GCF_..	YP_009268709.1	941		0.4444444444444444
+2	1873455	Atypical porcine pestivirus 1	GCF_..	YP_009268709.1	1008		0.4444444444444444
+2	1873455	Atypical porcine pestivirus 1	GCF_..	YP_009268709.1	1319		0.4444444444444444
+2	1873455	Atypical porcine pestivirus 1	GCF_..	YP_009268709.1	2006		0.4444444444444444
+2	1873455	Atypical porcine pestivirus 1	GCF_..	YP_009268709.1	2073		0.4444444444444444
+2	1873455	Atypical porcine pestivirus 1	GCF_..	YP_009268709.1	2412		0.4444444444444444
+2	1873455	Atypical porcine pestivirus 1	GCF_..	YP_009268709.1	2915		0.4444444444444444

@@ -1,0 +1,270 @@
+taxon_id	nb_protein	has_annotated_poly	nb_polyprotein	has_peptide	nb_peptides	taxonomy
+66834	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Cripavirus
+92444	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Aparavirus
+470166	3	True	1	TRUE	6	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus
+89463	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus
+1460071	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus
+12131	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+367301	2	True	1	TRUE	8	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;unassigned Secoviridae
+2003650	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Cosavirus
+436447	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus
+1425364	3	True	1	TRUE	4	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus
+294369	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Aparavirus
+223769	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+1813613	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+1027947	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;unclassified Dicistroviridae
+1228012	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus
+170621	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus
+1481453	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Mosavirus
+1410467	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;unclassified Iflaviridae
+1487185	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus;unclassified Iflavirus
+1002918	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Sapelovirus
+674971	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unassigned Picornavirales;Labyrnavirus
+173976	2	True	1	TRUE	7	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+1002921	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Sapelovirus;Sapelovirus A
+194965	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Kobuvirus
+1648483	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;environmental samples
+1926969	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+1603964	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1330520	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+263531	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+1481465	3	True	1	TRUE	5	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus;unclassified Torradovirus
+324900	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Marnaviridae;Marnavirus
+70796	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Tremovirus
+2029771	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+2003651	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Cosavirus
+1983569	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;unclassified Dicistroviridae
+511755	2	True	2	TRUE	17	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Cardiovirus
+434309	2	True	2	TRUE	17	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Cardiovirus
+204711	3	True	2	TRUE	17	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Cardiovirus
+12064	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+1432857	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus;unclassified Iflavirus
+693066	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Aphthovirus
+1926968	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;unclassified Dicistroviridae
+2220002	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+1603963	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1330491	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Cosavirus
+12262	2	True	1	TRUE	8	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus
+1826059	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+1345661	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;unclassified Iflaviridae
+370833	3	True	1	TRUE	8	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus
+1708572	1	True	1	TRUE	9	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Hepatovirus
+1606765	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Aphthovirus;unclassified Aphthovirus
+1562064	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Hunnivirus;unclassified Hunnivirus
+81583	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Triatovirus
+439016	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;environmental samples
+1661395	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1766557	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Gallivirus;unclassified Gallivirus
+1648484	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;environmental samples
+1350001	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Megrivirus;unclassified Megrivirus
+2018471	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus;unclassified Iflavirus
+1888309	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+191547	2	True	1	TRUE	7	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+1935922	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus;unclassified Nepovirus
+2003501	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Mischivirus
+1345662	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;unclassified Iflaviridae
+28351	2	True	1	TRUE	8	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;unassigned Secoviridae
+649890	2	True	1	TRUE	8	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus
+12777	1	True	1	TRUE	7	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sequivirus
+1452516	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Kobuvirus;unclassified Kobuvirus
+1398149	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Potamipivirus
+232800	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus
+1522179	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unassigned Picornavirales;Bacillarnavirus;unclassified Bacillarnavirus
+1776109	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;unclassified Dicistroviridae
+1511784	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Pasivirus
+64141	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus;Enterovirus G
+1233383	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Cosavirus;unclassified Cosavirus
+1521188	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus
+257464	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+240555	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus
+12615	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+1566869	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;unclassified Iflaviridae
+1911442	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;unclassified Dicistroviridae
+1916650	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;unclassified Dicistroviridae
+1931370	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+1330521	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+1330521_1	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+1582094	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Cosavirus;unclassified Cosavirus
+1439369	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Limnipivirus
+1416021	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Sakobuvirus
+1781241	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+1987722	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Megrivirus;unclassified Megrivirus
+2016448	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+661101	3	True	1	TRUE	7	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus;unclassified Torradovirus
+12274	3	False	0	TRUE	5	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+68876	2	True	1	TRUE	4	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Aparavirus
+1074864	1	True	1	TRUE	14	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1929150	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+328061	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus
+1534547	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1654357	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;unclassified Iflaviridae
+1766559	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1193974	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+1987144	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Hepatovirus
+1966007	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Kunsagivirus;unclassified Kunsagivirus
+12271	2	True	1	TRUE	8	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+12275	2	True	1	TRUE	6	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+1926511	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+64698	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Triatovirus
+573993	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unassigned Picornavirales;Bacillarnavirus
+1690666	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus;unclassified Iflavirus
+1074865	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1746030	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Sicinivirus;unclassified Sicinivirus
+1604871	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+932662	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;unclassified Dicistroviridae
+392504	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus;unclassified Comovirus
+1675864	1	True	1	TRUE	9	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;unclassified Iflaviridae
+172314	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Parechovirus;unclassified Parechovirus
+51354	1	True	1	TRUE	7	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Waikavirus
+12261	2	True	1	TRUE	8	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus
+167161	2	False	0	TRUE	5	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;unassigned Secoviridae
+1965238	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;unclassified Iflaviridae
+1313215	1	True	1	TRUE	10	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Kobuvirus
+1089138	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+310907	1	True	1	TRUE	15	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+64279	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Cripavirus
+686983	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Sapelovirus
+980964	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Megrivirus
+390157	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Senecavirus
+1810396	3	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus
+1987145	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Hepatovirus
+12092	2	True	2	TRUE	23	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Hepatovirus
+1795648	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+1902501	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Rosavirus;unclassified Rosavirus
+12282	2	True	1	TRUE	3	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+1663127	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+586420	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Cosavirus
+1931371	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+463676	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+47681	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+138950	1	True	1	TRUE	19	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+1506581	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1432856	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;unclassified Dicistroviridae
+458132	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus
+1983535	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+1906245	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus;unclassified Iflavirus
+47001	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Erbovirus
+12264	5	True	3	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus
+1541119	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus
+1483681	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1358807	3	True	1	TRUE	4	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus
+65068	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+138949	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+2054920	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;unclassified Iflaviridae
+871700	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Oscivirus
+871701	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Oscivirus
+92395	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Triatovirus
+1464786	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;unclassified Iflaviridae
+233784	2	False	0	TRUE	5	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+1911104	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;unclassified Iflaviridae
+1720595	1	True	1	TRUE	7	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Waikavirus;unclassified Waikavirus
+101688	2	True	1	TRUE	9	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus
+1534545	1	True	1	TRUE	10	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Avisivirus
+2005444	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Cripavirus;unclassified Cripavirus
+1927714	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus;unclassified Nepovirus
+1591444	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;unclassified Iflaviridae
+1578826	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Torchivirus
+1431464	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Hunnivirus
+487492	2	True	1	TRUE	7	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus
+50817	2	True	1	TRUE	8	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus
+1511807	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Rosavirus
+1931369	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+1958778	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus;unclassified Iflavirus
+2013564	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1547495	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1902502	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Rosavirus;unclassified Rosavirus
+12273	2	True	1	TRUE	7	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+103442	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Triatovirus
+1196647	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+12260	2	True	1	TRUE	9	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus
+118140	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Teschovirus
+2065211	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Passerivirus;unclassified Passerivirus
+128790	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus
+359987	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unassigned Picornavirales;Bacillarnavirus
+1648481	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;environmental samples
+147711	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+1541211	0	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Cripavirus;unclassified Cripavirus
+1330524	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+651733	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1214230	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Gallivirus
+1564115	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1476584	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus;unclassified Cheravirus
+1745250	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Hepatovirus;unclassified Hepatovirus
+1561160	3	True	1	TRUE	4	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Torradovirus
+1629132	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;unclassified Iflaviridae
+1641896	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1813615	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+1006061	1	True	1	TRUE	14	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Avihepatovirus
+198112	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus
+209529	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Cripavirus
+138951	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+1769780	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Cripavirus;unclassified Cripavirus
+1534550	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Gallivirus;unclassified Gallivirus
+1432135	2	True	1	TRUE	8	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus
+1768064	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Hepatovirus;unclassified Hepatovirus
+1869111	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;unassigned Secoviridae
+1958775	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Kunsagivirus;unclassified Kunsagivirus
+1482734	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1394142	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Parechovirus
+1936269	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus;unclassified Iflavirus
+471728	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Aquamavirus
+1659220	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Kobuvirus
+1041883	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;unclassified Dicistroviridae
+1659219	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Kobuvirus;unclassified Kobuvirus
+1603962	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Rabovirus
+12809	2	True	1	TRUE	2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+142102	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Aparavirus
+1987140	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Hepatovirus
+1926996	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+1565990	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1926967	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;unclassified Dicistroviridae
+1836608	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Kobuvirus;unclassified Kobuvirus
+294365	3	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Aparavirus
+2003652	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Cosavirus
+1960206	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Megrivirus;unclassified Megrivirus
+138948	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+12280	2	True	1	TRUE	8	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+35287	1	True	1	TRUE	7	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Waikavirus
+1958776	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1074213	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Kobuvirus;unclassified Kobuvirus
+1108810	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+76875	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Fabavirus
+871699	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Passerivirus
+1920698	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;unclassified Iflaviridae
+1755588	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Sicinivirus
+1111710	1	True	1	TRUE	2	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus
+1849328	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Enterovirus
+928289	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1105381	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+1972700	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus;unclassified Iflavirus
+1534548	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1648482	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;environmental samples
+1294177	1	True	1	TRUE	10	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Parechovirus
+1654355	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+12136	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Cripavirus
+47416	2	True	1	TRUE	6	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Sadwavirus
+1156769	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Kobuvirus
+569195	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Kobuvirus
+1136133	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Kobuvirus
+1195365	1	True	1	TRUE	12	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Mischivirus
+12742	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Iflaviridae;Iflavirus
+257463	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus
+1330070	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Megrivirus
+439015	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;environmental samples
+65743	2	True	1	TRUE	7	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+195054	1	True	1	TRUE	10	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Parechovirus;unclassified Parechovirus
+1223302	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Limnipivirus
+748667	2	True	1	TRUE	8	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Nepovirus
+1074863	1	True	1	TRUE	14	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+1150861	2	True	2	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Dicipivirus
+1958777	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Sapelovirus;unclassified Sapelovirus
+1105380	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+1534544	1	True	1	TRUE	11	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+12263	2	True	1	TRUE	8	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Comovirinae;Comovirus
+359812	2	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Dicistroviridae;Triatovirus
+1120751	2	True	1	TRUE	7	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;unassigned Secoviridae
+1534546	1	True	1	TRUE	10	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Avisivirus
+202566	2	True	1	TRUE	9	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Secoviridae;Cheravirus
+1912234	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;unclassified Picornavirales
+1964370	1	False	0	FALSE	0	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae
+12104	2	True	2	TRUE	16	Viruses;ssRNA viruses;ssRNA positive-strand viruses, no DNA stage;Picornavirales;Picornaviridae;Cardiovirus

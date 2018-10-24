@@ -1,2 +1,7 @@
+WARNING:root:Duplicated taxon id: taxon id 1330521 is found in more than one genbank file.. new_taxon_id used: 1330521_1
 WARNING:root:Duplicated taxon id: taxon id 11082 is found in more than one genbank file.. new_taxon_id used: 11082_1
 WARNING:root:Duplicated taxon id: taxon id 64320 is found in more than one genbank file.. new_taxon_id used: 64320_1
+WARNING:root:The genetic code of the taxon 573993 was not found. By default genetic code 1 is provided
+WARNING:root:The genetic code of the taxon 1869111 was not found. By default genetic code 1 is provided
+WARNING:root:The genetic code of the taxon 195054 was not found. By default genetic code 1 is provided
+WARNING:root:The genetic code of the taxon 359812 was not found. By default genetic code 1 is provided

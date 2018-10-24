@@ -1,0 +1,9 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+0	1987722	Harrier picornavirus 1	GCF_..	YP_009362314.1	6		0.4365868167902371
+0	1987722	Harrier picornavirus 1	GCF_..	YP_009362314.1	294		0.1090495867768595
+0	1987722	Harrier picornavirus 1	GCF_..	YP_009362314.1	552		0.4067230224609375
+0	1987722	Harrier picornavirus 1	GCF_..	YP_009362314.1	1024		0.5810249307479224
+0	1987722	Harrier picornavirus 1	GCF_..	YP_009362314.1	1616		0.10050434695042154
+0	1987722	Harrier picornavirus 1	GCF_..	YP_009362314.1	1772		0.050774134790529946
+0	1987722	Harrier picornavirus 1	GCF_..	YP_009362314.1	1794		0.10667818509615246
+0	1987722	Harrier picornavirus 1	GCF_..	YP_009362314.1	1991		0.04139553530912586

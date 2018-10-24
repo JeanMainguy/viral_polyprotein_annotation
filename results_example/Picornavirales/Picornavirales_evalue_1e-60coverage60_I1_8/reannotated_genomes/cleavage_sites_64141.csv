@@ -1,0 +1,10 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+0	64141	Porcine enterovirus 9	GCF_..	NP_758520.1	4		0.6517349467852449
+0	64141	Porcine enterovirus 9	GCF_..	NP_758520.1	69		0.4365868167902371
+0	64141	Porcine enterovirus 9	GCF_..	NP_758520.1	315		0.1090495867768595
+0	64141	Porcine enterovirus 9	GCF_..	NP_758520.1	559		0.4067230224609375
+0	64141	Porcine enterovirus 9	GCF_..	NP_758520.1	984		0.5810249307479224
+0	64141	Porcine enterovirus 9	GCF_..	NP_758520.1	1417		0.10050434695042154
+0	64141	Porcine enterovirus 9	GCF_..	NP_758520.1	1502		0.050774134790529946
+0	64141	Porcine enterovirus 9	GCF_..	NP_758520.1	1520		0.10667818509615246
+0	64141	Porcine enterovirus 9	GCF_..	NP_758520.1	1706		0.04139553530912586

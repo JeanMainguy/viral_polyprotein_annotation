@@ -1,0 +1,15 @@
+
+The cds NP_620053.1 from taxon:119222 seems poorly annotated
+It has 2 unnanotated part
+  119222|NP_620053.1   Pestivirus giraffe-1 H138
+ protein 1: 11970nt | 3990aa | location:[382:12352](+) 
+mature paptides 1 | unannotated region 2
+polyprotein outline: True  
+product: polyprotein
+['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Flaviviridae', 'Pestivirus']
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  ==None=============================================================================================>
+                   |+1++++++|                                                                         
+
+:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/

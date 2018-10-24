@@ -1,0 +1,5 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+10	257463	Arracacha virus B	GCF_..	YP_007697622.1	592		0.75
+10	257463	Arracacha virus B	GCF_..	YP_007697622.1	1169		0.75
+10	257463	Arracacha virus B	GCF_..	YP_007697622.1	1224		0.75
+10	257463	Arracacha virus B	GCF_..	YP_007697622.1	1448		0.75

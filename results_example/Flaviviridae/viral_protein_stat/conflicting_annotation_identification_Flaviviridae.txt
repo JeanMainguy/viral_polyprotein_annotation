@@ -1,0 +1,13 @@
+Identification of conflict between domain annotations and cleavage site annotations:
+Parameters:
+Maximum overlapping distance (in aa or in percentage of the domain length) which is consider as accepatble:
+acceptable_overlap_threshold = 15aa or 10.0% of the domain length
+A domain annotation need to be found overlapping in 50.0% of cases to be ignored by the program
+
+The distance of overlapping corresponds to the smallest distance of the domain on the right or on the left of the cleavage site 
+====================================================================================================
+54 different domain annotations have been found 1634 times in the 92 analysed sequences
+   Domain annotations that do not overlap cleavage sites: 49
+   Domain annotations overlapping but ignored because they overlap in more than 50.0% of the cases: 5
+   Domain annotations in conflict with cleavage sites; 0
+   Sequence annotation in conflict with domain annotation: 0

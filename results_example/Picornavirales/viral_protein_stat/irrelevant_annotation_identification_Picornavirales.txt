@@ -1,0 +1,122 @@
+
+The cds YP_001976147.1 from taxon:470166 seems poorly annotated
+It has 3 unnanotated part
+  470166|YP_001976147.1   Tomato marchitez virus
+ protein 1: 6456nt | 2152aa | location:[140:6596](+) 
+mature paptides 2 | unannotated region 3
+polyprotein outline: True  
+product: polyprotein
+['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Picornavirales', 'Secoviridae', 'Torradovirus']
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  ==None=============================================================================================>
+                    |+1+|                                     |+2+++++++++|                           
+
+:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/
+
+The cds YP_009165993.1 from taxon:1481465 seems poorly annotated
+It has 2 unnanotated part
+  1481465|YP_009165993.1   Tomato necrotic dwarf virus
+ protein 1: 6453nt | 2151aa | location:[150:6603](+) 
+mature paptides 1 | unannotated region 2
+polyprotein outline: True  
+product: polyprotein
+['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Picornavirales', 'Secoviridae', 'Torradovirus', 'unclassified Torradovirus']
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  ==None============================================================================================>-
+                    |+1+|                                                                             
+
+:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/
+
+The cds YP_001039627.1 from taxon:370833 seems poorly annotated
+It has 5 unnanotated part
+  370833|YP_001039627.1   Tomato torrado virus
+ protein 1: 6477nt | 2159aa | location:[106:6583](+) 
+mature paptides 4 | unannotated region 5
+polyprotein outline: True  
+product: polyprotein
+['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Picornavirales', 'Secoviridae', 'Torradovirus']
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  ==None=============================================================================================>
+      |+1++++++++|  |+2+|                       |+3+|         |+4++++++++|                            
+
+:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/
+
+The cds YP_001040018.1 from taxon:370833 seems poorly annotated
+It has 4 unnanotated part
+  370833|YP_001040018.1   Tomato torrado virus
+ protein 3: 3597nt | 1199aa | location:[701:4298](+) 
+mature paptides 4 | unannotated region 4
+polyprotein outline: True  
+product: polyprotein
+['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Picornavirales', 'Secoviridae', 'Torradovirus']
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  ==None=============================================================================================>
+                       ||10               |+11++++++++++++++++||+12+++++++++++++++||+13++++++++++++++|
+
+:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/
+
+The cds YP_009164030.1 from taxon:1708572 seems poorly annotated
+It has 2 unnanotated part
+  1708572|YP_009164030.1   Phopivirus
+ protein 1: 6693nt | 2231aa | location:[638:7331](+) 
+mature paptides 9 | unannotated region 2
+polyprotein outline: True  
+product: polyprotein
+['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Picornavirales', 'Picornaviridae', 'Hepatovirus']
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  ==None=============================================================================================>
+  ||1                    |+4+++++++++|             |+5++++++++++++|   ||7        |+9++++++++++++++++++
+             |+3++++++++|                                        |+6+||+8++++++|                      
+   |+2++++++|                                                                                         
+
+:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/
+
+The cds YP_003097229.1 from taxon:661101 seems poorly annotated
+It has 4 unnanotated part
+  661101|YP_003097229.1   Tomato chocolate spot virus
+ protein 1: 6468nt | 2156aa | location:[138:6606](+) 
+mature paptides 3 | unannotated region 4
+polyprotein outline: True  
+product: polyprotein
+['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Picornavirales', 'Secoviridae', 'Torradovirus', 'unclassified Torradovirus']
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  ==None=============================================================================================>
+      ||1    |+2|   |+3|                                                                              
+
+:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/
+
+The cds YP_002158824.1 from taxon:487492 seems poorly annotated
+It has 5 unnanotated part
+  487492|YP_002158824.1   Mikania micrantha mosaic virus
+ protein 1: 5562nt | 1854aa | location:[177:5739](+) 
+mature paptides 4 | unannotated region 5
+polyprotein outline: True  
+product: polyprotein
+['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Picornavirales', 'Secoviridae', 'Comovirinae', 'Fabavirus']
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  ==None=============================================================================================>
+                         |+1+|+2|                     |+3+++++|  |+4+++++++++++++++++++++++|          
+
+:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/
+
+The cds YP_002158823.1 from taxon:487492 seems poorly annotated
+It has 3 unnanotated part
+  487492|YP_002158823.1   Mikania micrantha mosaic virus
+ protein 2: 2910nt | 970aa | location:[193:3103](+) 
+mature paptides 3 | unannotated region 3
+polyprotein outline: True  
+product: polyprotein
+['Viruses', 'ssRNA viruses', 'ssRNA positive-strand viruses, no DNA stage', 'Picornavirales', 'Secoviridae', 'Comovirinae', 'Fabavirus']
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  ==None=============================================================================================>
+                  |+10++++++++++|            |+11+++++++++++++++++++++++++++++++++++|       |+12+++++|
+
+:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/:/

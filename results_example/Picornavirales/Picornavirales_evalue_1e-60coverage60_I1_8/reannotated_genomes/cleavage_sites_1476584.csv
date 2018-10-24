@@ -1,0 +1,8 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+15	1476584	Currant latent virus	GCF_..	YP_009220370.1	371		0.75
+15	1476584	Currant latent virus	GCF_..	YP_009220370.1	590		0.75
+15	1476584	Currant latent virus	GCF_..	YP_009220370.1	765		0.75
+10	1476584	Currant latent virus	GCF_..	YP_009220374.1	568		0.75
+10	1476584	Currant latent virus	GCF_..	YP_009220374.1	1136		0.75
+10	1476584	Currant latent virus	GCF_..	YP_009220374.1	1199		0.75
+10	1476584	Currant latent virus	GCF_..	YP_009220374.1	1425		0.75

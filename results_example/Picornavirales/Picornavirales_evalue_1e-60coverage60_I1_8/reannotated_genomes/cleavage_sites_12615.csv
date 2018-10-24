@@ -1,0 +1,5 @@
+cluster_nb	taxon_id	virus_name	assembly_version	protein_id	cs_P1_protein_position	cs_P1_genome_position	confidence_score
+1	12615	Cherry leaf roll virus	GCF_..	YP_004382746.1	532		3.6351165980795628
+1	12615	Cherry leaf roll virus	GCF_..	YP_004382746.1	1122		0.36108284144107516
+1	12615	Cherry leaf roll virus	GCF_..	YP_004382746.1	1148		0.330078125
+1	12615	Cherry leaf roll virus	GCF_..	YP_004382746.1	1391		0.3154296875
