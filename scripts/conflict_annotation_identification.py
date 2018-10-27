@@ -66,10 +66,10 @@ def conflicting_overlapping_events_identification(domain_dict, dict_seq,
         for dist, cds, len_do in zip(info['overlapping_dist'], info['overlapped_cds'], info['len_do']):
             # transformation of parameters to get only one value to test:
             if not threshold_overlap_aa_param:
-                threshold_overlap_aa = (threshold_overlap_prct/100)*len_do
+                threshold_overlap_aa = (threshold_overlap_prct / 100) * len_do
             if threshold_overlap_aa_param and threshold_overlap_prct:
                 threshold_overlap_aa = min(
-                    threshold_overlap_aa_param, (threshold_overlap_prct/100)*len_do)
+                    threshold_overlap_aa_param, (threshold_overlap_prct / 100) * len_do)
 
             if int(dist) < threshold_overlap_aa:
                 nb_acceptable_overlap += 1
@@ -78,25 +78,25 @@ def conflicting_overlapping_events_identification(domain_dict, dict_seq,
                 overlapping_info.append((cds, dist, len_do))
                 nb_overlap += 1
 
-        overlapping_time_ratio = nb_overlap/info['total']
+        overlapping_time_ratio = nb_overlap / info['total']
         if overlapping_time_ratio >= ignoring_threshold_ratio:
-            print('//'*20)
-            print('ignored DOMAIN')
-            print('acceptable overlapping', nb_acceptable_overlap)
-            print('OVERLAPPING', nb_overlap)
-            print(domain)
-            [print(k, v) for k, v in info.items()]
+            # print('//' * 20)
+            # print('ignored DOMAIN')
+            # print('acceptable overlapping', nb_acceptable_overlap)
+            # print('OVERLAPPING', nb_overlap)
+            # print(domain)
+            # [print(k, v) for k, v in info.items()]
             ignored_domains[domain] = info
 
         elif nb_overlap != 0:
-            print('*!!*'*20)
-            print('conflicting DOMAIN')
-            print("overlapping_time_ratio", overlapping_time_ratio)
-            print('acceptable overlapping', nb_acceptable_overlap)
-            print('OVERLAPPING', nb_overlap)
-            print(domain)
-            [print(k, v) for k, v in info.items()]
-            string = '\n' + '--'*50 + '\n'
+            # print('*!!*' * 20)
+            # print('conflicting DOMAIN')
+            # print("overlapping_time_ratio", overlapping_time_ratio)
+            # print('acceptable overlapping', nb_acceptable_overlap)
+            # print('OVERLAPPING', nb_overlap)
+            # print(domain)
+            # [print(k, v) for k, v in info.items()]
+            string = '\n' + '--' * 50 + '\n'
             string += f'Conflict with the domain annotation {domain}\n'
             string += f'The domain annotation is found in {info["total"]} sequences\n'
             string += f'It is overlapping cleavage sites in {info["not_overlapping_count"]} sequences\n'
@@ -118,7 +118,7 @@ def conflicting_overlapping_events_identification(domain_dict, dict_seq,
     print('conflicting domain', len(conflicting_domains))
 
     if notify_file:
-        summary = '\n' + '=='*50 + '\n'
+        summary = '\n' + '==' * 50 + '\n'
         summary += f'{len(domain_dict)} different domain annotations have been '
         summary += f'found {domain_total_count} times in the {len(dict_seq)} analysed sequences\n'
         summary += f'   Domain annotations that do not overlap cleavage sites: {len(safe_domains)}\n'
@@ -137,7 +137,7 @@ def get_domain_overlapping_dict(domain_stat_file):
     """
     domain_dict = {}
     seq_dict = {}
-    set_seq = set()
+
     with open(domain_stat_file) as fl:
 
         reader = csv.DictReader(fl, delimiter='\t')

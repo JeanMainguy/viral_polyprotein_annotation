@@ -1,13 +1,9 @@
 import os
 import logging
-import re
 import gzip
 import csv
 from Bio import SeqIO
-from Bio.SeqRecord import SeqRecord
-from Bio.Seq import Seq
 import sys
-from Bio.Alphabet import generic_protein
 
 
 # logging.basicConfig(filename='refseq_genome_path.log')
@@ -110,9 +106,7 @@ def getTaxonomy(gb_file, error_taxon_ids):
 
 
 def createTaxonomyFile(taxonomy_file, genbank_file_db, alternative_taxon_id_file, refseq_structure):
-    """
-    create csv file from the genome refseq db with info on avaible genome
-    """
+    # """ create csv file from the genome refseq db with info on avaible genome """
     viral_taxons = {}
     error_taxon_ids = []
     # taxonomy_file = os.path.join(output_dir, 'taxonomy_virus.txt')
@@ -192,7 +186,7 @@ def expectedPeptide(expected_pep_file):
         reader = csv.DictReader(fl, delimiter='\t')
         for row in reader:
             row = dict(row)
-            #conversion in int
+            # conversion in int
             for key in row:
                 if key == 'taxon':
                     taxon = row[key]
@@ -275,14 +269,3 @@ if __name__ == '__main__':
     getGeneticCode(viral_taxons, geneticcode_file, tmp_output_file, output_file)
 
     print('END of taxonomy.py')
-
-    # print(viral_taxons)
-    # taxonomy_file = "/home/user/mainguy/Documents/Data_Analysis/data/taxonomy/taxonomy_virus.txt"
-    # taxon = "Nidovirales"
-    # gb_file_iter = getAllRefseqFromTaxon(taxon, taxonomy_file)
-    #
-    # for g in gb_file_iter:
-    #     print(g)
-
-
-# print(len(list(gb_file_iter)))

@@ -2,11 +2,9 @@
 import taxonomy as tax
 import viral_genome_classes as obj
 import viruses_statistics as stat
-import parser_interpro_results as do
 import visualisation_protein as visu
 
 import os
-import gzip
 import logging
 import sys
 from Bio import SeqIO
@@ -18,7 +16,7 @@ def extract_cleavage_site_sequences(cds_list, extract_window):
     half_window = int(extract_window/2)
     print("kalf wind", half_window)
     for cds in cds_list:
-        organism = cds.segment.organism
+        # organism = cds.segment.organis
         genetic_code = cds.genetic_code
 
         protein_sequence = cds.getSequenceAA(cds.segment.record, genetic_code)
@@ -27,16 +25,10 @@ def extract_cleavage_site_sequences(cds_list, extract_window):
             seq = protein_sequence[cs.start_aa(cds)-half_window:cs.end_aa(cds)+half_window-1]
 
             header = f'{cds.segment.taxon_id}|{cds.protein_id}|Cleavage_site_{cs.number}'
-            description = f"from {cs.start_aa(cds)} to {cs.end_aa(cds)}"
+            # description = f"from {cs.start_aa(cds)} to {cs.end_aa(cds)}"
 
             print(f'>{header}')
             print(seq)
-
-    input()
-
-    # seq_to_write = SeqRecord(Seq(seq, generic_protein) ,id=header, description = description)
-    #
-    # SeqIO.write(seq_to_write, handle_prot,"fasta")
 
 
 def extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_id, sp_treshold):
@@ -79,30 +71,10 @@ def extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_i
 
                 nb_peptide += len(cds.peptides)
 
-        #
-        # # WRITE PEPTIDE STAT
-        # if writer_stat_dict:
-        #     for pep in segment.peptides:
-        #         pep_info_dict = stat.getPepStat(pep, taxon_id, taxonomy)
-        #         writer_stat_dict['peptide'].writerow(pep_info_dict)
-
     if writer_stat_dict:
         # WRITE GENOME STAT
         stat.writeGenomeStat(taxon_id, nb_cds, nb_peptide,
                              writer_stat_dict['genome'], taxonomy, nb_polyprotein)
-
-        # # WRITE DOMAIN STAT
-        # domain_header = writer_stat_dict['domain'].fieldnames
-        # for domain in genome.matchs:
-        #     info_dict = stat.getDomainStat(taxon_id, domain, domain_header)
-        #     writer_stat_dict['domain'].writerow(info_dict)
-        #
-        # # WRITE CLEAVAGE SITE STAT
-        # cs_header = writer_stat_dict['cleavage_site'].fieldnames
-        # for cs in segment.cleavage_sites:
-        #     # print(cs)
-        #     info_dict = stat.getCleavageSiteStat(taxon_id, cs, cs_header)
-        #     writer_stat_dict['cleavage_site'].writerow(info_dict)
 
 
 if __name__ == '__main__':
@@ -121,12 +93,12 @@ if __name__ == '__main__':
     try:
         stat_output_dir = sys.argv[5]  # if not given then we don't compute any stat
         print(f'Write genomes, proteins and peptides in {stat_output_dir} statistics')
-    except:
+    except IndexError:
         print("No statistics...")
         stat_output_dir = False
     try:
         irrelevant_annotation_list_fl = sys.argv[6]
-    except:
+    except IndexError:
         irrelevant_annotation_list_fl = "test/irrelevant_annotation_list.txt"
 
     gbff_iter = tax.getAllRefseqFromTaxon(taxon, taxonomy_file)
@@ -163,7 +135,7 @@ if __name__ == '__main__':
 
         extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_id, sp_treshold)
 
-    if i == None:
+    if i is None:
         raise NameError("No genome have been found with taxon:", taxon)
     else:
         print(f'Analysis completed for {i+1} genomes')

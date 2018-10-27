@@ -7,8 +7,7 @@ from numpy import std, mean
 import sys
 
 
-
-def get_positive_negative_distribution( annotated_cds, cds_unannotated_version, window, positive, negative):
+def get_positive_negative_distribution(annotated_cds, cds_unannotated_version, window, positive, negative):
 
     for predicted_site in cds_unannotated_version.predicted_cleavage_sites:
         state = "False_positive"
@@ -22,12 +21,12 @@ def get_positive_negative_distribution( annotated_cds, cds_unannotated_version, 
             negative.append(predicted_site.confidence_score)
 
 
-
 def annotation_vs_prediction(annotated_cds, cds_unannotated_version, window, score_cutoff):
     state_summary = {"False_positive": 0, "True_positive": 0, "False_negative": 0}
     # FALSE POSITIVE DETECTION. predicted cleavage_site not found in the original annotation
     prediction_vs_annotation = []
-    predicted_cleavage_site = [site for site in  cds_unannotated_version.predicted_cleavage_sites if site.confidence_score < score_cutoff]
+    predicted_cleavage_site = [
+        site for site in cds_unannotated_version.predicted_cleavage_sites if site.confidence_score < score_cutoff]
     for predicted_site in predicted_cleavage_site:
         state = "False_positive"
         for annotation_site in annotated_cds.cleavage_sites:
@@ -43,7 +42,6 @@ def annotation_vs_prediction(annotated_cds, cds_unannotated_version, window, sco
             if annotation_site.start_aa(annotated_cds)-window/2 <= predicted_site.start_aa(cds_unannotated_version) <= annotation_site.start_aa(annotated_cds)+window/2:
                 state = "True_positive"
         annotation_vs_prediction.append(state)
-
 
     # print("prediction_vs_annotation", prediction_vs_annotation)
     # print('annotation_vs_prediction', annotation_vs_prediction)
@@ -181,10 +179,11 @@ def initiate_ouput(output_stat_aln):
     file_handles = [handle_aln_out]
     return aln_csv_writer, file_handles
 
+
 def get_cds_lists_with_artificial_unannotated_cds(cds_list, annotated_cds_list):
     cds_list_original = list(cds_list)
 
-    if len(annotated_cds_list) == 1: # cross validation is not possible
+    if len(annotated_cds_list) == 1:  # cross validation is not possible
         return []
     for annotated_cds in annotated_cds_list:
         # print('annotated_cds')
@@ -205,14 +204,14 @@ def get_cds_lists_with_artificial_unannotated_cds(cds_list, annotated_cds_list):
         # print("annotated_cds", annotated_cds.protein_id)
         # print("cds_unannotated_version",cds_unannotated_version.number)
 
-        yield annotated_cds,cds_unannotated_version, cds_list
+        yield annotated_cds, cds_unannotated_version, cds_list
+
 
 def main():
     re_result = re.search("cluster(\d+).aln", alignment_file)
     cluster_nb = "NA" if not re_result else re_result.group(1)
     print("PROCESS of CLUSTER ", cluster_nb)
     taxon_prot_ids, seq_aln_dict = analysis.parse_alignment_file(alignment_file)
-
 
     for window in windows:
         cds_list = analysis.getCdsObject(taxon_prot_ids, taxonomy_file, gff_file, sp_treshold)
@@ -229,29 +228,33 @@ def main():
         # original propagation using all the annotated seqeunce
         # use to write in the csv file the general info regarding the cluster
         cds_list_original = list(cds_list)
-        group_info_list, cs_group_list = analysis.analyse_cleavage_site_groups(cds_list_original, window)
+        group_info_list, cs_group_list = analysis.analyse_cleavage_site_groups(
+            cds_list_original, window)
         for group_info in group_info_list:
             group_of_cs = cs_group_list[group_info["group_index"]]
             if group_info['confidence_score'] < confidence_score_threshold:
-                analysis.propagate_cleavage_sites(group_of_cs, group_info, cds_list_original, window)
+                analysis.propagate_cleavage_sites(
+                    group_of_cs, group_info, cds_list_original, window)
 
         annotated_cds_list = [cds for cds in cds_list_original if cds.polyprotein]
         nb_cds_annotated = len(annotated_cds_list)
         if nb_cds_annotated <= 1:
-            logging.info('Only one annotated cds in the cluster, we cannot compute the cross validation')
+            logging.info(
+                'Only one annotated cds in the cluster, we cannot compute the cross validation')
             return
 
         # CROSS VALIDATION
-        alignment_summary_states = {"False_positive": 0, "True_positive": 0, "False_negative": 0}
         precisions = []
         recalls = []
-        cds_modify_cds_list_iter = get_cds_lists_with_artificial_unannotated_cds(cds_list_original, annotated_cds_list)
+        cds_modify_cds_list_iter = get_cds_lists_with_artificial_unannotated_cds(
+            cds_list_original, annotated_cds_list)
 
         i = 0
-        for annotated_cds,cds_unannotated_version, cds_list in cds_modify_cds_list_iter:
+        for annotated_cds, cds_unannotated_version, cds_list in cds_modify_cds_list_iter:
             i += 1
             print(f'annotated seq {i}/{nb_cds_annotated}')
-            group_info_list_cross_val, cs_group_list = analysis.analyse_cleavage_site_groups(cds_list, window)
+            group_info_list_cross_val, cs_group_list = analysis.analyse_cleavage_site_groups(
+                cds_list, window)
 
             for group_info in group_info_list_cross_val:
                 group_of_cs = cs_group_list[group_info["group_index"]]
@@ -259,16 +262,16 @@ def main():
                 analysis.propagate_cleavage_sites(group_of_cs, group_info, cds_list, window)
 
             # print(f'VISUALISATION WITH WINDOW {window}')
-            #cds_list = sorted(cds_list, key=lambda x: x.protein_id)
+            # cds_list = sorted(cds_list, key=lambda x: x.protein_id)
             # visualisation_of_processed_aln(cds_list, alignment_file, group_info_list, display_line_size)
             if aln_csv_writer:
-                precision, recall = annotation_vs_prediction(annotated_cds, cds_unannotated_version, window, confidence_score_threshold)
+                precision, recall = annotation_vs_prediction(
+                    annotated_cds, cds_unannotated_version, window, confidence_score_threshold)
                 precisions.append(precision)
                 recalls.append(recall)
 
-
-
-            get_positive_negative_distribution(annotated_cds, cds_unannotated_version, window, positive, negative)
+            get_positive_negative_distribution(
+                annotated_cds, cds_unannotated_version, window, positive, negative)
 
     # print("positive", len(positive))
     # print('negative',len(negative) )
@@ -276,7 +279,6 @@ def main():
     # print("positive=", positive)
     # print()
     # print('negative=',negative)
-
 
     if aln_csv_writer:
         mean_precision = mean(precisions)
@@ -287,10 +289,8 @@ def main():
         compute_cross_validation_stat(group_info_list, parameters, cds_list_original,
                                       aln_csv_writer, mean_precision, mean_recall)
 
-
     # print('mean_precision', mean_precision)
     # print('mean_recall', mean_recall)
-
 
 
 if __name__ == '__main__':
@@ -298,26 +298,26 @@ if __name__ == '__main__':
     try:
         # 'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037.aln'
         alignment_file_or_dir = sys.argv[1]
-    except:
+    except IndexError:
         alignment_file_or_dir = 'data/alignment/Viruses/RefSeq_download_date_2018-07-21/Viruses_evalue_1e-40coverage40_I2'
         # alignment_file_or_dir = 'data/alignment/Viruses/RefSeq_download_date_2018-07-21/Viruses_evalue_1e-40coverage40_I2/seq_cluster22.aln'
     try:
         # 'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037_stat.csv'
         windows_input = sys.argv[2]
-    except:
+    except IndexError:
         windows_input = "30"
 
     try:
         output_stat_aln = sys.argv[3]
         total_positive_negative_file = sys.argv[4]
-    except:
+    except IndexError:
         output_stat_aln = "test_aln.csv"
         output_stat_aln = False
         total_positive_negative_file = 'test_total_positive_negative_file.txt'
     try:
         taxonomy_file = sys.argv[5]  # "data/taxonomy/taxonomy_virus.txt"
         gff_file = sys.argv[6]
-    except:
+    except IndexError:
         gff_file = 'data/interpro_results_OLD/interproscan-5.30-69.0/domains_viral_sequences.gff3'
         taxonomy_file = "data/taxonomy/taxonomy_virus.txt"
 
@@ -326,7 +326,6 @@ if __name__ == '__main__':
     confidence_score_threshold = 5
 
     parameters = {"confidence_score_threshold": confidence_score_threshold}
-
 
     if path.isdir(alignment_file_or_dir):
         alignment_files = (path.join(alignment_file_or_dir, f)
@@ -345,7 +344,7 @@ if __name__ == '__main__':
     elif path.isfile(alignment_file_or_dir) and alignment_file_or_dir.endswith('.aln'):
         alignment_files = [alignment_file_or_dir]
     else:
-        raise ValueError('file or directory provided is not correct',alignment_file_or_dir)
+        raise ValueError('file or directory provided is not correct', alignment_file_or_dir)
 
     print('INPUT')
     print(alignment_file_or_dir)
@@ -359,7 +358,7 @@ if __name__ == '__main__':
     assert min(windows) >= 0
     windows = list(windows)
     windows.sort()
-    print('window used to analyse cleavage sites',  windows)
+    print('window used to analyse cleavage sites', windows)
 
     if output_stat_aln:
         print("INITIATE OUTPUT FILES")
@@ -367,7 +366,6 @@ if __name__ == '__main__':
     else:
         aln_csv_writer = False
         file_handles = []
-
 
     positive = []
     negative = []

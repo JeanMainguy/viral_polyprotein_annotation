@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 
-import taxonomy as tax
-import viral_genome_classes as obj
-import viruses_statistics as stat
 import multiple_alignment_analysis as analysis
 import visualisation_genome as fct_visu
 
@@ -20,7 +17,7 @@ def visualisation_protein(cds, nb_line, len_seq_max):
     compatible_dico['cds'] = [[cds]]
     compatible_dico['pep'] = fct_visu.buildCompatibleGroup(cds.peptides)
     # compatible_dico['unannotated_region'] = fct_visu.buildCompatibleGroup(set(cds.unannotated_region))
-    size_factor = len(cds) / len_seq_max if 0 < len(cds) / len_seq_max <=1 else 1
+    size_factor = len(cds) / len_seq_max if 0 < len(cds) / len_seq_max <= 1 else 1
     size_sequence = fct_visu.SCREEN_SIZE * size_factor
     strings = fct_visu.get_final_strings(cds, 1, 1, compatible_dico, size_sequence)
 
@@ -63,7 +60,7 @@ if __name__ == '__main__':
 
     gff_file = 'data/interpro_results/interproscan-5.30-69.0/domains_viral_sequences.gff3'
 
-    taxon_prot_dict = { taxon_id:{protein_id} }
+    taxon_prot_dict = {taxon_id: {protein_id}}
     # give the correponding cds obj in a list
     cds_list = analysis.getCdsObject(taxon_prot_dict, taxonomy_file, gff_file, sp_treshold)
     cds = cds_list.pop()

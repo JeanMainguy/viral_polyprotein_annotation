@@ -1,23 +1,13 @@
 import taxonomy as tax
-import viral_genome_classes as obj
 
 import os
-import gzip
 import logging
-from Bio import SeqIO
-from Bio.SeqRecord import SeqRecord
-from Bio.Seq import Seq
 import sys
 import csv
-import re
-from Bio.Alphabet import generic_protein
-from Bio.SeqFeature import SeqFeature, FeatureLocation
-from operator import attrgetter
 import viral_protein_extraction as ext
 
 
 def getProteinStat(cds, taxon_id, taxonomy):
-    has_peptide = True if cds.peptides else False
     is_sub_protein = True if cds.parental_prot else False
 
     # Check if the cds has a signal peptide scheme
@@ -71,7 +61,7 @@ def initiateBasicStatFile(taxon, output_dir):
     stat_file_genome = "stat_genomes_{}.csv".format(taxon)
 
     handle_stat_prot = open(os.path.join(output_dir, stat_file_prot), "w")
-    #segment.taxon_id, cds.protein_id, has_peptide, len(cds.peptides), len(cds.cleavage_sites), is_sub_protein
+    # segment.taxon_id, cds.protein_id, has_peptide, len(cds.peptides), len(cds.cleavage_sites), is_sub_protein
     protein_header = ["taxon_id",
                       "protein_id",
                       "polyprotein_outline",
@@ -139,11 +129,11 @@ if __name__ == '__main__':
 
     try:
         taxon = sys.argv[1]  # if not given then we don't compute any stat
-    except:
+    except IndexError:
         taxon = "Viruses"
     try:
         stat_output_dir = sys.argv[2]
-    except:
+    except IndexError:
         stat_output_dir = 'test'
 
     taxonomy_file = "data/taxonomy/taxonomy_virus.txt"
@@ -168,7 +158,7 @@ if __name__ == '__main__':
         ext.extractAndStat(gb_file, handle_prot, writer_stat_dict,
                            genetic_code, taxon_id, sp_treshold)
 
-    if i == None:
+    if i is None:
         print("No genome have been found with taxon:", taxon)
     else:
         print('Analysis completed for ', i+1, "genomes")

@@ -1,20 +1,15 @@
 #!/usr/bin/env python3
 import taxonomy as tax
 import viral_genome_classes as obj
-import viruses_statistics as stat
 import parser_interpro_results as do
 import os
-import gzip
 import logging
 import sys
 import csv
-from Bio import SeqIO
 import cluster_of_interest_identification
-import subprocess
 
 
 def getPolyproteinDomainsStat(gb_file, writer_stat_dict, genetic_code, taxon_id, sp_treshold, gff_domain_file):
-    nb_peptide = 0
     nb_cds = 0
 
     genome = obj.gb_file_parser(gb_file, taxon_id, sp_treshold)
@@ -135,8 +130,7 @@ def getDomainStat(taxon_id, domain, domain_header):
         return domain_dico
 
     # write line containing info about the biggest overlapping event
-    lines = []
-    [print(k, v) for k, v in domain.overlapped_cleavage_sites.items()]
+    # [print(k, v) for k, v in domain.overlapped_cleavage_sites.items()]
 
     distance_max = {'right': 0, "left": 0}
     for overlapped_cs in domain.overlapped_cleavage_sites.values():
@@ -147,11 +141,11 @@ def getDomainStat(taxon_id, domain, domain_header):
     domain_dico['overlapping_distance'] = sum(distance_max.values())
     domain_dico['overlapping_size_percentage'] = domain_dico['overlapping_distance'] / \
         (domain.end_in_prot - domain.start_in_prot + 1) * 100
-    print()
-    print('final line')
-    [print(k, v) for k, v in domain_dico.items()]
-    # input()
-    print('///'*20)
+    # print()
+    # print('final line')
+    # [print(k, v) for k, v in domain_dico.items()]
+    # # input()
+    # print('///'*20)
 
     return domain_dico
 
@@ -327,7 +321,7 @@ if __name__ == '__main__':
         getPolyproteinDomainsStat(gb_file, writer_stat_dict, genetic_code,
                                   taxon_id, sp_treshold, gff_domain_file)
 
-    if i == None:
+    if i is None:
         raise NameError("No genome have been found with taxon:", taxon)
     else:
         print(f'Analysis completed for {i+1} genomes')

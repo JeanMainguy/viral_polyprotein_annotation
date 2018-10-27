@@ -1,23 +1,9 @@
 import taxonomy as tax
 import viral_genome_classes as obj
 import parser_interpro_results as do
-import visualisation_genome
-import visualisation_protein as view_prot
-import viruses_statistics as fct_stat
 
-import os
-import gzip
-import logging
 import sys
-from Bio import SeqIO
-from Bio.SeqRecord import SeqRecord
-from Bio.Seq import Seq
-import sys
-import csv
 import re
-from Bio.Alphabet import generic_protein
-from Bio.SeqFeature import SeqFeature, FeatureLocation
-from operator import attrgetter
 # FORGROUND
 RED = 31
 GREEN = 32
@@ -43,9 +29,9 @@ RESET = '\x1b[0m'
 
 def getPositionsInAln(cds, list_obj):
     positions = []
-    for obj in list_obj:
-        start = cds.aln_list.index(obj.start_aa(cds)-1)
-        end = cds.aln_list.index(obj.end_aa(cds)-1)
+    for item in list_obj:
+        start = cds.aln_list.index(item.start_aa(cds)-1)
+        end = cds.aln_list.index(item.end_aa(cds)-1)
         positions.append((start, end))
 
     return positions
@@ -124,8 +110,6 @@ def add_score_line(alignement_dico, group_info_list):
         grp_po = round(grp['average_position_in_aln'])
         grp_message = f' group {grp["group_index"]+1}'
         score_message = f'score {grp["confidence_score"]:.2f}'
-        len_message_grp = len(grp_message)
-        len_message_score = len(score_message)
         group_line = group_line[:int(grp_po - round(len(grp_message)/2)-len(grp_message) % 2)] + \
             grp_message + group_line[int(grp_po+round(len(grp_message)/2)):]
         score_line = score_line[:int(grp_po - round(len(score_message)/2)-len(score_message) % 2)] + \
@@ -143,10 +127,9 @@ def visualisation_old(gb_file, genetic_code, gff_file, alignement_dico, sp_tresh
 
     do.getMatchObject(genome, gff_file)
     do.associateDomainsWithPolyprotein(genome)
-    #visualisation_genome.genomeVisualisation(genome, 1, genetic_code)
+    # visualisation_genome.genomeVisualisation(genome, 1, genetic_code)
 
     display_dico = {}
-    display_header = []
     for i, segment in enumerate(genome.segments):
         for cds in segment.cds:
             if cds.protein_id in alignement_dico:
@@ -163,8 +146,6 @@ def visualisation_old(gb_file, genetic_code, gff_file, alignement_dico, sp_tresh
                 sequence_clean = ''.join(sequence_lines)
                 starts_in_alignment2, ends_in_alignment2 = getPositionInAlignment(
                     sequence_clean, starts, ends)
-                position_domains = [(starts_in_alignment2[i], ends_in_alignment2[i])
-                                    for i in range(len(starts_in_alignment2))]
 
                 # CLAVAGE SITES
                 positon_cleavage_sites = []
@@ -216,8 +197,8 @@ def addColorToSequence2(position_domains, sites_to_color_dict, aln_sequence):
     default_fg = NORMAL
     default_bg = NORMAL
 
-    #default_fg = BG_BLACK
-    #default_bg = WHITE
+    # default_fg = BG_BLACK
+    # default_bg = WHITE
 
     for i, letter in enumerate(aln_sequence):
         style = default_style
@@ -268,7 +249,7 @@ def addColorToSequence(starts_in_alignment, ends_in_alignment, sequence):
         # = pattern_newline.sub(r"{}\1{}".format( end_color, domain_color), sequence[start-len(domain_color):end+1+len(end_color)])
         # print([domain_sequence])
         domain_sequence = pattern_cleavage_site.sub(
-            r"\1\2{}".format(domain_color),  sequence[start:end+1])
+            r"\1\2{}".format(domain_color), sequence[start:end+1])
         sequence = sequence[:start] + domain_sequence + sequence[end+1:]
 
     sequence = pattern_cleavage_site.sub(
@@ -370,11 +351,11 @@ def display_alignement(alignement_dico, display_dico, file_handle=sys.stdout):
 
     for i in range(len(alignement_dico['identity'])):
         for k, v in display_dico.items():
-            print(k+' '*(max_len-len(k))+v[i],  file=file_handle)
+            print(k+' '*(max_len-len(k))+v[i], file=file_handle)
         print(' '*(max_len)+alignement_dico['identity'][i], file=file_handle)
         if "grp_index_line" in alignement_dico:
             print(' '*(max_len)+alignement_dico['grp_index_line'][i], file=file_handle)
-            print(' '*(max_len)+alignement_dico['grp_score_line'][i],  file=file_handle)
+            print(' '*(max_len)+alignement_dico['grp_score_line'][i], file=file_handle)
         print("\n\n", file=file_handle)
 
 

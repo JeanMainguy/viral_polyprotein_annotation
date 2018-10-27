@@ -18,7 +18,7 @@ def getMatchObject(genome, gff_file):
             if flag:
                 (taxseqid, method, feature_type, start, end,
                  score, strand, phase, attributes) = l.split("\t")
-                #match = {"start":int(begin), "end":int(end), "app":method, "seqid":seqid, "taxid":taxid}
+                # match = {"start":int(begin), "end":int(end), "app":method, "seqid":seqid, "taxid":taxid}
                 if feature_type == 'protein_match':
                     (taxid, seqid, length) = taxseqid.split("|")
                     re_result = re.search("ID=match\$([\d]+)_[\d]+_[\d]+", attributes)
@@ -36,7 +36,7 @@ def getMatchObject(genome, gff_file):
                     re_result = re.search('Dbxref="([^"]+)"', attributes)
                     Dbxref = "" if not re_result else re_result.group(1)
 
-                    genome.matchs.append(obj.Match(taxid, seqid,  method, start,
+                    genome.matchs.append(obj.Match(taxid, seqid, method, start,
                                                    end, score, Dbxref, Name, matchID, signature_desc))
 
 
@@ -70,7 +70,6 @@ def associateDomainsWithPeptides(segment):
             pep_end = pep.end_aa(cds)
 
             # to which peptide the match belong to? based on the length
-            max_length_in_pep = 0
             for m in cds.matchs:
 
                 if pep_end < m.start_in_prot or m.end_in_prot < pep_start:  # the match is not on peptide seq
@@ -130,7 +129,7 @@ def associateDomainsWithPeptides(segment):
 
 def getDomainsOverlappingCleavageSites(segment):
     """
-    cleavage site has a length of 2 aa : -------//-------
+    Cleavage site has a length of 2 aa : -------//-------
 
     extreme cases where a domain annotation does not overlap a cleavage site:
     when domain end == cleavage site start:
@@ -153,7 +152,7 @@ def getDomainsOverlappingCleavageSites(segment):
                     # distance of overlapping is the smallest distance between left and right
 
                     domain.overlapped_cleavage_sites[cs] = {
-                        "overlapping_side": side,  'overlapping_distance': distance}
+                        "overlapping_side": side, 'overlapping_distance': distance}
                     cs.overlapping_domains[domain] = {'right_distance': domain.end_aa(cds) - cs.end_aa(cds) + 1,
                                                       "left_distance": cs.start_aa(cds) - domain.start_aa(cds) + 1}
 

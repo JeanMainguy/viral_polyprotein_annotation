@@ -3,18 +3,10 @@ import viral_genome_classes as obj
 import parser_interpro_results as do
 
 import os
-import gzip
 import logging
-from Bio import SeqIO
-from Bio.SeqRecord import SeqRecord
-from Bio.Seq import Seq
 import sys
-import csv
 import re
 import os.path
-from Bio.Alphabet import generic_protein
-from Bio.SeqFeature import SeqFeature, FeatureLocation
-from operator import attrgetter
 import collections
 
 SCREEN_SIZE = 100
@@ -237,7 +229,6 @@ def buildCompatibleGroup(set_of_sequence):
 
     # Build list of sequences that don't overlap
     compatible_groupes = []
-    used_seq = []
     while len(sequences) > 0:
         seq = sequences.pop()
         group = [seq]

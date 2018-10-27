@@ -1,33 +1,16 @@
 #!/usr/bin/env python3
-import taxonomy as tax
-import viral_genome_classes as obj
-import viruses_statistics as stat
-import parser_interpro_results as do
-import visualisation_alignment as view_aln
-import visualisation_protein as view_prot
 import multiple_alignment_analysis as analysis
 
-from os import path, listdir
-import gzip
 import logging
-from Bio import SeqIO
-from Bio.SeqRecord import SeqRecord
-from Bio.Seq import Seq
 import sys
-import csv
-import re
-from operator import attrgetter
-from numpy import std, mean
-import operator
 
 
 def split_cluster(cds_list):
-     # includer when cds has cds obj in sub_prot attr: meaning that includer
-     # cds include in their sequence a smaller cds that start or finish at a different position
+    # includer when cds has cds obj in sub_prot attr: meaning that includer
+    # cds include in their sequence a smaller cds that start or finish at a different position
     parental_cds = {}
-    correponding_sub_protein = []
     parental_cds_lvl = {}
-    level = {}  # lvl of inclusion we have in the cluster. in most of the case it's 1
+    # lvl of inclusion we have in the cluster. in most of the case it's 1
     # but some Retro virus have 2 lvl (so a stack of 3 proteins sharing a common part)
 
     for cds in cds_list:
@@ -181,13 +164,13 @@ if __name__ == '__main__':
         cluster_file = sys.argv[1]
         cluster_filter_out = sys.argv[2]
 
-    except:
+    except IndexError:
         cluster_file = "data/alignment/ssRNA_viruses/RefSeq_download_date_2018-07-21/ssRNA_viruses_evalue_1e-20coverage60_I1_8/clusters_with_identified_polyprotein.out"
         # cluster_file = 'test.csv'
         cluster_filter_out = "test/filter_cluster"
     try:
         taxonomy_file = sys.argv[3]
-    except:
+    except IndexError:
         taxonomy_file = "data/taxonomy/taxonomy_virus.txt"
 
     gff_file = None

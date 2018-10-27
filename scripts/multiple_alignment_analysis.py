@@ -2,24 +2,18 @@
 
 import taxonomy as tax
 import viral_genome_classes as obj
-import viruses_statistics as stat
 import parser_interpro_results as do
 import visualisation_alignment as view_aln
 import visualisation_protein as view_prot
-import viral_protein_extraction as extract
 
 from os import path, listdir, rename
 import gzip
 import logging
 from Bio import SeqIO
-from Bio.SeqRecord import SeqRecord
-from Bio.Seq import Seq
 import sys
 import csv
 import re
-from operator import attrgetter
 from numpy import std, mean
-import operator
 
 
 def getCdsObject(taxon_prot_ids, taxonomy_file, interpro_domains_file, sp_treshold):
@@ -43,24 +37,23 @@ def getCdsObject(taxon_prot_ids, taxonomy_file, interpro_domains_file, sp_tresho
 
             for cds in segment.cds:
                 if cds.protein_id in taxon_prot_ids[taxon_id]:
-                    cds_found = True
                     cds.genetic_code = gb_file_dict['genetic_code']
                     cds_list.append(cds)
-
-    if len(cds_list) != sum([len(protein_ids) for protein_ids in taxon_prot_ids.values()]):
-        # print(len(cds_list), '!=' ,sum([len(protein_ids) for protein_ids in taxon_prot_ids.values()]))
-        set_requested = set()
-        for taxon_id, protein_ids in taxon_prot_ids.items():
-            set_requested |= {f'{taxon_id}|{protein_id}' for protein_id in protein_ids}
-
-        set_retrieved = set()
-
-        for cds in cds_list:
-            set_retrieved.add(f'{cds.segment.taxon_id}|{cds.protein_id}')
-
-        # print(set_retrieved)
-        # print(set_requested - set_retrieved)
-
+    assert len(cds_list) == sum([len(protein_ids) for protein_ids in taxon_prot_ids.values()])
+    # if len(cds_list) != sum([len(protein_ids) for protein_ids in taxon_prot_ids.values()]):
+    #     # print(len(cds_list), '!=' ,sum([len(protein_ids) for protein_ids in taxon_prot_ids.values()]))
+    #     set_requested = set()
+    #     for taxon_id, protein_ids in taxon_prot_ids.items():
+    #         set_requested |= {f'{taxon_id}|{protein_id}' for protein_id in protein_ids}
+    #
+    #     set_retrieved = set()
+    #
+    #     for cds in cds_list:
+    #         set_retrieved.add(f'{cds.segment.taxon_id}|{cds.protein_id}')
+    #
+    #     print(set_retrieved)
+    #     print(set_requested - set_retrieved)
+    #     input()
     return cds_list
 
 
@@ -86,7 +79,7 @@ def convertAlignmentToList(alignment_seq):
     return list
 
 
-def findCloseSites(site, site_start_in_aln, site_end_in_aln,  cds_list, window):
+def findCloseSites(site, site_start_in_aln, site_end_in_aln, cds_list, window):
 
     size_site_in_aln = site_end_in_aln - site_start_in_aln + 1
     # site.neighboring_sites = set()
@@ -342,17 +335,15 @@ def parse_alignment_file(alignment_file):
     return taxon_prot_ids, seq_aln_dict
 
 
-def visualisation_of_processed_aln(cds_list, alignment_file, group_info_list, file_handle, display_line_size=180):
+def visualisation_of_processed_aln(cds_list, alignment_file, group_info_list, file_handle, display_line_size=180, flag_view_prot=False):
 
     cds_annotated = [cds for cds in cds_list if cds.polyprotein]
     # VISUALISATION OF THE ALIGNMENT
-    len_cds_max = max((len(cds) for cds in cds_list))
-    # for cds in cds_annotated:
-    # for cds in cds_list:
-    # print(view_prot.visualisation_protein(cds, 1, len_cds_max))
-
-    for cds in cds_list:
-        cds.matchs = []
+    if flag_view_prot is True:
+        len_cds_max = max((len(cds) for cds in cds_list))
+        for cds in cds_annotated:
+            # for cds in cds_list:
+            print(view_prot.visualisation_protein(cds, 1, len_cds_max))
 
     view_aln.visualisation(cds_list, alignment_file, display_line_size,
                            group_info_list, file_handle)
@@ -369,7 +360,7 @@ def analyse_cleavage_site_groups(cds_list, window):
     absent_annotated_cds_penalty = window
 
     for i, group in enumerate(groups_of_cs):
-        group_info = getStatOnGroup(group,  nb_cds_annotated, absent_annotated_cds_penalty)
+        group_info = getStatOnGroup(group, nb_cds_annotated, absent_annotated_cds_penalty)
         group_info['group_index'] = i
         # group_info["cleavage_sites"] = group
         group_info_list.append(group_info)
@@ -737,40 +728,40 @@ if __name__ == '__main__':
     try:
         # 'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037.aln'
         alignment_file_or_dir = sys.argv[1]
-    except:
+    except IndexError:
         alignment_file_or_dir = 'results_db_viral_2018-10-19/Picornavirales_evalue_1e-60coverage60_I1_8/alignment/seq_cluster6.aln'
         # alignment_file_or_dir = 'data/alignment/Viruses/RefSeq_download_date_2018-07-21/Viruses_evalue_1e-40coverage40_I2/seq_cluster30.aln'
 
     try:
         # 'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037_stat.csv'
         windows_input = sys.argv[2]
-    except:
+    except IndexError:
         windows_input = "30"
 
     try:
         cs_group_stat_file = sys.argv[3]
         output_stat_aln = sys.argv[4]
-    except:
+    except IndexError:
         cs_group_stat_file = None
         output_stat_aln = None
         cs_group_stat_file = "test/test_cs_result.csv"
         output_stat_aln = "test/test_aln_result.csv"
     try:
         taxonomy_file = sys.argv[5]  # "data/taxonomy/taxonomy_virus.txt"
-    except:
+    except IndexError:
         taxonomy_file = "results_db_viral_2018-10-19/genomes_index/taxonomy_virus.txt"
 
     try:
         reannotated_genome_dir = sys.argv[6]
-    except:
+    except IndexError:
         reannotated_genome_dir = "test/"
     try:
         interpro_domains_file = sys.argv[7]
-    except:
+    except IndexError:
         interpro_domains_file = None
     try:
         black_list_file = sys.argv[8]
-    except:
+    except IndexError:
         black_list_file = None
     sp_treshold = 90
     display_line_size = 75  # 140/2
@@ -806,7 +797,7 @@ if __name__ == '__main__':
     assert min(windows) >= 0
     windows = list(windows)
     windows.sort()
-    print('window used to analyse cleavage sites',  windows)
+    print('window used to analyse cleavage sites', windows)
 
     if cs_group_stat_file:
         print("INITIATE OUTPUT FILES")
