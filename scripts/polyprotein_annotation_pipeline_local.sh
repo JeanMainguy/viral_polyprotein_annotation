@@ -37,6 +37,7 @@ interpro_path="/mirror/interpro"
 #Create a black list of poorly annotated cds
 black_list_conflict_domain='true'
 black_list_irrelevant_pattern='true'
+confidence_score_treshold=4
 
 TMPDIR=/tmp/${USER}_polyprotein_annotation/
 
@@ -67,7 +68,7 @@ inflations='1.8'
 split_cluster="false"
 
 # multiple alignment anlysis
-windows="30" # used to group cleavage sites
+WINDOW="25" # used to group cleavage sites
 
 #Conflict between domain annotation and cleavage site annotation
 threshold_overlap_prct=10
@@ -434,20 +435,22 @@ do
     stat_group_file=${stat_output_dir}/stat_cleavage_site_groups.csv
     alignement_stat_file=${stat_output_dir}/stat_alignments.csv # one line per cluster
 
-    # if [ ! -f $alignement_stat_file ] ; then
-      python3 scripts/multiple_alignment_analysis.py $aln_dir \
-                                                    "$windows" \
-                                                    $stat_group_file \
-                                                    $alignement_stat_file \
+
+    python3 scripts/multiple_alignment_analysis.py  $aln_dir \
                                                     $taxonomy_file \
                                                     $TMPDIR/${reannotated_genome_dir} \
-                                                    $gff_domain_file \
-                                                    $black_list_file
+                                                    -w $WINDOW \
+                                                    -t $confidence_score_treshold \
+                                                    --output_grp_cs $stat_group_file \
+                                                    --output_aln $alignement_stat_file \
+                                                    --interpro_domains $gff_domain_file \
+                                                    --blacklist $black_list_file \
+                                                    --sp_treshold $tresholdSP
       exit_if_fail
 
-    mv $TMPDIR/${reannotated_genome_dir}/* ${reannotated_genome_dir}/
+      mv $TMPDIR/${reannotated_genome_dir}/* ${reannotated_genome_dir}/
 
-    if [ -x "$(command -v aha)" ]; then
+      if [ -x "$(command -v aha)" ]; then
         echo 'Conversion of the alignment visualisation file in html'
         for f in $stat_output_dir/*.aln;
         do

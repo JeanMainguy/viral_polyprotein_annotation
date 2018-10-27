@@ -14,11 +14,12 @@ import sys
 import csv
 import re
 from numpy import std, mean
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
 
-def getCdsObject(taxon_prot_ids, taxonomy_file, interpro_domains_file, sp_treshold):
+def getCdsObject(taxon_prot_ids, index_genome_file, interpro_domains_file, sp_treshold):
 
-    gb_dict_iter = tax.getAllRefseqFromTaxonIdList(taxon_prot_ids, taxonomy_file)
+    gb_dict_iter = tax.getAllRefseqFromTaxonIdList(taxon_prot_ids, index_genome_file)
 
     cds_list = []
     for gb_file_dict in gb_dict_iter:
@@ -629,180 +630,167 @@ def main():
     print("PROCESS of CLUSTER ", cluster_nb)
     taxon_prot_ids, seq_aln_dict = parse_alignment_file(alignment_file)
 
-    for window in windows:
-        # print(taxon_prot_ids)
-        cds_list = getCdsObject(taxon_prot_ids, taxonomy_file, interpro_domains_file, sp_treshold)
-        for cds in cds_list:
-            if f'{cds.segment.taxon_id}|{cds.protein_id}' in black_list:
-                # cds annotation has been black listed
-                cds.black_listed_peptides = cds.peptides
-                cds.black_listed_cleavage_sites = cds.cleavage_sites
-                cds.peptides = set()
-                cds.cleavage_sites = []
-                cds.polyprotein = None
+    # print(taxon_prot_ids)
+    cds_list = getCdsObject(taxon_prot_ids, args.genome_index_file,
+                            args.interpro_domains, args.sp_treshold)
+    for cds in cds_list:
+        if f'{cds.segment.taxon_id}|{cds.protein_id}' in black_list:
+            # cds annotation has been black listed
+            cds.black_listed_peptides = cds.peptides
+            cds.black_listed_cleavage_sites = cds.cleavage_sites
+            cds.peptides = set()
+            cds.cleavage_sites = []
+            cds.polyprotein = None
 
-        if sum((1 for cds in cds_list if cds.polyprotein)) == 0:
-            logging.warning(f'{alignment_file} has no identified polyprotein with annotation')
-            return
+    if sum((1 for cds in cds_list if cds.polyprotein)) == 0:
+        logging.warning(f'{alignment_file} has no identified polyprotein with annotation')
+        return
 
-        if len(cds_list) != len(seq_aln_dict):
-            # print('len(cds_list) !=  len(seq_aln_dict) ')
-            # print(len(cds_list),len(seq_aln_dict) )
-            logging.critical(
-                f'Not all cds from the alignment have been retrieved in {alignment_file}')
-            return
+    if len(cds_list) != len(seq_aln_dict):
+        # print('len(cds_list) !=  len(seq_aln_dict) ')
+        # print(len(cds_list),len(seq_aln_dict) )
+        logging.critical(
+            f'Not all cds from the alignment have been retrieved in {alignment_file}')
+        return
 
-        for cds in cds_list:
-            cds.aligned_sequence = seq_aln_dict[cds.protein_id]
-            cds.cleavage_site_positions = {s.start_aa(cds): s for s in cds.cleavage_sites}
-            cds.aln_list = convertAlignmentToList(cds.aligned_sequence)
+    for cds in cds_list:
+        cds.aligned_sequence = seq_aln_dict[cds.protein_id]
+        cds.cleavage_site_positions = {s.start_aa(cds): s for s in cds.cleavage_sites}
+        cds.aln_list = convertAlignmentToList(cds.aligned_sequence)
 
-        group_info_list, cs_group_list = analyse_cleavage_site_groups(cds_list, window)
+    group_info_list, cs_group_list = analyse_cleavage_site_groups(cds_list, window)
 
-        for group_info in group_info_list:
-            group_of_cs = cs_group_list[group_info["group_index"]]
-            if group_info['confidence_score'] < confidence_score_threshold:
-                propagate_cleavage_sites(group_of_cs, group_info, cds_list, window)
-                group_info['valid'] = True
-            else:
-                group_info['valid'] = False
+    for group_info in group_info_list:
+        group_of_cs = cs_group_list[group_info["group_index"]]
+        if group_info['confidence_score'] < args.score_threshold:
+            propagate_cleavage_sites(group_of_cs, group_info, cds_list, window)
+            group_info['valid'] = True
+        else:
+            group_info['valid'] = False
 
+    iter_cds_non_annotated = (cds for cds in cds_list if not cds.polyprotein)
+    for blank_cds in iter_cds_non_annotated:
+        get_predicted_mat_peptide(blank_cds)
+
+    ######################
+    #   OUTPUT
+    ######################
+
+    if not aln_csv_writer or 1:
+        # print(f'VISUALISATION WITH WINDOW {window}')
+
+        # for cds in cds_list:
+        #     print(cds.segment.record.annotations['taxonomy'])
+
+        # for group in group_info_list:
+        #     print(group)
+        if write_visualization_path:
+            file_handle = open(path.join(write_visualization_path,
+                                         f"visualization_cluster{cluster_nb}.aln"), 'w')
+        else:
+            file_handle = sys.stdout
+        visualisation_of_processed_aln(cds_list, alignment_file,
+                                       group_info_list, file_handle, args.line_size)
+
+    if aln_csv_writer:
+        parameters["cluster_nb"] = cluster_nb
+        parameters['window'] = window
+        compute_alignment_stat(group_info_list, parameters, cds_list,
+                               aln_csv_writer, group_site_csv_writer)
+
+    if args.reannotated_genome_dir:
         iter_cds_non_annotated = (cds for cds in cds_list if not cds.polyprotein)
+
         for blank_cds in iter_cds_non_annotated:
-            get_predicted_mat_peptide(blank_cds)
+            taxon_id = blank_cds.segment.taxon_id
+            if taxon_id not in genomes_output_writers:
+                genomes_output_writers[taxon_id], fl_handle = initiate_reannotated_genome_file(
+                    path.join(args.reannotated_genome_dir, f'cleavage_sites_{taxon_id}.csv'))
+                file_handles.append(fl_handle)  # to close all files properly at the end
 
-        ######################
-        #   OUTPUT
-        ######################
+                gff_writers[taxon_id], fl_handle = initiate_gff_file(
+                    path.join(args.reannotated_genome_dir, f'mature_peptides_{taxon_id}.gff'))
+                file_handles.append(fl_handle)  # to close all files properly at the end
 
-        if not aln_csv_writer or 1:
-            # print(f'VISUALISATION WITH WINDOW {window}')
+            genome_csv_writer = genomes_output_writers[taxon_id]
+            write_predicted_annotation(genome_csv_writer, blank_cds, cluster_nb)
 
-            # for cds in cds_list:
-            #     print(cds.segment.record.annotations['taxonomy'])
+            gff_writer = gff_writers[taxon_id]
+            write_gff_annotation(gff_writer, blank_cds)
 
-            # for group in group_info_list:
-            #     print(group)
-            if write_visualization_path:
-                file_handle = open(path.join(write_visualization_path,
-                                             f"visualization_cluster{cluster_nb}.aln"), 'w')
-            else:
-                file_handle = sys.stdout
-            visualisation_of_processed_aln(cds_list, alignment_file,
-                                           group_info_list, file_handle, display_line_size)
+            write_reannotated_genbank_file(blank_cds, args.reannotated_genome_dir)
 
-        if aln_csv_writer:
-            parameters["cluster_nb"] = cluster_nb
-            parameters['window'] = window
-            compute_alignment_stat(group_info_list, parameters, cds_list,
-                                   aln_csv_writer, group_site_csv_writer)
 
-        if reannotated_genome_dir:
-            iter_cds_non_annotated = (cds for cds in cds_list if not cds.polyprotein)
+def parse_arguments():
 
-            for blank_cds in iter_cds_non_annotated:
-                taxon_id = blank_cds.segment.taxon_id
-                if taxon_id not in genomes_output_writers:
-                    genomes_output_writers[taxon_id], fl_handle = initiate_reannotated_genome_file(
-                        path.join(reannotated_genome_dir, f'cleavage_sites_{taxon_id}.csv'))
-                    file_handles.append(fl_handle)  # to close all files properly at the end
+    parser = ArgumentParser(description="Mulitple alignment analysis step.",
+                            formatter_class=ArgumentDefaultsHelpFormatter)
+    parser.add_argument("alignment", type=str,
+                        help="Alignment file or folder containing alignment files")
+    parser.add_argument("genome_index_file", type=str,
+                        help="Index file of the genomes")
+    parser.add_argument("reannotated_genome_dir", type=str,
+                        help="reannotated genomes directory")
 
-                    gff_writers[taxon_id], fl_handle = initiate_gff_file(
-                        path.join(reannotated_genome_dir, f'mature_peptides_{taxon_id}.gff'))
-                    file_handles.append(fl_handle)  # to close all files properly at the end
+    parser.add_argument('-t', "--score_threshold", type=float, default=4.0,
+                        help="confidence score threshold")
+    parser.add_argument('-w', "--window", type=int, default=30,
+                        help="amino acid window used to group cleavage sites in the alignment")
+    parser.add_argument("--output_grp_cs", type=str, default=None,
+                        help="basic statistic stat file on cleavage site groupes. If set to None, the output file is not made")
+    parser.add_argument("--output_aln", type=str, default=None,
+                        help="basic statistic file on the alignement file. If set to None, the output file is not made")
 
-                genome_csv_writer = genomes_output_writers[taxon_id]
-                write_predicted_annotation(genome_csv_writer, blank_cds, cluster_nb)
-
-                gff_writer = gff_writers[taxon_id]
-                write_gff_annotation(gff_writer, blank_cds)
-
-                write_reannotated_genbank_file(blank_cds, reannotated_genome_dir)
+    parser.add_argument("--interpro_domains", type=str, default=None,
+                        help="result file of interproscan containing domain annotation")
+    parser.add_argument("--blacklist", type=str, default=None,
+                        help="file containing blacklisted sequence. Format: {taxon_id}|{protein_id} separated by newline")
+    parser.add_argument("--sp_treshold", type=int, default=90,
+                        help="Signal peptide length threshold.")
+    parser.add_argument("--line_size", type=int, default=100,
+                        help="number of residues before line-wrap in the aln visualisation output")
+    args = parser.parse_args()
+    return args
 
 
 if __name__ == '__main__':
 
     # logging.basicConfig(filename='log/alignment_analysis.log', level=logging.INFO)
     # alignment_file= "data/alignment/Retro-transcribing_viruses_1e-5_coverage90_I3/seq_cluster16.aln"
+    args = parse_arguments()
 
-    try:
-        # 'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037.aln'
-        alignment_file_or_dir = sys.argv[1]
-    except IndexError:
-        alignment_file_or_dir = 'results_db_viral_2018-10-19/Picornavirales_evalue_1e-60coverage60_I1_8/alignment/seq_cluster6.aln'
-        # alignment_file_or_dir = 'data/alignment/Viruses/RefSeq_download_date_2018-07-21/Viruses_evalue_1e-40coverage40_I2/seq_cluster30.aln'
-
-    try:
-        # 'data/alignment/Viruses_1e-5_coverage90_I2/seq_cluster1037_stat.csv'
-        windows_input = sys.argv[2]
-    except IndexError:
-        windows_input = "30"
-
-    try:
-        cs_group_stat_file = sys.argv[3]
-        output_stat_aln = sys.argv[4]
-    except IndexError:
-        cs_group_stat_file = None
-        output_stat_aln = None
-        cs_group_stat_file = "test/test_cs_result.csv"
-        output_stat_aln = "test/test_aln_result.csv"
-    try:
-        taxonomy_file = sys.argv[5]  # "data/taxonomy/taxonomy_virus.txt"
-    except IndexError:
-        taxonomy_file = "results_db_viral_2018-10-19/genomes_index/taxonomy_virus.txt"
-
-    try:
-        reannotated_genome_dir = sys.argv[6]
-    except IndexError:
-        reannotated_genome_dir = "test/"
-    try:
-        interpro_domains_file = sys.argv[7]
-    except IndexError:
-        interpro_domains_file = None
-    try:
-        black_list_file = sys.argv[8]
-    except IndexError:
-        black_list_file = None
-    sp_treshold = 90
-    display_line_size = 75  # 140/2
-    confidence_score_threshold = 4
-    if output_stat_aln:
-        write_visualization_path = path.dirname(output_stat_aln)
+    if args.output_aln:
+        write_visualization_path = path.dirname(args.output_aln)
     else:
         write_visualization_path = False
 
-    parameters = {"confidence_score_threshold": confidence_score_threshold}
+    parameters = {"confidence_score_threshold": args.score_threshold}
 
-    if path.isdir(alignment_file_or_dir):
-        alignment_files = (path.join(alignment_file_or_dir, f)
-                           for f in listdir(alignment_file_or_dir) if f.endswith('.aln'))
-        info_dir = parse_aln_directory_name(alignment_file_or_dir)
+    if path.isdir(args.alignment):
+        alignment_files = (path.join(args.alignment, f)
+                           for f in listdir(args.alignment) if f.endswith('.aln'))
+        info_dir = parse_aln_directory_name(args.alignment)
         parameters.update(info_dir)
 
-    elif path.isfile(alignment_file_or_dir) and alignment_file_or_dir.endswith('.aln'):
-        alignment_files = [alignment_file_or_dir]
+    elif path.isfile(args.alignment) and args.alignment.endswith('.aln'):
+        alignment_files = [args.alignment]
     else:
         raise ValueError('file or directory provided is not correct')
 
     print("OUTPUT:")
-    print(cs_group_stat_file)
-    print(output_stat_aln)
+    print(args.output_grp_cs)
+    print(args.output_aln)
 
     # window includ the cleavage in the middle
     # cleavage sites have a length of 2
     # then a window will always be even and >= 2
     # consequently we add 1 to odd window
+    window = int((int(args.window)+int(args.window) % 2))
 
-    windows = {int((int(w)+int(w) % 2)) for w in windows_input.split(' ')}  # 10,20,30
-    assert min(windows) >= 0
-    windows = list(windows)
-    windows.sort()
-    print('window used to analyse cleavage sites', windows)
-
-    if cs_group_stat_file:
+    if args.output_grp_cs:
         print("INITIATE OUTPUT FILES")
         group_site_csv_writer, aln_csv_writer, file_handles = initiate_ouput(
-            cs_group_stat_file, output_stat_aln)
+            args.output_grp_cs, args.output_aln)
     else:
         group_site_csv_writer = False
         aln_csv_writer = False
@@ -810,8 +798,8 @@ if __name__ == '__main__':
 
     black_list = []
     # Black list preparation
-    if black_list_file:
-        with open(black_list_file, "r") as fl:
+    if args.blacklist:
+        with open(args.blacklist, "r") as fl:
             black_list = {seq for seq in fl.read().split('\n') if not seq.startswith('#')}
 
     genomes_output_writers = {}
@@ -819,7 +807,7 @@ if __name__ == '__main__':
 
     for alignment_file in alignment_files:
         print(alignment_file)
-        main()  # variable needed in main() are global
+        main()  # variable needed in main() are global :-/
 
     for fl in file_handles:
         fl.close()
