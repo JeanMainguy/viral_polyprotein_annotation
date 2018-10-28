@@ -48,6 +48,7 @@ confidence_score_treshold=4 # confidence score threshold for the group of cleava
 ## IRRELEVANT ANNOTATION IDENTIFICATION:
 # Conflict between domain annotation and cleavage site annotation
 interpro_path="~/path/to_interproscan/folder/"
+interpro_db="PFAM,CDD,ProDom,SMART,ProSiteProfiles"
 
 threshold_overlap_prct=10
 threshold_overlap_aa=15
