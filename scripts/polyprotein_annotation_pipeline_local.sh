@@ -12,68 +12,16 @@ exit_if_fail () {
 }
 
 ################################################################################
-## INPUT GENOMES
+echo '## GET VARIABLES FROM CONFIG FILE AND SET CORRECT DIRECTORY'
 ################################################################################
-genetic_code_path="genome_db_test/taxonomy/new_taxdump/"
 
-genbank_files_db_path="genome_db_test/genomes/refseq/viral/"
-RefSeq_structure="True"
-# genbank_files_db_path='flat_db_Alphavirus/'
-# RefSeq_structure="False"
-#Structure of the genbank files database : True or False
-# False is a list of genbank files in a folder
-# True same structure as in RefSeq:
-# ── genomes
-#     └── refseq
-#         └── viral
-#             ├── Aedes_flavivirus
-#             │   └── latest_assembly_versions
-#             │       └── GCF_000885715.1_ViralProj39601
-#             │           └── GCF_000885715.1_ViralProj39601_genomic.gbff.gz
-
-
-interpro_path="/mirror/interpro"
-
-#Create a black list of poorly annotated cds
-black_list_conflict_domain='true'
-black_list_irrelevant_pattern='true'
-confidence_score_treshold=4
+source etc/config_file.sh
+exit_if_fail
 
 TMPDIR=/tmp/${USER}_polyprotein_annotation/
 
 mkdir -p log/
 mkdir -p ${TMPDIR}
-
-################################################################################
-## VARIABLES
-################################################################################
-
-## extraction and basic stat
-tresholdSP="90"
-taxon='Flaviviridae'
-# taxon='Alphavirus'
-# taxon='Picornavirales'
-
-# taxon='ssRNA viruses'
-# taxon='Retro-transcribing viruses'
-# taxon='Picornavirales'
-
-## blast evalue start
-blast_evalue='1e-5'
-
-## filtering and mcl clustering
-coverages='60'
-evalues_filtering='1e-60' # 1e-50 1e-20' #'1e-140 1e-160'
-inflations='1.8'
-split_cluster="false"
-
-# multiple alignment anlysis
-WINDOW="25" # used to group cleavage sites
-
-#Conflict between domain annotation and cleavage site annotation
-threshold_overlap_prct=10
-threshold_overlap_aa=15
-ignoring_threshold_ratio=0.5
 
 taxon_name_for_path=${taxon// /_} #replace space by underscore
 taxon_name_for_path=${taxon_name_for_path//,/} # replace coma by nothing
@@ -86,8 +34,6 @@ results_folder=$results_folder_db/$taxon_name_for_path
 echo $taxon
 echo Parameters C $coverages E $evalues_filtering I $inflations
 echo Results are written in $results_folder
-
-
 
 ################################################################################
 echo '## GENOME INDEX FILE CREATION'
@@ -301,9 +247,11 @@ do
     fi
 
     cluster_to_aln+=($clusters_with_polyprotein_splitted)
+  else
+     cluster_to_aln+=($clusters_with_polyprotein)
   fi
 
-  cluster_to_aln+=($clusters_with_polyprotein)
+
 
 done
 
@@ -381,7 +329,7 @@ gff_domain_file="$interpro_dir/domains_viral_sequences.gff3"
 #Ouput :
 domain_stat_file=$stat_output_dir/stat_domain_${taxon_name_for_path}.csv
 
-python3 scripts/domains_annotation_stat.py $taxon \
+python3 scripts/domain_annotation_stat.py $taxon \
                                             $stat_output_dir/ \
                                             $taxonomy_file \
                                             $tresholdSP \
@@ -392,7 +340,7 @@ exit_if_fail
 conflict_annotation_list_file=$stat_output_dir/list_annotation_conflicts_${taxon_name_for_path}.txt
 conflict_manual_checking_file=$stat_output_dir/conflicting_annotation_identification_${taxon_name_for_path}.txt
 
-python3 scripts/conflict_annotation_identification.py $domain_stat_file \
+python3 scripts/domain_annotation_conflict_identification.py $domain_stat_file \
                                                       $conflict_annotation_list_file \
                                                       $threshold_overlap_prct \
                                                       $threshold_overlap_aa  \
