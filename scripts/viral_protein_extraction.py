@@ -10,6 +10,7 @@ import sys
 from Bio import SeqIO
 # from Bio.SeqRecord import SeqRecord
 # from Bio.Seq import Seq
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
 
 def extract_cleavage_site_sequences(cds_list, extract_window):
@@ -55,7 +56,7 @@ def extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_i
                 SeqIO.write(seq_to_write, handle_prot, "fasta")
 
             # identification of poorly annotated cds
-            if len(cds.unannotated_region) > 1:
+            if len(cds.unannotated_region) > 1 and irrelevant_annotatation_file:
                 string_info = f'\nThe cds {cds.protein_id} from taxon:{cds.segment.taxon_id} seems poorly annotated\n'
                 string_info += f'It has {len(cds.unannotated_region)} unnanotated part\n'
                 string_info += visu.visualisation_protein(cds, 1, len(cds))[:-4]
@@ -78,34 +79,71 @@ def extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_i
                              writer_stat_dict['genome'], taxonomy, nb_polyprotein)
 
 
+def parse_arguments():
+
+    parser = ArgumentParser(description="Extract and stat viral proteins",
+                            formatter_class=ArgumentDefaultsHelpFormatter)
+    parser.add_argument("taxon", type=str,
+                        help="")
+    parser.add_argument("genome_index_file", type=str,
+                        help="Index file of the genomes")
+
+    parser.add_argument("protein_db_file", type=str,
+                        help="file where fasta file of protein sequences is stored")
+
+    parser.add_argument("--sp_treshold", type=int, default=90,
+                        help="Signal peptide length threshold.")
+
+    parser.add_argument('--stat_output_dir', type=str, default=False,
+                        help="stat output dir if empty no stat are recorded")
+
+    parser.add_argument("--polyprotein_list_file", type=str, default="annotated_polyprotein_list.txt",
+                        help="list of polyproteins")
+
+    parser.add_argument("--irrelevant_annotation_list", type=str, default="irrelevant_annotation_list.txt",
+                        help="list of irrelevant polyprotein annotations")
+
+    args = parser.parse_args()
+    return args
+
+
 if __name__ == '__main__':
-    from time import clock
-    START_TIME = clock()
-
-    logging.basicConfig(filename='log/viral_protein_extraction_and_stat.log',
-                        level=logging.INFO)
-
-    taxon = sys.argv[1]
-    output_dir = sys.argv[2]
-
-    taxonomy_file = sys.argv[3]
-    sp_treshold = int(sys.argv[4])
 
     try:
-        stat_output_dir = sys.argv[5]  # if not given then we don't compute any stat
-        print(f'Write genomes, proteins and peptides in {stat_output_dir} statistics')
-    except IndexError:
-        print("No statistics...")
-        stat_output_dir = False
-    try:
-        irrelevant_annotation_list_fl = sys.argv[6]
-    except IndexError:
-        irrelevant_annotation_list_fl = "test/irrelevant_annotation_list.txt"
+        logging.basicConfig(filename='log/viral_protein_extraction_and_stat.log',
+                            level=logging.INFO)
+    except FileNotFoundError:
+        logging.basicConfig(filename='viral_protein_extraction_and_stat.log',
+                            level=logging.INFO)
 
-    try:
-        polyprotein_list_file = sys.argv[7]
-    except IndexError:
-        polyprotein_list_file = "test/annotated_polyprotein_list.txt"
+    args = parse_arguments()
+
+    taxon = args.taxon
+    protein_db = args.protein_db_file
+
+    taxonomy_file = args.genome_index_file
+
+    sp_treshold = args.sp_treshold
+
+    stat_output_dir = args.stat_output_dir
+
+    irrelevant_annotation_list_fl = args.irrelevant_annotation_list
+    polyprotein_list_file = args.polyprotein_list_file
+    # try:
+    #     stat_output_dir = sys.argv[5]  # if not given then we don't compute any stat
+    #     print(f'Write genomes, proteins and peptides in {stat_output_dir} statistics')
+    # except IndexError:
+    #     print("No statistics...")
+    #     stat_output_dir = False
+    # try:
+    #     irrelevant_annotation_list_fl = sys.argv[6]
+    # except IndexError:
+    #     irrelevant_annotation_list_fl = "test/irrelevant_annotation_list.txt"
+    #
+    # try:
+    #     polyprotein_list_file = sys.argv[7]
+    # except IndexError:
+    #     polyprotein_list_file = "test/annotated_polyprotein_list.txt"
 
     gbff_iter = tax.getAllRefseqFromTaxon(taxon, taxonomy_file)
 
@@ -113,17 +151,17 @@ if __name__ == '__main__':
 
     if stat_output_dir:
         writer_stat_dict, files_to_close = stat.initiateBasicStatFile(taxon, stat_output_dir)
+        irrelevant_annotatation_file = open(os.path.join(
+            stat_output_dir, f'irrelevant_annotation_identification_{taxon}.txt'), "w")
+        files_to_close.append(irrelevant_annotatation_file)
     else:
         files_to_close = []
         writer_stat_dict = False
+        irrelevant_annotatation_file = False
 
-    protein_db = "{}_protein_db.faa".format(taxon)
+    # protein_db = "{}_protein_db.faa".format(taxon)
 
-    handle_prot = open(os.path.join(output_dir, protein_db), "w")
-    files_to_close.append(handle_prot)
-
-    irrelevant_annotatation_file = open(os.path.join(
-        stat_output_dir, f'irrelevant_annotation_identification_{taxon}.txt'), "w")
+    handle_prot = open(protein_db, "w")
     files_to_close.append(handle_prot)
 
     print("Creation of a list of irrelevant mat_peptide annotations")
@@ -152,6 +190,3 @@ if __name__ == '__main__':
 
     for f in files_to_close:
         f.close()
-
-    print('\nPROGRAM RUN TIME:%6.2f' % (clock()-START_TIME), 'seconds.')
-    print('-'*20)

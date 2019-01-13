@@ -94,6 +94,7 @@ faa_db="$sequence_dir/${taxon_name_for_path}_protein_db.faa"
 stat_output_dir="${results_folder}/viral_protein_stat/"
 stat_protein_file="${stat_output_dir}/stat_proteins_${taxon_name_for_path}.csv"
 irrelevant_cds_file="${stat_output_dir}/list_irrelevant_annotation_${taxon_name_for_path}.txt"
+annotated_polyprotein_list="${stat_output_dir}/list_annotated_polyprotein.txt"
 
 if [ ! -f $faa_db ] || [ ! -f $stat_protein_file ] ; then
 
@@ -101,11 +102,12 @@ if [ ! -f $faa_db ] || [ ! -f $stat_protein_file ] ; then
     mkdir -p ${sequence_dir} ${stat_output_dir}
 
     python3 scripts/viral_protein_extraction.py "${taxon}" \
-                                                ${TMPDIR}$sequence_dir \
                                                 $taxonomy_file \
-                                                $tresholdSP \
-                                                ${TMPDIR}$stat_output_dir \
-                                                $irrelevant_cds_file
+                                                ${TMPDIR}$faa_db \
+                                                --sp_treshold $tresholdSP \
+                                                --stat_output_dir ${TMPDIR}$stat_output_dir \
+                                                --irrelevant_annotation_list $irrelevant_cds_file \
+                                                --polyprotein_list_file $annotated_polyprotein_list
     exit_if_fail
 
     mv ${TMPDIR}${sequence_dir}/*  ${sequence_dir}/
@@ -306,21 +308,79 @@ echo "## INTERPROSCAN: DOMAIN ANNOTATIONS"
 ################################################################################
 interproscan_version=$(ls $interpro_path | grep interproscan*.* -o)
 interpro_dir="${results_folder_db}/interproscan_results/${interproscan_version}"
-seq_id_list=${interpro_dir}/tmp_new_id_list.txt
-
 mkdir -p $interpro_dir
-## MERGE ALL CLUSTER FILE INTO ONE
-rm -f ${interpro_dir}/merge_all_tmp_new_id_list.txt
-for cluster_file in ${cluster_to_aln[@]};
-do
-  cat $cluster_file | sed -e 'y/\t/\n/'  >> ${interpro_dir}/merge_all_tmp_new_id_list.txt
-done
+# //////////////////////////////////////// REMOVE !!!!
+cat $annotated_polyprotein_list | head -5 > ${TMPDIR}/tmp
+annotated_polyprotein_list=${TMPDIR}/tmp
+# \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+already_computed_id=${interpro_dir}/seq_header_already_processed.txt
+final_interpro_result=${interpro_dir}/domains_viral_sequences.gff3
 
-cat ${interpro_dir}/merge_all_tmp_new_id_list.txt | sort | uniq > $seq_id_list
-rm ${interpro_dir}/merge_all_tmp_new_id_list.txt
+if [ ! -f ${already_computed_id} ]; then
+  # echo creation of a empty already_computed_id file in $interpro_dir/ because it does not already exist
+  # echo it means that all id seq found in ${cluster_dir} will be process
+  touch $already_computed_id
+fi
 
-bash scripts/interproscan_preparation.sh $interpro_dir $clustering_dir $faa_db $seq_id_list
-exit_if_fail
+if [ ! -f ${final_interpro_result} ]; then
+  # echo creation of a empty final_interpro_result file in $interpro_dir/ because it does not already exist
+  # echo it means that all id seq found in ${clusters_with_polyprotein} will be process
+  touch $final_interpro_result
+fi
+
+id_list_to_process=${interpro_dir}/complement_new_id_list.txt
+comm -23 <(sort $annotated_polyprotein_list) <(sort $already_computed_id) > ${id_list_to_process} # id found  tmp_new_id_list.txt  and not in seq_header_list.txt
+echo new id_list_to_process tail
+tail ${id_list_to_process}
+nb_new_seq_to_process=$(cat ${id_list_to_process} | wc -l)
+echo nb new seq to process by interproscan : $nb_new_seq_to_process
+
+if [ ${nb_new_seq_to_process} != '0' ]; then # if new seq is not empty we search interpro domains annotations
+
+  echo Interproscan will process ${nb_new_seq_to_process} new sequences
+  echo  sbatch --export=interpro_dir=${interpro_dir},faa_db=$faa_db scripts/interpro_domain_search.sh
+
+  # sbatch --export=interpro_dir=${interpro_dir},faa_db=$faa_db scripts/interpro_domain_search.sh
+  list_seq_id=${interpro_dir}/complement_new_id_list.txt
+  final_interpro_result=${interpro_dir}/domains_viral_sequences.gff3
+
+
+  echo Interproscan search with $(wc -l $list_seq_id) sequences
+  # command from http://bioinformatics.cvr.ac.uk/blog/short-command-lines-for-manipulation-fastq-and-fasta-sequence-files/
+  # extract faa seq in a new file
+  perl -ne 'if(/^>(\S+)/){$c=$i{$1}}$c?print:chomp;$i{$_}=1 if @ARGV' $list_seq_id $faa_db > ${TMPDIR}/sequences.faa
+  interpro_output=${TMPDIR}/domains_viral_sequences_raw
+
+  $interpro_path/interproscan*/interproscan.sh -cpu 2 --appl $interpro_db -i ${TMPDIR}/sequences.faa -b ${interpro_output} -f GFF3
+
+  # GFF3 interpro output store fasta sequence at the end of the file...
+  # we don't want this part bacause the file will be merged with previous result
+  # get line number where FASTA sequence start
+  line_nb=$(cat ${interpro_output}.gff3 | grep '##FASTA' -n)
+
+  echo $line_nb
+  line_nb=${line_nb%:*}
+  ((line_nb--)) # remove 1 to the line to exclude ##FASTA line
+  echo $line_nb
+  head -$line_nb ${interpro_output}.gff3 > ${interpro_output}_no_fasta.gff3
+
+  ## MERGE NEW FILE TO FINAL RESULT FILE
+  echo MERGE NEW FILE TO FINAL RESULT FILE
+  cat ${interpro_output}_no_fasta.gff3 >> $final_interpro_result
+
+  ## MV ORIGINAL OUTPUT IN FINAL INTERPRO DIR
+  echo MV ORIGINAL OUTPUT IN FINAL INTERPRO DIR
+  interpro_dir=$(dirname "${final_interpro_result}")
+  mv $interpro_output.gff3  $interpro_dir/
+  cat $list_seq_id >> ${interpro_dir}/seq_header_already_processed.txt
+
+
+else
+  echo There is no new sequence to process in interproscan
+fi
+
+# bash scripts/interproscan_preparation.sh $interpro_dir $clustering_dir $faa_db $seq_id_list
+# exit_if_fail
 
 ################################################################################
 echo "## DOMAIN ANNOTATIONS STAT AND CONFLICT IDENTIFICATION"
@@ -387,7 +447,7 @@ do
     python3 scripts/multiple_alignment_analysis.py  $aln_dir \
                                                     $taxonomy_file \
                                                     $TMPDIR/${reannotated_genome_dir} \
-                                                    -w $WINDOW \
+                                                    -w $window \
                                                     -t $confidence_score_treshold \
                                                     --output_grp_cs $stat_group_file \
                                                     --output_aln $alignement_stat_file \
