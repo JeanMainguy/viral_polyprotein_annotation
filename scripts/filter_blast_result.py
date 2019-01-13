@@ -11,6 +11,8 @@ def filter_by_evalue_and_coverage(blast_result, out_files, evalues, coverages):
         for i, l in enumerate(result_reader):
             if i % 1000000 == 0:
                 print(i)
+            if not l.rstrip():  # if blank line it is we go to the next line
+                continue
             qseqid, sseqid, qcovs, qcovhsp, evalue, bitscore = l.split('\t')
 
             len_query = float(qseqid.split('|')[2])
