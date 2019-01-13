@@ -43,13 +43,14 @@ def extractAndStat(gb_file, handle_prot, writer_stat_dict, genetic_code, taxon_i
         nb_polyprotein = 0
 
         for p, cds in enumerate(segment.cds):
+            key = str(int(len(cds)/3))
+            header = '|'.join([taxon_id, cds.protein_id, key])
             if cds.polyprotein:
                 nb_polyprotein += 1
+                polypro_list_fl.write(header+'\n')
 
             # WRITE PROTEIN SEQUENCE
             if handle_prot:  # if we want to write the sequences it the writer otherwise False
-                key = str(int(len(cds)/3))
-                header = '|'.join([taxon_id, cds.protein_id, key])
                 seq_to_write = cds.getSequenceRecord(segment.organism, header, genetic_code)
                 SeqIO.write(seq_to_write, handle_prot, "fasta")
 
@@ -101,6 +102,11 @@ if __name__ == '__main__':
     except IndexError:
         irrelevant_annotation_list_fl = "test/irrelevant_annotation_list.txt"
 
+    try:
+        polyprotein_list_file = sys.argv[7]
+    except IndexError:
+        polyprotein_list_file = "test/annotated_polyprotein_list.txt"
+
     gbff_iter = tax.getAllRefseqFromTaxon(taxon, taxonomy_file)
 
     taxon = taxon.replace(',', '').replace(' ', '_')
@@ -123,6 +129,10 @@ if __name__ == '__main__':
     print("Creation of a list of irrelevant mat_peptide annotations")
     black_list_writer = open(irrelevant_annotation_list_fl, "w")
     files_to_close.append(black_list_writer)
+
+    print("Creation of a list of annotated polyproteins")
+    polypro_list_fl = open(polyprotein_list_file, "w")
+    files_to_close.append(polypro_list_fl)
 
     i = None
     for i, gb_dico in enumerate(gbff_iter):
