@@ -309,10 +309,10 @@ echo "## INTERPROSCAN: DOMAIN ANNOTATIONS"
 interproscan_version=$(ls $interpro_path | grep interproscan*.* -o)
 interpro_dir="${results_folder_db}/interproscan_results/${interproscan_version}"
 mkdir -p $interpro_dir
-# //////////////////////////////////////// REMOVE !!!!
-cat $annotated_polyprotein_list | head -5 > ${TMPDIR}/tmp
-annotated_polyprotein_list=${TMPDIR}/tmp
-# \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+# # //////////////////////////////////////// REMOVE !!!!
+# cat $annotated_polyprotein_list | head -5 > ${TMPDIR}/tmp
+# annotated_polyprotein_list=${TMPDIR}/tmp
+# # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 already_computed_id=${interpro_dir}/seq_header_already_processed.txt
 final_interpro_result=${interpro_dir}/domains_viral_sequences.gff3
 
@@ -446,11 +446,10 @@ do
 
     python3 scripts/multiple_alignment_analysis.py  $aln_dir \
                                                     $taxonomy_file \
-                                                    $TMPDIR/${reannotated_genome_dir} \
+                                                    --results_dir $TMPDIR/${reannotated_genome_dir} \
+                                                    --stat_dir $stat_output_dir \
                                                     -w $window \
                                                     -t $confidence_score_treshold \
-                                                    --output_grp_cs $stat_group_file \
-                                                    --output_aln $alignement_stat_file \
                                                     --interpro_domains $gff_domain_file \
                                                     --blacklist $black_list_file \
                                                     --sp_treshold $tresholdSP

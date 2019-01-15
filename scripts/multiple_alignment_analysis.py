@@ -483,7 +483,7 @@ def write_reannotated_genbank_file(cds, output_dir):
     # gb_file = cds.segment.gb_file
     # # for cs in cds.
     # Predicted_peptide(cds, start, end)
-    reannotated_gb_file = path.join(output_dir, f'genome_{cds.segment.taxon_id}.gbff')
+    reannotated_gb_file = path.join(output_dir, f'{cds.segment.taxon_id}_genome.gbff')
     tmp_file = path.join(output_dir, 'tmp.gbff')
     if path.exists(reannotated_gb_file):
         fl_read = open(reannotated_gb_file, 'r')
@@ -676,70 +676,63 @@ def main():
     #   OUTPUT
     ######################
 
-    if not aln_csv_writer or 1:
-        # print(f'VISUALISATION WITH WINDOW {window}')
+    # if args.visualisation:  # only visuaisation...
+    #     file_handle = sys.stdout
+    #     visualisation_of_processed_aln(cds_list, alignment_file,
+    #                                    group_info_list, file_handle, args.line_size)
+    #     return
 
-        # for cds in cds_list:
-        #     print(cds.segment.record.annotations['taxonomy'])
+    file_handle = open(path.join(args.results_dir,
+                                 f"visualization_cluster{cluster_nb}.aln"), 'w')
+    visualisation_of_processed_aln(cds_list, alignment_file,
+                                   group_info_list, file_handle, args.line_size)
 
-        # for group in group_info_list:
-        #     print(group)
-        if write_visualization_path:
-            file_handle = open(path.join(write_visualization_path,
-                                         f"visualization_cluster{cluster_nb}.aln"), 'w')
-        else:
-            file_handle = sys.stdout
-        visualisation_of_processed_aln(cds_list, alignment_file,
-                                       group_info_list, file_handle, args.line_size)
+    parameters["cluster_nb"] = cluster_nb
+    parameters['window'] = window
+    compute_alignment_stat(group_info_list, parameters, cds_list,
+                           aln_csv_writer, group_site_csv_writer)
 
-    if aln_csv_writer:
-        parameters["cluster_nb"] = cluster_nb
-        parameters['window'] = window
-        compute_alignment_stat(group_info_list, parameters, cds_list,
-                               aln_csv_writer, group_site_csv_writer)
+    iter_cds_non_annotated = (cds for cds in cds_list if not cds.polyprotein)
 
-    if args.reannotated_genome_dir:
-        iter_cds_non_annotated = (cds for cds in cds_list if not cds.polyprotein)
+    for blank_cds in iter_cds_non_annotated:
+        taxon_id = blank_cds.segment.taxon_id
+        if taxon_id not in genomes_output_writers:
+            genomes_output_writers[taxon_id], fl_handle = initiate_reannotated_genome_file(
+                path.join(args.results_dir, f'{taxon_id}_cleavage_sites.csv'))
+            file_handles.append(fl_handle)  # to close all files properly at the end
 
-        for blank_cds in iter_cds_non_annotated:
-            taxon_id = blank_cds.segment.taxon_id
-            if taxon_id not in genomes_output_writers:
-                genomes_output_writers[taxon_id], fl_handle = initiate_reannotated_genome_file(
-                    path.join(args.reannotated_genome_dir, f'cleavage_sites_{taxon_id}.csv'))
-                file_handles.append(fl_handle)  # to close all files properly at the end
+            gff_writers[taxon_id], fl_handle = initiate_gff_file(
+                path.join(args.results_dir, f'{taxon_id}_mature_peptides.gff'))
+            file_handles.append(fl_handle)  # to close all files properly at the end
 
-                gff_writers[taxon_id], fl_handle = initiate_gff_file(
-                    path.join(args.reannotated_genome_dir, f'mature_peptides_{taxon_id}.gff'))
-                file_handles.append(fl_handle)  # to close all files properly at the end
+        genome_csv_writer = genomes_output_writers[taxon_id]
+        write_predicted_annotation(genome_csv_writer, blank_cds, cluster_nb)
 
-            genome_csv_writer = genomes_output_writers[taxon_id]
-            write_predicted_annotation(genome_csv_writer, blank_cds, cluster_nb)
+        gff_writer = gff_writers[taxon_id]
+        write_gff_annotation(gff_writer, blank_cds)
 
-            gff_writer = gff_writers[taxon_id]
-            write_gff_annotation(gff_writer, blank_cds)
-
-            write_reannotated_genbank_file(blank_cds, args.reannotated_genome_dir)
+        write_reannotated_genbank_file(blank_cds, args.results_dir)
 
 
 def parse_arguments():
 
-    parser = ArgumentParser(description="Mulitple alignment analysis step.",
+    parser = ArgumentParser(description="Mulitple alignment analysis.",
                             formatter_class=ArgumentDefaultsHelpFormatter)
     parser.add_argument("alignment", type=str,
                         help="Alignment file or folder containing alignment files")
     parser.add_argument("genome_index_file", type=str,
-                        help="Index file of the genomes")
-    parser.add_argument("reannotated_genome_dir", type=str,
-                        help="reannotated genomes directory")
-
+                        help="Index file of the viral genomes under investigation")
     parser.add_argument('-t', "--score_threshold", type=float, default=4.0,
                         help="confidence score threshold")
     parser.add_argument('-w', "--window", type=int, default=30,
                         help="amino acid window used to group cleavage sites in the alignment")
-    parser.add_argument("--output_grp_cs", type=str, default=None,
-                        help="basic statistic stat file on cleavage site groupes. If set to None, the output file is not made")
-    parser.add_argument("--output_aln", type=str, default=None,
-                        help="basic statistic file on the alignement file. If set to None, the output file is not made")
+    # parser.add_argument('-v', "--visualisation", type=bool, default=False,
+    #                     help="Alignment visualisation with cleavage site identification in standard output and no output files")
+
+    parser.add_argument("--results_dir", type=str, default='.',
+                        help="directory where reannotation files are stored")
+    parser.add_argument("--stat_dir", type=str, default='.',
+                        help="directory of basic statistic stat output files on alignment and cleavage site groupes. If set to None, the output file is not made")
 
     parser.add_argument("--interpro_domains", type=str, default=None,
                         help="result file of interproscan containing domain annotation")
@@ -759,11 +752,6 @@ if __name__ == '__main__':
     # alignment_file= "data/alignment/Retro-transcribing_viruses_1e-5_coverage90_I3/seq_cluster16.aln"
     args = parse_arguments()
 
-    if args.output_aln:
-        write_visualization_path = path.dirname(args.output_aln)
-    else:
-        write_visualization_path = False
-
     parameters = {"confidence_score_threshold": args.score_threshold}
 
     if path.isdir(args.alignment):
@@ -777,24 +765,22 @@ if __name__ == '__main__':
     else:
         raise ValueError('file or directory provided is not correct')
 
-    print("OUTPUT:")
-    print(args.output_grp_cs)
-    print(args.output_aln)
-
     # window includ the cleavage in the middle
     # cleavage sites have a length of 2
     # then a window will always be even and >= 2
     # consequently we add 1 to odd window
     window = int((int(args.window)+int(args.window) % 2))
 
-    if args.output_grp_cs:
-        print("INITIATE OUTPUT FILES")
-        group_site_csv_writer, aln_csv_writer, file_handles = initiate_ouput(
-            args.output_grp_cs, args.output_aln)
-    else:
-        group_site_csv_writer = False
-        aln_csv_writer = False
-        file_handles = []
+    # if not args.visualisation:
+    stat_grp_cs_file = path.join(args.stat_dir, 'stat_cleavage_site_groups.csv')
+    stat_aln_file = path.join(args.stat_dir, 'stat_alignments.csv')
+
+    group_site_csv_writer, aln_csv_writer, file_handles = initiate_ouput(
+        stat_grp_cs_file, stat_aln_file)
+    # else:  # only visualisation
+    #     group_site_csv_writer = False
+    #     aln_csv_writer = False
+    #     file_handles = []
 
     black_list = []
     # Black list preparation
@@ -806,7 +792,6 @@ if __name__ == '__main__':
     gff_writers = {}
 
     for alignment_file in alignment_files:
-        print(alignment_file)
         main()  # variable needed in main() are global :-/
 
     for fl in file_handles:
