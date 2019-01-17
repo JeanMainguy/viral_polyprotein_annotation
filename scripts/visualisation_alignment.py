@@ -90,10 +90,11 @@ def visualisation(list_cds, aln_file, line_size, group_info_list, file_handle):
 
 def add_legend(alignement_dico, colors):
     legend = ''
+    BOLD = 1
     for category, color in colors.items():
 
         print(category, color)
-        legend += f'{category}:\x1b[{color}m xx\x1b[0m \n'
+        legend += f'{category}:\x1b[{BOLD};{color}m xx\x1b[0m \n'
     alignement_dico['legend'] = legend
 
 
@@ -204,23 +205,24 @@ def addColorToSequence2(position_domains, sites_to_color_dict, aln_sequence):
         style = default_style
         fg = default_fg
         bg = default_bg
-
-        if any((True for start, end in position_domains if start <= i <= end)):
-            style = BOLD
+        #
+        # if any((True for start, end in position_domains if start <= i <= end)):
+        #     style = BOLD
 
         for color, site_positions in sites_to_color_dict.items():
             if any((True for start, end in site_positions if start <= i <= end)):
                 fg = color
+                style = group_highlight
                 break
 
-        color_style = f'\x1b[{style};{fg};{bg}m' if not (style == default_style and
-                                                         fg == default_fg and
-                                                         bg == default_bg) else ''
+        # color_style = f'\x1b[{style};{fg};{bg}m' if not (style == default_style and
+        #                                                  fg == default_fg and
+        #                                                  bg == default_bg) else ''
 
-        color_style = f'\x1b[{group_highlight};{fg}m' if not (style == default_style and
-                                                              fg == default_fg and
-                                                              bg == default_bg) else ''
-        letter_colored = color_style + letter + RESET
+        letter_colored = f'\x1b[{style};{fg}m' + letter + RESET if not (style == default_style and
+                                                                        fg == default_fg and
+                                                                        bg == default_bg) else letter
+        # letter_colored = color_style + letter + RESET
 
         sequence_list.append(letter_colored)
 
