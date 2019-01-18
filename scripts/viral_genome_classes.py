@@ -100,8 +100,11 @@ def getGenomicLocation(sequence, start_in_seq, end_in_seq):
 
 
 def getProteinLocation(peptide, cds):
+    # print('cds', cds.bp_obj.location)
+    # print("pep", peptide.bp_obj.location, peptide.bp_obj.location.parts[0].start,
+    #       peptide.bp_obj.location.parts[-1].end, len(peptide.bp_obj.location))
     assert len(cds) % 3 == 0 and len(peptide) % 3 == 0
-    start_pep_nt = peptide.start
+    start_pep_nt = peptide.bp_obj.location.parts[0].start  # peptide.start
     len_previous_parts = 0  # length of the cds from its start to the current location
     # print('start_pep_nt', start_pep_nt)
     for cds_location_part in cds.bp_obj.location.parts:
@@ -116,6 +119,9 @@ def getProteinLocation(peptide, cds):
                 end_aa = start_aa + len(peptide)/3 - 1
                 return int(start_aa), int(end_aa)
                 break
+            # else:
+            #     logging.warning('Problem with peptide protein location')
+            #
         len_previous_parts += len(cds_location_part)
 
 
@@ -968,7 +974,7 @@ class Predicted_peptide(Peptide):
         # location = partial_location + \
         #     FeatureLocation(part.start, new_end, strand=strand)
         self.location = getGenomicLocation(cds, start_in_prot, end_in_prot)
-        # assert len(self.location) % 3 == 0
+
         self.start = self.location.start
         self.end = self.location.end
         self.bp_obj = SeqFeature(self.location,
@@ -986,7 +992,7 @@ class Predicted_peptide(Peptide):
         # print('real po', start_in_prot, end_in_prot)
 
         # print('fct', self.position_prot_relative[cds.protein_id])
-        assert self.start_aa(cds) == start_in_prot, self.end_aa(cds) == end_in_prot
+        # assert self.start_aa(cds) == start_in_prot, self.end_aa(cds) == end_in_prot
 
     def __str__(self):
         return 'predicted peptide object'
