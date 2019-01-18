@@ -682,7 +682,7 @@ def main():
     #                                    group_info_list, file_handle, args.line_size)
     #     return
 
-    file_handle = open(path.join(args.results_dir,
+    file_handle = open(path.join(args.stat_dir,
                                  f"visualization_cluster{cluster_nb}.aln"), 'w')
     visualisation_of_processed_aln(cds_list, alignment_file,
                                    group_info_list, file_handle, args.line_size)
