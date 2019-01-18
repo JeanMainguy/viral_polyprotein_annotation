@@ -36,6 +36,8 @@ process create_genome_index {
 
 db_date.subscribe { print "I say..  $it" }
 
+db_date = db_date.map {it -> it.replace('\n', '')}
+
 params.taxon = "Alphavirus"
 taxon_name_for_path = params.taxon
                             .replaceAll(/,/, "")
@@ -182,8 +184,6 @@ params.aln_num_threads = 2
 
 process mltp_alignement {
 
-    publishDir 'nextflow_result/', pattern: '*.gff'
-
     input:
         file faa_db from faa_db_aln
         set val(parameter), val(cluster_line) from clusters_of_polyprotein
@@ -213,6 +213,7 @@ params.confidence_score_treshold = 4
 
 process alignment_analysis {
     // "nextflow_result_${db_date}/${taxon_name_for_path}/${parameter}/reannotated_genomes/"
+    db_date = db_date.replaceAll(/\n/, "")
     publishDir "nextflow_result_${db_date}/${taxon_name_for_path}/${parameter}/reannotated_genomes/", pattern: '*.gff'
     publishDir "nextflow_result_${db_date}/${taxon_name_for_path}/${parameter}/reannotated_genomes/", pattern: '*.gbff'
 
