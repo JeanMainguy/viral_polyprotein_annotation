@@ -43,6 +43,7 @@ def get_gb_file_from_RefSeq_db(genbank_file_db):
                 logging.warning('No latest_assembly_versions folder for {}'.format(virus_name))
                 logging.warning('NOT only suppressed dir in all assembly.. {} | This virus has a problem.. :'.format(
                     all_assembly_content, virus_name))
+            continue
 
             # raise Exception(assembly_path, 'the virus folder does not have "latest_assembly_versions" directory...')
             # return []
