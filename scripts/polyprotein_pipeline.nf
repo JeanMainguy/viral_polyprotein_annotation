@@ -4,7 +4,7 @@
 // genetic_code_file = Channel.fromPath("genome_db_test/taxonomy/new_taxdump/new_taxdump.tar.gz")
 params.genetic_code_file = "genome_db_test/taxonomy/new_taxdump/new_taxdump.tar.gz"
 params.refseq_structure = "True"
-params.genbank_files_db_path = "$PWD/genome_db_test2/genomes/refseq/viral/"
+params.genbank_files_db_path = "$PWD/genome_db_test/genomes/refseq/viral/"
 genetic_code_file = file(params.genetic_code_file)
 // genetic_code_file = file(params.genetic_code_file)
 
